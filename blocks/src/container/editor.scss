@@ -1,0 +1,20 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-wmblocks-container {
+    border: 2px solid #000 !important;
+    min-height: 50px;
+}
+.wp-block-wmblocks-container:before {
+    background-color: rgba(0, 0, 0, .6);
+    padding: 0 5px;
+    color: #fff;
+    font-size: 12px;
+    z-index: 20;
+ content:"Container";
+ top:0;
+ left:0;
+}

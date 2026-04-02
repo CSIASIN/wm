@@ -1,0 +1,52 @@
+/*!**********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/modal/editor.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+.wmblocks-modal-wrapper {
+  border: 2px dashed #6f42c1;
+  padding: 16px;
+  min-height: 80px;
+}
+.wmblocks-modal-wrapper .wmblocks-modal-preview {
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+.wmblocks-modal-wrapper .wmblocks-modal-preview .modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid #dee2e6;
+  background: #f8f9fa;
+}
+.wmblocks-modal-wrapper .wmblocks-modal-preview .modal-header .modal-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+.wmblocks-modal-wrapper .wmblocks-modal-preview .modal-header .btn-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: default;
+  opacity: 0.5;
+}
+.wmblocks-modal-wrapper .wmblocks-modal-preview .modal-header .btn-close::before {
+  content: "✕";
+}
+.wmblocks-modal-wrapper .wmblocks-modal-preview .modal-body {
+  padding: 16px;
+  min-height: 60px;
+}
+.wmblocks-modal-wrapper .wmblocks-modal-preview .modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid #dee2e6;
+  background: #f8f9fa;
+}

@@ -1,0 +1,38 @@
+.wmblocks-carousel-wrapper {
+	border: 2px dashed #fd7e14;
+	padding: 12px;
+	min-height: 260px;
+	background: #1a1a1a;
+	border-radius: 4px;
+
+	.wmblocks-carousel-nav {
+		display: flex;
+		gap: 6px;
+		justify-content: center;
+		margin-bottom: 12px;
+
+		.wmblocks-carousel-dot {
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background: rgba(255,255,255,0.4);
+			border: none;
+			cursor: pointer;
+			padding: 0;
+			transition: background 0.2s;
+
+			&.active {
+				background: #fff;
+				transform: scale(1.2);
+			}
+
+			&:hover {
+				background: rgba(255,255,255,0.7);
+			}
+		}
+	}
+
+	.wmblocks-carousel-slides {
+		min-height: 220px;
+	}
+}

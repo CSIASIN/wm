@@ -1,0 +1,126 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/container",
+  "version": "0.1.0",
+  "title": "Container",
+  "category": "watermelon-blocks",
+  "icon": "layout",
+  "description": "Containers are a fundamental building block of Watermelon theme that contain, pad, and align your content within a given device or viewport.",
+  "example": {
+    "attributes": {
+      "padding": "p-3",
+      "customCSS": "height:80px;"
+    }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "padding": {
+      "type": "string",
+      "default": "p-0"
+    },
+    "margin": {
+      "type": "string",
+      "default": ""
+    },
+    "anchor": {
+      "type": "string",
+      "default": "containerID"
+    },
+    "customCSS": {
+      "type": "string",
+      "default": ""
+    },
+    "preview": {
+      "type": "boolean",
+      "default": false
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": ""
+    },
+    "opacity": {
+      "type": "number",
+      "default": 100
+    },
+    "borderSides": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    },
+    "borderRemove": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    },
+    "borderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "borderOpacityClass": {
+      "type": "string",
+      "default": ""
+    },
+    "borderOpacityCustom": {
+      "type": "string",
+      "default": ""
+    },
+    "borderSize": {
+      "type": "string",
+      "default": ""
+    },
+    "borderRadius": {
+      "type": "string",
+      "default": ""
+    },
+    "borderRadiusSize": {
+      "type": "string",
+      "default": ""
+    },
+    "textColor": {
+      "type": "string",
+      "default": ""
+    },
+    "hideXs": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideSm": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideMd": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideLg": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideXl": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideXxl": {
+      "type": "boolean",
+      "default": false
+    },
+    "shadow": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

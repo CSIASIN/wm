@@ -1,0 +1,71 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/modal",
+  "version": "0.1.0",
+  "title": "Modal",
+  "category": "watermelon-blocks",
+  "icon": "welcome-widgets-menus",
+  "description": "Bootstrap modal dialog with configurable trigger button, header, body and footer.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "modalId": {
+      "type": "string",
+      "default": ""
+    },
+    "triggerText": {
+      "type": "string",
+      "default": "Launch Modal"
+    },
+    "triggerVariant": {
+      "type": "string",
+      "default": "btn-primary"
+    },
+    "modalTitle": {
+      "type": "string",
+      "default": "Modal Title"
+    },
+    "modalSize": {
+      "type": "string",
+      "default": ""
+    },
+    "centered": {
+      "type": "boolean",
+      "default": false
+    },
+    "scrollable": {
+      "type": "boolean",
+      "default": false
+    },
+    "staticBackdrop": {
+      "type": "boolean",
+      "default": false
+    },
+    "showFooter": {
+      "type": "boolean",
+      "default": true
+    },
+    "closeButtonText": {
+      "type": "string",
+      "default": "Close"
+    },
+    "saveButtonText": {
+      "type": "string",
+      "default": "Save changes"
+    },
+    "saveButtonVariant": {
+      "type": "string",
+      "default": "btn-primary"
+    }
+  },
+  "textdomain": "wmblocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

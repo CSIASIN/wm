@@ -1,0 +1,120 @@
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/tabs/editor.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+.wp-block-wmblocks-tabs.wmblocks-tabs-wrapper {
+  border: 2px dashed #007cba;
+  padding: 12px;
+  min-height: 120px;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-wrapper > ul.nav {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0 !important;
+  list-style: none;
+  border-bottom: 2px solid #dee2e6;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-wrapper > ul.nav > li.nav-item {
+  margin-bottom: -2px;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-wrapper > ul.nav > li.nav-item > button.nav-link {
+  display: block;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #6c757d;
+  background: none;
+  border: 2px solid transparent;
+  border-radius: 4px 4px 0 0;
+  cursor: pointer;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: color 0.15s, border-color 0.15s;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-wrapper > ul.nav > li.nav-item > button.nav-link:hover {
+  color: #007cba;
+  border-color: #e9ecef #e9ecef #dee2e6;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-wrapper > ul.nav > li.nav-item > button.nav-link.active {
+  color: #007cba;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+  font-weight: 600;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-wrapper > ul.nav.nav-pills {
+  border-bottom: none;
+  gap: 4px;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-wrapper > ul.nav.nav-pills > li.nav-item > button.nav-link {
+  border-radius: 50px;
+  border: 2px solid transparent;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-wrapper > ul.nav.nav-pills > li.nav-item > button.nav-link.active {
+  background-color: #007cba;
+  color: #fff;
+  border-color: #007cba;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-wrapper > ul.nav.nav-underline {
+  border-bottom: 2px solid #dee2e6;
+  gap: 8px;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-wrapper > ul.nav.nav-underline > li.nav-item > button.nav-link {
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-wrapper > ul.nav.nav-underline > li.nav-item > button.nav-link.active {
+  border-bottom-color: #007cba;
+  color: #007cba;
+  background: none;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-wrapper > ul.nav.nav-fill > li.nav-item {
+  flex: 1 1 auto;
+  text-align: center;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-wrapper > ul.nav.nav-justified > li.nav-item {
+  flex: 1 1 0%;
+  text-align: center;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-wrapper > .tab-content {
+  border: 1px dashed #c8e1ff;
+  border-top: none;
+  padding: 16px 12px 12px;
+  min-height: 60px;
+  background: #fff;
+}
+.wmblocks-tab-item {
+  padding: 4px 0;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-vertical {
+  display: flex !important;
+  align-items: flex-start;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-vertical > ul.nav.flex-column {
+  flex-direction: column !important;
+  border-bottom: none;
+  border-right: 2px solid #dee2e6;
+  min-width: 120px;
+  margin-right: 12px;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-vertical > ul.nav.flex-column > li.nav-item > button.nav-link {
+  border-radius: 4px 0 0 4px;
+  border: 2px solid transparent;
+  border-right: none;
+  text-align: left;
+  white-space: nowrap;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-vertical > ul.nav.flex-column > li.nav-item > button.nav-link.active {
+  border-color: #dee2e6 transparent #dee2e6 #dee2e6;
+  border-right: 2px solid #fff;
+  margin-right: -2px;
+}
+.wp-block-wmblocks-tabs.wmblocks-tabs-vertical > .tab-content {
+  border-top: 1px dashed #c8e1ff;
+  flex: 1;
+}
+
+/*# sourceMappingURL=index.css.map*/

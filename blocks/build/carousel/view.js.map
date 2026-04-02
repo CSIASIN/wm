@@ -1,0 +1,1 @@
+{"version":3,"file":"carousel/view.js","mappings":";;;;AAAA;AACA,6D","sources":["webpack://div/./src/carousel/view.js"],"sourcesContent":["// Bootstrap JS handles carousel via data-bs-ride=\"carousel\"\n// No custom JS needed if Bootstrap JS is loaded in the theme\n"],"names":[],"sourceRoot":""}

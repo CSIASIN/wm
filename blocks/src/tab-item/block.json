@@ -1,0 +1,41 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/tab-item",
+	"version": "0.1.0",
+	"title": "Tab Item",
+	"category": "watermelon-blocks",
+	"icon": "welcome-add-page",
+	"description": "A single tab pane \u2014 child of the Tabs block.",
+	"example": {},
+	"parent": [
+		"wmblocks/tabs"
+	],
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"attributes": {
+		"tabLabel": {
+			"type": "string",
+			"default": "Tab"
+		},
+		"tabId": {
+			"type": "string",
+			"default": ""
+		},
+		"isActive": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"usesContext": [
+		"wmblocks/activeTabIndex",
+		"wmblocks/fadeEffect"
+	],
+	"textdomain": "wmblocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

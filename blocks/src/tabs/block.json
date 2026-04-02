@@ -1,0 +1,47 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/tabs",
+	"version": "0.1.0",
+	"title": "Tabs",
+	"category": "watermelon-blocks",
+	"icon": "table-row-after",
+	"description": "Bootstrap JavaScript tabs with nav and tab content panels.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"tabStyle": {
+			"type": "string",
+			"default": "nav-tabs"
+		},
+		"tabFill": {
+			"type": "string",
+			"default": ""
+		},
+		"activeTabIndex": {
+			"type": "number",
+			"default": 0
+		},
+		"vertical": {
+			"type": "boolean",
+			"default": false
+		},
+		"fadeEffect": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"providesContext": {
+		"wmblocks/activeTabIndex": "activeTabIndex",
+		"wmblocks/fadeEffect": "fadeEffect"
+	},
+	"textdomain": "wmblocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

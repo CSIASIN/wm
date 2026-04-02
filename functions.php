@@ -190,6 +190,41 @@ if ( class_exists( 'WooCommerce' ) ) {
 }
 
 
+add_filter( 'block_categories_all', function( $categories ) {
+    return array_merge(
+        array(
+            array(
+                'slug'  => 'watermelon-blocks',
+                'title' => __( 'Watermelon Blocks', 'wm' ),
+                'icon'  => null,
+            ),
+        ),
+        $categories
+    );
+}, 10, 2 );
+
+function wmblocks_container_block_init() {
+	wp_register_block_types_from_metadata_collection( __DIR__ . '/blocks/build', __DIR__ . '/blocks/build/blocks-manifest.php' );
+}
+add_action( 'init', 'wmblocks_container_block_init' );
+
+
+function wm_enqueue_formatting_toolbar() {
+    wp_enqueue_script(
+        'tooltips', get_template_directory_uri().'/blocks/build/formats/tooltips/index.js',
+        [ 'wp-rich-text', 'wp-element', 'wp-block-editor', 'wp-i18n' ],
+        false,
+        true
+    );
+	    wp_enqueue_script(
+        'popovers', get_template_directory_uri().'/blocks/build/formats/popover/index.js',
+        [ 'wp-rich-text', 'wp-element', 'wp-block-editor', 'wp-i18n' ],
+        false,
+        true
+    );
+}
+add_action('enqueue_block_editor_assets', 'wm_enqueue_formatting_toolbar');
+
 
 add_action('wp_ajax_ce_load_more_cat_posts', 'ce_load_more_cat_posts');
 add_action('wp_ajax_nopriv_ce_load_more_cat_posts', 'ce_load_more_cat_posts');

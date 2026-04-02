@@ -1,0 +1,58 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/carousel",
+	"version": "0.1.0",
+	"title": "Carousel",
+	"category": "watermelon-blocks",
+	"icon": "images-alt2",
+	"description": "Bootstrap carousel slideshow for cycling through images or content slides.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"showIndicators": {
+			"type": "boolean",
+			"default": true
+		},
+		"showControls": {
+			"type": "boolean",
+			"default": true
+		},
+		"crossfade": {
+			"type": "boolean",
+			"default": false
+		},
+		"autoplay": {
+			"type": "boolean",
+			"default": true
+		},
+		"interval": {
+			"type": "number",
+			"default": 5000
+		},
+		"pauseOnHover": {
+			"type": "boolean",
+			"default": true
+		},
+		"touch": {
+			"type": "boolean",
+			"default": true
+		},
+		"activeSlideIndex": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"providesContext": {
+		"wmblocks/activeSlideIndex": "activeSlideIndex"
+	},
+	"textdomain": "wmblocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

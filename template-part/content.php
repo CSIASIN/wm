@@ -8,6 +8,8 @@
  */
 
 ?>
+<?php echo "content template parts"?>
+ 
 
 	  <?php if ( is_singular() ) : ?>
 	  <div id="content" class="site-content <?= apply_filters('bootscore/class/container', 'container', 'single'); ?> <?= apply_filters('bootscore/class/content/spacer', 'pt-3 pb-5', 'single'); ?>">

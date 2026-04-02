@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/div",
+  "version": "0.1.0",
+  "title": "Div",
+  "category": "watermelon-blocks",
+  "icon": "smiley",
+  "description": "Div aredd a basic building block of Watermelon that contain, pad, and align your content within a given device or viewport.",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

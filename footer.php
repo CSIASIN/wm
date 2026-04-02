@@ -61,6 +61,23 @@
     </div>
 <?php endif; ?>
 
+<?php block_template_part( 'footer' ); ?>
+
+<script>
+document.addEventListener( 'DOMContentLoaded', () => {
+    if ( typeof window.bootstrap === 'undefined' ) return;
+    document.querySelectorAll( '[data-bs-toggle="tooltip"]' )
+        .forEach( el => new window.bootstrap.Tooltip( el ) );
+		
+		
+} );
+
+document.addEventListener( 'DOMContentLoaded', () => {
+    if ( typeof window.bootstrap === 'undefined' ) return;
+const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+} );
+</script>
 </body>
 
 </html>
