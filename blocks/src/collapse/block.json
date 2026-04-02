@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/collapse",
+	"version": "0.1.0",
+	"title": "Collapse",
+	"category": "watermelon-blocks",
+	"icon": "arrow-down-alt2",
+	"description": "Bootstrap collapse — toggle visibility of content with a trigger button.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"collapseId": {
+			"type": "string",
+			"default": ""
+		},
+		"triggerText": {
+			"type": "string",
+			"default": "Toggle Content"
+		},
+		"triggerVariant": {
+			"type": "string",
+			"default": "btn-primary"
+		},
+		"triggerType": {
+			"type": "string",
+			"default": "button"
+		},
+		"startOpen": {
+			"type": "boolean",
+			"default": false
+		},
+		"horizontal": {
+			"type": "boolean",
+			"default": false
+		},
+		"contentWidth": {
+			"type": "string",
+			"default": "300px"
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

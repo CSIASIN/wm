@@ -132,6 +132,59 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
 	),
+	'collapse' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/collapse',
+		'version' => '0.1.0',
+		'title' => 'Collapse',
+		'category' => 'watermelon-blocks',
+		'icon' => 'arrow-down-alt2',
+		'description' => 'Bootstrap collapse — toggle visibility of content with a trigger button.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'collapseId' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'triggerText' => array(
+				'type' => 'string',
+				'default' => 'Toggle Content'
+			),
+			'triggerVariant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'triggerType' => array(
+				'type' => 'string',
+				'default' => 'button'
+			),
+			'startOpen' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'horizontal' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'contentWidth' => array(
+				'type' => 'string',
+				'default' => '300px'
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
 	'container' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,

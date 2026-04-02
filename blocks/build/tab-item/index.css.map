@@ -1,1 +1,0 @@
-{"version":3,"file":"tab-item/index.css","mappings":";;;AAAA;EAEC;EACA;AAAD,C","sources":["webpack://div/./src/tab-item/editor.scss"],"sourcesContent":[".tab-pane {\n\t// Always show in editor regardless of active state\n\tdisplay: block !important;\n\topacity: 1 !important;\n}\n"],"names":[],"sourceRoot":""}
