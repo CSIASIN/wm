@@ -1,6 +1,90 @@
 <?php
 // This file is generated. Do not modify it manually.
 return array(
+	'accordion' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/accordion',
+		'version' => '0.1.0',
+		'title' => 'Accordion',
+		'category' => 'watermelon-blocks',
+		'icon' => 'menu-alt',
+		'description' => 'Bootstrap accordion — a list of collapsible items with one open at a time.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'alwaysOpen' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'flush' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'accordionId' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'providesContext' => array(
+			'wmblocks/accordionId' => 'accordionId',
+			'wmblocks/alwaysOpen' => 'alwaysOpen'
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'accordion-item' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/accordion-item',
+		'version' => '0.1.0',
+		'title' => 'Accordion Item',
+		'category' => 'watermelon-blocks',
+		'icon' => 'minus',
+		'description' => 'A single item inside the Accordion block.',
+		'example' => array(
+			
+		),
+		'parent' => array(
+			'wmblocks/accordion'
+		),
+		'supports' => array(
+			'html' => false,
+			'reusable' => false
+		),
+		'attributes' => array(
+			'itemId' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'heading' => array(
+				'type' => 'string',
+				'default' => 'Accordion Item'
+			),
+			'startOpen' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'usesContext' => array(
+			'wmblocks/accordionId',
+			'wmblocks/alwaysOpen'
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'carousel' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,

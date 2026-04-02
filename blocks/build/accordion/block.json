@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/accordion",
+  "version": "0.1.0",
+  "title": "Accordion",
+  "category": "watermelon-blocks",
+  "icon": "menu-alt",
+  "description": "Bootstrap accordion — a list of collapsible items with one open at a time.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "alwaysOpen": {
+      "type": "boolean",
+      "default": false
+    },
+    "flush": {
+      "type": "boolean",
+      "default": false
+    },
+    "accordionId": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "providesContext": {
+    "wmblocks/accordionId": "accordionId",
+    "wmblocks/alwaysOpen": "alwaysOpen"
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/accordion-item",
+	"version": "0.1.0",
+	"title": "Accordion Item",
+	"category": "watermelon-blocks",
+	"icon": "minus",
+	"description": "A single item inside the Accordion block.",
+	"example": {},
+	"parent": [ "wmblocks/accordion" ],
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"attributes": {
+		"itemId": {
+			"type": "string",
+			"default": ""
+		},
+		"heading": {
+			"type": "string",
+			"default": "Accordion Item"
+		},
+		"startOpen": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"usesContext": [
+		"wmblocks/accordionId",
+		"wmblocks/alwaysOpen"
+	],
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}
