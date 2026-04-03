@@ -494,6 +494,71 @@ return array(
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),
+	'offcanvas' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/offcanvas',
+		'version' => '0.1.0',
+		'title' => 'Offcanvas',
+		'category' => 'watermelon-blocks',
+		'icon' => 'align-pull-right',
+		'description' => 'Bootstrap offcanvas — a sidebar drawer that slides in from any edge with a trigger button.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'offcanvasId' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'placement' => array(
+				'type' => 'string',
+				'default' => 'start'
+			),
+			'offcanvasTitle' => array(
+				'type' => 'string',
+				'default' => 'Offcanvas Title'
+			),
+			'showBackdrop' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'closeOnBackdrop' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'scrollBody' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'showHeader' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'triggerText' => array(
+				'type' => 'string',
+				'default' => 'Open Offcanvas'
+			),
+			'triggerVariant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'triggerType' => array(
+				'type' => 'string',
+				'default' => 'button'
+			)
+		),
+		'textdomain' => 'wmblocks',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
 	'tab-item' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,

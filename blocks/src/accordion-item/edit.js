@@ -89,12 +89,17 @@ export default function Edit( { attributes, setAttributes, clientId, context } )
 			<div { ...blockProps }>
 				{ /* Accordion header */ }
 				<h2 className="accordion-header">
-					<button
-						className={ 'accordion-button' + ( editorOpen ? '' : ' collapsed' ) }
-						type="button"
-						onMouseDown={ ( e ) => { e.preventDefault(); setEditorOpen( ! editorOpen ); } }
-						style={ { cursor: 'pointer' } }
-					>
+					<div className={ 'accordion-button' + ( editorOpen ? '' : ' collapsed' ) } style={ { display: 'flex', alignItems: 'center', cursor: 'default', userSelect: 'none' } }>
+						{ /* Small toggle arrow — only this toggles open/close */ }
+						<button
+							type="button"
+							onMouseDown={ ( e ) => { e.preventDefault(); setEditorOpen( ! editorOpen ); } }
+							style={ { background: 'none', border: 'none', padding: '0 10px 0 0', cursor: 'pointer', flexShrink: 0, fontSize: '11px', color: editorOpen ? '#6610f2' : '#666' } }
+							title={ __( 'Toggle preview', 'wmblocks' ) }
+						>
+							{ editorOpen ? '▼' : '▶' }
+						</button>
+						{ /* RichText is fully clickable and editable */ }
 						<RichText
 							tagName="span"
 							value={ heading }
@@ -108,9 +113,9 @@ export default function Edit( { attributes, setAttributes, clientId, context } )
 							} }
 							placeholder={ __( 'Accordion heading…', 'wmblocks' ) }
 							allowedFormats={ [] }
-							style={ { pointerEvents: 'all' } }
+							style={ { flex: 1, cursor: 'text' } }
 						/>
-					</button>
+					</div>
 				</h2>
 
 				{ /* Accordion body — toggle visibility in editor */ }
