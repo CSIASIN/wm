@@ -146,6 +146,74 @@ return array(
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),
+	'buttons' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/buttons',
+		'version' => '0.1.0',
+		'title' => 'Buttons',
+		'category' => 'watermelon-blocks',
+		'icon' => 'button',
+		'description' => 'Bootstrap buttons — add one or multiple buttons with full control over variant, size, style, state and layout. Labels editable inline on the canvas.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'buttons' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'b1',
+						'label' => 'Primary Button',
+						'href' => '#',
+						'target' => '_self',
+						'variant' => 'btn-primary',
+						'size' => '',
+						'outline' => false,
+						'disabled' => false,
+						'active' => false,
+						'type' => 'link',
+						'stretchedLink' => false,
+						'noWrap' => false
+					)
+				)
+			),
+			'layout' => array(
+				'type' => 'string',
+				'default' => 'inline'
+			),
+			'groupMode' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'groupSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'groupVertical' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'alignment' => array(
+				'type' => 'string',
+				'default' => 'left'
+			),
+			'gap' => array(
+				'type' => 'string',
+				'default' => 'gap-2'
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
 	'carousel' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -474,6 +542,108 @@ return array(
 		),
 		'supports' => array(
 			'html' => false
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'dropdown' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/dropdown',
+		'version' => '0.1.0',
+		'title' => 'Dropdown',
+		'category' => 'watermelon-blocks',
+		'icon' => 'menu',
+		'description' => 'Bootstrap dropdown — a toggleable contextual menu with links, headers, dividers and more.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'triggerText' => array(
+				'type' => 'string',
+				'default' => 'Dropdown'
+			),
+			'triggerVariant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'triggerSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'splitButton' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'direction' => array(
+				'type' => 'string',
+				'default' => 'dropdown'
+			),
+			'menuAlign' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'darkMenu' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'autoClose' => array(
+				'type' => 'string',
+				'default' => 'true'
+			),
+			'items' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'i1',
+						'type' => 'link',
+						'label' => 'Action',
+						'href' => '#',
+						'disabled' => false,
+						'active' => false
+					),
+					array(
+						'id' => 'i2',
+						'type' => 'link',
+						'label' => 'Another action',
+						'href' => '#',
+						'disabled' => false,
+						'active' => false
+					),
+					array(
+						'id' => 'i3',
+						'type' => 'link',
+						'label' => 'Something else',
+						'href' => '#',
+						'disabled' => false,
+						'active' => false
+					),
+					array(
+						'id' => 'i4',
+						'type' => 'divider',
+						'label' => '',
+						'href' => '',
+						'disabled' => false,
+						'active' => false
+					),
+					array(
+						'id' => 'i5',
+						'type' => 'link',
+						'label' => 'Separated link',
+						'href' => '#',
+						'disabled' => false,
+						'active' => false
+					)
+				)
+			)
 		),
 		'textdomain' => 'wm',
 		'editorScript' => 'file:./index.js',

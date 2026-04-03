@@ -1,1 +1,110 @@
-.wmblocks-offcanvas-wrapper{background:#faf8ff;border:2px dashed #6f42c1;border-radius:4px;padding:16px}.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-section-label{align-items:center;color:#6f42c1;display:flex;font-size:10px;font-weight:700;gap:6px;letter-spacing:.1em;margin-bottom:8px;text-transform:uppercase}.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-badge{align-items:center;background:rgba(111,66,193,.133);border-radius:3px;color:#6f42c1;display:inline-flex;font-size:9px;font-weight:600;letter-spacing:.06em;padding:1px 7px;text-transform:uppercase}.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-trigger-row{align-items:center;display:flex;flex-wrap:wrap;gap:10px;margin-bottom:4px}.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-trigger-hint{color:#aaa;font-size:11px;font-style:italic}.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-divider{border-top:1px dashed #d0c0f0;margin:14px 0}.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel{background:#fff;border:1px solid #dee2e6;border-radius:6px;box-shadow:0 2px 12px rgba(111,66,193,.08);overflow:hidden}.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__header{align-items:center;background:#f8f5ff;border-bottom:1px solid #e9e3f8;display:flex;gap:8px;justify-content:space-between;padding:12px 16px}.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__title{background:transparent!important;border:none!important;color:#212529!important;cursor:text;flex:1;font-size:15px!important;font-weight:600!important;line-height:1.4!important;margin:0!important;padding:0!important}.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__title:hover{border-radius:2px;outline:1px dashed rgba(111,66,193,.4);outline-offset:2px}.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__close{align-items:center;border:1px dashed #ccc;border-radius:50%;color:#6c757d;cursor:default;display:flex;flex-shrink:0;font-size:18px;font-style:normal;height:24px;justify-content:center;line-height:1;opacity:.5;-webkit-user-select:none;-moz-user-select:none;user-select:none;width:24px}.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body{min-height:80px;padding:16px}.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body .block-editor-inner-blocks{min-height:60px}.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body h1,.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body h2,.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body h3,.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body h4,.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body h5,.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body h6,.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body ol,.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body p,.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body ul{margin-top:0}
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/offcanvas/editor.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
+.wmblocks-offcanvas-wrapper {
+  border: 2px dashed #6f42c1;
+  padding: 16px;
+  border-radius: 4px;
+  background: #faf8ff;
+}
+.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-section-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #6f42c1;
+  margin-bottom: 8px;
+}
+.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(111, 66, 193, 0.1333333333);
+  color: #6f42c1;
+  border-radius: 3px;
+  padding: 1px 7px;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-trigger-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-trigger-hint {
+  font-size: 11px;
+  color: #aaa;
+  font-style: italic;
+}
+.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-divider {
+  border-top: 1px dashed #d0c0f0;
+  margin: 14px 0;
+}
+.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel {
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(111, 66, 193, 0.08);
+}
+.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #f8f5ff;
+  border-bottom: 1px solid #e9e3f8;
+  gap: 8px;
+}
+.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__title {
+  flex: 1;
+  margin: 0 !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #212529 !important;
+  line-height: 1.4 !important;
+  border: none !important;
+  padding: 0 !important;
+  background: transparent !important;
+  cursor: text;
+}
+.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__title:hover {
+  outline: 1px dashed rgba(111, 66, 193, 0.4);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__close {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  color: #6c757d;
+  opacity: 0.5;
+  cursor: default;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  border-radius: 50%;
+  border: 1px dashed #ccc;
+  font-style: normal;
+}
+.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body {
+  padding: 16px;
+  min-height: 80px;
+}
+.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body .block-editor-inner-blocks {
+  min-height: 60px;
+}
+.wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body p, .wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body ul, .wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body ol, .wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body h1, .wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body h2, .wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body h3, .wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body h4, .wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body h5, .wmblocks-offcanvas-wrapper .wmblocks-offcanvas-panel__body h6 {
+  margin-top: 0;
+}

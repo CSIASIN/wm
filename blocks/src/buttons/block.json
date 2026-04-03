@@ -1,0 +1,66 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/buttons",
+	"version": "0.1.0",
+	"title": "Buttons",
+	"category": "watermelon-blocks",
+	"icon": "button",
+	"description": "Bootstrap buttons — add one or multiple buttons with full control over variant, size, style, state and layout. Labels editable inline on the canvas.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"buttons": {
+			"type": "array",
+			"default": [
+				{
+					"id": "b1",
+					"label": "Primary Button",
+					"href": "#",
+					"target": "_self",
+					"variant": "btn-primary",
+					"size": "",
+					"outline": false,
+					"disabled": false,
+					"active": false,
+					"type": "link",
+					"stretchedLink": false,
+					"noWrap": false
+				}
+			]
+		},
+		"layout": {
+			"type": "string",
+			"default": "inline"
+		},
+		"groupMode": {
+			"type": "boolean",
+			"default": false
+		},
+		"groupSize": {
+			"type": "string",
+			"default": ""
+		},
+		"groupVertical": {
+			"type": "boolean",
+			"default": false
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"gap": {
+			"type": "string",
+			"default": "gap-2"
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

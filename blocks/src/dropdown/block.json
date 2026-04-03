@@ -1,0 +1,65 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/dropdown",
+	"version": "0.1.0",
+	"title": "Dropdown",
+	"category": "watermelon-blocks",
+	"icon": "menu",
+	"description": "Bootstrap dropdown — a toggleable contextual menu with links, headers, dividers and more.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"triggerText": {
+			"type": "string",
+			"default": "Dropdown"
+		},
+		"triggerVariant": {
+			"type": "string",
+			"default": "btn-primary"
+		},
+		"triggerSize": {
+			"type": "string",
+			"default": ""
+		},
+		"splitButton": {
+			"type": "boolean",
+			"default": false
+		},
+		"direction": {
+			"type": "string",
+			"default": "dropdown"
+		},
+		"menuAlign": {
+			"type": "string",
+			"default": ""
+		},
+		"darkMenu": {
+			"type": "boolean",
+			"default": false
+		},
+		"autoClose": {
+			"type": "string",
+			"default": "true"
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{ "id": "i1", "type": "link",    "label": "Action",          "href": "#", "disabled": false, "active": false },
+				{ "id": "i2", "type": "link",    "label": "Another action",  "href": "#", "disabled": false, "active": false },
+				{ "id": "i3", "type": "link",    "label": "Something else",  "href": "#", "disabled": false, "active": false },
+				{ "id": "i4", "type": "divider", "label": "",                "href": "",  "disabled": false, "active": false },
+				{ "id": "i5", "type": "link",    "label": "Separated link",  "href": "#", "disabled": false, "active": false }
+			]
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}
