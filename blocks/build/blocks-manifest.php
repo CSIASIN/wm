@@ -85,6 +85,67 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
 	),
+	'alerts' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/alert',
+		'version' => '0.1.0',
+		'title' => 'Alert',
+		'category' => 'watermelon-blocks',
+		'icon' => 'warning',
+		'description' => 'Bootstrap alert — contextual feedback messages with optional heading, icon, dismiss button, and any block content inside.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'variant' => array(
+				'type' => 'string',
+				'default' => 'alert-primary'
+			),
+			'heading' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'showHeading' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'dismissible' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'showIcon' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'icon' => array(
+				'type' => 'string',
+				'default' => 'bi-info-circle-fill'
+			),
+			'showLink' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'linkText' => array(
+				'type' => 'string',
+				'default' => 'Learn more'
+			),
+			'linkUrl' => array(
+				'type' => 'string',
+				'default' => '#'
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
 	'carousel' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -494,6 +555,115 @@ return array(
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),
+	'navbar' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/navbar',
+		'version' => '0.1.0',
+		'title' => 'Navbar',
+		'category' => 'watermelon-blocks',
+		'icon' => 'menu',
+		'description' => 'Bootstrap responsive navigation bar with brand, nav links, and mobile toggler.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'navbarId' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'brandText' => array(
+				'type' => 'string',
+				'default' => 'Navbar'
+			),
+			'brandUrl' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'brandImageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'brandImageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'brandImageHeight' => array(
+				'type' => 'string',
+				'default' => '30px'
+			),
+			'colorScheme' => array(
+				'type' => 'string',
+				'default' => 'navbar-dark bg-dark'
+			),
+			'expandBreakpoint' => array(
+				'type' => 'string',
+				'default' => 'navbar-expand-lg'
+			),
+			'placement' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'containerType' => array(
+				'type' => 'string',
+				'default' => 'container'
+			),
+			'navItems' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'label' => 'Home',
+						'url' => '#',
+						'active' => true,
+						'disabled' => false
+					),
+					array(
+						'label' => 'About',
+						'url' => '#',
+						'active' => false,
+						'disabled' => false
+					),
+					array(
+						'label' => 'Services',
+						'url' => '#',
+						'active' => false,
+						'disabled' => false
+					),
+					array(
+						'label' => 'Contact',
+						'url' => '#',
+						'active' => false,
+						'disabled' => false
+					)
+				),
+				'items' => array(
+					'type' => 'object'
+				)
+			),
+			'showSearch' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'searchPlaceholder' => array(
+				'type' => 'string',
+				'default' => 'Search'
+			),
+			'navAlignment' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
 	'offcanvas' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -552,7 +722,7 @@ return array(
 				'default' => 'button'
 			)
 		),
-		'textdomain' => 'wmblocks',
+		'textdomain' => 'wm',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
@@ -645,6 +815,83 @@ return array(
 			'wmblocks/fadeEffect' => 'fadeEffect'
 		),
 		'textdomain' => 'wmblocks',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'Toasts' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/toast',
+		'version' => '0.1.0',
+		'title' => 'Toast',
+		'category' => 'watermelon-blocks',
+		'icon' => 'admin-comments',
+		'description' => 'Bootstrap toast notification with trigger button, header and body.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'toastId' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'triggerText' => array(
+				'type' => 'string',
+				'default' => 'Show Toast'
+			),
+			'triggerVariant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'showTrigger' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'toastTitle' => array(
+				'type' => 'string',
+				'default' => 'Bootstrap'
+			),
+			'toastSubtitle' => array(
+				'type' => 'string',
+				'default' => '11 mins ago'
+			),
+			'toastBody' => array(
+				'type' => 'string',
+				'default' => 'Hello, world! This is a toast message.'
+			),
+			'showHeader' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'showClose' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'autohide' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'delay' => array(
+				'type' => 'number',
+				'default' => 5000
+			),
+			'position' => array(
+				'type' => 'string',
+				'default' => 'bottom-0 end-0'
+			),
+			'colorVariant' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',

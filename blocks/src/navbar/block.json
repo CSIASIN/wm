@@ -1,0 +1,85 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/navbar",
+	"version": "0.1.0",
+	"title": "Navbar",
+	"category": "watermelon-blocks",
+	"icon": "menu",
+	"description": "Bootstrap responsive navigation bar with brand, nav links, and mobile toggler.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"navbarId": {
+			"type": "string",
+			"default": ""
+		},
+		"brandText": {
+			"type": "string",
+			"default": "Navbar"
+		},
+		"brandUrl": {
+			"type": "string",
+			"default": "#"
+		},
+		"brandImageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"brandImageId": {
+			"type": "number",
+			"default": 0
+		},
+		"brandImageHeight": {
+			"type": "string",
+			"default": "30px"
+		},
+		"colorScheme": {
+			"type": "string",
+			"default": "navbar-dark bg-dark"
+		},
+		"expandBreakpoint": {
+			"type": "string",
+			"default": "navbar-expand-lg"
+		},
+		"placement": {
+			"type": "string",
+			"default": ""
+		},
+		"containerType": {
+			"type": "string",
+			"default": "container"
+		},
+		"navItems": {
+			"type": "array",
+			"default": [
+				{ "label": "Home",     "url": "#", "active": true,  "disabled": false },
+				{ "label": "About",    "url": "#", "active": false, "disabled": false },
+				{ "label": "Services", "url": "#", "active": false, "disabled": false },
+				{ "label": "Contact",  "url": "#", "active": false, "disabled": false }
+			],
+			"items": { "type": "object" }
+		},
+		"showSearch": {
+			"type": "boolean",
+			"default": false
+		},
+		"searchPlaceholder": {
+			"type": "string",
+			"default": "Search"
+		},
+		"navAlignment": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

@@ -1,0 +1,59 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/alert",
+	"version": "0.1.0",
+	"title": "Alert",
+	"category": "watermelon-blocks",
+	"icon": "warning",
+	"description": "Bootstrap alert — contextual feedback messages with optional heading, icon, dismiss button, and any block content inside.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"variant": {
+			"type": "string",
+			"default": "alert-primary"
+		},
+		"heading": {
+			"type": "string",
+			"default": ""
+		},
+		"showHeading": {
+			"type": "boolean",
+			"default": false
+		},
+		"dismissible": {
+			"type": "boolean",
+			"default": false
+		},
+		"showIcon": {
+			"type": "boolean",
+			"default": false
+		},
+		"icon": {
+			"type": "string",
+			"default": "bi-info-circle-fill"
+		},
+		"showLink": {
+			"type": "boolean",
+			"default": false
+		},
+		"linkText": {
+			"type": "string",
+			"default": "Learn more"
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": "#"
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

@@ -1,0 +1,154 @@
+// ── Alert block editor wrapper ─────────────────────────────────────────────
+.wmblocks-alert-wrapper {
+	// No outer dashed wrapper needed — the alert card IS the visual
+	// We use a subtle outline to indicate it's a block
+	outline: 2px dashed #dee2e6;
+	outline-offset: 4px;
+	border-radius: 4px;
+
+	// ── Live alert preview ─────────────────────────────────────────────
+	.wmblocks-alert-preview {
+		position: relative;
+		border: 1px solid transparent;
+		border-radius: 0.375rem; // Bootstrap's default
+		padding: 1rem 1.25rem;
+		transition: background 0.2s, border-color 0.2s, color 0.2s;
+	}
+
+	// ── Dismiss × button (decorative in editor) ────────────────────────
+	.wmblocks-alert-close-preview {
+		position: absolute;
+		top: 0.75rem;
+		right: 1rem;
+		font-size: 1.25rem;
+		line-height: 1;
+		color: inherit;
+		opacity: 0.6;
+		cursor: default;
+		user-select: none;
+		font-style: normal;
+	}
+
+	// ── Heading row (icon + RichText h4) ──────────────────────────────
+	.wmblocks-alert-heading-row {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: 8px;
+	}
+
+	// ── Icon-only row (when no heading) ───────────────────────────────
+	.wmblocks-alert-icon-row {
+		margin-bottom: 8px;
+	}
+
+	// ── Icon glyph ────────────────────────────────────────────────────
+	.wmblocks-alert-icon {
+		font-size: 1.15rem;
+		line-height: 1;
+		flex-shrink: 0;
+		font-style: normal;
+	}
+
+	// ── Heading (RichText) ────────────────────────────────────────────
+	.wmblocks-alert-heading {
+		margin: 0 !important;
+		font-size: 1rem !important;
+		font-weight: 700 !important;
+		line-height: 1.4 !important;
+		flex: 1;
+
+		// Hover hint that it's editable
+		&:hover {
+			outline: 1px dashed rgba( 0, 0, 0, 0.15 );
+			outline-offset: 2px;
+			border-radius: 2px;
+		}
+	}
+
+	// ── Body (InnerBlocks) ────────────────────────────────────────────
+	.wmblocks-alert-body {
+		// Give InnerBlocks room to breathe
+		.block-editor-inner-blocks {
+			min-height: 32px;
+		}
+
+		// Tighten up paragraph spacing inside alerts
+		p {
+			margin-bottom: 0.5em;
+			&:last-child { margin-bottom: 0; }
+		}
+	}
+
+	// ── Optional link row ─────────────────────────────────────────────
+	.wmblocks-alert-link-row {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin-top: 8px;
+		padding-top: 8px;
+		border-top: 1px solid rgba( 0, 0, 0, 0.08 );
+		flex-wrap: wrap;
+	}
+
+	.wmblocks-alert-link-preview {
+		font-weight: 700;
+		text-decoration: underline;
+		font-size: 13px;
+		cursor: default;
+	}
+
+	.wmblocks-alert-link-url {
+		font-weight: 400;
+		font-size: 11px;
+		opacity: 0.7;
+		font-style: italic;
+	}
+
+	.wmblocks-alert-link-hint {
+		font-size: 10px;
+		color: #aaa;
+		font-style: italic;
+	}
+
+	// ── Footer badge strip ────────────────────────────────────────────
+	.wmblocks-alert-footer {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		flex-wrap: wrap;
+		margin-top: 8px;
+		padding-top: 2px;
+	}
+
+	.wmblocks-alert-variant-pill {
+		display: inline-flex;
+		align-items: center;
+		border: 1px solid transparent;
+		border-radius: 3px;
+		padding: 1px 8px;
+		font-size: 10px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+
+	.wmblocks-alert-meta {
+		display: inline-block;
+		background: #f0f0f0;
+		color: #666;
+		border-radius: 3px;
+		padding: 1px 6px;
+		font-size: 9px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.wmblocks-alert-hint {
+		margin-left: auto;
+		font-size: 10px;
+		color: #bbb;
+		font-style: italic;
+	}
+}

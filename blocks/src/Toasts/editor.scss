@@ -1,0 +1,20 @@
+.wmblocks-toast-wrapper {
+	border: 2px dashed #fd7e14;
+	padding: 16px;
+	min-height: 80px;
+
+	.toast {
+		display: block !important;
+		opacity: 1 !important;
+	}
+
+	.btn-close {
+		&::before { content: '✕'; }
+		background: none;
+		border: none;
+		opacity: 0.5;
+		font-size: 12px;
+		cursor: default;
+		padding: 0;
+	}
+}

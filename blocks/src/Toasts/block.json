@@ -1,0 +1,75 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/toast",
+	"version": "0.1.0",
+	"title": "Toast",
+	"category": "watermelon-blocks",
+	"icon": "admin-comments",
+	"description": "Bootstrap toast notification with trigger button, header and body.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"toastId": {
+			"type": "string",
+			"default": ""
+		},
+		"triggerText": {
+			"type": "string",
+			"default": "Show Toast"
+		},
+		"triggerVariant": {
+			"type": "string",
+			"default": "btn-primary"
+		},
+		"showTrigger": {
+			"type": "boolean",
+			"default": true
+		},
+		"toastTitle": {
+			"type": "string",
+			"default": "Bootstrap"
+		},
+		"toastSubtitle": {
+			"type": "string",
+			"default": "11 mins ago"
+		},
+		"toastBody": {
+			"type": "string",
+			"default": "Hello, world! This is a toast message."
+		},
+		"showHeader": {
+			"type": "boolean",
+			"default": true
+		},
+		"showClose": {
+			"type": "boolean",
+			"default": true
+		},
+		"autohide": {
+			"type": "boolean",
+			"default": true
+		},
+		"delay": {
+			"type": "number",
+			"default": 5000
+		},
+		"position": {
+			"type": "string",
+			"default": "bottom-0 end-0"
+		},
+		"colorVariant": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}
