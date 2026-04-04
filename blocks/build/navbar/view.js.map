@@ -1,1 +1,0 @@
-{"version":3,"file":"navbar/view.js","mappings":";;;;AAAA;AACA,6D","sources":["webpack://div/./src/navbar/view.js"],"sourcesContent":["// Bootstrap JS handles navbar toggler via data-bs-toggle=\"collapse\"\n// No custom JS needed if Bootstrap JS is loaded in the theme\n"],"names":[],"sourceRoot":""}

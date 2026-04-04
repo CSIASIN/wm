@@ -1178,6 +1178,78 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
 	),
+	'mediaobject' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/media-object',
+		'version' => '0.1.0',
+		'title' => 'Media Object',
+		'category' => 'watermelon-blocks',
+		'icon' => 'align-pull-left',
+		'description' => 'Bootstrap media object — image alongside text content using flexbox.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'imageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'imageAlt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageWidth' => array(
+				'type' => 'string',
+				'default' => '128px'
+			),
+			'imagePosition' => array(
+				'type' => 'string',
+				'default' => 'start'
+			),
+			'imageAlign' => array(
+				'type' => 'string',
+				'default' => 'align-self-start'
+			),
+			'imageClass' => array(
+				'type' => 'string',
+				'default' => 'img-fluid'
+			),
+			'imageGap' => array(
+				'type' => 'string',
+				'default' => 'me-3'
+			),
+			'imageUrl2' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageId2' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'imageAlt2' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'showSecondImage' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'modal' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -1416,6 +1488,114 @@ return array(
 			'triggerType' => array(
 				'type' => 'string',
 				'default' => 'button'
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'placeholder' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/placeholder',
+		'version' => '0.1.0',
+		'title' => 'Placeholder',
+		'category' => 'watermelon-blocks',
+		'icon' => 'image-filter',
+		'description' => 'Bootstrap placeholder / skeleton loader — build skeleton screens row by row. Pick a preset template or craft your own rows of heading, paragraph spans, button, image, avatar, and more. Full control over width, colour, size, and animation.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'rows' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'r1',
+						'element' => 'heading',
+						'cols' => 'col-6',
+						'colour' => '',
+						'size' => '',
+						'tag' => 'h5'
+					),
+					array(
+						'id' => 'r2',
+						'element' => 'paragraph',
+						'spans' => array(
+							array(
+								'id' => 's1',
+								'cols' => 'col-7',
+								'colour' => '',
+								'size' => ''
+							),
+							array(
+								'id' => 's2',
+								'cols' => 'col-4',
+								'colour' => '',
+								'size' => ''
+							),
+							array(
+								'id' => 's3',
+								'cols' => 'col-6',
+								'colour' => '',
+								'size' => ''
+							),
+							array(
+								'id' => 's4',
+								'cols' => 'col-8',
+								'colour' => '',
+								'size' => ''
+							)
+						)
+					),
+					array(
+						'id' => 'r3',
+						'element' => 'button',
+						'cols' => 'col-6',
+						'colour' => 'bg-primary',
+						'size' => '',
+						'tag' => ''
+					)
+				)
+			),
+			'animation' => array(
+				'type' => 'string',
+				'default' => 'placeholder-glow'
+			),
+			'ariaHidden' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'template' => array(
+				'type' => 'string',
+				'default' => 'custom'
+			),
+			'wrapInCard' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'showImageRow' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'imageHeight' => array(
+				'type' => 'string',
+				'default' => '180px'
+			),
+			'globalColour' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'globalSize' => array(
+				'type' => 'string',
+				'default' => ''
 			)
 		),
 		'textdomain' => 'wm',

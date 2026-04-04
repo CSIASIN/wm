@@ -1,1 +1,0 @@
-{"version":3,"file":"progress/index.css","mappings":";;;AAAA;EACC;EACA;EACA;AACD,C","sources":["webpack://div/./src/progress/editor.scss"],"sourcesContent":[".wmblocks-progress-wrapper {\n\tborder: 2px dashed #20c997;\n\tpadding: 16px;\n\tmin-height: 60px;\n}\n"],"names":[],"sourceRoot":""}

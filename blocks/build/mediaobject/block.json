@@ -1,0 +1,70 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/media-object",
+  "version": "0.1.0",
+  "title": "Media Object",
+  "category": "watermelon-blocks",
+  "icon": "align-pull-left",
+  "description": "Bootstrap media object — image alongside text content using flexbox.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imageId": {
+      "type": "number",
+      "default": 0
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "imageWidth": {
+      "type": "string",
+      "default": "128px"
+    },
+    "imagePosition": {
+      "type": "string",
+      "default": "start"
+    },
+    "imageAlign": {
+      "type": "string",
+      "default": "align-self-start"
+    },
+    "imageClass": {
+      "type": "string",
+      "default": "img-fluid"
+    },
+    "imageGap": {
+      "type": "string",
+      "default": "me-3"
+    },
+    "imageUrl2": {
+      "type": "string",
+      "default": ""
+    },
+    "imageId2": {
+      "type": "number",
+      "default": 0
+    },
+    "imageAlt2": {
+      "type": "string",
+      "default": ""
+    },
+    "showSecondImage": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

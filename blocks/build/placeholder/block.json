@@ -1,0 +1,106 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/placeholder",
+  "version": "0.1.0",
+  "title": "Placeholder",
+  "category": "watermelon-blocks",
+  "icon": "image-filter",
+  "description": "Bootstrap placeholder / skeleton loader — build skeleton screens row by row. Pick a preset template or craft your own rows of heading, paragraph spans, button, image, avatar, and more. Full control over width, colour, size, and animation.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "rows": {
+      "type": "array",
+      "default": [
+        {
+          "id": "r1",
+          "element": "heading",
+          "cols": "col-6",
+          "colour": "",
+          "size": "",
+          "tag": "h5"
+        },
+        {
+          "id": "r2",
+          "element": "paragraph",
+          "spans": [
+            {
+              "id": "s1",
+              "cols": "col-7",
+              "colour": "",
+              "size": ""
+            },
+            {
+              "id": "s2",
+              "cols": "col-4",
+              "colour": "",
+              "size": ""
+            },
+            {
+              "id": "s3",
+              "cols": "col-6",
+              "colour": "",
+              "size": ""
+            },
+            {
+              "id": "s4",
+              "cols": "col-8",
+              "colour": "",
+              "size": ""
+            }
+          ]
+        },
+        {
+          "id": "r3",
+          "element": "button",
+          "cols": "col-6",
+          "colour": "bg-primary",
+          "size": "",
+          "tag": ""
+        }
+      ]
+    },
+    "animation": {
+      "type": "string",
+      "default": "placeholder-glow"
+    },
+    "ariaHidden": {
+      "type": "boolean",
+      "default": true
+    },
+    "template": {
+      "type": "string",
+      "default": "custom"
+    },
+    "wrapInCard": {
+      "type": "boolean",
+      "default": false
+    },
+    "showImageRow": {
+      "type": "boolean",
+      "default": false
+    },
+    "imageHeight": {
+      "type": "string",
+      "default": "180px"
+    },
+    "globalColour": {
+      "type": "string",
+      "default": ""
+    },
+    "globalSize": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

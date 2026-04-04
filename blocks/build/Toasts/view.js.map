@@ -1,1 +1,0 @@
-{"version":3,"file":"Toasts/view.js","mappings":";;;;AAAA;AACA,sD","sources":["webpack://div/./src/Toasts/view.js"],"sourcesContent":["// Toast is triggered via inline onclick on the button\n// Bootstrap JS handles show/hide — no extra JS needed\n"],"names":[],"sourceRoot":""}
