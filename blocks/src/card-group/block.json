@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/card-group",
+	"version": "0.1.0",
+	"title": "Card Group",
+	"category": "watermelon-blocks",
+	"icon": "grid-view",
+	"description": "A responsive grid or Bootstrap card-group that holds multiple Card with Image children side by side.",
+	"example": {},
+	"supports": { "html": false, "anchor": true },
+	"attributes": {
+		"layout":   { "type": "string", "default": "grid"  },
+		"cols":     { "type": "string", "default": "3"     },
+		"gap":      { "type": "string", "default": "gap-3" },
+		"colsSm":   { "type": "string", "default": "1"     },
+		"colsMd":   { "type": "string", "default": "2"     }
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle":  "file:./index.css",
+	"style":        "file:./style-index.css",
+	"render":       "file:./render.php",
+	"viewScript":   "file:./view.js"
+}

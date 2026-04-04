@@ -1,0 +1,76 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/list-group",
+  "version": "0.1.0",
+  "title": "List Group",
+  "category": "watermelon-blocks",
+  "icon": "list-view",
+  "description": "Bootstrap list group — flexible content list with variants, badges, links and actions.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "itemType": {
+      "type": "string",
+      "default": "li"
+    },
+    "flush": {
+      "type": "boolean",
+      "default": false
+    },
+    "numbered": {
+      "type": "boolean",
+      "default": false
+    },
+    "horizontal": {
+      "type": "string",
+      "default": ""
+    },
+    "items": {
+      "type": "array",
+      "default": [
+        {
+          "text": "An item",
+          "subtext": "",
+          "badge": "",
+          "badgeVariant": "text-bg-primary",
+          "url": "",
+          "variant": "",
+          "active": false,
+          "disabled": false
+        },
+        {
+          "text": "A second item",
+          "subtext": "",
+          "badge": "",
+          "badgeVariant": "text-bg-primary",
+          "url": "",
+          "variant": "",
+          "active": false,
+          "disabled": false
+        },
+        {
+          "text": "A third item",
+          "subtext": "",
+          "badge": "",
+          "badgeVariant": "text-bg-primary",
+          "url": "",
+          "variant": "",
+          "active": false,
+          "disabled": false
+        }
+      ],
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

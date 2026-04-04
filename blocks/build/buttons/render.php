@@ -120,48 +120,80 @@ $align_map   = [
 ];
 $align_class = isset( $align_map[ $alignment ] ) ? $align_map[ $alignment ] : 'justify-content-start';
 
-// ── Block wrapper (adds anchor, className, other block supports) ───────────
-$wrapper_attributes = get_block_wrapper_attributes();
+// ── Decide how much wrapper markup is needed ──────────────────────────────
+//
+// Goal: keep the output as lean as Bootstrap itself would produce.
+//
+//  • 1 button  + inline layout + no group  → bare button/link, no inner div
+//  • 1 button  + stack layout              → d-grid wrapper (makes it full-width)
+//  • 1 button  + group mode                → btn-group wrapper (semantically correct)
+//  • 2+ buttons + inline layout            → d-flex wrapper with gap + alignment
+//  • 2+ buttons + stack layout             → d-grid wrapper
+//  • 2+ buttons + group mode               → btn-group wrapper
+//
+// The outer <div class="wp-block-wmblocks-buttons"> from get_block_wrapper_attributes()
+// is required by WordPress (for anchor, className, spacing supports) but we keep
+// everything INSIDE it as lean as possible.
+
+$button_count = count( $buttons );
+$is_single_inline = ( $button_count === 1 && ! $group_mode && $layout !== 'stack' );
+
+// For single inline button, pass alignment via the wrapper itself
+$wrapper_extra_classes = '';
+if ( $is_single_inline ) {
+	$wrapper_extra_classes = match ( $alignment ) {
+		'center' => 'd-flex justify-content-center',
+		'right'  => 'd-flex justify-content-end',
+		default  => '', // left — no extra wrapper classes needed
+	};
+}
+
+$wrapper_attributes = get_block_wrapper_attributes(
+	$wrapper_extra_classes ? [ 'class' => $wrapper_extra_classes ] : []
+);
 ?>
 <div <?php echo $wrapper_attributes; ?>>
 
-	<?php if ( $group_mode ) : ?>
+<?php if ( $group_mode ) :
+	// ── Button Group: btn-group or btn-group-vertical ─────────────────
+	$grp_classes = implode( ' ', array_filter( [
+		$group_vertical ? 'btn-group-vertical' : 'btn-group',
+		$safe_grp_size,
+	], 'strlen' ) );
+?>
+	<div class="<?php echo esc_attr( $grp_classes ); ?>" role="group" aria-label="<?php esc_attr_e( 'Button group', 'wmblocks' ); ?>">
+		<?php foreach ( $buttons as $btn ) : ?>
+			<?php echo wmblocks_render_single_button( $btn ); ?>
+		<?php endforeach; ?>
+	</div>
 
-		<?php
-		// ── Button Group ──────────────────────────────────────────────
-		$grp_classes = implode( ' ', array_filter( [
-			$group_vertical ? 'btn-group-vertical' : 'btn-group',
-			$safe_grp_size,
-		], 'strlen' ) );
-		?>
-		<div
-			class="<?php echo esc_attr( $grp_classes ); ?>"
-			role="group"
-			aria-label="<?php esc_attr_e( 'Button group', 'wmblocks' ); ?>"
-		>
-			<?php foreach ( $buttons as $btn ) : ?>
-				<?php echo wmblocks_render_single_button( $btn ); ?>
-			<?php endforeach; ?>
-		</div>
+<?php elseif ( $layout === 'stack' ) :
+	// ── Stack: d-grid makes each button full-width ────────────────────
+?>
+	<div class="d-grid gap-2">
+		<?php foreach ( $buttons as $btn ) : ?>
+			<?php echo wmblocks_render_single_button( $btn ); ?>
+		<?php endforeach; ?>
+	</div>
 
-	<?php elseif ( $layout === 'stack' ) : ?>
+<?php elseif ( $is_single_inline ) :
+	// ── Single button, inline: no inner wrapper at all ────────────────
+	echo wmblocks_render_single_button( $buttons[0] );
+?>
+<?php else :
+	// ── Multiple buttons, inline: flex row with gap + alignment ───────
+	$flex_classes = implode( ' ', array_filter( [
+		'd-flex flex-wrap',
+		$align_class,
+		$safe_gap,
+	], 'strlen' ) );
+?>
+	<div class="<?php echo esc_attr( $flex_classes ); ?>">
+		<?php foreach ( $buttons as $btn ) : ?>
+			<?php echo wmblocks_render_single_button( $btn ); ?>
+		<?php endforeach; ?>
+	</div>
 
-		<?php // ── Stacked / full-width ──────────────────────────────── ?>
-		<div class="d-grid gap-2">
-			<?php foreach ( $buttons as $btn ) : ?>
-				<?php echo wmblocks_render_single_button( $btn ); ?>
-			<?php endforeach; ?>
-		</div>
-
-	<?php else : ?>
-
-		<?php // ── Inline flex row ────────────────────────────────────── ?>
-		<div class="d-flex flex-wrap <?php echo esc_attr( $align_class ); ?> <?php echo esc_attr( $safe_gap ); ?>">
-			<?php foreach ( $buttons as $btn ) : ?>
-				<?php echo wmblocks_render_single_button( $btn ); ?>
-			<?php endforeach; ?>
-		</div>
-
-	<?php endif; ?>
+<?php endif; ?>
 
 </div>

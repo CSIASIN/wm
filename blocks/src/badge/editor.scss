@@ -1,0 +1,348 @@
+// ── Badge block canvas wrapper ─────────────────────────────────────────────
+.wmblocks-badge-wrapper {
+	border: 2px dashed #fd7e14;
+	padding: 14px;
+	border-radius: 6px;
+	background: #fff9f5;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+	// ══════════════════════════════════════════════════════════════════
+	// META STRIP
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-badge-meta-strip {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		margin-bottom: 12px;
+		flex-wrap: wrap;
+	}
+
+	.wmblocks-badge-meta-chip {
+		display: inline-flex;
+		align-items: center;
+		background: #fd7e1422;
+		color: #8a4200;
+		border-radius: 3px;
+		padding: 1px 8px;
+		font-size: 9px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.07em;
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// BADGE CANVAS ROW
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-badge-canvas-row {
+		min-height: 32px;
+		align-items: flex-start;
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// INDIVIDUAL BADGE ITEM
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-badge-item {
+		display: inline-flex;
+		flex-direction: column;
+		align-items: flex-start;
+		position: relative;
+
+		// ── Badge + action row ─────────────────────────────────────
+		&__badge-row {
+			display: inline-flex;
+			align-items: center;
+			gap: 4px;
+		}
+
+		// ── The badge (RichText) ───────────────────────────────────
+		.badge {
+			cursor: text;
+			font-size: 0.85em;
+			min-width: 24px;
+			transition: box-shadow 0.12s;
+
+			// Hover indicates it's editable
+			&:hover,
+			&:focus-within {
+				box-shadow: 0 0 0 3px rgba( 253, 126, 20, 0.35 );
+			}
+
+			// Remove default RichText block margin
+			p { margin: 0; display: inline; }
+		}
+
+		// ── Action buttons (← → ▼ ✕) ──────────────────────────────
+		&__actions {
+			display: inline-flex;
+			gap: 2px;
+			opacity: 0;
+			transition: opacity 0.15s;
+		}
+
+		&:hover &__actions,
+		&--expanded &__actions {
+			opacity: 1;
+		}
+
+		// ── Expanded detail panel ──────────────────────────────────
+		&__detail {
+			background: #fff4ed;
+			border: 1px solid #fdd7b5;
+			border-radius: 6px;
+			padding: 10px 12px;
+			margin-top: 6px;
+			display: flex;
+			flex-direction: column;
+			gap: 9px;
+			min-width: 260px;
+			max-width: min( 380px, 90vw );
+			z-index: 10;
+			position: relative;
+		}
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// ACTION BUTTONS  ← → ▼ ✕
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-badge-action {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 20px;
+		height: 20px;
+		border: 1px solid #fdd7b5;
+		border-radius: 3px;
+		background: #fff;
+		color: #8a4200;
+		font-size: 10px;
+		cursor: pointer;
+		padding: 0;
+		line-height: 1;
+		transition: background 0.12s, color 0.12s;
+
+		&:hover:not(:disabled) {
+			background: #fd7e14;
+			color: #fff;
+			border-color: #fd7e14;
+		}
+
+		&:disabled {
+			opacity: 0.3;
+			cursor: default;
+		}
+
+		&--expand {
+			font-size: 7px;
+			&.is-active {
+				background: #fff4ed;
+				border-color: #fd7e14;
+				color: #fd7e14;
+			}
+		}
+
+		&--remove {
+			&:hover:not(:disabled) {
+				background: #dc3545;
+				border-color: #dc3545;
+			}
+		}
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// DETAIL PANEL INTERNALS
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-badge-detail-row {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		flex-wrap: wrap;
+
+		&--flags { align-items: flex-start; flex-direction: column; gap: 5px; }
+	}
+
+	.wmblocks-badge-detail-label {
+		font-size: 10px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: #c07030;
+		width: 38px;
+		flex-shrink: 0;
+	}
+
+	// ── Colour swatches ────────────────────────────────────────────────
+	.wmblocks-badge-swatches {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 3px;
+	}
+
+	.wmblocks-badge-swatch {
+		width: 36px;
+		height: 22px;
+		border: 2px solid transparent;
+		border-radius: 4px;
+		font-size: 9px;
+		font-weight: 700;
+		cursor: pointer;
+		padding: 0;
+		transition: transform 0.1s, box-shadow 0.1s;
+		letter-spacing: 0;
+
+		&:hover { transform: scale( 1.1 ); box-shadow: 0 2px 6px rgba(0,0,0,.2); }
+
+		&.is-active {
+			box-shadow: 0 0 0 3px rgba( 253, 126, 20, 0.5 );
+			transform: scale( 1.08 );
+		}
+
+		// text-bg-* swatch — add dashed border to distinguish from bg-* row
+		&--textbg {
+			border-style: dashed;
+			border-color: rgba(0,0,0,.2);
+		}
+	}
+
+	// ── Shape buttons ──────────────────────────────────────────────────
+	.wmblocks-badge-pill-pills {
+		display: flex;
+		gap: 5px;
+	}
+
+	.wmblocks-badge-shape-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 5px;
+		padding: 3px 10px;
+		border: 1px solid #fdd7b5;
+		border-radius: 20px;
+		background: #fff;
+		color: #8a4200;
+		font-size: 11px;
+		cursor: pointer;
+		transition: all 0.12s;
+
+		&:hover { border-color: #fd7e14; color: #fd7e14; }
+
+		&.is-active {
+			background: #fd7e14;
+			border-color: #fd7e14;
+			color: #fff;
+			font-weight: 600;
+		}
+	}
+
+	// ── URL input ──────────────────────────────────────────────────────
+	.wmblocks-badge-url-input {
+		flex: 1;
+		min-width: 160px;
+		padding: 4px 8px;
+		font-size: 12px;
+		border: 1px solid #fdd7b5;
+		border-radius: 4px;
+		background: #fff;
+		color: #333;
+		font-family: 'SF Mono', 'Fira Code', monospace;
+		transition: border-color 0.15s;
+
+		&:focus {
+			outline: none;
+			border-color: #fd7e14;
+			box-shadow: 0 0 0 2px rgba( 253, 126, 20, 0.2 );
+		}
+	}
+
+	// ── Flag buttons (Top / Start position toggles) ────────────────────
+	.wmblocks-badge-flag-row {
+		display: flex;
+		gap: 5px;
+		flex-wrap: wrap;
+	}
+
+	.wmblocks-badge-flag-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 5px;
+		padding: 3px 10px;
+		border: 1px solid #fdd7b5;
+		border-radius: 20px;
+		background: #fff;
+		color: #8a4200;
+		font-size: 11px;
+		cursor: pointer;
+		transition: all 0.12s;
+
+		&:hover { border-color: #fd7e14; }
+
+		&.is-on {
+			background: #fff4ed;
+			border-color: #fd7e14;
+			color: #8a4200;
+			font-weight: 600;
+		}
+	}
+
+	.wmblocks-badge-flag-dot {
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		background: #fd7e14;
+		flex-shrink: 0;
+	}
+
+	.wmblocks-badge-flag-state {
+		font-size: 9px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		opacity: 0.6;
+	}
+
+	.wmblocks-badge-position-note {
+		font-size: 10px;
+		color: #aaa;
+		font-style: italic;
+		margin: 2px 0 0;
+		line-height: 1.4;
+		max-width: 280px;
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// ADD BADGE BUTTON
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-badge-add {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		padding: 4px 12px;
+		border: 2px dashed #fdd7b5;
+		border-radius: 20px;
+		background: transparent;
+		color: #fd7e14;
+		font-size: 11px;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.15s;
+		height: fit-content;
+		align-self: center;
+
+		span { font-size: 16px; font-weight: 300; line-height: 1; }
+
+		&:hover {
+			background: #fff4ed;
+			border-style: solid;
+			border-color: #fd7e14;
+		}
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// FOOTER HINT
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-badge-footer-hint {
+		font-size: 10px;
+		color: #ccc;
+		font-style: italic;
+		margin: 10px 0 0;
+		text-align: center;
+	}
+}

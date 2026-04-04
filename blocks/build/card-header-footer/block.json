@@ -1,0 +1,79 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/card-header-footer",
+  "version": "0.1.0",
+  "title": "Card with Header & Footer",
+  "category": "watermelon-blocks",
+  "icon": "layout",
+  "description": "Bootstrap card with three distinct editable zones — header, body (InnerBlocks), and footer. Perfect for pricing tables, feature boxes, and structured content.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "headerText": {
+      "type": "string",
+      "default": "Featured"
+    },
+    "footerText": {
+      "type": "string",
+      "default": "2 days ago"
+    },
+    "showHeader": {
+      "type": "boolean",
+      "default": true
+    },
+    "showFooter": {
+      "type": "boolean",
+      "default": true
+    },
+    "headerVariant": {
+      "type": "string",
+      "default": ""
+    },
+    "footerVariant": {
+      "type": "string",
+      "default": ""
+    },
+    "bgColor": {
+      "type": "string",
+      "default": ""
+    },
+    "borderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "shadow": {
+      "type": "string",
+      "default": ""
+    },
+    "textAlign": {
+      "type": "string",
+      "default": ""
+    },
+    "noBorder": {
+      "type": "boolean",
+      "default": false
+    },
+    "headerBgVariant": {
+      "type": "string",
+      "default": ""
+    },
+    "footerBgVariant": {
+      "type": "string",
+      "default": ""
+    },
+    "customWidth": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

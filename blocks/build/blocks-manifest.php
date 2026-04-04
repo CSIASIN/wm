@@ -146,6 +146,166 @@ return array(
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),
+	'badge' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/badge',
+		'version' => '0.1.0',
+		'title' => 'Badge',
+		'category' => 'watermelon-blocks',
+		'icon' => 'tag',
+		'description' => 'Bootstrap badges — one or more inline badge labels with full control over colour, pill shape, positioning, and optional link. All labels editable directly on the canvas.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'badges' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'bd1',
+						'text' => 'New',
+						'variant' => 'bg-primary',
+						'pill' => false,
+						'href' => '',
+						'positionedTop' => false,
+						'positionedStart' => false
+					)
+				)
+			),
+			'alignment' => array(
+				'type' => 'string',
+				'default' => 'left'
+			),
+			'gap' => array(
+				'type' => 'string',
+				'default' => 'gap-2'
+			),
+			'wrapInline' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'button-group' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/button-group',
+		'version' => '0.1.0',
+		'title' => 'Button Group',
+		'category' => 'watermelon-blocks',
+		'icon' => 'button',
+		'description' => 'Bootstrap button group — merge buttons into a flush, connected row or toolbar. Supports basic group, toolbar, vertical, radio/checkbox toggle, nested dropdown, and sizing. All labels editable inline on the canvas.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'groupMode' => array(
+				'type' => 'string',
+				'default' => 'group',
+				'enum' => array(
+					'group',
+					'toolbar',
+					'vertical'
+				)
+			),
+			'size' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'alignment' => array(
+				'type' => 'string',
+				'default' => 'left'
+			),
+			'ariaLabel' => array(
+				'type' => 'string',
+				'default' => 'Button group'
+			),
+			'buttons' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'g1',
+						'label' => 'Left',
+						'href' => '',
+						'type' => 'button',
+						'variant' => 'btn-primary',
+						'active' => false,
+						'disabled' => false,
+						'isDropdown' => false,
+						'dropdownItems' => array(
+							
+						),
+						'inputName' => '',
+						'inputValue' => ''
+					),
+					array(
+						'id' => 'g2',
+						'label' => 'Middle',
+						'href' => '',
+						'type' => 'button',
+						'variant' => 'btn-primary',
+						'active' => false,
+						'disabled' => false,
+						'isDropdown' => false,
+						'dropdownItems' => array(
+							
+						),
+						'inputName' => '',
+						'inputValue' => ''
+					),
+					array(
+						'id' => 'g3',
+						'label' => 'Right',
+						'href' => '',
+						'type' => 'button',
+						'variant' => 'btn-primary',
+						'active' => false,
+						'disabled' => false,
+						'isDropdown' => false,
+						'dropdownItems' => array(
+							
+						),
+						'inputName' => '',
+						'inputValue' => ''
+					)
+				)
+			),
+			'toggleMode' => array(
+				'type' => 'string',
+				'default' => 'none',
+				'enum' => array(
+					'none',
+					'radio',
+					'checkbox'
+				)
+			),
+			'inputGroupName' => array(
+				'type' => 'string',
+				'default' => 'btngroup'
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
 	'buttons' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -205,6 +365,294 @@ return array(
 			'gap' => array(
 				'type' => 'string',
 				'default' => 'gap-2'
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'card' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/card',
+		'version' => '0.1.0',
+		'title' => 'Card',
+		'category' => 'watermelon-blocks',
+		'icon' => 'media-default',
+		'description' => 'Bootstrap base card — a flexible content container. Add any blocks inside the card body.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'bgColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'shadow' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderRadius' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'noBorder' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'textAlign' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customWidth' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'card-group' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/card-group',
+		'version' => '0.1.0',
+		'title' => 'Card Group',
+		'category' => 'watermelon-blocks',
+		'icon' => 'grid-view',
+		'description' => 'A responsive grid or Bootstrap card-group that holds multiple Card with Image children side by side.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'layout' => array(
+				'type' => 'string',
+				'default' => 'grid'
+			),
+			'cols' => array(
+				'type' => 'string',
+				'default' => '3'
+			),
+			'gap' => array(
+				'type' => 'string',
+				'default' => 'gap-3'
+			),
+			'colsSm' => array(
+				'type' => 'string',
+				'default' => '1'
+			),
+			'colsMd' => array(
+				'type' => 'string',
+				'default' => '2'
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'card-header-footer' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/card-header-footer',
+		'version' => '0.1.0',
+		'title' => 'Card with Header & Footer',
+		'category' => 'watermelon-blocks',
+		'icon' => 'layout',
+		'description' => 'Bootstrap card with three distinct editable zones — header, body (InnerBlocks), and footer. Perfect for pricing tables, feature boxes, and structured content.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'headerText' => array(
+				'type' => 'string',
+				'default' => 'Featured'
+			),
+			'footerText' => array(
+				'type' => 'string',
+				'default' => '2 days ago'
+			),
+			'showHeader' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'showFooter' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'headerVariant' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'footerVariant' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'shadow' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textAlign' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'noBorder' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'headerBgVariant' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'footerBgVariant' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customWidth' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'card-image' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/card-image',
+		'version' => '0.1.0',
+		'title' => 'Card with Image',
+		'category' => 'watermelon-blocks',
+		'icon' => 'format-image',
+		'description' => 'Bootstrap card with image, title, subtitle, body text, and an optional button link. Supports top, bottom, overlay, and horizontal (side-by-side) layouts.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'imageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageAlt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'imagePosition' => array(
+				'type' => 'string',
+				'default' => 'top'
+			),
+			'imageCol' => array(
+				'type' => 'string',
+				'default' => 'col-md-4'
+			),
+			'title' => array(
+				'type' => 'string',
+				'default' => 'Card title'
+			),
+			'subtitle' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bodyText' => array(
+				'type' => 'string',
+				'default' => 'Some quick example text to build on the card title and make up the bulk of the card\'s content.'
+			),
+			'showBadge' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'badgeText' => array(
+				'type' => 'string',
+				'default' => 'New'
+			),
+			'badgeVariant' => array(
+				'type' => 'string',
+				'default' => 'bg-primary'
+			),
+			'showLink' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'linkText' => array(
+				'type' => 'string',
+				'default' => 'Go somewhere'
+			),
+			'linkUrl' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'linkVariant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'bgColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'shadow' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textAlign' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'noBorder' => array(
+				'type' => 'boolean',
+				'default' => false
 			)
 		),
 		'textdomain' => 'wm',
@@ -651,6 +1099,84 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
+	),
+	'list-group' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/list-group',
+		'version' => '0.1.0',
+		'title' => 'List Group',
+		'category' => 'watermelon-blocks',
+		'icon' => 'list-view',
+		'description' => 'Bootstrap list group — flexible content list with variants, badges, links and actions.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'itemType' => array(
+				'type' => 'string',
+				'default' => 'li'
+			),
+			'flush' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'numbered' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'horizontal' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'items' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'text' => 'An item',
+						'subtext' => '',
+						'badge' => '',
+						'badgeVariant' => 'text-bg-primary',
+						'url' => '',
+						'variant' => '',
+						'active' => false,
+						'disabled' => false
+					),
+					array(
+						'text' => 'A second item',
+						'subtext' => '',
+						'badge' => '',
+						'badgeVariant' => 'text-bg-primary',
+						'url' => '',
+						'variant' => '',
+						'active' => false,
+						'disabled' => false
+					),
+					array(
+						'text' => 'A third item',
+						'subtext' => '',
+						'badge' => '',
+						'badgeVariant' => 'text-bg-primary',
+						'url' => '',
+						'variant' => '',
+						'active' => false,
+						'disabled' => false
+					)
+				),
+				'items' => array(
+					'type' => 'object'
+				)
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
 	),
 	'modal' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',

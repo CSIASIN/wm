@@ -1,0 +1,402 @@
+// ── Button Group block canvas wrapper ─────────────────────────────────────
+.wmblocks-btngroup-wrapper {
+	border: 2px dashed #0ea5e9;
+	padding: 14px;
+	border-radius: 6px;
+	background: #f0f9ff;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+	// ══════════════════════════════════════════════════════════════════
+	// META STRIP
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-btngroup-meta-strip {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		margin-bottom: 12px;
+		flex-wrap: wrap;
+	}
+
+	.wmblocks-btngroup-chip {
+		display: inline-flex;
+		align-items: center;
+		background: #0ea5e922;
+		color: #0369a1;
+		border-radius: 3px;
+		padding: 1px 8px;
+		font-size: 9px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.07em;
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// GROUP CANVAS
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-btngroup-canvas-outer {
+		min-height: 36px;
+		flex-wrap: wrap;
+		gap: 8px; // gap between toolbar groups
+	}
+
+	.wmblocks-btngroup-preview {
+		// Let the Bootstrap btn-group classes drive the visual
+		// but allow expand panels to break out of the flex row
+		flex-wrap: wrap;
+		align-items: flex-start;
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// INDIVIDUAL BUTTON ITEM
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-btngroup-item {
+		display: inline-flex;
+		flex-direction: column;
+		align-items: flex-start;
+		position: relative;
+
+		// Selection ring
+		&.is-selected > .wmblocks-btngroup-item__btn-row > .btn {
+			outline: 2px solid #0ea5e9;
+			outline-offset: 2px;
+			position: relative;
+			z-index: 2;
+		}
+
+		// ── Button + badge row ─────────────────────────────────────
+		&__btn-row {
+			display: inline-flex;
+			align-items: center;
+			gap: 4px;
+		}
+
+		// ── The actual button (RichText) ───────────────────────────
+		.btn {
+			cursor: text;
+			// Prevent losing btn-group border collapse appearance in editor
+			position: relative;
+			z-index: 1;
+			transition: outline 0.12s;
+
+			&.disabled { opacity: 0.65; }
+			&.active   { z-index: 2; }
+
+			p { margin: 0; display: inline; }
+		}
+
+		// Dropdown badge indicator
+		&__dropdown-badge {
+			font-size: 9px;
+			background: #0ea5e9;
+			color: #fff;
+			border-radius: 3px;
+			padding: 1px 5px;
+			font-weight: 700;
+			white-space: nowrap;
+			cursor: default;
+		}
+
+		// ── Action strip ───────────────────────────────────────────
+		&__actions {
+			display: inline-flex;
+			gap: 2px;
+			margin-top: 5px;
+			opacity: 0;
+			transition: opacity 0.15s;
+		}
+
+		&:hover &__actions,
+		&.is-selected &__actions,
+		&.is-expanded &__actions {
+			opacity: 1;
+		}
+
+		// ── Expanded detail panel ──────────────────────────────────
+		&__detail {
+			background: #e0f2fe;
+			border: 1px solid #7dd3fc;
+			border-radius: 6px;
+			padding: 10px 12px;
+			margin-top: 6px;
+			display: flex;
+			flex-direction: column;
+			gap: 9px;
+			min-width: 280px;
+			max-width: min( 420px, 90vw );
+			z-index: 20;
+			position: relative;
+		}
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// ACTION BUTTONS  ← → ▼ ⎘ ✕
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-btngroup-action {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 22px;
+		height: 22px;
+		border: 1px solid #7dd3fc;
+		border-radius: 3px;
+		background: #fff;
+		color: #0369a1;
+		font-size: 10px;
+		cursor: pointer;
+		padding: 0;
+		line-height: 1;
+		transition: background 0.12s, color 0.12s;
+
+		&:hover:not(:disabled) {
+			background: #0ea5e9;
+			color: #fff;
+			border-color: #0ea5e9;
+		}
+
+		&:disabled { opacity: 0.3; cursor: default; }
+
+		&--expand {
+			font-size: 7px;
+			&.is-active { background: #e0f2fe; border-color: #0ea5e9; color: #0ea5e9; }
+		}
+
+		&--remove {
+			&:hover:not(:disabled) { background: #dc3545; border-color: #dc3545; }
+		}
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// ADD BUTTON
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-btngroup-add-btn {
+		height: 100%;
+		align-self: stretch;
+		padding: 0 14px;
+		border: 2px dashed #7dd3fc;
+		border-radius: 4px;
+		background: transparent;
+		color: #0ea5e9;
+		font-size: 12px;
+		font-weight: 700;
+		cursor: pointer;
+		transition: all 0.15s;
+		white-space: nowrap;
+		margin-left: 6px;
+
+		&:hover {
+			background: #e0f2fe;
+			border-style: solid;
+			border-color: #0ea5e9;
+		}
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// DETAIL PANEL INTERNALS
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-btngroup-detail-row {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		flex-wrap: wrap;
+	}
+
+	.wmblocks-btngroup-detail-label {
+		font-size: 10px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: #0284c7;
+		width: 44px;
+		flex-shrink: 0;
+	}
+
+	// ── Variant swatches ──────────────────────────────────────────────
+	.wmblocks-btngroup-swatches {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 3px;
+	}
+
+	.wmblocks-btngroup-swatch {
+		width: 34px;
+		height: 22px;
+		border: 2px solid transparent;
+		border-radius: 4px;
+		font-size: 9px;
+		font-weight: 700;
+		cursor: pointer;
+		padding: 0;
+		transition: transform 0.1s, box-shadow 0.1s;
+
+		&:hover { transform: scale( 1.1 ); }
+
+		&.is-active {
+			box-shadow: 0 0 0 3px rgba( 14, 165, 233, 0.55 );
+			transform: scale( 1.08 );
+		}
+
+		&--outline {
+			background: #fff !important;
+			border-style: solid;
+			border-width: 2px;
+			font-size: 8px;
+		}
+	}
+
+	// ── URL input ──────────────────────────────────────────────────────
+	.wmblocks-btngroup-url-input {
+		flex: 1;
+		min-width: 140px;
+		padding: 4px 8px;
+		font-size: 11px;
+		border: 1px solid #7dd3fc;
+		border-radius: 4px;
+		background: #fff;
+		color: #333;
+		font-family: 'SF Mono', 'Fira Code', monospace;
+
+		&:focus { outline: none; border-color: #0ea5e9; box-shadow: 0 0 0 2px rgba( 14,165,233,.2 ); }
+	}
+
+	// ── State flag buttons ─────────────────────────────────────────────
+	.wmblocks-btngroup-flag-row {
+		display: flex;
+		gap: 5px;
+		flex-wrap: wrap;
+	}
+
+	.wmblocks-btngroup-flag-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 5px;
+		padding: 3px 10px;
+		border: 1px solid #7dd3fc;
+		border-radius: 20px;
+		background: #fff;
+		color: #555;
+		font-size: 11px;
+		cursor: pointer;
+		transition: all 0.12s;
+
+		&:hover { border-color: #0ea5e9; color: #0369a1; }
+
+		&.is-on {
+			background: #e0f2fe;
+			border-color: #0ea5e9;
+			color: #0369a1;
+			font-weight: 600;
+		}
+	}
+
+	.wmblocks-btngroup-flag-dot {
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		flex-shrink: 0;
+
+		&--active   { background: #0d6efd; }
+		&--disabled { background: #adb5bd; }
+	}
+
+	.wmblocks-btngroup-input-row {
+		display: flex;
+		gap: 6px;
+		flex: 1;
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// DROPDOWN ITEMS MANAGER
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-btngroup-dropdown-items {
+		border-top: 1px solid #7dd3fc;
+		padding-top: 8px;
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+
+		&__header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			font-size: 11px;
+			font-weight: 700;
+			color: #0369a1;
+			text-transform: uppercase;
+			letter-spacing: 0.06em;
+		}
+	}
+
+	.wmblocks-btngroup-dropdown-add-btn {
+		padding: 2px 8px;
+		border: 1px solid #7dd3fc;
+		border-radius: 20px;
+		background: #fff;
+		color: #0ea5e9;
+		font-size: 11px;
+		font-weight: 700;
+		cursor: pointer;
+
+		&:hover { background: #0ea5e9; color: #fff; }
+	}
+
+	.wmblocks-btngroup-dropdown-empty {
+		font-size: 11px;
+		color: #aaa;
+		font-style: italic;
+		margin: 0;
+	}
+
+	.wmblocks-btngroup-dropdown-item {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+	}
+
+	.wmblocks-btngroup-dropdown-input {
+		flex: 1;
+		padding: 3px 6px;
+		font-size: 11px;
+		border: 1px solid #7dd3fc;
+		border-radius: 3px;
+		background: #fff;
+		font-family: inherit;
+
+		&:focus { outline: none; border-color: #0ea5e9; }
+	}
+
+	.wmblocks-btngroup-dropdown-divider-label {
+		font-size: 11px;
+		color: #aaa;
+		font-style: italic;
+		flex: 1;
+	}
+
+	.wmblocks-btngroup-dropdown-remove {
+		width: 18px;
+		height: 18px;
+		border: 1px solid #f0d0d0;
+		border-radius: 3px;
+		background: #fff;
+		color: #dc3545;
+		font-size: 9px;
+		cursor: pointer;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+
+		&:hover { background: #dc3545; color: #fff; }
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// FOOTER HINT
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-btngroup-footer-hint {
+		font-size: 10px;
+		color: #bbb;
+		font-style: italic;
+		margin: 10px 0 0;
+		text-align: center;
+	}
+}

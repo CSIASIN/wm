@@ -1,0 +1,49 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/badge",
+	"version": "0.1.0",
+	"title": "Badge",
+	"category": "watermelon-blocks",
+	"icon": "tag",
+	"description": "Bootstrap badges — one or more inline badge labels with full control over colour, pill shape, positioning, and optional link. All labels editable directly on the canvas.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"badges": {
+			"type": "array",
+			"default": [
+				{
+					"id": "bd1",
+					"text": "New",
+					"variant": "bg-primary",
+					"pill": false,
+					"href": "",
+					"positionedTop": false,
+					"positionedStart": false
+				}
+			]
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"gap": {
+			"type": "string",
+			"default": "gap-2"
+		},
+		"wrapInline": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle":  "file:./index.css",
+	"style":        "file:./style-index.css",
+	"render":       "file:./render.php",
+	"viewScript":   "file:./view.js"
+}

@@ -1,0 +1,26 @@
+.wmblocks-card-hf-wrapper {
+	border: 2px dashed #fd7e14;
+	padding: 12px;
+	border-radius: 6px;
+	background: #fff9f5;
+
+	.wmblocks-card-hf-label {
+		display: flex; align-items: center; gap: 5px;
+		font-size: 10px; font-weight: 700; text-transform: uppercase;
+		letter-spacing: .08em; color: #fd7e14; margin-bottom: 10px;
+	}
+	.wmblocks-card-hf-chip {
+		background: #fd7e1422; color: #8a4200; border-radius: 3px;
+		padding: 1px 7px; font-size: 9px; font-weight: 600;
+	}
+
+	// Header and footer zones — make RichText look native
+	.card-header, .card-footer {
+		min-height: 36px;
+		cursor: text;
+		&:hover { outline: 1px dashed #fd7e1488; outline-offset: -2px; }
+	}
+
+	// Body zone
+	.card-body { min-height: 80px; }
+}

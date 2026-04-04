@@ -1,0 +1,103 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/card-image",
+  "version": "0.1.0",
+  "title": "Card with Image",
+  "category": "watermelon-blocks",
+  "icon": "format-image",
+  "description": "Bootstrap card with image, title, subtitle, body text, and an optional button link. Supports top, bottom, overlay, and horizontal (side-by-side) layouts.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "imageId": {
+      "type": "number",
+      "default": 0
+    },
+    "imagePosition": {
+      "type": "string",
+      "default": "top"
+    },
+    "imageCol": {
+      "type": "string",
+      "default": "col-md-4"
+    },
+    "title": {
+      "type": "string",
+      "default": "Card title"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": ""
+    },
+    "bodyText": {
+      "type": "string",
+      "default": "Some quick example text to build on the card title and make up the bulk of the card's content."
+    },
+    "showBadge": {
+      "type": "boolean",
+      "default": false
+    },
+    "badgeText": {
+      "type": "string",
+      "default": "New"
+    },
+    "badgeVariant": {
+      "type": "string",
+      "default": "bg-primary"
+    },
+    "showLink": {
+      "type": "boolean",
+      "default": true
+    },
+    "linkText": {
+      "type": "string",
+      "default": "Go somewhere"
+    },
+    "linkUrl": {
+      "type": "string",
+      "default": "#"
+    },
+    "linkVariant": {
+      "type": "string",
+      "default": "btn-primary"
+    },
+    "bgColor": {
+      "type": "string",
+      "default": ""
+    },
+    "borderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "shadow": {
+      "type": "string",
+      "default": ""
+    },
+    "textAlign": {
+      "type": "string",
+      "default": ""
+    },
+    "noBorder": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

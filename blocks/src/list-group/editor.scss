@@ -1,0 +1,19 @@
+.wmblocks-list-group-wrapper {
+	border: 2px dashed #0dcaf0;
+	padding: 12px;
+
+	.list-group-item {
+		position: relative;
+		cursor: default;
+		user-select: none;
+
+		&:hover {
+			background-color: rgba(0, 124, 186, 0.04);
+		}
+
+		[ contenteditable ] {
+			user-select: text;
+			&:focus { outline: 1px dashed #007cba; border-radius: 2px; }
+		}
+	}
+}

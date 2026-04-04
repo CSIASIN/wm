@@ -1,0 +1,18 @@
+.wmblocks-card-wrapper {
+	border: 2px dashed #20c997;
+	padding: 12px;
+	border-radius: 6px;
+	background: #f0fdf8;
+
+	.wmblocks-card-label {
+		display: flex; align-items: center; gap: 5px;
+		font-size: 10px; font-weight: 700; text-transform: uppercase;
+		letter-spacing: .08em; color: #20c997; margin-bottom: 10px;
+	}
+	.wmblocks-card-chip {
+		background: #20c99722; color: #0f7960; border-radius: 3px;
+		padding: 1px 7px; font-size: 9px; font-weight: 600;
+	}
+	// Show card-body min-height so InnerBlocks is always clickable
+	.card-body { min-height: 60px; }
+}

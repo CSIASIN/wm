@@ -1,1 +1,0 @@
-{"version":3,"file":"accordion/view.js","mappings":";;;;AAAA;AACA,6D","sources":["webpack://div/./src/accordion/view.js"],"sourcesContent":["// Bootstrap JS handles accordion via data-bs-toggle=\"collapse\"\n// No custom JS needed if Bootstrap JS is loaded in the theme\n"],"names":[],"sourceRoot":""}

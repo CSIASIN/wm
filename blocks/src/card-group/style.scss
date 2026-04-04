@@ -1,0 +1,11 @@
+// Frontend styles handled by Bootstrap.
+// Card group children need col class for row-cols grid to work correctly.
+// Each wmblocks/card-image and wmblocks/card renders a wp-block-* div wrapper
+// which sits inside the row; Bootstrap's row-cols-* targets direct .col children.
+// Add a thin override so WP block wrappers inside a card-group row act as cols:
+.wp-block-wmblocks-card-group .row > .wp-block-wmblocks-card-image,
+.wp-block-wmblocks-card-group .row > .wp-block-wmblocks-card,
+.wp-block-wmblocks-card-group .row > .wp-block-wmblocks-card-header-footer {
+	flex: 0 0 auto;
+	padding: 0 calc( var(--bs-gutter-x) * .5 );
+}

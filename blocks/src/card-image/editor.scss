@@ -1,0 +1,42 @@
+.wmblocks-card-image-wrapper {
+	border: 2px dashed #0d6efd;
+	padding: 12px;
+	border-radius: 6px;
+	background: #f8fbff;
+
+	.wmblocks-card-image-label {
+		display: flex; align-items: center; gap: 5px;
+		font-size: 10px; font-weight: 700; text-transform: uppercase;
+		letter-spacing: .08em; color: #0d6efd; margin-bottom: 10px;
+	}
+	.wmblocks-card-image-chip {
+		background: #0d6efd22; color: #084298; border-radius: 3px;
+		padding: 1px 7px; font-size: 9px; font-weight: 600;
+	}
+
+	// Image upload area
+	.wmblocks-card-img-area {
+		position: relative; cursor: pointer; overflow: hidden;
+
+		&:hover .wmblocks-card-img-overlay-btn { opacity: 1; }
+	}
+
+	.wmblocks-card-img-placeholder {
+		display: flex; flex-direction: column; align-items: center;
+		justify-content: center; gap: 8px; min-height: 180px;
+		background: #e8f0fe; color: #0d6efd;
+		font-size: 12px; font-weight: 600; border-radius: 4px;
+
+		span:first-child { font-size: 32px; }
+	}
+
+	.wmblocks-card-img-overlay-btn {
+		position: absolute; bottom: 0; left: 0; right: 0;
+		background: rgba(13,110,253,.8); color: #fff;
+		text-align: center; padding: 6px; font-size: 11px;
+		font-weight: 600; opacity: 0; transition: opacity .2s;
+	}
+
+	// RichText inside card — remove default margins
+	.card-title, .card-subtitle, .card-text { margin-bottom: 8px !important; }
+}

@@ -1,0 +1,57 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/button-group",
+	"version": "0.1.0",
+	"title": "Button Group",
+	"category": "watermelon-blocks",
+	"icon": "button",
+	"description": "Bootstrap button group — merge buttons into a flush, connected row or toolbar. Supports basic group, toolbar, vertical, radio/checkbox toggle, nested dropdown, and sizing. All labels editable inline on the canvas.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"groupMode": {
+			"type": "string",
+			"default": "group",
+			"enum": [ "group", "toolbar", "vertical" ]
+		},
+		"size": {
+			"type": "string",
+			"default": ""
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"ariaLabel": {
+			"type": "string",
+			"default": "Button group"
+		},
+		"buttons": {
+			"type": "array",
+			"default": [
+				{ "id": "g1", "label": "Left",   "href": "", "type": "button", "variant": "btn-primary", "active": false, "disabled": false, "isDropdown": false, "dropdownItems": [], "inputName": "", "inputValue": "" },
+				{ "id": "g2", "label": "Middle", "href": "", "type": "button", "variant": "btn-primary", "active": false, "disabled": false, "isDropdown": false, "dropdownItems": [], "inputName": "", "inputValue": "" },
+				{ "id": "g3", "label": "Right",  "href": "", "type": "button", "variant": "btn-primary", "active": false, "disabled": false, "isDropdown": false, "dropdownItems": [], "inputName": "", "inputValue": "" }
+			]
+		},
+		"toggleMode": {
+			"type": "string",
+			"default": "none",
+			"enum": [ "none", "radio", "checkbox" ]
+		},
+		"inputGroupName": {
+			"type": "string",
+			"default": "btngroup"
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle":  "file:./index.css",
+	"style":        "file:./style-index.css",
+	"render":       "file:./render.php",
+	"viewScript":   "file:./view.js"
+}
