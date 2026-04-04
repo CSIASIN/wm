@@ -1,0 +1,134 @@
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/spinner/editor.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+.wmblocks-spinner-wrapper {
+  border: 2px dashed #6610f2;
+  padding: 16px;
+  border-radius: 6px;
+  background: #f5f0ff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.wmblocks-spinner-wrapper .wmblocks-spinner-meta-strip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.wmblocks-spinner-wrapper .wmblocks-spinner-chip {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(102, 16, 242, 0.1333333333);
+  color: #4a0db0;
+  border-radius: 3px;
+  padding: 1px 8px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.wmblocks-spinner-wrapper .wmblocks-spinner-preview-row {
+  display: flex;
+  align-items: center;
+  min-height: 64px;
+  margin-bottom: 18px;
+  padding: 12px 0;
+}
+.wmblocks-spinner-wrapper .wmblocks-spinner-label {
+  font-size: 14px;
+  line-height: 1.4;
+  cursor: text;
+}
+.wmblocks-spinner-wrapper .wmblocks-spinner-label:hover {
+  outline: 1px dashed rgba(102, 16, 242, 0.4);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.wmblocks-spinner-wrapper .wmblocks-spinner-controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px;
+  background: #ede8ff;
+  border-radius: 6px;
+  border: 1px solid #c5b3f7;
+}
+.wmblocks-spinner-wrapper .wmblocks-spinner-control-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.wmblocks-spinner-wrapper .wmblocks-spinner-control-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #7c3aed;
+  margin-left: 2px;
+  flex-shrink: 0;
+}
+.wmblocks-spinner-wrapper .wmblocks-spinner-pill {
+  padding: 3px 10px;
+  border: 1px solid #c5b3f7;
+  border-radius: 20px;
+  background: #fff;
+  color: #4a0db0;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+.wmblocks-spinner-wrapper .wmblocks-spinner-pill:hover {
+  border-color: #6610f2;
+  color: #6610f2;
+}
+.wmblocks-spinner-wrapper .wmblocks-spinner-pill.is-active {
+  background: #6610f2;
+  border-color: #6610f2;
+  color: #fff;
+}
+.wmblocks-spinner-wrapper .wmblocks-spinner-custom-size-input {
+  width: 72px;
+  padding: 3px 8px;
+  font-size: 11px;
+  border: 1px solid #c5b3f7;
+  border-radius: 4px;
+  background: #fff;
+  color: #333;
+  font-family: "SF Mono", "Fira Code", monospace;
+}
+.wmblocks-spinner-wrapper .wmblocks-spinner-custom-size-input:focus {
+  outline: none;
+  border-color: #6610f2;
+  box-shadow: 0 0 0 2px rgba(102, 16, 242, 0.2);
+}
+.wmblocks-spinner-wrapper .wmblocks-spinner-swatches {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.wmblocks-spinner-wrapper .wmblocks-spinner-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.wmblocks-spinner-wrapper .wmblocks-spinner-swatch:hover {
+  transform: scale(1.2);
+}
+.wmblocks-spinner-wrapper .wmblocks-spinner-swatch.is-active {
+  transform: scale(1.25);
+}
+.wmblocks-spinner-wrapper .wmblocks-spinner-footer-hint {
+  font-size: 10px;
+  color: #bbb;
+  font-style: italic;
+  margin: 10px 0 0;
+  text-align: center;
+}

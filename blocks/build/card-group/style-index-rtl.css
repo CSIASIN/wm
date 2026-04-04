@@ -1,1 +1,9 @@
-.wp-block-wmblocks-card-group .row>.wp-block-wmblocks-card,.wp-block-wmblocks-card-group .row>.wp-block-wmblocks-card-header-footer,.wp-block-wmblocks-card-group .row>.wp-block-wmblocks-card-image{flex:0 0 auto;padding:0 calc(var(--bs-gutter-x)*.5)}
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/card-group/style.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
+.wp-block-wmblocks-card-group .row > .wp-block-wmblocks-card-image,
+.wp-block-wmblocks-card-group .row > .wp-block-wmblocks-card,
+.wp-block-wmblocks-card-group .row > .wp-block-wmblocks-card-header-footer {
+  flex: 0 0 auto;
+  padding: 0 calc(var(--bs-gutter-x) * 0.5);
+}

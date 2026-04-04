@@ -1425,6 +1425,131 @@ return array(
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),
+	'progress' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/progress',
+		'version' => '0.1.0',
+		'title' => 'Progress',
+		'category' => 'watermelon-blocks',
+		'icon' => 'minus',
+		'description' => 'Bootstrap progress bar — single or stacked bars with labels, colors, striped and animated variants.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'height' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bars' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'value' => 75,
+						'label' => '',
+						'showLabel' => false,
+						'variant' => 'bg-primary',
+						'striped' => false,
+						'animated' => false
+					)
+				),
+				'items' => array(
+					'type' => 'object'
+				)
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'spinner' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/spinner',
+		'version' => '0.1.0',
+		'title' => 'Spinner',
+		'category' => 'watermelon-blocks',
+		'icon' => 'update',
+		'description' => 'Bootstrap spinner — animated loading indicator in border or grow style. Supports all colour variants, sizing, optional label, button mode, and alignment.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'spinnerType' => array(
+				'type' => 'string',
+				'default' => 'border'
+			),
+			'variant' => array(
+				'type' => 'string',
+				'default' => 'text-primary'
+			),
+			'size' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'alignment' => array(
+				'type' => 'string',
+				'default' => 'left'
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'labelText' => array(
+				'type' => 'string',
+				'default' => 'Loading...'
+			),
+			'labelPosition' => array(
+				'type' => 'string',
+				'default' => 'right'
+			),
+			'showVisuallyHidden' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'visuallyHiddenText' => array(
+				'type' => 'string',
+				'default' => 'Loading...'
+			),
+			'buttonMode' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'buttonText' => array(
+				'type' => 'string',
+				'default' => 'Loading...'
+			),
+			'buttonVariant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'buttonDisabled' => array(
+				'type' => 'boolean',
+				'default' => true
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
 	'tab-item' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,

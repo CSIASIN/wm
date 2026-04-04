@@ -1,0 +1,1 @@
+{"version":3,"file":"spinner/view.js","mappings":";;;;AAAA;AACA,gD","sources":["webpack://div/./src/spinner/view.js"],"sourcesContent":["// Bootstrap spinners are purely CSS — no JS needed.\n// Ensure Bootstrap CSS is loaded by your theme.\n"],"names":[],"sourceRoot":""}

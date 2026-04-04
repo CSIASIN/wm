@@ -11,6 +11,7 @@ import {
 	ToggleControl,
 	ToolbarGroup,
 	ToolbarButton,
+	PanelRow, ExternalLink,
 } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import './editor.scss';
@@ -192,6 +193,18 @@ export default function Edit( { attributes, setAttributes } ) {
 						help={ __( 'When on, badges flow as inline elements inside text rather than a flex row.', 'wmblocks' ) }
 					/>
 				</PanelBody>
+				        <InspectorControls>
+               <div style={ { display: 'flex', alignItems: 'left', gap: '4px', marginBottom: '10px', padding: '6px 10px', background: '#f0f6fc', borderRadius: '4px', border: '1px solid #c8e1ff' } }>
+                    <PanelRow>
+                        <p>{ __( 'Need help with this block?', 'wm' ) }</p>
+                    </PanelRow>
+                    <PanelRow>
+                        <ExternalLink href="https://www.csias.in">
+                            { __( 'View Full Documentation', 'wm' ) }
+                        </ExternalLink>
+                    </PanelRow>
+</div>
+            </InspectorControls>
 			</InspectorControls>
 
 			{/* ══════════════════════════════════════════════════════════

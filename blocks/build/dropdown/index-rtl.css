@@ -1,1 +1,406 @@
-.wmblocks-dropdown-wrapper{background:#fff8fc;border:2px dashed #e83e8c;border-radius:6px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;padding:16px}.wmblocks-dropdown-wrapper .wmblocks-dd-caret-preview{pointer-events:none}.wmblocks-dropdown-wrapper .wmblocks-dd-meta-strip{align-items:center;display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}.wmblocks-dropdown-wrapper .wmblocks-dd-meta-chip{align-items:center;background:rgba(232,62,140,.133);border-radius:3px;color:#c2185b;display:inline-flex;font-size:9px;font-weight:700;letter-spacing:.07em;padding:1px 8px;text-transform:uppercase}.wmblocks-dropdown-wrapper .wmblocks-dd-section-label{align-items:baseline;color:#aaa;display:flex;font-size:10px;font-weight:700;gap:8px;letter-spacing:.1em;margin-bottom:8px;text-transform:uppercase}.wmblocks-dropdown-wrapper .wmblocks-dd-section-hint{color:#ccc;font-size:9px;font-style:italic;font-weight:400;letter-spacing:0;text-transform:none}.wmblocks-dropdown-wrapper .wmblocks-dd-trigger-row{align-items:center;display:flex;gap:10px;margin-bottom:4px}.wmblocks-dropdown-wrapper .wmblocks-dd-canvas-divider{border-top:1px dashed #f8c0db;margin:14px 0}.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card{background:#fff;border:1px solid #dee2e6;border-radius:6px;box-shadow:0 2px 12px rgba(232,62,140,.07);overflow:hidden}.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark{background:#343a40;border-color:#495057}.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-item{border-bottom-color:#495057;color:#dee2e6}.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-item__row:hover{background:#3d4349}.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-item--active>.wmblocks-dd-item__row{background:#0d6efd;color:#fff}.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-item--disabled>.wmblocks-dd-item__row,.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-item--header{color:#6c757d}.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-item--text{color:#dee2e6}.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-item__divider-line{border-top-color:#495057}.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-item__detail{background:#2c3136;border-top-color:#495057}.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-action-btn{color:#adb5bd}.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-action-btn:hover:not(:disabled){background:#495057;color:#fff}.wmblocks-dropdown-wrapper .wmblocks-dd-empty{color:#aaa;font-size:12px;font-style:italic;padding:16px;text-align:center}.wmblocks-dropdown-wrapper .wmblocks-dd-item{border-bottom:1px solid #f0f0f0;transition:background .1s}.wmblocks-dropdown-wrapper .wmblocks-dd-item:last-child{border-bottom:none}.wmblocks-dropdown-wrapper .wmblocks-dd-item__row{align-items:center;display:flex;gap:6px;min-height:36px;padding:0 6px 0 10px}.wmblocks-dropdown-wrapper .wmblocks-dd-item__row:hover{background:#fafafa}.wmblocks-dropdown-wrapper .wmblocks-dd-item--divider>.wmblocks-dd-item__row{min-height:20px;padding-bottom:2px;padding-top:2px}.wmblocks-dropdown-wrapper .wmblocks-dd-item--header>.wmblocks-dd-item__row{padding-top:6px}.wmblocks-dropdown-wrapper .wmblocks-dd-item--active>.wmblocks-dd-item__row{background:#e8f0fe}.wmblocks-dropdown-wrapper .wmblocks-dd-item--active>.wmblocks-dd-item__row .wmblocks-dd-item__label{color:#0d6efd;font-weight:600}.wmblocks-dropdown-wrapper .wmblocks-dd-item--disabled>.wmblocks-dd-item__row .wmblocks-dd-item__label{color:#adb5bd;text-decoration:line-through}.wmblocks-dropdown-wrapper .wmblocks-dd-item__type-icon{cursor:default;flex-shrink:0;font-size:11px;opacity:.6;text-align:center;width:18px}.wmblocks-dropdown-wrapper .wmblocks-dd-item__label{color:#212529;cursor:text;flex:1;font-size:13px;min-width:40px;outline:none}.wmblocks-dropdown-wrapper .wmblocks-dd-item__label.is-empty:before{color:#ccc;font-style:italic}.wmblocks-dropdown-wrapper .wmblocks-dd-item__label:focus,.wmblocks-dropdown-wrapper .wmblocks-dd-item__label:hover{border-radius:2px;outline:1px dashed rgba(232,62,140,.4);outline-offset:2px}.wmblocks-dropdown-wrapper .wmblocks-dd-item--header .wmblocks-dd-item__label{color:#6c757d;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.wmblocks-dropdown-wrapper .wmblocks-dd-item--text .wmblocks-dd-item__label{color:#6c757d;font-size:12px;font-style:italic}.wmblocks-dropdown-wrapper .wmblocks-dd-item__divider-line{border-top:1px dashed #dee2e6;flex:1;margin:0 4px}.wmblocks-dropdown-wrapper .wmblocks-dd-item__flag{border-radius:3px;flex-shrink:0;font-size:9px;font-weight:700;letter-spacing:.04em;padding:1px 5px;text-transform:uppercase}.wmblocks-dropdown-wrapper .wmblocks-dd-item__flag--active{background:rgba(13,110,253,.133);color:#0d6efd}.wmblocks-dropdown-wrapper .wmblocks-dd-item__flag--disabled{background:hsla(208,7%,46%,.133);color:#6c757d}.wmblocks-dropdown-wrapper .wmblocks-dd-item__actions{display:flex;flex-shrink:0;gap:2px;opacity:0;transition:opacity .15s}.wmblocks-dropdown-wrapper .wmblocks-dd-item--expanded .wmblocks-dropdown-wrapper .wmblocks-dd-item__actions,.wmblocks-dropdown-wrapper .wmblocks-dd-item__row:hover .wmblocks-dropdown-wrapper .wmblocks-dd-item__actions{opacity:1}.wmblocks-dropdown-wrapper .wmblocks-dd-item__detail{background:#fdf4fa;border-top:1px solid #f0d0e0;display:flex;flex-direction:column;gap:10px;padding:10px 12px}.wmblocks-dropdown-wrapper .wmblocks-dd-action-btn{align-items:center;background:#fff;border:1px solid #dee2e6;border-radius:3px;color:#666;cursor:pointer;display:inline-flex;font-size:10px;height:22px;justify-content:center;line-height:1;padding:0;transition:background .12s,color .12s;width:22px}.wmblocks-dropdown-wrapper .wmblocks-dd-action-btn:hover:not(:disabled){background:#e83e8c;border-color:#e83e8c;color:#fff}.wmblocks-dropdown-wrapper .wmblocks-dd-action-btn:disabled{cursor:default;opacity:.3}.wmblocks-dropdown-wrapper .wmblocks-dd-action-btn--expand{font-size:8px}.wmblocks-dropdown-wrapper .wmblocks-dd-action-btn--expand.is-active{background:#fdf4fa;border-color:#e83e8c;color:#e83e8c}.wmblocks-dropdown-wrapper .wmblocks-dd-action-btn--remove{font-size:9px}.wmblocks-dropdown-wrapper .wmblocks-dd-action-btn--remove:hover:not(:disabled){background:#dc3545;border-color:#dc3545}.wmblocks-dropdown-wrapper .wmblocks-dd-detail-row{align-items:center;display:flex;flex-wrap:wrap;gap:8px}.wmblocks-dropdown-wrapper .wmblocks-dd-detail-row--flags{gap:6px}.wmblocks-dropdown-wrapper .wmblocks-dd-detail-label{color:#999;flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;width:36px}.wmblocks-dropdown-wrapper .wmblocks-dd-type-pills{display:flex;flex-wrap:wrap;gap:4px}.wmblocks-dropdown-wrapper .wmblocks-dd-type-pill{background:#fff;border:1px solid #dee2e6;border-radius:20px;color:#555;cursor:pointer;font-size:11px;padding:3px 9px;transition:all .12s}.wmblocks-dropdown-wrapper .wmblocks-dd-type-pill:hover{border-color:#e83e8c;color:#e83e8c}.wmblocks-dropdown-wrapper .wmblocks-dd-type-pill.is-active{background:#e83e8c;border-color:#e83e8c;color:#fff;font-weight:600}.wmblocks-dropdown-wrapper .wmblocks-dd-url-input{background:#fff;border:1px solid #dee2e6;border-radius:4px;color:#333;flex:1;font-family:SF Mono,Fira Code,monospace;font-size:12px;min-width:140px;padding:4px 8px;transition:border-color .15s}.wmblocks-dropdown-wrapper .wmblocks-dd-url-input:focus{border-color:#e83e8c;box-shadow:0 0 0 2px rgba(232,62,140,.15);outline:none}.wmblocks-dropdown-wrapper .wmblocks-dd-flag-btn{align-items:center;background:#fff;border:1px solid #dee2e6;border-radius:20px;color:#666;cursor:pointer;display:inline-flex;font-size:11px;gap:5px;padding:4px 10px;transition:all .15s}.wmblocks-dropdown-wrapper .wmblocks-dd-flag-btn:hover{border-color:#aaa;color:#333}.wmblocks-dropdown-wrapper .wmblocks-dd-flag-btn.is-on{border-color:currentColor}.wmblocks-dropdown-wrapper .wmblocks-dd-flag-btn.is-on:has(.wmblocks-dd-flag-dot--active){background:#e8f0fe;color:#0d6efd}.wmblocks-dropdown-wrapper .wmblocks-dd-flag-btn.is-on:has(.wmblocks-dd-flag-dot--disabled){background:#f0f0f0;color:#6c757d}.wmblocks-dropdown-wrapper .wmblocks-dd-flag-dot{border-radius:50%;flex-shrink:0;height:7px;width:7px}.wmblocks-dropdown-wrapper .wmblocks-dd-flag-dot--active{background:#0d6efd}.wmblocks-dropdown-wrapper .wmblocks-dd-flag-dot--disabled{background:#adb5bd}.wmblocks-dropdown-wrapper .wmblocks-dd-flag-state{font-size:9px;font-weight:700;letter-spacing:.05em;opacity:.7;text-transform:uppercase}.wmblocks-dropdown-wrapper .wmblocks-dd-add-bar{align-items:center;border-top:1px dashed #f8c0db;display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;padding-top:10px}.wmblocks-dropdown-wrapper .wmblocks-dd-add-label{color:#ccc;font-size:10px;font-weight:700;letter-spacing:.06em;margin-left:2px;text-transform:uppercase}.wmblocks-dropdown-wrapper .wmblocks-dd-add-btn{background:transparent;border:1px dashed rgba(232,62,140,.533);border-radius:20px;color:#c2185b;cursor:pointer;font-size:11px;padding:3px 10px;transition:all .12s}.wmblocks-dropdown-wrapper .wmblocks-dd-add-btn:hover{background:#e83e8c;border-color:#e83e8c;border-style:solid;color:#fff}
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/dropdown/editor.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+.wmblocks-dropdown-wrapper {
+  border: 2px dashed #e83e8c;
+  padding: 16px;
+  border-radius: 6px;
+  background: #fff8fc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-caret-preview {
+  pointer-events: none;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-meta-strip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-meta-chip {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(232, 62, 140, 0.1333333333);
+  color: #c2185b;
+  border-radius: 3px;
+  padding: 1px 8px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-section-label {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-section-hint {
+  font-size: 9px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #ccc;
+  font-style: italic;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-trigger-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-canvas-divider {
+  border-top: 1px dashed #f8c0db;
+  margin: 14px 0;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card {
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(232, 62, 140, 0.07);
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark {
+  background: #343a40;
+  border-color: #495057;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-item {
+  color: #dee2e6;
+  border-bottom-color: #495057;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-item__row:hover {
+  background: #3d4349;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-item--active > .wmblocks-dd-item__row {
+  background: #0d6efd;
+  color: #fff;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-item--disabled > .wmblocks-dd-item__row {
+  color: #6c757d;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-item--header {
+  color: #6c757d;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-item--text {
+  color: #dee2e6;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-item__divider-line {
+  border-top-color: #495057;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-item__detail {
+  background: #2c3136;
+  border-top-color: #495057;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-action-btn {
+  color: #adb5bd;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-menu-card--dark .wmblocks-dd-action-btn:hover:not(:disabled) {
+  background: #495057;
+  color: #fff;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-empty {
+  padding: 16px;
+  text-align: center;
+  font-size: 12px;
+  color: #aaa;
+  font-style: italic;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item {
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.1s;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item:last-child {
+  border-bottom: none;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item__row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 6px 0 10px;
+  min-height: 36px;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item__row:hover {
+  background: #fafafa;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item--divider > .wmblocks-dd-item__row {
+  min-height: 20px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item--header > .wmblocks-dd-item__row {
+  padding-top: 6px;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item--active > .wmblocks-dd-item__row {
+  background: #e8f0fe;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item--active > .wmblocks-dd-item__row .wmblocks-dd-item__label {
+  color: #0d6efd;
+  font-weight: 600;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item--disabled > .wmblocks-dd-item__row .wmblocks-dd-item__label {
+  color: #adb5bd;
+  text-decoration: line-through;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item__type-icon {
+  font-size: 11px;
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+  opacity: 0.6;
+  cursor: default;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item__label {
+  flex: 1;
+  font-size: 13px;
+  color: #212529;
+  outline: none;
+  cursor: text;
+  min-width: 40px;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item__label.is-empty::before {
+  color: #ccc;
+  font-style: italic;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item__label:hover, .wmblocks-dropdown-wrapper .wmblocks-dd-item__label:focus {
+  outline: 1px dashed rgba(232, 62, 140, 0.4);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item--header .wmblocks-dd-item__label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6c757d;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item--text .wmblocks-dd-item__label {
+  font-size: 12px;
+  color: #6c757d;
+  font-style: italic;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item__divider-line {
+  flex: 1;
+  border-top: 1px dashed #dee2e6;
+  margin: 0 4px;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item__flag {
+  font-size: 9px;
+  font-weight: 700;
+  border-radius: 3px;
+  padding: 1px 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item__flag--active {
+  background: rgba(13, 110, 253, 0.1333333333);
+  color: #0d6efd;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item__flag--disabled {
+  background: rgba(108, 117, 125, 0.1333333333);
+  color: #6c757d;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item__actions {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item__row:hover .wmblocks-dropdown-wrapper .wmblocks-dd-item__actions, .wmblocks-dropdown-wrapper .wmblocks-dd-item--expanded .wmblocks-dropdown-wrapper .wmblocks-dd-item__actions {
+  opacity: 1;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-item__detail {
+  background: #fdf4fa;
+  border-top: 1px solid #f0d0e0;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+  background: #fff;
+  color: #666;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.12s, color 0.12s;
+  line-height: 1;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-action-btn:hover:not(:disabled) {
+  background: #e83e8c;
+  color: #fff;
+  border-color: #e83e8c;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-action-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-action-btn--expand {
+  font-size: 8px;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-action-btn--expand.is-active {
+  background: #fdf4fa;
+  border-color: #e83e8c;
+  color: #e83e8c;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-action-btn--remove {
+  font-size: 9px;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-action-btn--remove:hover:not(:disabled) {
+  background: #dc3545;
+  border-color: #dc3545;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-detail-row--flags {
+  gap: 6px;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-detail-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #999;
+  width: 36px;
+  flex-shrink: 0;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-type-pills {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-type-pill {
+  padding: 3px 9px;
+  border: 1px solid #dee2e6;
+  border-radius: 20px;
+  background: #fff;
+  color: #555;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-type-pill:hover {
+  border-color: #e83e8c;
+  color: #e83e8c;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-type-pill.is-active {
+  background: #e83e8c;
+  border-color: #e83e8c;
+  color: #fff;
+  font-weight: 600;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-url-input {
+  flex: 1;
+  min-width: 140px;
+  padding: 4px 8px;
+  font-size: 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  background: #fff;
+  color: #333;
+  font-family: "SF Mono", "Fira Code", monospace;
+  transition: border-color 0.15s;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-url-input:focus {
+  outline: none;
+  border-color: #e83e8c;
+  box-shadow: 0 0 0 2px rgba(232, 62, 140, 0.15);
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-flag-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border: 1px solid #dee2e6;
+  border-radius: 20px;
+  background: #fff;
+  color: #666;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-flag-btn:hover {
+  border-color: #aaa;
+  color: #333;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-flag-btn.is-on {
+  border-color: currentColor;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-flag-btn.is-on:has(.wmblocks-dd-flag-dot--active) {
+  background: #e8f0fe;
+  color: #0d6efd;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-flag-btn.is-on:has(.wmblocks-dd-flag-dot--disabled) {
+  background: #f0f0f0;
+  color: #6c757d;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-flag-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-flag-dot--active {
+  background: #0d6efd;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-flag-dot--disabled {
+  background: #adb5bd;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-flag-state {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-add-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed #f8c0db;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-add-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #ccc;
+  margin-left: 2px;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-add-btn {
+  padding: 3px 10px;
+  border: 1px dashed rgba(232, 62, 140, 0.5333333333);
+  border-radius: 20px;
+  background: transparent;
+  color: #c2185b;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.wmblocks-dropdown-wrapper .wmblocks-dd-add-btn:hover {
+  background: #e83e8c;
+  border-color: #e83e8c;
+  border-style: solid;
+  color: #fff;
+}

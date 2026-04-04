@@ -1,1 +1,35 @@
-.wmblocks-card-group-wrapper{background:#faf8ff;border:2px dashed #6f42c1;border-radius:6px;padding:12px}.wmblocks-card-group-wrapper .wmblocks-card-group-label{align-items:center;color:#6f42c1;display:flex;font-size:10px;font-weight:700;gap:5px;letter-spacing:.08em;margin-bottom:10px;text-transform:uppercase}.wmblocks-card-group-wrapper .wmblocks-card-group-chip{background:rgba(111,66,193,.133);border-radius:3px;color:#4a2389;font-size:9px;font-weight:600;padding:1px 7px}.wmblocks-card-group-wrapper .block-editor-block-list__layout,.wmblocks-card-group-wrapper .block-editor-inner-blocks{display:contents}.wmblocks-card-group-wrapper>div>.block-editor-inner-blocks>.block-editor-block-list__layout>.wp-block{min-width:0}
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/card-group/editor.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+.wmblocks-card-group-wrapper {
+  border: 2px dashed #6f42c1;
+  padding: 12px;
+  border-radius: 6px;
+  background: #faf8ff;
+}
+.wmblocks-card-group-wrapper .wmblocks-card-group-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6f42c1;
+  margin-bottom: 10px;
+}
+.wmblocks-card-group-wrapper .wmblocks-card-group-chip {
+  background: rgba(111, 66, 193, 0.1333333333);
+  color: #4a2389;
+  border-radius: 3px;
+  padding: 1px 7px;
+  font-size: 9px;
+  font-weight: 600;
+}
+.wmblocks-card-group-wrapper .block-editor-inner-blocks,
+.wmblocks-card-group-wrapper .block-editor-block-list__layout {
+  display: contents;
+}
+.wmblocks-card-group-wrapper > div > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block {
+  min-width: 0;
+}

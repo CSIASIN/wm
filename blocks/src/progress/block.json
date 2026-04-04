@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/progress",
+	"version": "0.1.0",
+	"title": "Progress",
+	"category": "watermelon-blocks",
+	"icon": "minus",
+	"description": "Bootstrap progress bar — single or stacked bars with labels, colors, striped and animated variants.",
+	"example": {},
+	"supports": { "html": false, "anchor": true },
+	"attributes": {
+		"height": { "type": "string", "default": "" },
+		"bars": {
+			"type": "array",
+			"default": [
+				{ "value": 75, "label": "", "showLabel": false, "variant": "bg-primary", "striped": false, "animated": false }
+			],
+			"items": { "type": "object" }
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle":  "file:./index.css",
+	"style":        "file:./style-index.css",
+	"render":       "file:./render.php"
+}

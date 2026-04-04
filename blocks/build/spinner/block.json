@@ -1,0 +1,79 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/spinner",
+  "version": "0.1.0",
+  "title": "Spinner",
+  "category": "watermelon-blocks",
+  "icon": "update",
+  "description": "Bootstrap spinner — animated loading indicator in border or grow style. Supports all colour variants, sizing, optional label, button mode, and alignment.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "spinnerType": {
+      "type": "string",
+      "default": "border"
+    },
+    "variant": {
+      "type": "string",
+      "default": "text-primary"
+    },
+    "size": {
+      "type": "string",
+      "default": ""
+    },
+    "customSize": {
+      "type": "string",
+      "default": ""
+    },
+    "alignment": {
+      "type": "string",
+      "default": "left"
+    },
+    "showLabel": {
+      "type": "boolean",
+      "default": false
+    },
+    "labelText": {
+      "type": "string",
+      "default": "Loading..."
+    },
+    "labelPosition": {
+      "type": "string",
+      "default": "right"
+    },
+    "showVisuallyHidden": {
+      "type": "boolean",
+      "default": true
+    },
+    "visuallyHiddenText": {
+      "type": "string",
+      "default": "Loading..."
+    },
+    "buttonMode": {
+      "type": "boolean",
+      "default": false
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Loading..."
+    },
+    "buttonVariant": {
+      "type": "string",
+      "default": "btn-primary"
+    },
+    "buttonDisabled": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

@@ -1,0 +1,1 @@
+{"version":3,"file":"alerts/view.js","mappings":";;;;AAAA;AACA;AACA,wE","sources":["webpack://div/./src/alerts/view.js"],"sourcesContent":["// Bootstrap JS handles dismissible alerts automatically via\n// data-bs-dismiss=\"alert\" on the close button.\n// No custom JS required as long as Bootstrap JS is loaded by the theme.\n"],"names":[],"sourceRoot":""}
