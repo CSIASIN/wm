@@ -1,0 +1,89 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/bs-image",
+  "version": "0.1.0",
+  "title": "BS Image",
+  "category": "watermelon-blocks",
+  "icon": "format-image",
+  "description": "Bootstrap image with fluid, thumbnail, float, border and rounded classes.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imageId": {
+      "type": "number",
+      "default": 0
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "imageWidth": {
+      "type": "string",
+      "default": ""
+    },
+    "imageHeight": {
+      "type": "string",
+      "default": ""
+    },
+    "imgFluid": {
+      "type": "boolean",
+      "default": false
+    },
+    "imgThumbnail": {
+      "type": "boolean",
+      "default": false
+    },
+    "floatClass": {
+      "type": "string",
+      "default": ""
+    },
+    "displayClass": {
+      "type": "string",
+      "default": ""
+    },
+    "rounded": {
+      "type": "string",
+      "default": ""
+    },
+    "borderSides": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    },
+    "borderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "borderWidth": {
+      "type": "string",
+      "default": ""
+    },
+    "borderOpacity": {
+      "type": "string",
+      "default": ""
+    },
+    "shadow": {
+      "type": "string",
+      "default": ""
+    },
+    "customClass": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

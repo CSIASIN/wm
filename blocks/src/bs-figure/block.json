@@ -1,0 +1,32 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/bs-figure",
+	"version": "0.1.0",
+	"title": "Figure",
+	"category": "watermelon-blocks",
+	"icon": "camera",
+	"description": "Bootstrap figure — image with optional caption using <figure> and <figcaption>.",
+	"example": {},
+	"supports": { "html": false, "anchor": true },
+	"attributes": {
+		"imageUrl":       { "type": "string",  "default": "" },
+		"imageId":        { "type": "number",  "default": 0 },
+		"imageAlt":       { "type": "string",  "default": "" },
+		"caption":        { "type": "string",  "default": "" },
+		"imgFluid":       { "type": "boolean", "default": true },
+		"imgThumbnail":   { "type": "boolean", "default": false },
+		"rounded":        { "type": "string",  "default": "" },
+		"floatClass":     { "type": "string",  "default": "" },
+		"borderSides":    { "type": "array",   "default": [], "items": { "type": "string" } },
+		"borderColor":    { "type": "string",  "default": "" },
+		"borderWidth":    { "type": "string",  "default": "" },
+		"captionAlign":   { "type": "string",  "default": "" },
+		"customClass":    { "type": "string",  "default": "" }
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle":  "file:./index.css",
+	"style":        "file:./style-index.css",
+	"render":       "file:./render.php"
+}

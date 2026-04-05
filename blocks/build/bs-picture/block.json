@@ -1,0 +1,68 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/bs-picture",
+  "version": "0.1.0",
+  "title": "Picture",
+  "category": "watermelon-blocks",
+  "icon": "images-alt",
+  "description": "Bootstrap picture element with multiple source breakpoints for art direction.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "sources": {
+      "type": "array",
+      "default": [
+        {
+          "imageUrl": "",
+          "imageId": 0,
+          "media": "(min-width: 1200px)"
+        },
+        {
+          "imageUrl": "",
+          "imageId": 0,
+          "media": "(min-width: 768px)"
+        }
+      ],
+      "items": {
+        "type": "object"
+      }
+    },
+    "defaultImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "defaultImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "defaultImageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "imgFluid": {
+      "type": "boolean",
+      "default": true
+    },
+    "imgThumbnail": {
+      "type": "boolean",
+      "default": false
+    },
+    "rounded": {
+      "type": "string",
+      "default": ""
+    },
+    "customClass": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

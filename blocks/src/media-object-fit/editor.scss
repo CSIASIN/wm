@@ -1,0 +1,9 @@
+.wmblocks-object-fit-wrapper {
+	border: 2px dashed #0dcaf0;
+	padding: 12px;
+	min-height: 80px;
+
+	iframe, video, img {
+		display: block;
+	}
+}

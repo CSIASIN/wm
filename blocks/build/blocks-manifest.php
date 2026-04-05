@@ -197,6 +197,250 @@ return array(
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),
+	'bs-figure' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/bs-figure',
+		'version' => '0.1.0',
+		'title' => 'Figure',
+		'category' => 'watermelon-blocks',
+		'icon' => 'camera',
+		'description' => 'Bootstrap figure — image with optional caption using <figure> and <figcaption>.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'imageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'imageAlt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'caption' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imgFluid' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'imgThumbnail' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'rounded' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'floatClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderSides' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				),
+				'items' => array(
+					'type' => 'string'
+				)
+			),
+			'borderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderWidth' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'captionAlign' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'bs-images' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/bs-image',
+		'version' => '0.1.0',
+		'title' => 'BS Image',
+		'category' => 'watermelon-blocks',
+		'icon' => 'format-image',
+		'description' => 'Bootstrap image with fluid, thumbnail, float, border and rounded classes.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'imageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'imageAlt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageWidth' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageHeight' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imgFluid' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'imgThumbnail' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'floatClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'displayClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'rounded' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderSides' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				),
+				'items' => array(
+					'type' => 'string'
+				)
+			),
+			'borderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderWidth' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderOpacity' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'shadow' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'bs-picture' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/bs-picture',
+		'version' => '0.1.0',
+		'title' => 'Picture',
+		'category' => 'watermelon-blocks',
+		'icon' => 'images-alt',
+		'description' => 'Bootstrap picture element with multiple source breakpoints for art direction.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'sources' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'imageUrl' => '',
+						'imageId' => 0,
+						'media' => '(min-width: 1200px)'
+					),
+					array(
+						'imageUrl' => '',
+						'imageId' => 0,
+						'media' => '(min-width: 768px)'
+					)
+				),
+				'items' => array(
+					'type' => 'object'
+				)
+			),
+			'defaultImageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'defaultImageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'defaultImageAlt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imgFluid' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'imgThumbnail' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'rounded' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'button-group' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -1288,6 +1532,118 @@ return array(
 				'items' => array(
 					'type' => 'object'
 				)
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'media-object-fit' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/object-fit',
+		'version' => '0.1.0',
+		'title' => 'Media Object Fit',
+		'category' => 'watermelon-blocks',
+		'icon' => 'format-video',
+		'description' => 'Bootstrap object-fit utilities for images, videos and iframes — control how media fills its container.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'mediaType' => array(
+				'type' => 'string',
+				'default' => 'image'
+			),
+			'imageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'imageAlt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'videoUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'videoId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'iframeSrc' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'iframeTitle' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'objectFit' => array(
+				'type' => 'string',
+				'default' => 'object-fit-cover'
+			),
+			'objectFitSm' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'objectFitMd' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'objectFitLg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'objectFitXl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'width' => array(
+				'type' => 'string',
+				'default' => '100%'
+			),
+			'height' => array(
+				'type' => 'string',
+				'default' => '300px'
+			),
+			'rounded' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'autoplay' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'muted' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'loop' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'controls' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'allowFullscreen' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
 			)
 		),
 		'textdomain' => 'wm',
