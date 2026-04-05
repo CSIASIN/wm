@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/flex-container",
+	"version": "0.1.0",
+	"title": "Flex Container",
+	"category": "watermelon-blocks",
+	"icon": "columns",
+	"description": "Bootstrap flexbox container — d-flex with full control over direction, justify, align, wrap and gap.",
+	"example": {},
+	"supports": { "html": false, "anchor": true },
+	"attributes": {
+		"display":         { "type": "string", "default": "d-flex" },
+		"direction":       { "type": "string", "default": "" },
+		"justifyContent":  { "type": "string", "default": "" },
+		"alignItems":      { "type": "string", "default": "" },
+		"alignContent":    { "type": "string", "default": "" },
+		"flexWrap":        { "type": "string", "default": "" },
+		"gap":             { "type": "string", "default": "" },
+		"customClass":     { "type": "string", "default": "" }
+	},
+	"providesContext": {
+		"wmblocks/flexContainerId": "display"
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle":  "file:./index.css",
+	"style":        "file:./style-index.css",
+	"render":       "file:./render.php"
+}

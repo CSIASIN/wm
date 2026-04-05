@@ -1,0 +1,57 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/flex-item",
+  "version": "0.1.0",
+  "title": "Flex Item",
+  "category": "watermelon-blocks",
+  "icon": "align-pull-left",
+  "description": "A flex item inside a Flex Container block.",
+  "example": {},
+  "parent": [
+    "wmblocks/flex-container"
+  ],
+  "supports": {
+    "html": false,
+    "reusable": false
+  },
+  "attributes": {
+    "flexFill": {
+      "type": "boolean",
+      "default": false
+    },
+    "flexGrow": {
+      "type": "string",
+      "default": ""
+    },
+    "flexShrink": {
+      "type": "string",
+      "default": ""
+    },
+    "alignSelf": {
+      "type": "string",
+      "default": ""
+    },
+    "order": {
+      "type": "string",
+      "default": ""
+    },
+    "autoMargin": {
+      "type": "string",
+      "default": ""
+    },
+    "customClass": {
+      "type": "string",
+      "default": ""
+    },
+    "minWidth": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

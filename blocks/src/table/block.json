@@ -1,0 +1,125 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/table",
+	"version": "0.1.0",
+	"title": "Table",
+	"category": "watermelon-blocks",
+	"icon": "editor-table",
+	"description": "Bootstrap table — a full-featured spreadsheet-like editor. Click any cell to type directly. Add/remove rows & columns, set per-cell colours, use all Bootstrap table variants: striped, bordered, hover, dark, responsive, and more.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"head": {
+			"type": "array",
+			"default": [
+				{ "id": "h1", "cells": [
+					{ "id": "c1", "content": "#",      "tag": "th", "colour": "", "align": "" },
+					{ "id": "c2", "content": "First",  "tag": "th", "colour": "", "align": "" },
+					{ "id": "c3", "content": "Last",   "tag": "th", "colour": "", "align": "" },
+					{ "id": "c4", "content": "Handle", "tag": "th", "colour": "", "align": "" }
+				]}
+			]
+		},
+		"body": {
+			"type": "array",
+			"default": [
+				{ "id": "r1", "colour": "", "cells": [
+					{ "id": "c1", "content": "1",     "tag": "th", "colour": "", "align": "" },
+					{ "id": "c2", "content": "Mark",  "tag": "td", "colour": "", "align": "" },
+					{ "id": "c3", "content": "Otto",  "tag": "td", "colour": "", "align": "" },
+					{ "id": "c4", "content": "@mdo",  "tag": "td", "colour": "", "align": "" }
+				]},
+				{ "id": "r2", "colour": "", "cells": [
+					{ "id": "c1", "content": "2",      "tag": "th", "colour": "", "align": "" },
+					{ "id": "c2", "content": "Jacob",  "tag": "td", "colour": "", "align": "" },
+					{ "id": "c3", "content": "Thornton","tag": "td", "colour": "", "align": "" },
+					{ "id": "c4", "content": "@fat",   "tag": "td", "colour": "", "align": "" }
+				]},
+				{ "id": "r3", "colour": "", "cells": [
+					{ "id": "c1", "content": "3",    "tag": "th", "colour": "", "align": "" },
+					{ "id": "c2", "content": "John", "tag": "td", "colour": "", "align": "" },
+					{ "id": "c3", "content": "Doe",  "tag": "td", "colour": "", "align": "" },
+					{ "id": "c4", "content": "@social","tag": "td","colour": "", "align": "" }
+				]}
+			]
+		},
+		"foot": {
+			"type": "array",
+			"default": []
+		},
+		"caption": {
+			"type": "string",
+			"default": ""
+		},
+		"captionSide": {
+			"type": "string",
+			"default": "bottom"
+		},
+		"showHead": {
+			"type": "boolean",
+			"default": true
+		},
+		"showFoot": {
+			"type": "boolean",
+			"default": false
+		},
+		"tableVariant": {
+			"type": "string",
+			"default": ""
+		},
+		"headVariant": {
+			"type": "string",
+			"default": ""
+		},
+		"striped": {
+			"type": "boolean",
+			"default": false
+		},
+		"stripedColumns": {
+			"type": "boolean",
+			"default": false
+		},
+		"hover": {
+			"type": "boolean",
+			"default": false
+		},
+		"bordered": {
+			"type": "boolean",
+			"default": false
+		},
+		"borderColour": {
+			"type": "string",
+			"default": ""
+		},
+		"borderless": {
+			"type": "boolean",
+			"default": false
+		},
+		"small": {
+			"type": "boolean",
+			"default": false
+		},
+		"responsive": {
+			"type": "string",
+			"default": ""
+		},
+		"verticalAlign": {
+			"type": "string",
+			"default": ""
+		},
+		"divider": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle":  "file:./index.css",
+	"style":        "file:./style-index.css",
+	"render":       "file:./render.php",
+	"viewScript":   "file:./view.js"
+}

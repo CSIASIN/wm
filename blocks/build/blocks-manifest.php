@@ -1100,6 +1100,124 @@ return array(
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),
+	'flex' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/flex-container',
+		'version' => '0.1.0',
+		'title' => 'Flex Container',
+		'category' => 'watermelon-blocks',
+		'icon' => 'columns',
+		'description' => 'Bootstrap flexbox container — d-flex with full control over direction, justify, align, wrap and gap.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'display' => array(
+				'type' => 'string',
+				'default' => 'd-flex'
+			),
+			'direction' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'justifyContent' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'alignItems' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'alignContent' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'flexWrap' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gap' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'providesContext' => array(
+			'wmblocks/flexContainerId' => 'display'
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'flex-item' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/flex-item',
+		'version' => '0.1.0',
+		'title' => 'Flex Item',
+		'category' => 'watermelon-blocks',
+		'icon' => 'align-pull-left',
+		'description' => 'A flex item inside a Flex Container block.',
+		'example' => array(
+			
+		),
+		'parent' => array(
+			'wmblocks/flex-container'
+		),
+		'supports' => array(
+			'html' => false,
+			'reusable' => false
+		),
+		'attributes' => array(
+			'flexFill' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'flexGrow' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'flexShrink' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'alignSelf' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'order' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'autoMargin' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'minWidth' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'list-group' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -1772,6 +1890,246 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
+	),
+	'table' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/table',
+		'version' => '0.1.0',
+		'title' => 'Table',
+		'category' => 'watermelon-blocks',
+		'icon' => 'editor-table',
+		'description' => 'Bootstrap table — a full-featured spreadsheet-like editor. Click any cell to type directly. Add/remove rows & columns, set per-cell colours, use all Bootstrap table variants: striped, bordered, hover, dark, responsive, and more.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'head' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'h1',
+						'cells' => array(
+							array(
+								'id' => 'c1',
+								'content' => '#',
+								'tag' => 'th',
+								'colour' => '',
+								'align' => ''
+							),
+							array(
+								'id' => 'c2',
+								'content' => 'First',
+								'tag' => 'th',
+								'colour' => '',
+								'align' => ''
+							),
+							array(
+								'id' => 'c3',
+								'content' => 'Last',
+								'tag' => 'th',
+								'colour' => '',
+								'align' => ''
+							),
+							array(
+								'id' => 'c4',
+								'content' => 'Handle',
+								'tag' => 'th',
+								'colour' => '',
+								'align' => ''
+							)
+						)
+					)
+				)
+			),
+			'body' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'r1',
+						'colour' => '',
+						'cells' => array(
+							array(
+								'id' => 'c1',
+								'content' => '1',
+								'tag' => 'th',
+								'colour' => '',
+								'align' => ''
+							),
+							array(
+								'id' => 'c2',
+								'content' => 'Mark',
+								'tag' => 'td',
+								'colour' => '',
+								'align' => ''
+							),
+							array(
+								'id' => 'c3',
+								'content' => 'Otto',
+								'tag' => 'td',
+								'colour' => '',
+								'align' => ''
+							),
+							array(
+								'id' => 'c4',
+								'content' => '@mdo',
+								'tag' => 'td',
+								'colour' => '',
+								'align' => ''
+							)
+						)
+					),
+					array(
+						'id' => 'r2',
+						'colour' => '',
+						'cells' => array(
+							array(
+								'id' => 'c1',
+								'content' => '2',
+								'tag' => 'th',
+								'colour' => '',
+								'align' => ''
+							),
+							array(
+								'id' => 'c2',
+								'content' => 'Jacob',
+								'tag' => 'td',
+								'colour' => '',
+								'align' => ''
+							),
+							array(
+								'id' => 'c3',
+								'content' => 'Thornton',
+								'tag' => 'td',
+								'colour' => '',
+								'align' => ''
+							),
+							array(
+								'id' => 'c4',
+								'content' => '@fat',
+								'tag' => 'td',
+								'colour' => '',
+								'align' => ''
+							)
+						)
+					),
+					array(
+						'id' => 'r3',
+						'colour' => '',
+						'cells' => array(
+							array(
+								'id' => 'c1',
+								'content' => '3',
+								'tag' => 'th',
+								'colour' => '',
+								'align' => ''
+							),
+							array(
+								'id' => 'c2',
+								'content' => 'John',
+								'tag' => 'td',
+								'colour' => '',
+								'align' => ''
+							),
+							array(
+								'id' => 'c3',
+								'content' => 'Doe',
+								'tag' => 'td',
+								'colour' => '',
+								'align' => ''
+							),
+							array(
+								'id' => 'c4',
+								'content' => '@social',
+								'tag' => 'td',
+								'colour' => '',
+								'align' => ''
+							)
+						)
+					)
+				)
+			),
+			'foot' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'caption' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'captionSide' => array(
+				'type' => 'string',
+				'default' => 'bottom'
+			),
+			'showHead' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'showFoot' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'tableVariant' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'headVariant' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'striped' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'stripedColumns' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hover' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'bordered' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'borderColour' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderless' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'small' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'responsive' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'verticalAlign' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'divider' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
 	),
 	'tabs' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
