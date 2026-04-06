@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/stack-item",
+	"version": "0.1.0",
+	"title": "Stack Item",
+	"category": "watermelon-blocks",
+	"icon": "minus",
+	"description": "A single item inside a vstack or hstack.",
+	"example": {},
+	"parent": [ "wmblocks/vstack", "wmblocks/hstack" ],
+	"supports": { "html": false, "reusable": false },
+	"attributes": {
+		"autoMargin":  { "type": "string",  "default": "" },
+		"padding":     { "type": "string",  "default": "" },
+		"flexFill":    { "type": "boolean", "default": false },
+		"alignSelf":   { "type": "string",  "default": "" },
+		"showDivider": { "type": "boolean", "default": false },
+		"customClass": { "type": "string",  "default": "" }
+	},
+	"usesContext": [ "wmblocks/stackType" ],
+	"textdomain": "wmblocks",
+	"editorScript": "file:./index.js",
+	"editorStyle":  "file:./index.css",
+	"style":        "file:./style-index.css",
+	"render":       "file:./render.php"
+}

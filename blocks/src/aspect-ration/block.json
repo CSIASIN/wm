@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/ratio",
+	"version": "0.1.0",
+	"title": "Aspect Ratio",
+	"category": "watermelon-blocks",
+	"icon": "format-video",
+	"description": "Bootstrap ratio helper — wraps any embedded content (iframe, video, image) in a responsive aspect-ratio container. Choose from 1x1, 4x3, 16x9, 21x9 or set a custom ratio.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"ratio": {
+			"type": "string",
+			"default": "ratio-16x9"
+		},
+		"customRatio": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle":  "file:./index.css",
+	"style":        "file:./style-index.css",
+	"render":       "file:./render.php",
+	"viewScript":   "file:./view.js"
+}

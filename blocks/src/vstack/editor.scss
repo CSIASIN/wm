@@ -1,0 +1,10 @@
+.wmblocks-vstack-wrapper {
+	border: 2px dashed #198754;
+	padding: 12px;
+	min-height: 60px;
+
+	> .vstack {
+		display: flex;
+		flex-direction: column;
+	}
+}

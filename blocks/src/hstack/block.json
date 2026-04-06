@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/hstack",
+	"version": "0.1.0",
+	"title": "Horizontal Stack",
+	"category": "watermelon-blocks",
+	"icon": "leftright",
+	"description": "Bootstrap hstack — horizontal flex row layout. Items are vertically centered by default.",
+	"example": {},
+	"supports": { "html": false, "anchor": true },
+	"attributes": {
+		"gap":           { "type": "string",  "default": "gap-3" },
+		"showDividers":  { "type": "boolean", "default": false },
+		"customClass":   { "type": "string",  "default": "" }
+	},
+	"providesContext": {
+		"wmblocks/stackType": "gap"
+	},
+	"textdomain": "wmblocks",
+	"editorScript": "file:./index.js",
+	"editorStyle":  "file:./index.css",
+	"style":        "file:./style-index.css",
+	"render":       "file:./render.php"
+}

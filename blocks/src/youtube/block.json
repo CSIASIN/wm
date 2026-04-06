@@ -1,0 +1,91 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/youtube",
+	"version": "0.1.0",
+	"title": "YouTube Video",
+	"category": "watermelon-blocks",
+	"icon": "video-alt3",
+	"description": "Embed a YouTube video inside a Bootstrap responsive ratio container. Paste any YouTube URL, pick your aspect ratio, and fine-tune all embed parameters — autoplay, controls, loop, mute, start time, captions, and more.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"url": {
+			"type": "string",
+			"default": ""
+		},
+		"videoId": {
+			"type": "string",
+			"default": ""
+		},
+		"ratio": {
+			"type": "string",
+			"default": "ratio-16x9"
+		},
+		"customRatio": {
+			"type": "string",
+			"default": ""
+		},
+		"title": {
+			"type": "string",
+			"default": "YouTube video"
+		},
+		"autoplay": {
+			"type": "boolean",
+			"default": false
+		},
+		"mute": {
+			"type": "boolean",
+			"default": false
+		},
+		"controls": {
+			"type": "boolean",
+			"default": true
+		},
+		"loop": {
+			"type": "boolean",
+			"default": false
+		},
+		"modestbranding": {
+			"type": "boolean",
+			"default": false
+		},
+		"rel": {
+			"type": "boolean",
+			"default": true
+		},
+		"privacyEnhanced": {
+			"type": "boolean",
+			"default": false
+		},
+		"start": {
+			"type": "number",
+			"default": 0
+		},
+		"end": {
+			"type": "number",
+			"default": 0
+		},
+		"playlistId": {
+			"type": "string",
+			"default": ""
+		},
+		"cc": {
+			"type": "boolean",
+			"default": false
+		},
+		"ccLang": {
+			"type": "string",
+			"default": "en"
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle":  "file:./index.css",
+	"style":        "file:./style-index.css",
+	"render":       "file:./render.php",
+	"viewScript":   "file:./view.js"
+}

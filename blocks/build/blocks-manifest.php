@@ -146,6 +146,39 @@ return array(
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),
+	'aspect-ration' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/ratio',
+		'version' => '0.1.0',
+		'title' => 'Aspect Ratio',
+		'category' => 'watermelon-blocks',
+		'icon' => 'format-video',
+		'description' => 'Bootstrap ratio helper — wraps any embedded content (iframe, video, image) in a responsive aspect-ratio container. Choose from 1x1, 4x3, 16x9, 21x9 or set a custom ratio.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'ratio' => array(
+				'type' => 'string',
+				'default' => 'ratio-16x9'
+			),
+			'customRatio' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
 	'badge' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -1462,6 +1495,45 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
 	),
+	'hstack' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/hstack',
+		'version' => '0.1.0',
+		'title' => 'Horizontal Stack',
+		'category' => 'watermelon-blocks',
+		'icon' => 'leftright',
+		'description' => 'Bootstrap hstack — horizontal flex row layout. Items are vertically centered by default.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'gap' => array(
+				'type' => 'string',
+				'default' => 'gap-3'
+			),
+			'showDividers' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'providesContext' => array(
+			'wmblocks/stackType' => 'gap'
+		),
+		'textdomain' => 'wmblocks',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'list-group' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -2204,6 +2276,61 @@ return array(
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),
+	'stack-item' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/stack-item',
+		'version' => '0.1.0',
+		'title' => 'Stack Item',
+		'category' => 'watermelon-blocks',
+		'icon' => 'minus',
+		'description' => 'A single item inside a vstack or hstack.',
+		'example' => array(
+			
+		),
+		'parent' => array(
+			'wmblocks/vstack',
+			'wmblocks/hstack'
+		),
+		'supports' => array(
+			'html' => false,
+			'reusable' => false
+		),
+		'attributes' => array(
+			'autoMargin' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'padding' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'flexFill' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'alignSelf' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'showDivider' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'usesContext' => array(
+			'wmblocks/stackType'
+		),
+		'textdomain' => 'wmblocks',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'tab-item' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -2604,6 +2731,134 @@ return array(
 			'colorVariant' => array(
 				'type' => 'string',
 				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'vstack' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/vstack',
+		'version' => '0.1.0',
+		'title' => 'Vertical Stack',
+		'category' => 'watermelon-blocks',
+		'icon' => 'move',
+		'description' => 'Bootstrap vstack — vertical flex column layout. Items are full-width by default.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'gap' => array(
+				'type' => 'string',
+				'default' => 'gap-3'
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'providesContext' => array(
+			'wmblocks/stackType' => 'gap'
+		),
+		'textdomain' => 'wmblocks',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'youtube' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/youtube',
+		'version' => '0.1.0',
+		'title' => 'YouTube Video',
+		'category' => 'watermelon-blocks',
+		'icon' => 'video-alt3',
+		'description' => 'Embed a YouTube video inside a Bootstrap responsive ratio container. Paste any YouTube URL, pick your aspect ratio, and fine-tune all embed parameters — autoplay, controls, loop, mute, start time, captions, and more.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'url' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'videoId' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ratio' => array(
+				'type' => 'string',
+				'default' => 'ratio-16x9'
+			),
+			'customRatio' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'title' => array(
+				'type' => 'string',
+				'default' => 'YouTube video'
+			),
+			'autoplay' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'mute' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'controls' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'loop' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'modestbranding' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'rel' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'privacyEnhanced' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'start' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'end' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'playlistId' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'cc' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'ccLang' => array(
+				'type' => 'string',
+				'default' => 'en'
 			)
 		),
 		'textdomain' => 'wm',

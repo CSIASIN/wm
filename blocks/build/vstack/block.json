@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/vstack",
+  "version": "0.1.0",
+  "title": "Vertical Stack",
+  "category": "watermelon-blocks",
+  "icon": "move",
+  "description": "Bootstrap vstack — vertical flex column layout. Items are full-width by default.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "gap": {
+      "type": "string",
+      "default": "gap-3"
+    },
+    "customClass": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "providesContext": {
+    "wmblocks/stackType": "gap"
+  },
+  "textdomain": "wmblocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}
