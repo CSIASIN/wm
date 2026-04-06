@@ -1869,6 +1869,104 @@ return array(
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),
+	'nav' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/nav',
+		'version' => '0.1.0',
+		'title' => 'Nav',
+		'category' => 'watermelon-blocks',
+		'icon' => 'menu',
+		'description' => 'Bootstrap nav — a flexible navigation component in base, tabs, pills, or underline style. Supports horizontal/vertical orientation, fill/justify, alignment, dropdowns per item, active/disabled states, and both ul/li and nav/a markup. All items editable inline on the canvas.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'items' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'n1',
+						'label' => 'Active',
+						'href' => '#',
+						'active' => true,
+						'disabled' => false,
+						'hasDropdown' => false,
+						'dropdownItems' => array(
+							
+						)
+					),
+					array(
+						'id' => 'n2',
+						'label' => 'Link',
+						'href' => '#',
+						'active' => false,
+						'disabled' => false,
+						'hasDropdown' => false,
+						'dropdownItems' => array(
+							
+						)
+					),
+					array(
+						'id' => 'n3',
+						'label' => 'Link',
+						'href' => '#',
+						'active' => false,
+						'disabled' => false,
+						'hasDropdown' => false,
+						'dropdownItems' => array(
+							
+						)
+					),
+					array(
+						'id' => 'n4',
+						'label' => 'Disabled',
+						'href' => '#',
+						'active' => false,
+						'disabled' => true,
+						'hasDropdown' => false,
+						'dropdownItems' => array(
+							
+						)
+					)
+				)
+			),
+			'navStyle' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'orientation' => array(
+				'type' => 'string',
+				'default' => 'horizontal'
+			),
+			'alignment' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fill' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'useNavElement' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'ariaLabel' => array(
+				'type' => 'string',
+				'default' => 'Navigation'
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
 	'navbar' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
