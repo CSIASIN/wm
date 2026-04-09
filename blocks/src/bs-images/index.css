@@ -1,0 +1,11 @@
+.editor-position-guide {
+    border: 1px dashed #aaa;
+    padding: 10px;
+    background: rgba(0,0,0,0.02);
+    min-height: 50px;
+}
+
+/* Ensure the block doesn't completely disappear when absolute is selected */
+.wp-block-create-block-bootstrap-position {
+    min-height: 20px;
+}

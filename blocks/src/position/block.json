@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/position-wrapper",
+	"version": "0.1.0",
+	"title": "Position Wrapper",
+	"category": "watermelon-blocks",
+	"icon": "editor-expand",
+	"description": "Bootstrap position-relative container. Add Position Element children to place badges, labels, and overlays on top.",
+	"example": {},
+	"supports": { "html": false, "anchor": true },
+	"attributes": {
+		"positionClass": { "type": "string",  "default": "position-relative" },
+		"display":       { "type": "string",  "default": "d-inline-flex" },
+		"customClass":   { "type": "string",  "default": "" }
+	},
+	"providesContext": {
+		"wmblocks/wrapperPosition": "positionClass"
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle":  "file:./index.css",
+	"style":        "file:./style-index.css",
+	"render":       "file:./render.php"
+}

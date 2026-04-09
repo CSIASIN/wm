@@ -1534,6 +1534,190 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
 	),
+	'icon-link' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/icon-link',
+		'version' => '0.1.0',
+		'title' => 'Icon Link',
+		'category' => 'watermelon-blocks',
+		'icon' => 'admin-links',
+		'description' => 'Bootstrap icon-link helper — an anchor with an inline SVG icon and text, with optional hover animation.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'newTab' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'linkText' => array(
+				'type' => 'string',
+				'default' => 'Icon link'
+			),
+			'iconSvg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'iconPosition' => array(
+				'type' => 'string',
+				'default' => 'start'
+			),
+			'hoverAnim' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'linkColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'linkUnderline' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'linkOpacity' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fontSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gap' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'image-link' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/image-link',
+		'version' => '0.1.0',
+		'title' => 'Image Link',
+		'category' => 'watermelon-blocks',
+		'icon' => 'admin-links',
+		'description' => 'Bootstrap image-link — image with text as media object, stretched-link card, or plain linked image. Three layout modes.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'layoutMode' => array(
+				'type' => 'string',
+				'default' => 'media'
+			),
+			'url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'newTab' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'stretchedLink' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'imageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'imageAlt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageWidth' => array(
+				'type' => 'string',
+				'default' => '120px'
+			),
+			'imagePosition' => array(
+				'type' => 'string',
+				'default' => 'start'
+			),
+			'imgClass' => array(
+				'type' => 'string',
+				'default' => 'img-fluid'
+			),
+			'imageGap' => array(
+				'type' => 'string',
+				'default' => 'me-3'
+			),
+			'imageAlign' => array(
+				'type' => 'string',
+				'default' => 'align-self-start'
+			),
+			'title' => array(
+				'type' => 'string',
+				'default' => 'Image link heading'
+			),
+			'body' => array(
+				'type' => 'string',
+				'default' => 'Some quick example text to build on the title and make up the bulk of the content.'
+			),
+			'linkText' => array(
+				'type' => 'string',
+				'default' => 'Go somewhere'
+			),
+			'linkVariant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'showLinkBtn' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'wrapperClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'rounded' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'shadow' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'objectFit' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'objectHeight' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'list-group' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -2249,6 +2433,104 @@ return array(
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),
+	'position' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/position-wrapper',
+		'version' => '0.1.0',
+		'title' => 'Position Wrapper',
+		'category' => 'watermelon-blocks',
+		'icon' => 'editor-expand',
+		'description' => 'Bootstrap position-relative container. Add Position Element children to place badges, labels, and overlays on top.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'positionClass' => array(
+				'type' => 'string',
+				'default' => 'position-relative'
+			),
+			'display' => array(
+				'type' => 'string',
+				'default' => 'd-inline-flex'
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'providesContext' => array(
+			'wmblocks/wrapperPosition' => 'positionClass'
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'position-element' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/position-element',
+		'version' => '0.1.0',
+		'title' => 'Position Element',
+		'category' => 'watermelon-blocks',
+		'icon' => 'location',
+		'description' => 'A positioned element inside a Position Container — place it at top/bottom/start/end with translate helpers.',
+		'example' => array(
+			
+		),
+		'parent' => array(
+			'wmblocks/position-wrapper'
+		),
+		'supports' => array(
+			'html' => false,
+			'reusable' => false
+		),
+		'attributes' => array(
+			'positionType' => array(
+				'type' => 'string',
+				'default' => 'position-absolute'
+			),
+			'top' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bottom' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'start' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'end' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'translate' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'zIndex' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./editor.scss',
+		'style' => 'file:./style.scss',
+		'render' => 'file:./render.php'
+	),
 	'progress' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -2428,6 +2710,75 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
+	),
+	'sticky-note' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/sticky-note',
+		'version' => '0.1.0',
+		'title' => 'Sticky / Fixed Element',
+		'category' => 'watermelon-blocks',
+		'icon' => 'sticky',
+		'description' => 'Bootstrap position helper block — makes any content sticky or fixed to the viewport. Supports fixed-top, fixed-bottom, sticky-top, sticky-bottom, and all responsive breakpoint variants. Drop any blocks inside. Perfect for sticky headers, floating CTAs, fixed banners, and pinned sidebars.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'positionMode' => array(
+				'type' => 'string',
+				'default' => 'sticky-top'
+			),
+			'breakpoint' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'zIndex' => array(
+				'type' => 'string',
+				'default' => '1020'
+			),
+			'bgColor' => array(
+				'type' => 'string',
+				'default' => 'bg-white'
+			),
+			'shadow' => array(
+				'type' => 'string',
+				'default' => 'shadow-sm'
+			),
+			'padding' => array(
+				'type' => 'string',
+				'default' => 'py-2'
+			),
+			'showLabel' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'labelText' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'labelPosition' => array(
+				'type' => 'string',
+				'default' => 'top-0 end-0'
+			),
+			'containerWidth' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'editorPreviewMode' => array(
+				'type' => 'string',
+				'default' => 'inline'
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
 	),
 	'tab-item' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',

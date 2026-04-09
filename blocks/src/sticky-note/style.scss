@@ -1,0 +1,6 @@
+// Frontend position styles are handled by Bootstrap's helper classes:
+//   .fixed-top, .fixed-bottom, .sticky-top, .sticky-bottom
+//   and responsive variants: .sticky-{sm|md|lg|xl|xxl}-{top|bottom}
+//
+// The z-index is applied inline via style attribute from render.php.
+// No additional CSS needed if Bootstrap is loaded.

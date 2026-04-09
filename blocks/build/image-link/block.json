@@ -1,0 +1,110 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/image-link",
+  "version": "0.1.0",
+  "title": "Image Link",
+  "category": "watermelon-blocks",
+  "icon": "admin-links",
+  "description": "Bootstrap image-link — image with text as media object, stretched-link card, or plain linked image. Three layout modes.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "layoutMode": {
+      "type": "string",
+      "default": "media"
+    },
+    "url": {
+      "type": "string",
+      "default": "#"
+    },
+    "newTab": {
+      "type": "boolean",
+      "default": false
+    },
+    "stretchedLink": {
+      "type": "boolean",
+      "default": true
+    },
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imageId": {
+      "type": "number",
+      "default": 0
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "imageWidth": {
+      "type": "string",
+      "default": "120px"
+    },
+    "imagePosition": {
+      "type": "string",
+      "default": "start"
+    },
+    "imgClass": {
+      "type": "string",
+      "default": "img-fluid"
+    },
+    "imageGap": {
+      "type": "string",
+      "default": "me-3"
+    },
+    "imageAlign": {
+      "type": "string",
+      "default": "align-self-start"
+    },
+    "title": {
+      "type": "string",
+      "default": "Image link heading"
+    },
+    "body": {
+      "type": "string",
+      "default": "Some quick example text to build on the title and make up the bulk of the content."
+    },
+    "linkText": {
+      "type": "string",
+      "default": "Go somewhere"
+    },
+    "linkVariant": {
+      "type": "string",
+      "default": "btn-primary"
+    },
+    "showLinkBtn": {
+      "type": "boolean",
+      "default": true
+    },
+    "wrapperClass": {
+      "type": "string",
+      "default": ""
+    },
+    "rounded": {
+      "type": "string",
+      "default": ""
+    },
+    "shadow": {
+      "type": "string",
+      "default": ""
+    },
+    "objectFit": {
+      "type": "string",
+      "default": ""
+    },
+    "objectHeight": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

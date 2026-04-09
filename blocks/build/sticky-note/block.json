@@ -1,0 +1,67 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/sticky-note",
+  "version": "0.1.0",
+  "title": "Sticky / Fixed Element",
+  "category": "watermelon-blocks",
+  "icon": "sticky",
+  "description": "Bootstrap position helper block — makes any content sticky or fixed to the viewport. Supports fixed-top, fixed-bottom, sticky-top, sticky-bottom, and all responsive breakpoint variants. Drop any blocks inside. Perfect for sticky headers, floating CTAs, fixed banners, and pinned sidebars.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "positionMode": {
+      "type": "string",
+      "default": "sticky-top"
+    },
+    "breakpoint": {
+      "type": "string",
+      "default": ""
+    },
+    "zIndex": {
+      "type": "string",
+      "default": "1020"
+    },
+    "bgColor": {
+      "type": "string",
+      "default": "bg-white"
+    },
+    "shadow": {
+      "type": "string",
+      "default": "shadow-sm"
+    },
+    "padding": {
+      "type": "string",
+      "default": "py-2"
+    },
+    "showLabel": {
+      "type": "boolean",
+      "default": true
+    },
+    "labelText": {
+      "type": "string",
+      "default": ""
+    },
+    "labelPosition": {
+      "type": "string",
+      "default": "top-0 end-0"
+    },
+    "containerWidth": {
+      "type": "string",
+      "default": ""
+    },
+    "editorPreviewMode": {
+      "type": "string",
+      "default": "inline"
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

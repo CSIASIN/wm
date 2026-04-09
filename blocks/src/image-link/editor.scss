@@ -1,0 +1,21 @@
+.wmblocks-image-link-wrapper {
+	border: 2px dashed #6610f2;
+	padding: 12px;
+	min-height: 60px;
+
+	[ contenteditable ] {
+		cursor: text;
+		&:empty:before {
+			content: attr( data-placeholder );
+			color: #adb5bd;
+			font-style: italic;
+		}
+		&:focus { outline: 1px dashed #007cba; border-radius: 2px; }
+	}
+
+	// Keep card looking right in editor
+	.card { max-width: 100%; }
+
+	// Prevent stretched-link ::after from blocking editor clicks
+	.stretched-link::after { display: none; }
+}
