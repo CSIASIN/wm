@@ -1,0 +1,18 @@
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/heading/editor.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+.wmblocks-bs-heading-wrapper {
+  border: 2px dashed #6f42c1;
+  padding: 12px;
+}
+.wmblocks-bs-heading-wrapper h1, .wmblocks-bs-heading-wrapper h2, .wmblocks-bs-heading-wrapper h3, .wmblocks-bs-heading-wrapper h4, .wmblocks-bs-heading-wrapper h5, .wmblocks-bs-heading-wrapper h6 {
+  margin: 0;
+  cursor: text;
+}
+.wmblocks-bs-heading-wrapper h1:focus, .wmblocks-bs-heading-wrapper h2:focus, .wmblocks-bs-heading-wrapper h3:focus, .wmblocks-bs-heading-wrapper h4:focus, .wmblocks-bs-heading-wrapper h5:focus, .wmblocks-bs-heading-wrapper h6:focus {
+  outline: 1px dashed #6f42c1;
+  border-radius: 2px;
+}
+.wmblocks-bs-heading-wrapper .text-light, .wmblocks-bs-heading-wrapper .text-white {
+  color: #adb5bd !important;
+}

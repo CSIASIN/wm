@@ -1,0 +1,1 @@
+{"version":3,"file":"placeholder/view.js","mappings":";;;;AAAA;AACA;AACA,uD","sources":["webpack://div/./src/placeholder/view.js"],"sourcesContent":["// Bootstrap placeholders are purely CSS — no JS needed.\n// If you want to toggle placeholder visibility (e.g. hide once content loads),\n// add your own JS: element.classList.toggle('d-none').\n"],"names":[],"sourceRoot":""}

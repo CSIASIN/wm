@@ -1,0 +1,73 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/hero3",
+  "version": "0.1.0",
+  "title": "Hero 3 — Left-aligned + Image",
+  "category": "watermelon-blocks",
+  "icon": "cover-image",
+  "description": "Left-aligned hero with headline, text and buttons alongside a right image.",
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Responsive left-aligned hero with image"
+    },
+    "subtext": {
+      "type": "string",
+      "default": "Quickly design and customize responsive mobile-first sites with Bootstrap, the world's most popular front-end open source toolkit."
+    },
+    "btn1Text": {
+      "type": "string",
+      "default": "Primary"
+    },
+    "btn1Url": {
+      "type": "string",
+      "default": "#"
+    },
+    "btn1Variant": {
+      "type": "string",
+      "default": "btn-primary"
+    },
+    "btn2Text": {
+      "type": "string",
+      "default": "Default"
+    },
+    "btn2Url": {
+      "type": "string",
+      "default": "#"
+    },
+    "btn2Variant": {
+      "type": "string",
+      "default": "btn-outline-secondary"
+    },
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imageId": {
+      "type": "number",
+      "default": 0
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "bgColor": {
+      "type": "string",
+      "default": ""
+    },
+    "customClass": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

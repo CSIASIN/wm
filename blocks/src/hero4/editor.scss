@@ -1,0 +1,11 @@
+.wmblocks-hero1, .wmblocks-hero2, .wmblocks-hero3,
+.wmblocks-hero4, .wmblocks-hero5, .wmblocks-hero6 {
+	border: 2px dashed #6610f2;
+	min-height: 80px;
+
+	[ contenteditable ] {
+		cursor: text;
+		&:focus { outline: 1px dashed #6610f2; border-radius: 2px; }
+		&:empty::before { content: attr(data-placeholder); color: #adb5bd; font-style: italic; pointer-events: none; }
+	}
+}

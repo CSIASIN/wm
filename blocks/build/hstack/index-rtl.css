@@ -1,1 +1,13 @@
-.wmblocks-hstack-wrapper{border:2px dashed #0d6efd;min-height:60px;padding:12px}.wmblocks-hstack-wrapper>.hstack{align-items:center;display:flex;flex-direction:row}
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/hstack/editor.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
+.wmblocks-hstack-wrapper {
+  border: 2px dashed #0d6efd;
+  padding: 12px;
+  min-height: 60px;
+}
+.wmblocks-hstack-wrapper > .hstack {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

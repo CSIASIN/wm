@@ -1,0 +1,1 @@
+{"version":3,"file":"buttons/view.js","mappings":";;;;AAAA;AACA,6E","sources":["webpack://div/./src/buttons/view.js"],"sourcesContent":["// Bootstrap JS handles .active toggling via data-bs-toggle=\"button\"\n// No custom JS needed — Bootstrap handles everything if loaded by the theme.\n"],"names":[],"sourceRoot":""}

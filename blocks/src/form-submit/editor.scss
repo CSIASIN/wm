@@ -1,0 +1,8 @@
+// Child field — minimal editor border
+.wmblocks-form-field, .wmblocks-form-select, .wmblocks-form-textarea,
+.wmblocks-form-check, .wmblocks-form-range, .wmblocks-form-input-group,
+.wmblocks-form-floating, .wmblocks-form-submit {
+	border: 1px dashed rgba(102, 16, 242, 0.3);
+	border-radius: 4px;
+	padding: 4px;
+}

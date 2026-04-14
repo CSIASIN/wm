@@ -1,0 +1,1 @@
+{"version":3,"file":"flex/index.css","mappings":";;;AAAA;EACC;EACA;EACA;AACD,C","sources":["webpack://div/./src/flex/editor.scss"],"sourcesContent":[".wmblocks-flex-container-wrapper {\n\tborder: 2px dashed #0d6efd;\n\tpadding: 12px;\n\tmin-height: 60px;\n}\n"],"names":[],"sourceRoot":""}

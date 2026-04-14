@@ -1,1 +1,161 @@
-.wmblocks-table-wrapper{background:#f8fbff;border:2px dashed #0d6efd;border-radius:6px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;padding:14px}.wmblocks-table-wrapper .wmblocks-table-meta-strip{align-items:center;display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}.wmblocks-table-wrapper .wmblocks-table-chip{align-items:center;background:rgba(13,110,253,.133);border-radius:3px;color:#084298;display:inline-flex;font-size:9px;font-weight:700;letter-spacing:.07em;padding:1px 8px;text-transform:uppercase}.wmblocks-table-wrapper .wmblocks-table-chip--selected{background:rgba(255,193,7,.267);color:#664d03}.wmblocks-table-wrapper .wmblocks-table-hint-bar{background:#f0f4ff;border:1px solid #b6d4fe;border-radius:4px;color:#aaa;font-size:10px;font-style:italic;margin-bottom:10px;padding:5px 8px}.wmblocks-table-wrapper .wmblocks-table-scroll-wrap{background:#fff;border:1px solid #dee2e6;border-radius:4px;overflow-x:auto}.wmblocks-table-wrapper .wmblocks-table-scroll-wrap table{border-collapse:collapse;font-size:14px;width:100%}.wmblocks-table-wrapper .wmblocks-table-scroll-wrap td,.wmblocks-table-wrapper .wmblocks-table-scroll-wrap th{transition:outline .1s}.wmblocks-table-wrapper .wmblocks-table-scroll-wrap td:hover,.wmblocks-table-wrapper .wmblocks-table-scroll-wrap th:hover{outline:1px dashed rgba(13,110,253,.4);outline-offset:-1px}.wmblocks-table-wrapper .wmblocks-table-scroll-wrap .wmblocks-table-col-actions-row th{background:#f8fbff}.wmblocks-table-wrapper .wmblocks-table-scroll-wrap .wmblocks-table-col-actions-row{opacity:0;transition:opacity .15s}.wmblocks-table-wrapper .wmblocks-table-scroll-wrap:hover .wmblocks-table-col-actions-row{opacity:1}.wmblocks-table-wrapper .wmblocks-table-scroll-wrap .wmblocks-table-row-actions{opacity:0;transition:opacity .15s}.wmblocks-table-wrapper .wmblocks-table-scroll-wrap tr:hover .wmblocks-table-row-actions{opacity:1}.wmblocks-table-wrapper .wmblocks-table-col-action-group,.wmblocks-table-wrapper .wmblocks-table-row-action-group{display:flex;flex-wrap:nowrap;gap:2px}.wmblocks-table-wrapper .wmblocks-table-action{align-items:center;background:#fff;border:1px solid #b6d4fe;border-radius:3px;color:#0d6efd;cursor:pointer;display:inline-flex;font-size:9px;font-weight:700;height:20px;justify-content:center;line-height:1;min-width:22px;padding:0 4px;transition:background .1s,color .1s;white-space:nowrap}.wmblocks-table-wrapper .wmblocks-table-action:hover:not(:disabled){background:#0d6efd;border-color:#0d6efd;color:#fff}.wmblocks-table-wrapper .wmblocks-table-action:disabled{cursor:default;opacity:.3}.wmblocks-table-wrapper .wmblocks-table-action--danger{border-color:#f5c2c7;color:#dc3545}.wmblocks-table-wrapper .wmblocks-table-action--danger:hover:not(:disabled){background:#dc3545;border-color:#dc3545;color:#fff}.wmblocks-table-wrapper .wmblocks-table-add-bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.wmblocks-table-wrapper .wmblocks-table-add-btn{background:transparent;border:2px dashed #b6d4fe;border-radius:20px;color:#0d6efd;cursor:pointer;font-size:12px;font-weight:600;padding:4px 14px;transition:all .12s}.wmblocks-table-wrapper .wmblocks-table-add-btn:hover{background:#e8f0fe;border-color:#0d6efd;border-style:solid}.wmblocks-table-wrapper table .rich-text{margin:0;outline:none;padding:0}.wmblocks-table-wrapper table .rich-text:focus{outline:none}.wmblocks-table-wrapper table .rich-text br.ProseMirror-trailingBreak{display:none}.wmblocks-table-wrapper table thead.table-dark th{color:#fff}.wmblocks-table-wrapper table caption{caption-side:bottom}
+/*!**********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/table/editor.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************/
+.wmblocks-table-wrapper {
+  border: 2px dashed #0d6efd;
+  padding: 14px;
+  border-radius: 6px;
+  background: #f8fbff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.wmblocks-table-wrapper .wmblocks-table-meta-strip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.wmblocks-table-wrapper .wmblocks-table-chip {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(13, 110, 253, 0.1333333333);
+  color: #084298;
+  border-radius: 3px;
+  padding: 1px 8px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.wmblocks-table-wrapper .wmblocks-table-chip--selected {
+  background: rgba(255, 193, 7, 0.2666666667);
+  color: #664d03;
+}
+.wmblocks-table-wrapper .wmblocks-table-hint-bar {
+  font-size: 10px;
+  color: #aaa;
+  font-style: italic;
+  margin-bottom: 10px;
+  padding: 5px 8px;
+  background: #f0f4ff;
+  border-radius: 4px;
+  border: 1px solid #b6d4fe;
+}
+.wmblocks-table-wrapper .wmblocks-table-scroll-wrap {
+  overflow-x: auto;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  background: #fff;
+}
+.wmblocks-table-wrapper .wmblocks-table-scroll-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.wmblocks-table-wrapper .wmblocks-table-scroll-wrap th, .wmblocks-table-wrapper .wmblocks-table-scroll-wrap td {
+  transition: outline 0.1s;
+}
+.wmblocks-table-wrapper .wmblocks-table-scroll-wrap th:hover, .wmblocks-table-wrapper .wmblocks-table-scroll-wrap td:hover {
+  outline: 1px dashed rgba(13, 110, 253, 0.4);
+  outline-offset: -1px;
+}
+.wmblocks-table-wrapper .wmblocks-table-scroll-wrap .wmblocks-table-col-actions-row th {
+  background: #f8fbff;
+}
+.wmblocks-table-wrapper .wmblocks-table-scroll-wrap .wmblocks-table-col-actions-row {
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.wmblocks-table-wrapper .wmblocks-table-scroll-wrap:hover .wmblocks-table-col-actions-row {
+  opacity: 1;
+}
+.wmblocks-table-wrapper .wmblocks-table-scroll-wrap .wmblocks-table-row-actions {
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.wmblocks-table-wrapper .wmblocks-table-scroll-wrap tr:hover .wmblocks-table-row-actions {
+  opacity: 1;
+}
+.wmblocks-table-wrapper .wmblocks-table-row-action-group,
+.wmblocks-table-wrapper .wmblocks-table-col-action-group {
+  display: flex;
+  gap: 2px;
+  flex-wrap: nowrap;
+}
+.wmblocks-table-wrapper .wmblocks-table-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 4px;
+  border: 1px solid #b6d4fe;
+  border-radius: 3px;
+  background: #fff;
+  color: #0d6efd;
+  font-size: 9px;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+  white-space: nowrap;
+  transition: background 0.1s, color 0.1s;
+}
+.wmblocks-table-wrapper .wmblocks-table-action:hover:not(:disabled) {
+  background: #0d6efd;
+  color: #fff;
+  border-color: #0d6efd;
+}
+.wmblocks-table-wrapper .wmblocks-table-action:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.wmblocks-table-wrapper .wmblocks-table-action--danger {
+  color: #dc3545;
+  border-color: #f5c2c7;
+}
+.wmblocks-table-wrapper .wmblocks-table-action--danger:hover:not(:disabled) {
+  background: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+}
+.wmblocks-table-wrapper .wmblocks-table-add-bar {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.wmblocks-table-wrapper .wmblocks-table-add-btn {
+  padding: 4px 14px;
+  border: 2px dashed #b6d4fe;
+  border-radius: 20px;
+  background: transparent;
+  color: #0d6efd;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.wmblocks-table-wrapper .wmblocks-table-add-btn:hover {
+  background: #e8f0fe;
+  border-style: solid;
+  border-color: #0d6efd;
+}
+.wmblocks-table-wrapper table .rich-text {
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+.wmblocks-table-wrapper table .rich-text:focus {
+  outline: none;
+}
+.wmblocks-table-wrapper table .rich-text br.ProseMirror-trailingBreak {
+  display: none;
+}
+.wmblocks-table-wrapper table thead.table-dark th {
+  color: #fff;
+}
+.wmblocks-table-wrapper table caption {
+  caption-side: bottom;
+}
+
+/*# sourceMappingURL=index.css.map*/

@@ -1,0 +1,55 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/breadcrumb-divider",
+	"version": "0.1.0",
+	"title": "Breadcrumb — Custom Divider",
+	"category": "watermelon-blocks",
+	"icon": "menu-alt3",
+	"description": "Bootstrap breadcrumb with a custom character divider. Pick from /, >, », •, |, ~, or enter your own character. Uses --bs-breadcrumb-divider CSS custom property.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"id": "b1",
+					"label": "Home",
+					"url": "/"
+				},
+				{
+					"id": "b2",
+					"label": "Library",
+					"url": "/library"
+				},
+				{
+					"id": "b3",
+					"label": "Data",
+					"url": ""
+				}
+			]
+		},
+		"divider": {
+			"type": "string",
+			"default": ">"
+		},
+		"customDivider": {
+			"type": "string",
+			"default": ""
+		},
+		"ariaLabel": {
+			"type": "string",
+			"default": "breadcrumb"
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

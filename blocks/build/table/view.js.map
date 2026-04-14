@@ -1,0 +1,1 @@
+{"version":3,"file":"table/view.js","mappings":";;;;AAAA;AACA,yE","sources":["webpack://div/./src/table/view.js"],"sourcesContent":["// Bootstrap tables are purely CSS — no JS needed for basic tables.\n// If you need sortable tables, add a library like DataTables separately.\n"],"names":[],"sourceRoot":""}

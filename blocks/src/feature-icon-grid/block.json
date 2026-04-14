@@ -1,0 +1,92 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/feature-icon-grid",
+	"version": "0.1.0",
+	"title": "Feature Icon Grid",
+	"category": "watermelon-blocks",
+	"icon": "grid-view",
+	"description": "Bootstrap features — icon grid layout. A dense 2-column or 4-column grid of small icon + heading + short description cells. Perfect for listing many features compactly.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"id": "g1",
+					"icon": "lightning-charge-fill",
+					"iconColour": "text-primary",
+					"title": "Featured title",
+					"body": "Paragraph of text beneath the heading to explain the heading."
+				},
+				{
+					"id": "g2",
+					"icon": "people-fill",
+					"iconColour": "text-success",
+					"title": "Featured title",
+					"body": "Paragraph of text beneath the heading to explain the heading."
+				},
+				{
+					"id": "g3",
+					"icon": "gear-fill",
+					"iconColour": "text-danger",
+					"title": "Featured title",
+					"body": "Paragraph of text beneath the heading to explain the heading."
+				},
+				{
+					"id": "g4",
+					"icon": "globe",
+					"iconColour": "text-warning",
+					"title": "Featured title",
+					"body": "Paragraph of text beneath the heading to explain the heading."
+				},
+				{
+					"id": "g5",
+					"icon": "heart-fill",
+					"iconColour": "text-info",
+					"title": "Featured title",
+					"body": "Paragraph of text beneath the heading to explain the heading."
+				},
+				{
+					"id": "g6",
+					"icon": "graph-up-arrow",
+					"iconColour": "text-primary",
+					"title": "Featured title",
+					"body": "Paragraph of text beneath the heading to explain the heading."
+				},
+				{
+					"id": "g7",
+					"icon": "trophy-fill",
+					"iconColour": "text-success",
+					"title": "Featured title",
+					"body": "Paragraph of text beneath the heading to explain the heading."
+				},
+				{
+					"id": "g8",
+					"icon": "shield-fill-check",
+					"iconColour": "text-danger",
+					"title": "Featured title",
+					"body": "Paragraph of text beneath the heading to explain the heading."
+				}
+			]
+		},
+		"cols": {
+			"type": "string",
+			"default": "4"
+		},
+		"iconSize": {
+			"type": "string",
+			"default": "fs-2"
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

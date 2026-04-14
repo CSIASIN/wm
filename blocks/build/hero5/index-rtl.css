@@ -1,0 +1,24 @@
+/*!**********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/hero5/editor.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************/
+.wmblocks-hero1, .wmblocks-hero2, .wmblocks-hero3,
+.wmblocks-hero4, .wmblocks-hero5, .wmblocks-hero6 {
+  border: 2px dashed #6610f2;
+  min-height: 80px;
+}
+.wmblocks-hero1 [contenteditable], .wmblocks-hero2 [contenteditable], .wmblocks-hero3 [contenteditable],
+.wmblocks-hero4 [contenteditable], .wmblocks-hero5 [contenteditable], .wmblocks-hero6 [contenteditable] {
+  cursor: text;
+}
+.wmblocks-hero1 [contenteditable]:focus, .wmblocks-hero2 [contenteditable]:focus, .wmblocks-hero3 [contenteditable]:focus,
+.wmblocks-hero4 [contenteditable]:focus, .wmblocks-hero5 [contenteditable]:focus, .wmblocks-hero6 [contenteditable]:focus {
+  outline: 1px dashed #6610f2;
+  border-radius: 2px;
+}
+.wmblocks-hero1 [contenteditable]:empty::before, .wmblocks-hero2 [contenteditable]:empty::before, .wmblocks-hero3 [contenteditable]:empty::before,
+.wmblocks-hero4 [contenteditable]:empty::before, .wmblocks-hero5 [contenteditable]:empty::before, .wmblocks-hero6 [contenteditable]:empty::before {
+  content: attr(data-placeholder);
+  color: #adb5bd;
+  font-style: italic;
+  pointer-events: none;
+}

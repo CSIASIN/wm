@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/jumbotron2",
+  "version": "0.1.0",
+  "title": "Jumbotron 2 — Placeholder (Faded)",
+  "category": "watermelon-blocks",
+  "icon": "star-filled",
+  "description": "Faded placeholder jumbotron with muted background, heading, text and a single CTA.",
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Placeholder jumbotron"
+    },
+    "subtext": {
+      "type": "string",
+      "default": "This faded back jumbotron is useful for placeholder content. It's also a great way to add a bit of context to a page or section when no content is available and to encourage visitors to take a specific action."
+    },
+    "btn1Text": {
+      "type": "string",
+      "default": "Call to action"
+    },
+    "btn1Url": {
+      "type": "string",
+      "default": "#"
+    },
+    "btn1Variant": {
+      "type": "string",
+      "default": "btn-primary"
+    },
+    "bgColor": {
+      "type": "string",
+      "default": "bg-body-tertiary"
+    },
+    "customClass": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

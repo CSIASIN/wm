@@ -1,0 +1,90 @@
+/**
+ * Grid Col — editor styles
+ * Purple dashed outline per column with col class label + min-height so
+ * empty columns are still clickable and visible.
+ */
+
+.wp-block-wmblocks-grid-col {
+	position: relative;
+	outline: 1px dashed #6610f2;
+	outline-offset: -1px;
+	padding: 24px 8px 8px !important; // 24px top for the badge
+	min-height: 60px;
+	min-width: 40px;
+	box-sizing: border-box;
+
+	// Col class badge — top-left inside the column
+	&::before {
+		content: 'col';
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: #6610f2;
+		color: #fff;
+		font-size: 9px;
+		font-weight: 700;
+		font-family: monospace;
+		padding: 1px 6px;
+		border-bottom-right-radius: 4px;
+		line-height: 15px;
+		z-index: 10;
+		pointer-events: none;
+		max-width: 100%;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	// Show specific col class in badge when set
+	&[class*="col-1"]::before    { content: 'col-1'; }
+	&[class*="col-2"]::before    { content: 'col-2'; }
+	&[class*="col-3"]::before    { content: 'col-3'; }
+	&[class*="col-4"]::before    { content: 'col-4'; }
+	&[class*="col-5"]::before    { content: 'col-5'; }
+	&[class*="col-6"]::before    { content: 'col-6'; }
+	&[class*="col-7"]::before    { content: 'col-7'; }
+	&[class*="col-8"]::before    { content: 'col-8'; }
+	&[class*="col-9"]::before    { content: 'col-9'; }
+	&[class*="col-10"]::before   { content: 'col-10'; }
+	&[class*="col-11"]::before   { content: 'col-11'; }
+	&[class*="col-12"]::before   { content: 'col-12'; }
+	&[class*="col-auto"]::before { content: 'col-auto'; }
+	// Responsive variants
+	&[class*="col-sm"]::before   { content: 'col-sm-*'; }
+	&[class*="col-md"]::before   { content: 'col-md-*'; }
+	&[class*="col-lg"]::before   { content: 'col-lg-*'; }
+	&[class*="col-xl"]::before   { content: 'col-xl-*'; }
+
+	// Highlight on selection
+	&.is-selected {
+		outline: 2px solid #6610f2;
+		background: rgba(102, 16, 242, 0.03);
+	}
+
+	&.has-child-selected {
+		outline: 1px solid #6610f2;
+		background: rgba(102, 16, 242, 0.02);
+	}
+
+	// Give inner blocks some breathing room
+	> .block-editor-inner-blocks > .block-editor-block-list__layout {
+		padding: 4px;
+		min-height: 30px;
+
+		// Empty column placeholder
+		&:empty::after {
+			content: 'Empty column — click to add blocks';
+			display: block;
+			color: #adb5bd;
+			font-size: 11px;
+			font-style: italic;
+			text-align: center;
+			padding: 8px;
+		}
+	}
+}
+
+// The edit.js blockProps class
+.wmblocks-grid-col {
+	min-height: 60px;
+}

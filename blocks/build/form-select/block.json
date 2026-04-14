@@ -1,0 +1,83 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/form-select",
+  "version": "0.1.0",
+  "title": "Form Select",
+  "category": "watermelon-blocks",
+  "icon": "arrow-down-alt2",
+  "description": "Bootstrap form-select dropdown with configurable options.",
+  "parent": [
+    "wmblocks/bs-form"
+  ],
+  "supports": {
+    "html": false,
+    "reusable": false
+  },
+  "attributes": {
+    "label": {
+      "type": "string",
+      "default": "Select an option"
+    },
+    "name": {
+      "type": "string",
+      "default": ""
+    },
+    "options": {
+      "type": "array",
+      "default": [
+        {
+          "value": "",
+          "label": "Choose..."
+        },
+        {
+          "value": "1",
+          "label": "Option 1"
+        },
+        {
+          "value": "2",
+          "label": "Option 2"
+        }
+      ],
+      "items": {
+        "type": "object"
+      }
+    },
+    "multiple": {
+      "type": "boolean",
+      "default": false
+    },
+    "size": {
+      "type": "string",
+      "default": ""
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "helpText": {
+      "type": "string",
+      "default": ""
+    },
+    "colClass": {
+      "type": "string",
+      "default": ""
+    },
+    "hideLabel": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "usesContext": [
+    "wmblocks/formLayout"
+  ],
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php",
+  "style": "file:./style-index.css"
+}

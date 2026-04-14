@@ -1,0 +1,1 @@
+{"version":3,"file":"stack-item/index.css","mappings":";;;AAAA;EACC;EACA;EACA;EACA;EACA;AACD,C","sources":["webpack://div/./src/stack-item/editor.scss"],"sourcesContent":[".wmblocks-stack-item {\n\tborder: 1px dashed #adb5bd;\n\tpadding: 8px;\n\tmin-height: 32px;\n\tmin-width: 40px;\n\tposition: relative;\n}\n"],"names":[],"sourceRoot":""}

@@ -1,0 +1,1 @@
+{"version":3,"file":"media-object-fit/index.css","mappings":";;;AAAA;EACC;EACA;EACA;AACD;AACC;EACC;AACF,C","sources":["webpack://div/./src/media-object-fit/editor.scss"],"sourcesContent":[".wmblocks-object-fit-wrapper {\n\tborder: 2px dashed #0dcaf0;\n\tpadding: 12px;\n\tmin-height: 80px;\n\n\tiframe, video, img {\n\t\tdisplay: block;\n\t}\n}\n"],"names":[],"sourceRoot":""}

@@ -1,0 +1,63 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/form-check",
+	"version": "0.1.0",
+	"title": "Form Check",
+	"category": "watermelon-blocks",
+	"icon": "yes",
+	"description": "Bootstrap checkbox, radio button, or toggle switch.",
+	"parent": [
+		"wmblocks/bs-form"
+	],
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"attributes": {
+		"checkType": {
+			"type": "string",
+			"default": "checkbox"
+		},
+		"label": {
+			"type": "string",
+			"default": "Check me out"
+		},
+		"name": {
+			"type": "string",
+			"default": ""
+		},
+		"value": {
+			"type": "string",
+			"default": "1"
+		},
+		"checked": {
+			"type": "boolean",
+			"default": false
+		},
+		"disabled": {
+			"type": "boolean",
+			"default": false
+		},
+		"inline": {
+			"type": "boolean",
+			"default": false
+		},
+		"reverse": {
+			"type": "boolean",
+			"default": false
+		},
+		"colClass": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"usesContext": [
+		"wmblocks/formLayout"
+	],
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php",
+	"style": "file:./style-index.css"
+}

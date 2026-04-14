@@ -1,0 +1,1 @@
+{"version":3,"file":"flex-item/index.css","mappings":";;;AAAA;EACC;EACA;EACA;EACA;EACA;AACD,C","sources":["webpack://div/./src/flex-item/editor.scss"],"sourcesContent":[".wmblocks-flex-item {\n\tborder: 1px dashed #6c757d;\n\tpadding: 10px;\n\tmin-width: 60px;\n\tmin-height: 40px;\n\tposition: relative;\n}\n"],"names":[],"sourceRoot":""}

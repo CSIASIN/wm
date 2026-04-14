@@ -1,1 +1,11 @@
-.wmblocks-position-element{background:rgba(253,126,20,.05);border:2px dashed #fd7e14;margin-top:4px;padding:6px}
+/*!*********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/position-element/editor.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************/
+.wmblocks-position-element {
+  border: 2px dashed #fd7e14;
+  padding: 6px;
+  background: rgba(253, 126, 20, 0.05);
+  margin-top: 4px;
+}
+
+/*# sourceMappingURL=index.css.map*/

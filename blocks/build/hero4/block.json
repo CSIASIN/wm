@@ -1,0 +1,65 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/hero4",
+  "version": "0.1.0",
+  "title": "Hero 4 — Sign-up Form",
+  "category": "watermelon-blocks",
+  "icon": "cover-image",
+  "description": "Vertically centered hero with a sign-up form on the right.",
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Vertically centered hero sign-up form"
+    },
+    "subtext": {
+      "type": "string",
+      "default": "Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state."
+    },
+    "formAction": {
+      "type": "string",
+      "default": ""
+    },
+    "emailLabel": {
+      "type": "string",
+      "default": "Email address"
+    },
+    "passwordLabel": {
+      "type": "string",
+      "default": "Password"
+    },
+    "rememberLabel": {
+      "type": "string",
+      "default": "Remember me"
+    },
+    "submitText": {
+      "type": "string",
+      "default": "Sign up"
+    },
+    "submitVariant": {
+      "type": "string",
+      "default": "btn-primary"
+    },
+    "legalText": {
+      "type": "string",
+      "default": "By clicking Sign up, you agree to the terms of use."
+    },
+    "bgColor": {
+      "type": "string",
+      "default": ""
+    },
+    "customClass": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

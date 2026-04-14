@@ -1,0 +1,50 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/bs-heading",
+  "version": "0.1.0",
+  "title": "BS Heading",
+  "category": "watermelon-blocks",
+  "icon": "heading",
+  "description": "Bootstrap heading — h1–h6 with optional display heading class, text utilities and lead.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "level": {
+      "type": "number",
+      "default": 2
+    },
+    "content": {
+      "type": "string",
+      "default": "Bootstrap Heading"
+    },
+    "displayClass": {
+      "type": "string",
+      "default": ""
+    },
+    "textAlign": {
+      "type": "string",
+      "default": ""
+    },
+    "textColor": {
+      "type": "string",
+      "default": ""
+    },
+    "fontWeight": {
+      "type": "string",
+      "default": ""
+    },
+    "customClass": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

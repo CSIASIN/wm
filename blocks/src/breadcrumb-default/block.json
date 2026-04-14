@@ -1,0 +1,47 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/breadcrumb-default",
+	"version": "0.1.0",
+	"title": "Breadcrumb — Default",
+	"category": "watermelon-blocks",
+	"icon": "menu-alt3",
+	"description": "Bootstrap standard breadcrumb with the default / divider. Add, remove and reorder items inline on the canvas. The last item is always the active current page.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"id": "b1",
+					"label": "Home",
+					"url": "/"
+				},
+				{
+					"id": "b2",
+					"label": "Library",
+					"url": "/library"
+				},
+				{
+					"id": "b3",
+					"label": "Data",
+					"url": ""
+				}
+			]
+		},
+		"ariaLabel": {
+			"type": "string",
+			"default": "breadcrumb"
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

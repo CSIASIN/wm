@@ -1,0 +1,79 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/breadcrumb-styled",
+  "version": "0.1.0",
+  "title": "Breadcrumb — Styled",
+  "category": "watermelon-blocks",
+  "icon": "menu-alt3",
+  "description": "Bootstrap breadcrumb with full visual styling — background colour, padding, border, border-radius, and font size. Makes the breadcrumb visually prominent as a hero sub-bar or page header element.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "items": {
+      "type": "array",
+      "default": [
+        {
+          "id": "b1",
+          "label": "Home",
+          "url": "/"
+        },
+        {
+          "id": "b2",
+          "label": "Library",
+          "url": "/library"
+        },
+        {
+          "id": "b3",
+          "label": "Data",
+          "url": ""
+        }
+      ]
+    },
+    "divider": {
+      "type": "string",
+      "default": "/"
+    },
+    "bgColor": {
+      "type": "string",
+      "default": "bg-light"
+    },
+    "padding": {
+      "type": "string",
+      "default": "p-3"
+    },
+    "rounded": {
+      "type": "string",
+      "default": "rounded-3"
+    },
+    "border": {
+      "type": "boolean",
+      "default": false
+    },
+    "borderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "fontSize": {
+      "type": "string",
+      "default": ""
+    },
+    "linkColor": {
+      "type": "string",
+      "default": ""
+    },
+    "ariaLabel": {
+      "type": "string",
+      "default": "breadcrumb"
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

@@ -1,0 +1,52 @@
+/**
+ * Grid Container — editor styles
+ * Makes the container visually obvious with a blue labelled outline.
+ */
+
+// Target the block in the editor by its wp-block class
+.wp-block-wmblocks-grid-container {
+	position: relative;
+	outline: 2px solid #0d6efd;
+	outline-offset: 0;
+	padding-top: 28px !important; // room for the label badge
+	min-height: 60px;
+
+	// Label badge top-left
+	&::before {
+		content: 'container';
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: #0d6efd;
+		color: #fff;
+		font-size: 10px;
+		font-weight: 700;
+		font-family: monospace;
+		padding: 2px 8px;
+		border-bottom-right-radius: 4px;
+		line-height: 16px;
+		z-index: 10;
+		pointer-events: none;
+	}
+
+	// When container-fluid is selected show it in the badge via a data attribute
+	// (the JS already puts the class name on the element so we can use attribute selectors)
+	&[class*="container-fluid"]::before { content: 'container-fluid'; }
+	&[class*="container-sm"]::before    { content: 'container-sm'; }
+	&[class*="container-md"]::before    { content: 'container-md'; }
+	&[class*="container-lg"]::before    { content: 'container-lg'; }
+	&[class*="container-xl"]::before    { content: 'container-xl'; }
+	&[class*="container-xxl"]::before   { content: 'container-xxl'; }
+
+	// Focus state
+	&.is-selected,
+	&.has-child-selected {
+		outline-color: #0d6efd;
+		outline-width: 2px;
+	}
+}
+
+// The inner wmblocks-grid-container class used by blockProps in edit.js
+.wmblocks-grid-container {
+	min-height: 60px;
+}

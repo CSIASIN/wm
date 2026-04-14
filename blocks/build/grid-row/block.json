@@ -1,0 +1,137 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/grid-row",
+  "version": "0.1.0",
+  "title": "Grid Row",
+  "category": "watermelon-blocks",
+  "icon": "minus",
+  "description": "Bootstrap row — horizontal group of columns inside a container.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "gutterX": {
+      "type": "string",
+      "default": ""
+    },
+    "gutterY": {
+      "type": "string",
+      "default": ""
+    },
+    "gutter": {
+      "type": "string",
+      "default": ""
+    },
+    "rowCols": {
+      "type": "string",
+      "default": ""
+    },
+    "rowColsSm": {
+      "type": "string",
+      "default": ""
+    },
+    "rowColsMd": {
+      "type": "string",
+      "default": ""
+    },
+    "rowColsLg": {
+      "type": "string",
+      "default": ""
+    },
+    "rowColsXl": {
+      "type": "string",
+      "default": ""
+    },
+    "rowColsXxl": {
+      "type": "string",
+      "default": ""
+    },
+    "justifyContent": {
+      "type": "string",
+      "default": ""
+    },
+    "alignItems": {
+      "type": "string",
+      "default": ""
+    },
+    "noGutters": {
+      "type": "boolean",
+      "default": false
+    },
+    "customClass": {
+      "type": "string",
+      "default": ""
+    },
+    "gutterSm": {
+      "type": "string",
+      "default": ""
+    },
+    "gutterXSm": {
+      "type": "string",
+      "default": ""
+    },
+    "gutterYSm": {
+      "type": "string",
+      "default": ""
+    },
+    "gutterMd": {
+      "type": "string",
+      "default": ""
+    },
+    "gutterXMd": {
+      "type": "string",
+      "default": ""
+    },
+    "gutterYMd": {
+      "type": "string",
+      "default": ""
+    },
+    "gutterLg": {
+      "type": "string",
+      "default": ""
+    },
+    "gutterXLg": {
+      "type": "string",
+      "default": ""
+    },
+    "gutterYLg": {
+      "type": "string",
+      "default": ""
+    },
+    "gutterXl": {
+      "type": "string",
+      "default": ""
+    },
+    "gutterXXl": {
+      "type": "string",
+      "default": ""
+    },
+    "gutterYXl": {
+      "type": "string",
+      "default": ""
+    },
+    "gutterXxl": {
+      "type": "string",
+      "default": ""
+    },
+    "gutterXXxl": {
+      "type": "string",
+      "default": ""
+    },
+    "gutterYXxl": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "providesContext": {
+    "wmblocks/inRow": "rowCols"
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

@@ -1,0 +1,307 @@
+// ── Typography block canvas ────────────────────────────────────────────────
+.wmblocks-typo-wrapper {
+	border: 2px dashed #7952b3;
+	padding: 14px;
+	border-radius: 6px;
+	background: #faf8ff;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+	// ══════════════════════════════════════════════════════════════════
+	// META STRIP
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-typo-meta-strip {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		margin-bottom: 10px;
+		flex-wrap: wrap;
+	}
+
+	.wmblocks-typo-chip {
+		display: inline-flex;
+		align-items: center;
+		background: #7952b322;
+		color: #5c2d91;
+		border-radius: 3px;
+		padding: 1px 8px;
+		font-size: 9px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.07em;
+		font-family: 'SF Mono', 'Fira Code', monospace;
+
+		&--main {
+			width: 26px;
+			height: 26px;
+			background: #7952b3;
+			color: #fff;
+			border-radius: 5px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-family: inherit;
+			font-size: 12px;
+			font-weight: 700;
+			padding: 0;
+			flex-shrink: 0;
+		}
+
+		&--type {
+			background: #7952b3;
+			color: #fff;
+			border-radius: 20px;
+			padding: 2px 10px;
+			font-size: 10px;
+			font-family: inherit;
+			text-transform: none;
+			letter-spacing: 0;
+		}
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// TYPE QUICK-PICK BAR
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-typo-type-bar {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px;
+		margin-bottom: 10px;
+		padding: 8px 10px;
+		background: #ede8ff;
+		border-radius: 6px;
+		border: 1px solid #c5b3f7;
+	}
+
+	.wmblocks-typo-type-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 5px;
+		padding: 3px 10px;
+		border: 1px solid #c5b3f7;
+		border-radius: 20px;
+		background: #fff;
+		color: #5c2d91;
+		font-size: 11px;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.12s;
+		white-space: nowrap;
+
+		&:hover { border-color: #7952b3; color: #7952b3; }
+
+		&.is-active {
+			background: #7952b3;
+			border-color: #7952b3;
+			color: #fff;
+		}
+	}
+
+	.wmblocks-typo-type-icon {
+		font-size: 13px;
+		font-weight: 700;
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// OPTIONS BAR (context pills)
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-typo-options-bar {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px;
+		align-items: center;
+		margin-bottom: 12px;
+		min-height: 28px;
+		padding: 5px 8px;
+		background: #f5f0ff;
+		border-radius: 5px;
+		border: 1px solid #ddd6fe;
+	}
+
+	.wmblocks-typo-bar-label {
+		font-size: 9px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.07em;
+		color: #7952b3;
+		flex-shrink: 0;
+		margin-right: 2px;
+	}
+
+	.wmblocks-typo-bar-sep {
+		width: 1px;
+		height: 16px;
+		background: #c5b3f7;
+		margin: 0 4px;
+	}
+
+	.wmblocks-typo-pill {
+		padding: 2px 9px;
+		border: 1px solid #c5b3f7;
+		border-radius: 20px;
+		background: #fff;
+		color: #5c2d91;
+		font-size: 10px;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.12s;
+		white-space: nowrap;
+
+		&:hover { border-color: #7952b3; color: #7952b3; }
+
+		&.is-active {
+			background: #7952b3;
+			border-color: #7952b3;
+			color: #fff;
+		}
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// SUB-TEXT TOGGLE
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-typo-subtext-toggle {
+		display: flex;
+		align-items: center;
+		gap: 7px;
+		margin-bottom: 8px;
+		font-size: 11px;
+		color: #888;
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// CONTENT AREA
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-typo-content-area {
+		border: 1px solid #e0d9f7;
+		border-radius: 5px;
+		padding: 14px 16px;
+		background: #fff;
+		min-height: 48px;
+
+		// Make all RichText inside look native
+		.rich-text { outline: none; }
+		.rich-text:focus { outline: 1px dashed rgba(121,82,179,.4); outline-offset: 2px; border-radius: 2px; }
+
+		// Heading elements — use real Bootstrap-like sizing for preview
+		h1 { font-size: 2.5rem; font-weight: 500; line-height: 1.2; }
+		h2 { font-size: 2rem;   font-weight: 500; line-height: 1.2; }
+		h3 { font-size: 1.75rem;font-weight: 500; line-height: 1.2; }
+		h4 { font-size: 1.5rem; font-weight: 500; line-height: 1.2; }
+		h5 { font-size: 1.25rem;font-weight: 500; line-height: 1.2; }
+		h6 { font-size: 1rem;   font-weight: 500; line-height: 1.2; }
+
+		// Display headings
+		.display-1 { font-size: 5rem;   font-weight: 300; }
+		.display-2 { font-size: 4.5rem; font-weight: 300; }
+		.display-3 { font-size: 4rem;   font-weight: 300; }
+		.display-4 { font-size: 3.5rem; font-weight: 300; }
+		.display-5 { font-size: 3rem;   font-weight: 300; }
+		.display-6 { font-size: 2.5rem; font-weight: 300; }
+
+		// Heading classes on non-heading tags
+		p.h1, p.h2, p.h3, p.h4, p.h5, p.h6,
+		span.h1, span.h2, span.h3, span.h4, span.h5, span.h6 {
+			font-weight: 500; display: block;
+		}
+
+		// Lead
+		p.lead { font-size: 1.25rem; font-weight: 300; }
+
+		// Blockquote
+		.blockquote { font-size: 1.25rem; padding-left: 1rem; border-left: 4px solid #dee2e6; }
+		.blockquote-footer { font-size: .875em; color: #6c757d; }
+		.blockquote-footer::before { content: '— '; }
+
+		// List item actions — hidden until hover
+		.wmblocks-typo-list-actions {
+			display: inline-flex;
+			gap: 2px;
+			margin-left: 6px;
+			opacity: 0;
+			transition: opacity 0.15s;
+			vertical-align: middle;
+		}
+		li:hover .wmblocks-typo-list-actions { opacity: 1; }
+
+		// DL styles
+		dl.row dt { font-weight: 700; }
+		.wmblocks-typo-dl-remove {
+			margin-left: 6px;
+			opacity: 0;
+			transition: opacity 0.15s;
+		}
+		dd:hover .wmblocks-typo-dl-remove { opacity: 1; }
+
+		// Abbr
+		abbr { cursor: help; text-decoration: underline dotted; }
+		.initialism { font-size: .875em; }
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// INLINE TEXT REFERENCE CARD
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-typo-inline-examples {
+		p { margin: 4px 0; font-size: 14px; }
+		code { font-size: 11px; background: #f8f9fa; padding: 0 4px; border-radius: 3px; color: #d63384; }
+		mark { padding: .1875em; background-color: #fff3cd; }
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// SHARED ACTION BUTTONS
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-typo-list-actions button,
+	.wmblocks-typo-dl-remove,
+	.wmblocks-typo-remove {
+		width: 18px;
+		height: 18px;
+		border: 1px solid #c5b3f7;
+		border-radius: 3px;
+		background: #fff;
+		color: #7952b3;
+		font-size: 9px;
+		cursor: pointer;
+		padding: 0;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.1s;
+
+		&:hover:not(:disabled) { background: #7952b3; color: #fff; border-color: #7952b3; }
+		&:disabled { opacity: 0.3; cursor: default; }
+
+		&.wmblocks-typo-remove {
+			color: #dc3545;
+			border-color: #f5c2c7;
+			&:hover:not(:disabled) { background: #dc3545; border-color: #dc3545; color: #fff; }
+		}
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// ADD BUTTON
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-typo-add-btn {
+		margin-top: 6px;
+		padding: 3px 12px;
+		border: 2px dashed #c5b3f7;
+		border-radius: 20px;
+		background: transparent;
+		color: #7952b3;
+		font-size: 11px;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.12s;
+		display: inline-block;
+
+		&:hover { background: #ede8ff; border-style: solid; border-color: #7952b3; }
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// FOOTER HINT
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-typo-footer-hint {
+		font-size: 10px;
+		color: #bbb;
+		font-style: italic;
+		margin: 10px 0 0;
+		text-align: center;
+	}
+}

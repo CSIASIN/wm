@@ -1,0 +1,1 @@
+{"version":3,"file":"position/index.css","mappings":";;;AAAA;EACC;EACA;EACA;AACD,C","sources":["webpack://div/./src/position/editor.scss"],"sourcesContent":[".wmblocks-position-wrapper {\n\tborder: 2px dashed #dc3545;\n\tpadding: 12px;\n\tmin-height: 80px;\n}\n"],"names":[],"sourceRoot":""}

@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/blockquote",
+	"version": "0.1.0",
+	"title": "Blockquote",
+	"category": "watermelon-blocks",
+	"icon": "format-quote",
+	"description": "Bootstrap blockquote with optional citation source — name and title.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"quote": {
+			"type": "string",
+			"default": "A well-known quote, contained in a blockquote element."
+		},
+		"sourceName": {
+			"type": "string",
+			"default": ""
+		},
+		"sourceTitle": {
+			"type": "string",
+			"default": ""
+		},
+		"textAlign": {
+			"type": "string",
+			"default": ""
+		},
+		"customClass": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

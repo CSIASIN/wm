@@ -1,1 +1,8 @@
-.wmblocks-media-object-wrapper{border:2px dashed #6f42c1;min-height:80px;padding:16px}
+/*!****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/mediaobject/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************/
+.wmblocks-media-object-wrapper {
+  border: 2px dashed #6f42c1;
+  padding: 16px;
+  min-height: 80px;
+}

@@ -1,1 +1,293 @@
-.wmblocks-badge-wrapper{background:#fff9f5;border:2px dashed #fd7e14;border-radius:6px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;padding:14px}.wmblocks-badge-wrapper .wmblocks-badge-meta-strip{align-items:center;display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}.wmblocks-badge-wrapper .wmblocks-badge-meta-chip{align-items:center;background:rgba(253,126,20,.133);border-radius:3px;color:#8a4200;display:inline-flex;font-size:9px;font-weight:700;letter-spacing:.07em;padding:1px 8px;text-transform:uppercase}.wmblocks-badge-wrapper .wmblocks-badge-canvas-row{align-items:flex-start;min-height:32px}.wmblocks-badge-wrapper .wmblocks-badge-item{align-items:flex-start;display:inline-flex;flex-direction:column;position:relative}.wmblocks-badge-wrapper .wmblocks-badge-item__badge-row{align-items:center;display:inline-flex;gap:4px}.wmblocks-badge-wrapper .wmblocks-badge-item .badge{cursor:text;font-size:.85em;min-width:24px;transition:box-shadow .12s}.wmblocks-badge-wrapper .wmblocks-badge-item .badge:focus-within,.wmblocks-badge-wrapper .wmblocks-badge-item .badge:hover{box-shadow:0 0 0 3px rgba(253,126,20,.35)}.wmblocks-badge-wrapper .wmblocks-badge-item .badge p{display:inline;margin:0}.wmblocks-badge-wrapper .wmblocks-badge-item__actions{display:inline-flex;gap:2px;opacity:0;transition:opacity .15s}.wmblocks-badge-wrapper .wmblocks-badge-item--expanded .wmblocks-badge-wrapper .wmblocks-badge-item__actions,.wmblocks-badge-wrapper .wmblocks-badge-item:hover .wmblocks-badge-wrapper .wmblocks-badge-item__actions{opacity:1}.wmblocks-badge-wrapper .wmblocks-badge-item__detail{background:#fff4ed;border:1px solid #fdd7b5;border-radius:6px;display:flex;flex-direction:column;gap:9px;margin-top:6px;max-width:min(380px,90vw);min-width:260px;padding:10px 12px;position:relative;z-index:10}.wmblocks-badge-wrapper .wmblocks-badge-action{align-items:center;background:#fff;border:1px solid #fdd7b5;border-radius:3px;color:#8a4200;cursor:pointer;display:inline-flex;font-size:10px;height:20px;justify-content:center;line-height:1;padding:0;transition:background .12s,color .12s;width:20px}.wmblocks-badge-wrapper .wmblocks-badge-action:hover:not(:disabled){background:#fd7e14;border-color:#fd7e14;color:#fff}.wmblocks-badge-wrapper .wmblocks-badge-action:disabled{cursor:default;opacity:.3}.wmblocks-badge-wrapper .wmblocks-badge-action--expand{font-size:7px}.wmblocks-badge-wrapper .wmblocks-badge-action--expand.is-active{background:#fff4ed;border-color:#fd7e14;color:#fd7e14}.wmblocks-badge-wrapper .wmblocks-badge-action--remove:hover:not(:disabled){background:#dc3545;border-color:#dc3545}.wmblocks-badge-wrapper .wmblocks-badge-detail-row{align-items:center;display:flex;flex-wrap:wrap;gap:8px}.wmblocks-badge-wrapper .wmblocks-badge-detail-row--flags{align-items:flex-start;flex-direction:column;gap:5px}.wmblocks-badge-wrapper .wmblocks-badge-detail-label{color:#c07030;flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;width:38px}.wmblocks-badge-wrapper .wmblocks-badge-swatches{display:flex;flex-wrap:wrap;gap:3px}.wmblocks-badge-wrapper .wmblocks-badge-swatch{border:2px solid transparent;border-radius:4px;cursor:pointer;font-size:9px;font-weight:700;height:22px;letter-spacing:0;padding:0;transition:transform .1s,box-shadow .1s;width:36px}.wmblocks-badge-wrapper .wmblocks-badge-swatch:hover{box-shadow:0 2px 6px rgba(0,0,0,.2);transform:scale(1.1)}.wmblocks-badge-wrapper .wmblocks-badge-swatch.is-active{box-shadow:0 0 0 3px rgba(253,126,20,.5);transform:scale(1.08)}.wmblocks-badge-wrapper .wmblocks-badge-swatch--textbg{border-color:rgba(0,0,0,.2);border-style:dashed}.wmblocks-badge-wrapper .wmblocks-badge-pill-pills{display:flex;gap:5px}.wmblocks-badge-wrapper .wmblocks-badge-shape-btn{align-items:center;background:#fff;border:1px solid #fdd7b5;border-radius:20px;color:#8a4200;cursor:pointer;display:inline-flex;font-size:11px;gap:5px;padding:3px 10px;transition:all .12s}.wmblocks-badge-wrapper .wmblocks-badge-shape-btn:hover{border-color:#fd7e14;color:#fd7e14}.wmblocks-badge-wrapper .wmblocks-badge-shape-btn.is-active{background:#fd7e14;border-color:#fd7e14;color:#fff;font-weight:600}.wmblocks-badge-wrapper .wmblocks-badge-url-input{background:#fff;border:1px solid #fdd7b5;border-radius:4px;color:#333;flex:1;font-family:SF Mono,Fira Code,monospace;font-size:12px;min-width:160px;padding:4px 8px;transition:border-color .15s}.wmblocks-badge-wrapper .wmblocks-badge-url-input:focus{border-color:#fd7e14;box-shadow:0 0 0 2px rgba(253,126,20,.2);outline:none}.wmblocks-badge-wrapper .wmblocks-badge-flag-row{display:flex;flex-wrap:wrap;gap:5px}.wmblocks-badge-wrapper .wmblocks-badge-flag-btn{align-items:center;background:#fff;border:1px solid #fdd7b5;border-radius:20px;color:#8a4200;cursor:pointer;display:inline-flex;font-size:11px;gap:5px;padding:3px 10px;transition:all .12s}.wmblocks-badge-wrapper .wmblocks-badge-flag-btn:hover{border-color:#fd7e14}.wmblocks-badge-wrapper .wmblocks-badge-flag-btn.is-on{background:#fff4ed;border-color:#fd7e14;color:#8a4200;font-weight:600}.wmblocks-badge-wrapper .wmblocks-badge-flag-dot{background:#fd7e14;border-radius:50%;flex-shrink:0;height:7px;width:7px}.wmblocks-badge-wrapper .wmblocks-badge-flag-state{font-size:9px;font-weight:700;letter-spacing:.05em;opacity:.6;text-transform:uppercase}.wmblocks-badge-wrapper .wmblocks-badge-position-note{color:#aaa;font-size:10px;font-style:italic;line-height:1.4;margin:2px 0 0;max-width:280px}.wmblocks-badge-wrapper .wmblocks-badge-add{align-items:center;align-self:center;background:transparent;border:2px dashed #fdd7b5;border-radius:20px;color:#fd7e14;cursor:pointer;display:inline-flex;font-size:11px;font-weight:600;gap:4px;height:-moz-fit-content;height:fit-content;padding:4px 12px;transition:all .15s}.wmblocks-badge-wrapper .wmblocks-badge-add span{font-size:16px;font-weight:300;line-height:1}.wmblocks-badge-wrapper .wmblocks-badge-add:hover{background:#fff4ed;border-color:#fd7e14;border-style:solid}.wmblocks-badge-wrapper .wmblocks-badge-footer-hint{color:#ccc;font-size:10px;font-style:italic;margin:10px 0 0;text-align:center}
+/*!**********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/badge/editor.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************/
+.wmblocks-badge-wrapper {
+  border: 2px dashed #fd7e14;
+  padding: 14px;
+  border-radius: 6px;
+  background: #fff9f5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-meta-strip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-meta-chip {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(253, 126, 20, 0.1333333333);
+  color: #8a4200;
+  border-radius: 3px;
+  padding: 1px 8px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-canvas-row {
+  min-height: 32px;
+  align-items: flex-start;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-item {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-item__badge-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-item .badge {
+  cursor: text;
+  font-size: 0.85em;
+  min-width: 24px;
+  transition: box-shadow 0.12s;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-item .badge:hover, .wmblocks-badge-wrapper .wmblocks-badge-item .badge:focus-within {
+  box-shadow: 0 0 0 3px rgba(253, 126, 20, 0.35);
+}
+.wmblocks-badge-wrapper .wmblocks-badge-item .badge p {
+  margin: 0;
+  display: inline;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-item__actions {
+  display: inline-flex;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-item:hover .wmblocks-badge-wrapper .wmblocks-badge-item__actions, .wmblocks-badge-wrapper .wmblocks-badge-item--expanded .wmblocks-badge-wrapper .wmblocks-badge-item__actions {
+  opacity: 1;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-item__detail {
+  background: #fff4ed;
+  border: 1px solid #fdd7b5;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 260px;
+  max-width: min(380px, 90vw);
+  z-index: 10;
+  position: relative;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #fdd7b5;
+  border-radius: 3px;
+  background: #fff;
+  color: #8a4200;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: background 0.12s, color 0.12s;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-action:hover:not(:disabled) {
+  background: #fd7e14;
+  color: #fff;
+  border-color: #fd7e14;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-action:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-action--expand {
+  font-size: 7px;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-action--expand.is-active {
+  background: #fff4ed;
+  border-color: #fd7e14;
+  color: #fd7e14;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-action--remove:hover:not(:disabled) {
+  background: #dc3545;
+  border-color: #dc3545;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-detail-row--flags {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 5px;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-detail-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #c07030;
+  width: 38px;
+  flex-shrink: 0;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-swatch {
+  width: 36px;
+  height: 22px;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.1s, box-shadow 0.1s;
+  letter-spacing: 0;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-swatch:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+.wmblocks-badge-wrapper .wmblocks-badge-swatch.is-active {
+  box-shadow: 0 0 0 3px rgba(253, 126, 20, 0.5);
+  transform: scale(1.08);
+}
+.wmblocks-badge-wrapper .wmblocks-badge-swatch--textbg {
+  border-style: dashed;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.wmblocks-badge-wrapper .wmblocks-badge-pill-pills {
+  display: flex;
+  gap: 5px;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-shape-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border: 1px solid #fdd7b5;
+  border-radius: 20px;
+  background: #fff;
+  color: #8a4200;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-shape-btn:hover {
+  border-color: #fd7e14;
+  color: #fd7e14;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-shape-btn.is-active {
+  background: #fd7e14;
+  border-color: #fd7e14;
+  color: #fff;
+  font-weight: 600;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-url-input {
+  flex: 1;
+  min-width: 160px;
+  padding: 4px 8px;
+  font-size: 12px;
+  border: 1px solid #fdd7b5;
+  border-radius: 4px;
+  background: #fff;
+  color: #333;
+  font-family: "SF Mono", "Fira Code", monospace;
+  transition: border-color 0.15s;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-url-input:focus {
+  outline: none;
+  border-color: #fd7e14;
+  box-shadow: 0 0 0 2px rgba(253, 126, 20, 0.2);
+}
+.wmblocks-badge-wrapper .wmblocks-badge-flag-row {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-flag-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border: 1px solid #fdd7b5;
+  border-radius: 20px;
+  background: #fff;
+  color: #8a4200;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-flag-btn:hover {
+  border-color: #fd7e14;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-flag-btn.is-on {
+  background: #fff4ed;
+  border-color: #fd7e14;
+  color: #8a4200;
+  font-weight: 600;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-flag-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fd7e14;
+  flex-shrink: 0;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-flag-state {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.6;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-position-note {
+  font-size: 10px;
+  color: #aaa;
+  font-style: italic;
+  margin: 2px 0 0;
+  line-height: 1.4;
+  max-width: 280px;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border: 2px dashed #fdd7b5;
+  border-radius: 20px;
+  background: transparent;
+  color: #fd7e14;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  height: -moz-fit-content;
+  height: fit-content;
+  align-self: center;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-add span {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-add:hover {
+  background: #fff4ed;
+  border-style: solid;
+  border-color: #fd7e14;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-footer-hint {
+  font-size: 10px;
+  color: #ccc;
+  font-style: italic;
+  margin: 10px 0 0;
+  text-align: center;
+}

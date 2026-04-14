@@ -1,0 +1,115 @@
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/grid-col/editor.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+/**
+ * Grid Col — editor styles
+ * Purple dashed outline per column with col class label + min-height so
+ * empty columns are still clickable and visible.
+ */
+.wp-block-wmblocks-grid-col {
+  position: relative;
+  outline: 1px dashed #6610f2;
+  outline-offset: -1px;
+  padding: 24px 8px 8px !important;
+  min-height: 60px;
+  min-width: 40px;
+  box-sizing: border-box;
+}
+.wp-block-wmblocks-grid-col::before {
+  content: "col";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #6610f2;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  font-family: monospace;
+  padding: 1px 6px;
+  border-bottom-right-radius: 4px;
+  line-height: 15px;
+  z-index: 10;
+  pointer-events: none;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.wp-block-wmblocks-grid-col[class*=col-1]::before {
+  content: "col-1";
+}
+.wp-block-wmblocks-grid-col[class*=col-2]::before {
+  content: "col-2";
+}
+.wp-block-wmblocks-grid-col[class*=col-3]::before {
+  content: "col-3";
+}
+.wp-block-wmblocks-grid-col[class*=col-4]::before {
+  content: "col-4";
+}
+.wp-block-wmblocks-grid-col[class*=col-5]::before {
+  content: "col-5";
+}
+.wp-block-wmblocks-grid-col[class*=col-6]::before {
+  content: "col-6";
+}
+.wp-block-wmblocks-grid-col[class*=col-7]::before {
+  content: "col-7";
+}
+.wp-block-wmblocks-grid-col[class*=col-8]::before {
+  content: "col-8";
+}
+.wp-block-wmblocks-grid-col[class*=col-9]::before {
+  content: "col-9";
+}
+.wp-block-wmblocks-grid-col[class*=col-10]::before {
+  content: "col-10";
+}
+.wp-block-wmblocks-grid-col[class*=col-11]::before {
+  content: "col-11";
+}
+.wp-block-wmblocks-grid-col[class*=col-12]::before {
+  content: "col-12";
+}
+.wp-block-wmblocks-grid-col[class*=col-auto]::before {
+  content: "col-auto";
+}
+.wp-block-wmblocks-grid-col[class*=col-sm]::before {
+  content: "col-sm-*";
+}
+.wp-block-wmblocks-grid-col[class*=col-md]::before {
+  content: "col-md-*";
+}
+.wp-block-wmblocks-grid-col[class*=col-lg]::before {
+  content: "col-lg-*";
+}
+.wp-block-wmblocks-grid-col[class*=col-xl]::before {
+  content: "col-xl-*";
+}
+.wp-block-wmblocks-grid-col.is-selected {
+  outline: 2px solid #6610f2;
+  background: rgba(102, 16, 242, 0.03);
+}
+.wp-block-wmblocks-grid-col.has-child-selected {
+  outline: 1px solid #6610f2;
+  background: rgba(102, 16, 242, 0.02);
+}
+.wp-block-wmblocks-grid-col > .block-editor-inner-blocks > .block-editor-block-list__layout {
+  padding: 4px;
+  min-height: 30px;
+}
+.wp-block-wmblocks-grid-col > .block-editor-inner-blocks > .block-editor-block-list__layout:empty::after {
+  content: "Empty column — click to add blocks";
+  display: block;
+  color: #adb5bd;
+  font-size: 11px;
+  font-style: italic;
+  text-align: center;
+  padding: 8px;
+}
+.wmblocks-grid-col {
+  min-height: 60px;
+}
+
+/*# sourceMappingURL=index.css.map*/

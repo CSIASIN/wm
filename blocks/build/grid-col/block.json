@@ -1,0 +1,93 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/grid-col",
+  "version": "0.1.0",
+  "title": "Grid Column",
+  "category": "watermelon-blocks",
+  "icon": "align-pull-left",
+  "description": "Bootstrap column — direct child of a grid row with responsive width, offset, order and align.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "col": {
+      "type": "string",
+      "default": "col"
+    },
+    "colSm": {
+      "type": "string",
+      "default": ""
+    },
+    "colMd": {
+      "type": "string",
+      "default": ""
+    },
+    "colLg": {
+      "type": "string",
+      "default": ""
+    },
+    "colXl": {
+      "type": "string",
+      "default": ""
+    },
+    "colXxl": {
+      "type": "string",
+      "default": ""
+    },
+    "offset": {
+      "type": "string",
+      "default": ""
+    },
+    "offsetSm": {
+      "type": "string",
+      "default": ""
+    },
+    "offsetMd": {
+      "type": "string",
+      "default": ""
+    },
+    "offsetLg": {
+      "type": "string",
+      "default": ""
+    },
+    "offsetXl": {
+      "type": "string",
+      "default": ""
+    },
+    "order": {
+      "type": "string",
+      "default": ""
+    },
+    "orderSm": {
+      "type": "string",
+      "default": ""
+    },
+    "orderMd": {
+      "type": "string",
+      "default": ""
+    },
+    "orderLg": {
+      "type": "string",
+      "default": ""
+    },
+    "alignSelf": {
+      "type": "string",
+      "default": ""
+    },
+    "customClass": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "usesContext": [
+    "wmblocks/inRow"
+  ],
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

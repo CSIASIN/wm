@@ -1,0 +1,84 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/feature-with-title",
+  "version": "0.1.0",
+  "title": "Features with Title",
+  "category": "watermelon-blocks",
+  "icon": "grid-view",
+  "description": "Bootstrap features — section with a left-aligned title and CTA on one side, and a 2×2 icon feature grid on the other. Perfect for a 'Why choose us' or 'How it works' marketing section.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "sectionTitle": {
+      "type": "string",
+      "default": "Left-aligned title explaining these awesome features"
+    },
+    "sectionBody": {
+      "type": "string",
+      "default": "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words."
+    },
+    "btnLabel": {
+      "type": "string",
+      "default": "Primary button"
+    },
+    "btnUrl": {
+      "type": "string",
+      "default": "#"
+    },
+    "btnVariant": {
+      "type": "string",
+      "default": "btn-primary"
+    },
+    "titleCols": {
+      "type": "string",
+      "default": "col-lg-4"
+    },
+    "featureCols": {
+      "type": "string",
+      "default": "col-lg-8"
+    },
+    "features": {
+      "type": "array",
+      "default": [
+        {
+          "id": "f1",
+          "icon": "lightning-charge-fill",
+          "iconColour": "text-primary",
+          "title": "Featured title",
+          "body": "Paragraph of text beneath the heading to explain the heading."
+        },
+        {
+          "id": "f2",
+          "icon": "people-fill",
+          "iconColour": "text-success",
+          "title": "Featured title",
+          "body": "Paragraph of text beneath the heading to explain the heading."
+        },
+        {
+          "id": "f3",
+          "icon": "gear-fill",
+          "iconColour": "text-danger",
+          "title": "Featured title",
+          "body": "Paragraph of text beneath the heading to explain the heading."
+        },
+        {
+          "id": "f4",
+          "icon": "globe",
+          "iconColour": "text-warning",
+          "title": "Featured title",
+          "body": "Paragraph of text beneath the heading to explain the heading."
+        }
+      ]
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

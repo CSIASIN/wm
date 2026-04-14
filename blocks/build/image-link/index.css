@@ -1,1 +1,28 @@
-.wmblocks-image-link-wrapper{border:2px dashed #6610f2;min-height:60px;padding:12px}.wmblocks-image-link-wrapper [contenteditable]{cursor:text}.wmblocks-image-link-wrapper [contenteditable]:empty:before{color:#adb5bd;content:attr(data-placeholder);font-style:italic}.wmblocks-image-link-wrapper [contenteditable]:focus{border-radius:2px;outline:1px dashed #007cba}.wmblocks-image-link-wrapper .card{max-width:100%}.wmblocks-image-link-wrapper .stretched-link:after{display:none}
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/image-link/editor.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+.wmblocks-image-link-wrapper {
+  border: 2px dashed #6610f2;
+  padding: 12px;
+  min-height: 60px;
+}
+.wmblocks-image-link-wrapper [contenteditable] {
+  cursor: text;
+}
+.wmblocks-image-link-wrapper [contenteditable]:empty:before {
+  content: attr(data-placeholder);
+  color: #adb5bd;
+  font-style: italic;
+}
+.wmblocks-image-link-wrapper [contenteditable]:focus {
+  outline: 1px dashed #007cba;
+  border-radius: 2px;
+}
+.wmblocks-image-link-wrapper .card {
+  max-width: 100%;
+}
+.wmblocks-image-link-wrapper .stretched-link::after {
+  display: none;
+}
+
+/*# sourceMappingURL=index.css.map*/

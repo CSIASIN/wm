@@ -1,0 +1,59 @@
+/**
+ * Grid Row — editor styles
+ * Green outline with row label + column gap visualisation.
+ */
+
+.wp-block-wmblocks-grid-row {
+	position: relative;
+	display: flex !important;      // force flex in editor so cols sit side-by-side
+	flex-wrap: wrap !important;
+	margin-left: 0 !important;     // cancel Bootstrap's negative margins in editor
+	margin-right: 0 !important;
+	outline: 2px dashed #198754;
+	outline-offset: -1px;
+	padding-top: 22px !important;  // room for label
+	min-height: 50px;
+	gap: 0;                        // actual Bootstrap gutter handled by col padding
+
+	// Label badge top-left
+	&::before {
+		content: 'row';
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: #198754;
+		color: #fff;
+		font-size: 10px;
+		font-weight: 700;
+		font-family: monospace;
+		padding: 2px 8px;
+		border-bottom-right-radius: 4px;
+		line-height: 16px;
+		z-index: 10;
+		pointer-events: none;
+	}
+
+	// Show row-cols-* value in the badge if set
+	&[class*="row-cols-"]::before {
+		content: 'row · ' attr(class);
+	}
+
+	// Align + justify helpers shown in badge
+	&.justify-content-center::before  { content: 'row · justify-center'; }
+	&.justify-content-end::before     { content: 'row · justify-end'; }
+	&.align-items-center::before      { content: 'row · align-center'; }
+
+	// Gutter strip — visual indicator between columns
+	> .wp-block-wmblocks-grid-col + .wp-block-wmblocks-grid-col {
+		border-left: 2px dotted rgba(25, 135, 84, 0.3);
+	}
+
+	&.is-selected,
+	&.has-child-selected {
+		outline-style: solid;
+	}
+}
+
+.wmblocks-grid-row {
+	min-height: 50px;
+}

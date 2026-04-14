@@ -1,0 +1,43 @@
+.wmblocks-feat-cards-wrapper {
+	border: 2px dashed #fd7e14;
+	padding: 16px;
+	border-radius: 8px;
+	background: #fffaf5;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+	.wmblocks-feat-meta-strip { display:flex;align-items:center;gap:6px;margin-bottom:14px;flex-wrap:wrap; }
+	.wmblocks-feat-item-actions { display:flex;gap:4px;margin-top:8px;padding-top:6px;border-top:1px solid #f0f0f0; }
+	.card { border: 1px solid #dee2e6; }
+	h3 { font-size: 1rem !important; }
+}
+
+.wmblocks-feat-card-img-wrap {
+	width:100%;height:160px;overflow:hidden;background:#f8f9fa;
+	img { width:100%;height:100%;object-fit:cover;display:block; }
+}
+.wmblocks-feat-card-img-placeholder {
+	width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f0f0f0;
+}
+.wmblocks-feat-upload-btn {
+	padding:8px 16px;border:2px dashed #dee2e6;border-radius:6px;background:#fff;
+	color:#666;font-size:12px;cursor:pointer;
+	&:hover{border-color:#fd7e14;color:#fd7e14;}
+}
+.wmblocks-feat-card-img { width:100%;height:100%;object-fit:cover;display:block; }
+
+// Shared utilities (copied inline — no cross-block imports)
+.wmblocks-feat-chip{display:inline-flex;align-items:center;background:#0d6efd22;color:#084298;border-radius:3px;padding:1px 8px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;}
+.wmblocks-feat-chip--main{background:#0d6efd;color:#fff;border-radius:20px;padding:2px 10px;font-size:10px;text-transform:none;}
+.wmblocks-feat-chip--teal{background:#0ca678;color:#fff;border-radius:20px;padding:2px 10px;font-size:10px;text-transform:none;}
+.wmblocks-feat-chip--orange{background:#fd7e14;color:#fff;border-radius:20px;padding:2px 10px;font-size:10px;text-transform:none;}
+.wmblocks-feat-chip--indigo{background:#6610f2;color:#fff;border-radius:20px;padding:2px 10px;font-size:10px;text-transform:none;}
+.wmblocks-feat-chip--pink{background:#d63384;color:#fff;border-radius:20px;padding:2px 10px;font-size:10px;text-transform:none;}
+.wmblocks-feat-action{display:inline-flex;align-items:center;justify-content:center;padding:2px 10px;border:1px solid #dee2e6;border-radius:4px;background:#fff;color:#555;font-size:11px;font-weight:600;cursor:pointer;transition:all .12s;&:hover{border-color:#0d6efd;color:#0d6efd;}&:disabled{opacity:.3;cursor:default;}&--expand.is-active{background:#e8f0fe;border-color:#0d6efd;color:#0d6efd;}&--remove{color:#dc3545;border-color:#f5c2c7;&:hover:not(:disabled){background:#dc3545;border-color:#dc3545;color:#fff;}}}
+.wmblocks-feat-expand-panel{margin-top:10px;background:#f8f9fa;border:1px solid #dee2e6;border-radius:6px;padding:10px 12px;display:flex;flex-direction:column;gap:10px;}
+.wmblocks-feat-panel-row{display:flex;flex-direction:column;gap:5px;}
+.wmblocks-feat-panel-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#888;}
+.wmblocks-feat-swatch-row{display:flex;flex-wrap:wrap;gap:4px;}
+.wmblocks-feat-swatch{width:22px;height:22px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0;transition:transform .1s;&:hover{transform:scale(1.2);}&.is-active{transform:scale(1.25);outline:3px solid rgba(0,0,0,.25);outline-offset:1px;}}
+.wmblocks-feat-url-input{width:100%;padding:4px 8px;font-size:12px;border:1px solid #dee2e6;border-radius:4px;background:#fff;box-sizing:border-box;&:focus{outline:none;border-color:#0d6efd;}}
+.wmblocks-feat-add-row{margin-top:12px;text-align:center;}
+.wmblocks-feat-add-btn{padding:4px 16px;border:2px dashed #dee2e6;border-radius:20px;background:transparent;color:#fd7e14;font-size:12px;font-weight:600;cursor:pointer;transition:all .12s;&:hover{background:#fff3e0;border-style:solid;border-color:#fd7e14;}}

@@ -1,1 +1,309 @@
-.wmblocks-youtube-wrapper{background:#fff5f5;border:2px dashed #dc3545;border-radius:6px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;padding:14px}.wmblocks-youtube-wrapper .wmblocks-yt-meta-strip{align-items:center;display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}.wmblocks-youtube-wrapper .wmblocks-yt-chip{align-items:center;background:rgba(220,53,69,.133);border-radius:3px;color:#842029;display:inline-flex;font-size:9px;font-weight:700;letter-spacing:.07em;padding:1px 8px;text-transform:uppercase}.wmblocks-youtube-wrapper .wmblocks-yt-chip--ratio{background:#dc3545;border-radius:20px;color:#fff;font-family:SF Mono,Fira Code,monospace;padding:2px 10px}.wmblocks-youtube-wrapper .wmblocks-yt-chip--id{background:#212529;color:#fff;font-family:SF Mono,Fira Code,monospace}.wmblocks-youtube-wrapper .wmblocks-yt-url-row{align-items:center;display:flex;gap:8px;margin-bottom:6px}.wmblocks-youtube-wrapper .wmblocks-yt-url-icon{color:#dc3545;flex-shrink:0;font-size:20px;line-height:1}.wmblocks-youtube-wrapper .wmblocks-yt-url-input{background:#fff;border:2px solid #f5c2c7;border-radius:6px;color:#212529;flex:1;font-family:SF Mono,Fira Code,monospace;font-size:13px;padding:8px 12px;transition:border-color .15s,box-shadow .15s}.wmblocks-youtube-wrapper .wmblocks-yt-url-input:focus{border-color:#dc3545;box-shadow:0 0 0 3px rgba(220,53,69,.15);outline:none}.wmblocks-youtube-wrapper .wmblocks-yt-url-input::-moz-placeholder{color:#ccc;font-family:inherit}.wmblocks-youtube-wrapper .wmblocks-yt-url-input::placeholder{color:#ccc;font-family:inherit}.wmblocks-youtube-wrapper .wmblocks-yt-clear-btn{align-items:center;background:#fff;border:1px solid #f5c2c7;border-radius:50%;color:#dc3545;cursor:pointer;display:flex;flex-shrink:0;font-size:12px;height:28px;justify-content:center;transition:all .12s;width:28px}.wmblocks-youtube-wrapper .wmblocks-yt-clear-btn:hover{background:#dc3545;border-color:#dc3545;color:#fff}.wmblocks-youtube-wrapper .wmblocks-yt-url-error{color:#dc3545;font-size:11px;font-style:italic;margin:2px 0 6px}.wmblocks-youtube-wrapper .wmblocks-yt-url-formats{align-items:center;color:#999;display:flex;flex-wrap:wrap;font-size:10px;gap:5px;margin-bottom:12px}.wmblocks-youtube-wrapper .wmblocks-yt-format-tag{background:#f8f0f0;border-radius:3px;color:#842029;font-family:SF Mono,Fira Code,monospace;font-size:10px;padding:1px 5px}.wmblocks-youtube-wrapper .wmblocks-yt-ratio-bar{align-items:center;background:#fce8ea;border:1px solid #f5c2c7;border-radius:6px;display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;padding:8px 10px}.wmblocks-youtube-wrapper .wmblocks-yt-ratio-label{color:#842029;flex-shrink:0;font-size:10px;font-weight:700;letter-spacing:.07em;margin-right:3px;text-transform:uppercase}.wmblocks-youtube-wrapper .wmblocks-yt-ratio-btn{align-items:center;background:#fff;border:1px solid #f5c2c7;border-radius:20px;color:#842029;cursor:pointer;display:inline-flex;font-family:SF Mono,Fira Code,monospace;font-size:11px;font-weight:600;gap:4px;padding:3px 10px;transition:all .12s}.wmblocks-youtube-wrapper .wmblocks-yt-ratio-btn:hover{border-color:#dc3545;color:#dc3545}.wmblocks-youtube-wrapper .wmblocks-yt-ratio-btn.is-active{background:#dc3545;border-color:#dc3545;color:#fff}.wmblocks-youtube-wrapper .wmblocks-yt-ratio-rect{background:currentColor;border-radius:1px;display:inline-block;flex-shrink:0;opacity:.6}.wmblocks-youtube-wrapper .wmblocks-yt-custom-ratio-input{background:#fff;border:1px solid #f5c2c7;border-radius:4px;font-family:SF Mono,Fira Code,monospace;font-size:11px;padding:3px 8px;width:70px}.wmblocks-youtube-wrapper .wmblocks-yt-custom-ratio-input:focus{border-color:#dc3545;outline:none}.wmblocks-youtube-wrapper .wmblocks-yt-preview-box{background:#1a1a1a;border-radius:6px;overflow:hidden;position:relative;transition:padding-top .3s ease;width:100%}.wmblocks-youtube-wrapper .wmblocks-yt-preview-inner,.wmblocks-youtube-wrapper .wmblocks-yt-thumb{height:100%;inset:0;position:absolute;width:100%}.wmblocks-youtube-wrapper .wmblocks-yt-thumb{display:block;-o-object-fit:cover;object-fit:cover}.wmblocks-youtube-wrapper .wmblocks-yt-play-overlay{align-items:center;background:rgba(0,0,0,.35);display:flex;flex-direction:column;gap:10px;inset:0;justify-content:center;position:absolute;transition:background .2s}.wmblocks-youtube-wrapper .wmblocks-yt-play-overlay:hover{background:rgba(0,0,0,.25)}.wmblocks-youtube-wrapper .wmblocks-yt-play-btn{align-items:center;background:#dc3545;border-radius:50%;box-shadow:0 4px 20px rgba(0,0,0,.4);cursor:default;display:flex;height:64px;justify-content:center;width:64px}.wmblocks-youtube-wrapper .wmblocks-yt-play-icon{color:#fff;font-size:24px;margin-left:4px}.wmblocks-youtube-wrapper .wmblocks-yt-play-label{align-items:center;color:#fff;display:flex;flex-direction:column;gap:3px;text-align:center;text-shadow:0 1px 4px rgba(0,0,0,.6)}.wmblocks-youtube-wrapper .wmblocks-yt-play-label strong{font-size:14px;font-weight:700}.wmblocks-youtube-wrapper .wmblocks-yt-play-label span{font-family:monospace;font-size:10px;opacity:.7}.wmblocks-youtube-wrapper .wmblocks-yt-param-badges{bottom:8px;display:flex;flex-wrap:wrap;gap:4px;left:8px;position:absolute}.wmblocks-youtube-wrapper .wmblocks-yt-param-badge{backdrop-filter:blur(4px);background:rgba(0,0,0,.7);border-radius:3px;color:#fff;font-size:9px;font-weight:700;padding:2px 6px}.wmblocks-youtube-wrapper .wmblocks-yt-empty-state{align-items:center;color:#666;display:flex;flex-direction:column;gap:8px;inset:0;justify-content:center;padding:20px;position:absolute}.wmblocks-youtube-wrapper .wmblocks-yt-empty-icon{color:#dee2e6;font-size:40px}.wmblocks-youtube-wrapper .wmblocks-yt-empty-title{color:#495057;font-size:15px;font-weight:600;margin:0}.wmblocks-youtube-wrapper .wmblocks-yt-empty-sub{color:#aaa;font-size:12px;margin:0;max-width:280px;text-align:center}.wmblocks-youtube-wrapper .wmblocks-yt-footer-hint{color:#ccc;font-size:10px;font-style:italic;margin:10px 0 0;text-align:center}
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/youtube/editor.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+.wmblocks-youtube-wrapper {
+  border: 2px dashed #dc3545;
+  padding: 14px;
+  border-radius: 6px;
+  background: #fff5f5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-meta-strip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-chip {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(220, 53, 69, 0.1333333333);
+  color: #842029;
+  border-radius: 3px;
+  padding: 1px 8px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-chip--ratio {
+  background: #dc3545;
+  color: #fff;
+  font-family: "SF Mono", "Fira Code", monospace;
+  border-radius: 20px;
+  padding: 2px 10px;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-chip--id {
+  background: #212529;
+  color: #fff;
+  font-family: "SF Mono", "Fira Code", monospace;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-url-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-url-icon {
+  font-size: 20px;
+  color: #dc3545;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-url-input {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 13px;
+  border: 2px solid #f5c2c7;
+  border-radius: 6px;
+  background: #fff;
+  color: #212529;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  font-family: "SF Mono", "Fira Code", monospace;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-url-input:focus {
+  outline: none;
+  border-color: #dc3545;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-url-input::-moz-placeholder {
+  color: #ccc;
+  font-family: inherit;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-url-input::placeholder {
+  color: #ccc;
+  font-family: inherit;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-clear-btn {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #f5c2c7;
+  border-radius: 50%;
+  background: #fff;
+  color: #dc3545;
+  font-size: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.12s;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-clear-btn:hover {
+  background: #dc3545;
+  color: #fff;
+  border-color: #dc3545;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-url-error {
+  font-size: 11px;
+  color: #dc3545;
+  margin: 2px 0 6px;
+  font-style: italic;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-url-formats {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  font-size: 10px;
+  color: #999;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-format-tag {
+  background: #f8f0f0;
+  color: #842029;
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-size: 10px;
+  font-family: "SF Mono", "Fira Code", monospace;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-ratio-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+  padding: 8px 10px;
+  background: #fce8ea;
+  border-radius: 6px;
+  border: 1px solid #f5c2c7;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-ratio-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #842029;
+  margin-right: 3px;
+  flex-shrink: 0;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-ratio-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border: 1px solid #f5c2c7;
+  border-radius: 20px;
+  background: #fff;
+  color: #842029;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.12s;
+  font-family: "SF Mono", "Fira Code", monospace;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-ratio-btn:hover {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-ratio-btn.is-active {
+  background: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-ratio-rect {
+  display: inline-block;
+  background: currentColor;
+  border-radius: 1px;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-custom-ratio-input {
+  width: 70px;
+  padding: 3px 8px;
+  font-size: 11px;
+  border: 1px solid #f5c2c7;
+  border-radius: 4px;
+  background: #fff;
+  font-family: "SF Mono", "Fira Code", monospace;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-custom-ratio-input:focus {
+  outline: none;
+  border-color: #dc3545;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-preview-box {
+  position: relative;
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #1a1a1a;
+  transition: padding-top 0.3s ease;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-preview-inner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-thumb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.35);
+  transition: background 0.2s;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-play-overlay:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-play-btn {
+  width: 64px;
+  height: 64px;
+  background: #dc3545;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-play-icon {
+  color: #fff;
+  font-size: 24px;
+  margin-left: 4px;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-play-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-play-label strong {
+  font-size: 14px;
+  font-weight: 700;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-play-label span {
+  font-size: 10px;
+  opacity: 0.7;
+  font-family: monospace;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-param-badges {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-param-badge {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  backdrop-filter: blur(4px);
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-empty-state {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px;
+  color: #666;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-empty-icon {
+  font-size: 40px;
+  color: #dee2e6;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-empty-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #495057;
+  margin: 0;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-empty-sub {
+  font-size: 12px;
+  color: #aaa;
+  margin: 0;
+  text-align: center;
+  max-width: 280px;
+}
+.wmblocks-youtube-wrapper .wmblocks-yt-footer-hint {
+  font-size: 10px;
+  color: #ccc;
+  font-style: italic;
+  margin: 10px 0 0;
+  text-align: center;
+}
+
+/*# sourceMappingURL=index.css.map*/

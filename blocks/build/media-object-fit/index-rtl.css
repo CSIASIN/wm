@@ -1,1 +1,11 @@
-.wmblocks-object-fit-wrapper{border:2px dashed #0dcaf0;min-height:80px;padding:12px}.wmblocks-object-fit-wrapper iframe,.wmblocks-object-fit-wrapper img,.wmblocks-object-fit-wrapper video{display:block}
+/*!*********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/media-object-fit/editor.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************/
+.wmblocks-object-fit-wrapper {
+  border: 2px dashed #0dcaf0;
+  padding: 12px;
+  min-height: 80px;
+}
+.wmblocks-object-fit-wrapper iframe, .wmblocks-object-fit-wrapper video, .wmblocks-object-fit-wrapper img {
+  display: block;
+}

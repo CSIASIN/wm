@@ -1,0 +1,211 @@
+/*!**********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/feature-icon-grid/editor.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************/
+.wmblocks-feat-igrid-wrapper {
+  border: 2px dashed #6610f2;
+  padding: 16px;
+  border-radius: 8px;
+  background: #f8f4ff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.wmblocks-feat-igrid-wrapper .wmblocks-feat-meta-strip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.wmblocks-feat-igrid-wrapper .wmblocks-feat-item-actions {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+}
+.wmblocks-feat-igrid-wrapper h4 {
+  font-size: 1rem !important;
+}
+.wmblocks-feat-igrid-wrapper p {
+  font-size: 13px;
+  color: #6c757d;
+}
+.wmblocks-feat-chip {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(13, 110, 253, 0.1333333333);
+  color: #084298;
+  border-radius: 3px;
+  padding: 1px 8px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.wmblocks-feat-chip--main {
+  background: #0d6efd;
+  color: #fff;
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 10px;
+  text-transform: none;
+}
+.wmblocks-feat-chip--teal {
+  background: #0ca678;
+  color: #fff;
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 10px;
+  text-transform: none;
+}
+.wmblocks-feat-chip--orange {
+  background: #fd7e14;
+  color: #fff;
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 10px;
+  text-transform: none;
+}
+.wmblocks-feat-chip--indigo {
+  background: #6610f2;
+  color: #fff;
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 10px;
+  text-transform: none;
+}
+.wmblocks-feat-chip--pink {
+  background: #d63384;
+  color: #fff;
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 10px;
+  text-transform: none;
+}
+.wmblocks-feat-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 10px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  background: #fff;
+  color: #555;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.wmblocks-feat-action:hover {
+  border-color: #6610f2;
+  color: #6610f2;
+}
+.wmblocks-feat-action:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.wmblocks-feat-action--expand.is-active {
+  background: #f3eeff;
+  border-color: #6610f2;
+  color: #6610f2;
+}
+.wmblocks-feat-action--remove {
+  color: #dc3545;
+  border-color: #f5c2c7;
+}
+.wmblocks-feat-action--remove:hover:not(:disabled) {
+  background: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+}
+.wmblocks-feat-expand-panel {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.wmblocks-feat-panel-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.wmblocks-feat-panel-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #888;
+}
+.wmblocks-feat-icon-grid-picker {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+  gap: 3px;
+}
+.wmblocks-feat-icon-cell {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.1s;
+  padding: 0;
+  color: #555;
+}
+.wmblocks-feat-icon-cell:hover {
+  border-color: #6610f2;
+  color: #6610f2;
+  background: #f3eeff;
+}
+.wmblocks-feat-icon-cell.is-selected {
+  background: #6610f2;
+  border-color: #6610f2;
+  color: #fff;
+}
+.wmblocks-feat-swatch-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.wmblocks-feat-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.1s;
+}
+.wmblocks-feat-swatch:hover {
+  transform: scale(1.2);
+}
+.wmblocks-feat-swatch.is-active {
+  transform: scale(1.25);
+  outline: 3px solid rgba(0, 0, 0, 0.25);
+  outline-offset: 1px;
+}
+.wmblocks-feat-add-row {
+  margin-top: 12px;
+  text-align: center;
+}
+.wmblocks-feat-add-btn {
+  padding: 4px 16px;
+  border: 2px dashed #dee2e6;
+  border-radius: 20px;
+  background: transparent;
+  color: #6610f2;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.wmblocks-feat-add-btn:hover {
+  background: #f3eeff;
+  border-style: solid;
+  border-color: #6610f2;
+}
+
+/*# sourceMappingURL=index.css.map*/

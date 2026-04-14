@@ -1,0 +1,1 @@
+{"version":3,"file":"collapse/view.js","mappings":";;;;AAAA;AACA,6D","sources":["webpack://div/./src/collapse/view.js"],"sourcesContent":["// Bootstrap JS handles collapse via data-bs-toggle=\"collapse\"\n// No custom JS needed if Bootstrap JS is loaded in the theme\n"],"names":[],"sourceRoot":""}

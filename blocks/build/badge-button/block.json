@@ -1,0 +1,95 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/badge-button",
+  "version": "0.1.0",
+  "title": "Badge on Button",
+  "category": "watermelon-blocks",
+  "icon": "marker",
+  "description": "Bootstrap positioned badge on a button — a button with an absolutely-positioned badge, dot indicator, or SVG marker. Uses position-relative on the button and position-absolute with top/start/translate-middle on the badge. Optionally adds a Bootstrap Icon inside the button itself.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "btnLabel": {
+      "type": "string",
+      "default": "Inbox"
+    },
+    "btnVariant": {
+      "type": "string",
+      "default": "btn-primary"
+    },
+    "btnSize": {
+      "type": "string",
+      "default": ""
+    },
+    "btnHref": {
+      "type": "string",
+      "default": ""
+    },
+    "btnTarget": {
+      "type": "string",
+      "default": "_self"
+    },
+    "btnIconName": {
+      "type": "string",
+      "default": ""
+    },
+    "btnIconPosition": {
+      "type": "string",
+      "default": "before"
+    },
+    "badgeType": {
+      "type": "string",
+      "default": "text"
+    },
+    "badgeLabel": {
+      "type": "string",
+      "default": "+99"
+    },
+    "badgeColour": {
+      "type": "string",
+      "default": "text-bg-danger"
+    },
+    "badgeShape": {
+      "type": "string",
+      "default": "rounded-pill"
+    },
+    "badgeTop": {
+      "type": "string",
+      "default": "top-0"
+    },
+    "badgeStart": {
+      "type": "string",
+      "default": "start-100"
+    },
+    "badgeTranslate": {
+      "type": "string",
+      "default": "translate-middle"
+    },
+    "badgeBorderColour": {
+      "type": "string",
+      "default": ""
+    },
+    "badgeSvgName": {
+      "type": "string",
+      "default": "caret-down-fill"
+    },
+    "badgeA11yLabel": {
+      "type": "string",
+      "default": "unread messages"
+    },
+    "alignment": {
+      "type": "string",
+      "default": "left"
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

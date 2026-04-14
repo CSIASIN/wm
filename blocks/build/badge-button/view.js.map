@@ -1,0 +1,1 @@
+{"version":3,"file":"badge-button/view.js","mappings":";;;;AAAA;AACA;AACA,uD","sources":["webpack://div/./src/badge-button/view.js"],"sourcesContent":["// Bootstrap badge-on-button is purely CSS — no JS needed.\n// position:relative on the button and position:absolute on the badge\n// are handled entirely by Bootstrap's utility classes.\n"],"names":[],"sourceRoot":""}

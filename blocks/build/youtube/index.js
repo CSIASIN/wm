@@ -1,1 +1,855 @@
-(()=>{"use strict";var e,l={3287(){const e=window.wp.blocks,l=window.wp.i18n,s=window.wp.blockEditor,o=window.wp.components,a=window.wp.element,t=window.ReactJSXRuntime,c=[{label:"1:1  Square",value:"ratio-1x1",w:1,h:1},{label:"4:3  Classic",value:"ratio-4x3",w:4,h:3},{label:"16:9 Widescreen",value:"ratio-16x9",w:16,h:9},{label:"21:9 Ultrawide",value:"ratio-21x9",w:21,h:9}],n=JSON.parse('{"UU":"wmblocks/youtube"}');(0,e.registerBlockType)(n.UU,{edit:function({attributes:e,setAttributes:n}){const{url:r,videoId:i,ratio:m,customRatio:b,title:d,autoplay:h,mute:u,controls:p,loop:w,modestbranding:k,rel:y,privacyEnhanced:x,start:_,end:v,playlistId:j,cc:g,ccLang:C}=e,[N,f]=(0,a.useState)(r||""),[T,P]=(0,a.useState)(""),O=(0,s.useBlockProps)({className:"wmblocks-youtube-wrapper"}),R="custom"===m,F=function(e,l){if("custom"===e&&l){const e=l.split("/").map(Number);return 2===e.length&&e[0]&&e[1]?(e[1]/e[0]*100).toFixed(4)+"%":"56.25%"}const s=c.find(l=>l.value===e);return s?(s.h/s.w*100).toFixed(4)+"%":"56.25%"}(m,b);function I(e){const s=e.trim();if(f(s),!s)return n({url:"",videoId:""}),void P("");const o=function(e){if(!e)return"";const l=e.trim();if(/^[\w-]{11}$/.test(l))return l;try{const e=new URL(l),s=e.hostname.replace("www.","");if("youtu.be"===s)return e.pathname.slice(1).split("?")[0].split("/")[0];if("youtube.com"===s||"m.youtube.com"===s){const l=e.searchParams.get("v");if(l)return l;const s=e.pathname.match(/^\/embed\/([\w-]{11})/);if(s)return s[1];const o=e.pathname.match(/^\/shorts\/([\w-]{11})/);if(o)return o[1];const a=e.pathname.match(/^\/live\/([\w-]{11})/);if(a)return a[1]}}catch(e){const s=l.match(/(?:v=|embed\/|shorts\/|youtu\.be\/)([\w-]{11})/);if(s)return s[1]}return""}(s);o?(n({url:s,videoId:o}),P("")):(n({url:s,videoId:""}),P((0,l.__)("Could not find a YouTube video ID in that URL. Try pasting the full watch URL.","wmblocks")))}const B=i?`https://img.youtube.com/vi/${i}/maxresdefault.jpg`:"",S=i?`https://img.youtube.com/vi/${i}/hqdefault.jpg`:"";return(0,t.jsxs)(t.Fragment,{children:[(0,t.jsxs)(s.BlockControls,{children:[(0,t.jsxs)(o.ToolbarGroup,{children:[c.map(e=>(0,t.jsx)(o.ToolbarButton,{label:e.label,isPressed:m===e.value,onClick:()=>n({ratio:e.value}),children:`${e.w}:${e.h}`},e.value)),(0,t.jsx)(o.ToolbarButton,{label:(0,l.__)("Custom ratio","wmblocks"),isPressed:"custom"===m,onClick:()=>n({ratio:"custom"}),children:(0,l.__)("Custom","wmblocks")})]}),(0,t.jsxs)(o.ToolbarGroup,{children:[(0,t.jsxs)(o.ToolbarButton,{label:h?(0,l.__)("Autoplay ON","wmblocks"):(0,l.__)("Autoplay OFF","wmblocks"),isPressed:h,onClick:()=>n({autoplay:!h}),children:["▶",h?" ON":" OFF"]}),(0,t.jsx)(o.ToolbarButton,{label:p?(0,l.__)("Controls shown","wmblocks"):(0,l.__)("Controls hidden","wmblocks"),isPressed:!p,onClick:()=>n({controls:!p}),children:p?"🎛 ON":"🎛 OFF"}),(0,t.jsx)(o.ToolbarButton,{label:x?(0,l.__)("Privacy Enhanced ON","wmblocks"):(0,l.__)("Privacy Enhanced OFF","wmblocks"),isPressed:x,onClick:()=>n({privacyEnhanced:!x}),children:x?"🔒":"🔓"})]})]}),(0,t.jsxs)(s.InspectorControls,{children:[(0,t.jsxs)(o.PanelBody,{title:(0,l.__)("Aspect Ratio","wmblocks"),initialOpen:!0,children:[(0,t.jsx)(o.SelectControl,{label:(0,l.__)("Ratio","wmblocks"),value:m,options:[...c.map(e=>({label:e.label,value:e.value})),{label:"Custom",value:"custom"}],onChange:e=>n({ratio:e})}),R&&(0,t.jsx)(o.TextControl,{label:(0,l.__)("Custom ratio (W/H)","wmblocks"),value:b,onChange:e=>n({customRatio:e}),placeholder:"e.g. 16/9"})]}),(0,t.jsx)(o.PanelBody,{title:(0,l.__)("Accessibility","wmblocks"),initialOpen:!1,children:(0,t.jsx)(o.TextControl,{label:(0,l.__)("iframe title attribute","wmblocks"),value:d,onChange:e=>n({title:e}),help:(0,l.__)("Describes the video for screen readers. Required for accessibility.","wmblocks")})}),(0,t.jsxs)(o.PanelBody,{title:(0,l.__)("Playback","wmblocks"),initialOpen:!0,children:[(0,t.jsx)(o.PanelRow,{children:(0,t.jsx)(o.ToggleControl,{label:(0,l.__)("Autoplay","wmblocks"),checked:!!h,onChange:e=>n({autoplay:e}),help:(0,l.__)("Note: browsers require mute to be ON for autoplay to work.","wmblocks")})}),(0,t.jsx)(o.PanelRow,{children:(0,t.jsx)(o.ToggleControl,{label:(0,l.__)("Mute","wmblocks"),checked:!!u,onChange:e=>n({mute:e})})}),(0,t.jsx)(o.PanelRow,{children:(0,t.jsx)(o.ToggleControl,{label:(0,l.__)("Show controls","wmblocks"),checked:!!p,onChange:e=>n({controls:e}),help:(0,l.__)("Shows the YouTube player controls bar.","wmblocks")})}),(0,t.jsx)(o.PanelRow,{children:(0,t.jsx)(o.ToggleControl,{label:(0,l.__)("Loop","wmblocks"),checked:!!w,onChange:e=>n({loop:e}),help:(0,l.__)("Loops the video continuously.","wmblocks")})}),(0,t.jsx)(o.RangeControl,{label:(0,l.__)("Start time (seconds)","wmblocks"),value:_,onChange:e=>n({start:e}),min:0,max:7200,step:1,help:(0,l.__)("0 = play from beginning.","wmblocks")}),(0,t.jsx)(o.RangeControl,{label:(0,l.__)("End time (seconds)","wmblocks"),value:v,onChange:e=>n({end:e}),min:0,max:7200,step:1,help:(0,l.__)("0 = play to end.","wmblocks")})]}),(0,t.jsxs)(o.PanelBody,{title:(0,l.__)("Appearance","wmblocks"),initialOpen:!1,children:[(0,t.jsx)(o.PanelRow,{children:(0,t.jsx)(o.ToggleControl,{label:(0,l.__)("Modest branding","wmblocks"),checked:!!k,onChange:e=>n({modestbranding:e}),help:(0,l.__)("Hides the YouTube logo in the control bar.","wmblocks")})}),(0,t.jsx)(o.PanelRow,{children:(0,t.jsx)(o.ToggleControl,{label:(0,l.__)("Show related videos","wmblocks"),checked:!!y,onChange:e=>n({rel:e}),help:(0,l.__)("When OFF (rel=0), related videos shown are from the same channel only.","wmblocks")})}),(0,t.jsx)(o.PanelRow,{children:(0,t.jsx)(o.ToggleControl,{label:(0,l.__)("Privacy-enhanced mode","wmblocks"),checked:!!x,onChange:e=>n({privacyEnhanced:e}),help:(0,l.__)("Uses youtube-nocookie.com — YouTube won't store cookie info unless the user plays the video.","wmblocks")})})]}),(0,t.jsxs)(o.PanelBody,{title:(0,l.__)("Captions & Playlist","wmblocks"),initialOpen:!1,children:[(0,t.jsx)(o.PanelRow,{children:(0,t.jsx)(o.ToggleControl,{label:(0,l.__)("Enable captions (cc_load_policy)","wmblocks"),checked:!!g,onChange:e=>n({cc:e}),help:(0,l.__)("Force closed captions to display.","wmblocks")})}),g&&(0,t.jsx)(o.TextControl,{label:(0,l.__)("Caption language (cc_lang_pref)","wmblocks"),value:C,onChange:e=>n({ccLang:e}),placeholder:"en",help:(0,l.__)("ISO 639-1 language code, e.g. en, fr, de, es.","wmblocks")}),(0,t.jsx)(o.TextControl,{label:(0,l.__)("Playlist ID (optional)","wmblocks"),value:j,onChange:e=>n({playlistId:e}),placeholder:"PLxxxxxx…",help:(0,l.__)("If set, the player will load this playlist.","wmblocks")})]})]}),(0,t.jsxs)("div",{...O,children:[(0,t.jsxs)("div",{className:"wmblocks-yt-meta-strip",children:[(0,t.jsx)("span",{className:"wmblocks-yt-chip",children:"YouTube"}),(0,t.jsx)("span",{className:"wmblocks-yt-chip wmblocks-yt-chip--ratio",children:c.find(e=>e.value===m)?.label?.split(" ")[0]||m}),i&&(0,t.jsxs)("span",{className:"wmblocks-yt-chip wmblocks-yt-chip--id",children:["ID: ",i]}),h&&(0,t.jsx)("span",{className:"wmblocks-yt-chip",children:"autoplay"}),!p&&(0,t.jsx)("span",{className:"wmblocks-yt-chip",children:"no controls"}),w&&(0,t.jsx)("span",{className:"wmblocks-yt-chip",children:"loop"}),x&&(0,t.jsx)("span",{className:"wmblocks-yt-chip",children:"🔒 privacy"}),_>0&&(0,t.jsxs)("span",{className:"wmblocks-yt-chip",children:["start: ",_,"s"]})]}),(0,t.jsxs)("div",{className:"wmblocks-yt-url-row",children:[(0,t.jsx)("span",{className:"wmblocks-yt-url-icon",children:"▶"}),(0,t.jsx)("input",{type:"url",className:"wmblocks-yt-url-input",value:N,onChange:e=>f(e.target.value),onBlur:e=>I(e.target.value),onKeyDown:e=>{"Enter"===e.key&&(e.preventDefault(),I(e.target.value))},placeholder:(0,l.__)("Paste YouTube URL or video ID here…","wmblocks")}),i&&(0,t.jsx)("button",{className:"wmblocks-yt-clear-btn",onClick:()=>{f(""),n({url:"",videoId:""}),P("")},title:(0,l.__)("Clear video","wmblocks"),children:"✕"})]}),T&&(0,t.jsx)("p",{className:"wmblocks-yt-url-error",children:T}),(0,t.jsxs)("div",{className:"wmblocks-yt-url-formats",children:[(0,t.jsx)("span",{children:(0,l.__)("Supported:","wmblocks")}),["youtube.com/watch?v=…","youtu.be/…","youtube.com/shorts/…","youtube.com/live/…","Video ID only"].map(e=>(0,t.jsx)("code",{className:"wmblocks-yt-format-tag",children:e},e))]}),(0,t.jsxs)("div",{className:"wmblocks-yt-ratio-bar",children:[(0,t.jsx)("span",{className:"wmblocks-yt-ratio-label",children:(0,l.__)("Ratio:","wmblocks")}),c.map(e=>(0,t.jsxs)("button",{className:"wmblocks-yt-ratio-btn"+(m===e.value?" is-active":""),onClick:()=>n({ratio:e.value}),children:[(0,t.jsx)("span",{className:"wmblocks-yt-ratio-rect",style:{width:`${Math.round(e.w/21*32)}px`,height:`${Math.round(e.h/21*32)}px`}}),e.w,":",e.h]},e.value)),(0,t.jsx)("button",{className:"wmblocks-yt-ratio-btn"+("custom"===m?" is-active":""),onClick:()=>n({ratio:"custom"}),children:"⚙ Custom"}),R&&(0,t.jsx)("input",{type:"text",className:"wmblocks-yt-custom-ratio-input",value:b,onChange:e=>n({customRatio:e.target.value}),placeholder:"16/9"})]}),(0,t.jsx)("div",{className:"wmblocks-yt-preview-box",style:{paddingTop:F},children:(0,t.jsx)("div",{className:"wmblocks-yt-preview-inner",children:i?(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)("img",{className:"wmblocks-yt-thumb",src:B,alt:d||"YouTube video thumbnail",onError:e=>{e.target.src=S}}),(0,t.jsxs)("div",{className:"wmblocks-yt-play-overlay",children:[(0,t.jsx)("div",{className:"wmblocks-yt-play-btn",title:(0,l.__)("Preview only — video plays on frontend","wmblocks"),children:(0,t.jsx)("span",{className:"wmblocks-yt-play-icon",children:"▶"})}),(0,t.jsxs)("div",{className:"wmblocks-yt-play-label",children:[(0,t.jsx)("strong",{children:d||(0,l.__)("YouTube Video","wmblocks")}),(0,t.jsx)("span",{children:i})]})]}),(0,t.jsxs)("div",{className:"wmblocks-yt-param-badges",children:[h&&(0,t.jsx)("span",{className:"wmblocks-yt-param-badge",children:"▶ autoplay"}),u&&(0,t.jsx)("span",{className:"wmblocks-yt-param-badge",children:"🔇 muted"}),!p&&(0,t.jsx)("span",{className:"wmblocks-yt-param-badge",children:"no controls"}),w&&(0,t.jsx)("span",{className:"wmblocks-yt-param-badge",children:"↺ loop"}),x&&(0,t.jsx)("span",{className:"wmblocks-yt-param-badge",children:"🔒 privacy"}),k&&(0,t.jsx)("span",{className:"wmblocks-yt-param-badge",children:"no logo"}),_>0&&(0,t.jsxs)("span",{className:"wmblocks-yt-param-badge",children:["▶ ",_,"s"]}),g&&(0,t.jsx)("span",{className:"wmblocks-yt-param-badge",children:"CC"})]})]}):(0,t.jsxs)("div",{className:"wmblocks-yt-empty-state",children:[(0,t.jsx)("div",{className:"wmblocks-yt-empty-icon",children:"▶"}),(0,t.jsx)("p",{className:"wmblocks-yt-empty-title",children:(0,l.__)("Paste a YouTube URL above","wmblocks")}),(0,t.jsx)("p",{className:"wmblocks-yt-empty-sub",children:(0,l.__)("The video thumbnail will appear here. All embed options are in the sidebar →","wmblocks")})]})})}),(0,t.jsx)("p",{className:"wmblocks-yt-footer-hint",children:(0,l.__)("Thumbnail preview only — full video plays on the frontend · All embed options in sidebar →","wmblocks")})]})]})},save:()=>null})}},s={};function o(e){var a=s[e];if(void 0!==a)return a.exports;var t=s[e]={exports:{}};return l[e](t,t.exports,o),t.exports}o.m=l,e=[],o.O=(l,s,a,t)=>{if(!s){var c=1/0;for(m=0;m<e.length;m++){for(var[s,a,t]=e[m],n=!0,r=0;r<s.length;r++)(!1&t||c>=t)&&Object.keys(o.O).every(e=>o.O[e](s[r]))?s.splice(r--,1):(n=!1,t<c&&(c=t));if(n){e.splice(m--,1);var i=a();void 0!==i&&(l=i)}}return l}t=t||0;for(var m=e.length;m>0&&e[m-1][2]>t;m--)e[m]=e[m-1];e[m]=[s,a,t]},o.o=(e,l)=>Object.prototype.hasOwnProperty.call(e,l),(()=>{var e={2619:0,4563:0};o.O.j=l=>0===e[l];var l=(l,s)=>{var a,t,[c,n,r]=s,i=0;if(c.some(l=>0!==e[l])){for(a in n)o.o(n,a)&&(o.m[a]=n[a]);if(r)var m=r(o)}for(l&&l(s);i<c.length;i++)t=c[i],o.o(e,t)&&e[t]&&e[t][0](),e[t]=0;return o.O(m)},s=globalThis.webpackChunkdiv=globalThis.webpackChunkdiv||[];s.forEach(l.bind(null,0)),s.push=l.bind(null,s.push.bind(s))})();var a=o.O(void 0,[4563],()=>o(3287));a=o.O(a)})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/youtube/edit.js"
+/*!*****************************!*\
+  !*** ./src/youtube/edit.js ***!
+  \*****************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Edit)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./src/youtube/editor.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
+
+
+// ── Constants ──────────────────────────────────────────────────────────────
+
+const RATIOS = [{
+  label: '1:1  Square',
+  value: 'ratio-1x1',
+  w: 1,
+  h: 1
+}, {
+  label: '4:3  Classic',
+  value: 'ratio-4x3',
+  w: 4,
+  h: 3
+}, {
+  label: '16:9 Widescreen',
+  value: 'ratio-16x9',
+  w: 16,
+  h: 9
+}, {
+  label: '21:9 Ultrawide',
+  value: 'ratio-21x9',
+  w: 21,
+  h: 9
+}];
+
+// ── Parse YouTube video ID from any URL format ─────────────────────────────
+function parseYouTubeId(input) {
+  if (!input) return '';
+  const str = input.trim();
+
+  // Already just an ID (11 chars, alphanum + - _)
+  if (/^[\w-]{11}$/.test(str)) return str;
+  try {
+    const url = new URL(str);
+    const host = url.hostname.replace('www.', '');
+
+    // youtu.be/VIDEO_ID
+    if (host === 'youtu.be') {
+      return url.pathname.slice(1).split('?')[0].split('/')[0];
+    }
+
+    // youtube.com/watch?v=VIDEO_ID
+    if (host === 'youtube.com' || host === 'm.youtube.com') {
+      const v = url.searchParams.get('v');
+      if (v) return v;
+
+      // youtube.com/embed/VIDEO_ID
+      const embedMatch = url.pathname.match(/^\/embed\/([\w-]{11})/);
+      if (embedMatch) return embedMatch[1];
+
+      // youtube.com/shorts/VIDEO_ID
+      const shortsMatch = url.pathname.match(/^\/shorts\/([\w-]{11})/);
+      if (shortsMatch) return shortsMatch[1];
+
+      // youtube.com/live/VIDEO_ID
+      const liveMatch = url.pathname.match(/^\/live\/([\w-]{11})/);
+      if (liveMatch) return liveMatch[1];
+    }
+  } catch (e) {
+    // Not a URL — try regex on raw string
+    const match = str.match(/(?:v=|embed\/|shorts\/|youtu\.be\/)([\w-]{11})/);
+    if (match) return match[1];
+  }
+  return '';
+}
+
+// ── Compute padding-top % ──────────────────────────────────────────────────
+function ratioPaddingTop(ratioClass, customRatio) {
+  if (ratioClass === 'custom' && customRatio) {
+    const parts = customRatio.split('/').map(Number);
+    if (parts.length === 2 && parts[0] && parts[1]) {
+      return (parts[1] / parts[0] * 100).toFixed(4) + '%';
+    }
+    return '56.25%';
+  }
+  const found = RATIOS.find(r => r.value === ratioClass);
+  return found ? (found.h / found.w * 100).toFixed(4) + '%' : '56.25%';
+}
+
+// ── Edit component ─────────────────────────────────────────────────────────
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const {
+    url,
+    videoId,
+    ratio,
+    customRatio,
+    title,
+    autoplay,
+    mute,
+    controls,
+    loop,
+    modestbranding,
+    rel,
+    privacyEnhanced,
+    start,
+    end,
+    playlistId,
+    cc,
+    ccLang
+  } = attributes;
+
+  // Local URL input state (before committing)
+  const [inputUrl, setInputUrl] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(url || '');
+  const [urlError, setUrlError] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)('');
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: 'wmblocks-youtube-wrapper'
+  });
+  const isCustom = ratio === 'custom';
+  const paddingTop = ratioPaddingTop(ratio, customRatio);
+
+  // ── Commit URL ────────────────────────────────────────────────────
+  function commitUrl(val) {
+    const trimmed = val.trim();
+    setInputUrl(trimmed);
+    if (!trimmed) {
+      setAttributes({
+        url: '',
+        videoId: ''
+      });
+      setUrlError('');
+      return;
+    }
+    const id = parseYouTubeId(trimmed);
+    if (id) {
+      setAttributes({
+        url: trimmed,
+        videoId: id
+      });
+      setUrlError('');
+    } else {
+      setAttributes({
+        url: trimmed,
+        videoId: ''
+      });
+      setUrlError((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Could not find a YouTube video ID in that URL. Try pasting the full watch URL.', 'wmblocks'));
+    }
+  }
+
+  // ── Thumbnail URL (YouTube provides free thumbnails) ──────────────
+  const thumbUrl = videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : '';
+  const thumbFallback = videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '';
+
+  // ── Render ────────────────────────────────────────────────────────
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.BlockControls, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToolbarGroup, {
+        children: [RATIOS.map(r => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToolbarButton, {
+          label: r.label,
+          isPressed: ratio === r.value,
+          onClick: () => setAttributes({
+            ratio: r.value
+          }),
+          children: `${r.w}:${r.h}`
+        }, r.value)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToolbarButton, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Custom ratio', 'wmblocks'),
+          isPressed: ratio === 'custom',
+          onClick: () => setAttributes({
+            ratio: 'custom'
+          }),
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Custom', 'wmblocks')
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToolbarGroup, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToolbarButton, {
+          label: autoplay ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Autoplay ON', 'wmblocks') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Autoplay OFF', 'wmblocks'),
+          isPressed: autoplay,
+          onClick: () => setAttributes({
+            autoplay: !autoplay
+          }),
+          children: ["\u25B6", autoplay ? ' ON' : ' OFF']
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToolbarButton, {
+          label: controls ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Controls shown', 'wmblocks') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Controls hidden', 'wmblocks'),
+          isPressed: !controls,
+          onClick: () => setAttributes({
+            controls: !controls
+          }),
+          children: controls ? '🎛 ON' : '🎛 OFF'
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToolbarButton, {
+          label: privacyEnhanced ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Privacy Enhanced ON', 'wmblocks') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Privacy Enhanced OFF', 'wmblocks'),
+          isPressed: privacyEnhanced,
+          onClick: () => setAttributes({
+            privacyEnhanced: !privacyEnhanced
+          }),
+          children: privacyEnhanced ? '🔒' : '🔓'
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Aspect Ratio', 'wmblocks'),
+        initialOpen: true,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Ratio', 'wmblocks'),
+          value: ratio,
+          options: [...RATIOS.map(r => ({
+            label: r.label,
+            value: r.value
+          })), {
+            label: 'Custom',
+            value: 'custom'
+          }],
+          onChange: v => setAttributes({
+            ratio: v
+          })
+        }), isCustom && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Custom ratio (W/H)', 'wmblocks'),
+          value: customRatio,
+          onChange: v => setAttributes({
+            customRatio: v
+          }),
+          placeholder: "e.g. 16/9"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Accessibility', 'wmblocks'),
+        initialOpen: false,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('iframe title attribute', 'wmblocks'),
+          value: title,
+          onChange: v => setAttributes({
+            title: v
+          }),
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Describes the video for screen readers. Required for accessibility.', 'wmblocks')
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Playback', 'wmblocks'),
+        initialOpen: true,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Autoplay', 'wmblocks'),
+            checked: !!autoplay,
+            onChange: v => setAttributes({
+              autoplay: v
+            }),
+            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Note: browsers require mute to be ON for autoplay to work.', 'wmblocks')
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Mute', 'wmblocks'),
+            checked: !!mute,
+            onChange: v => setAttributes({
+              mute: v
+            })
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Show controls', 'wmblocks'),
+            checked: !!controls,
+            onChange: v => setAttributes({
+              controls: v
+            }),
+            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Shows the YouTube player controls bar.', 'wmblocks')
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Loop', 'wmblocks'),
+            checked: !!loop,
+            onChange: v => setAttributes({
+              loop: v
+            }),
+            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Loops the video continuously.', 'wmblocks')
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Start time (seconds)', 'wmblocks'),
+          value: start,
+          onChange: v => setAttributes({
+            start: v
+          }),
+          min: 0,
+          max: 7200,
+          step: 1,
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('0 = play from beginning.', 'wmblocks')
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('End time (seconds)', 'wmblocks'),
+          value: end,
+          onChange: v => setAttributes({
+            end: v
+          }),
+          min: 0,
+          max: 7200,
+          step: 1,
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('0 = play to end.', 'wmblocks')
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Appearance', 'wmblocks'),
+        initialOpen: false,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Modest branding', 'wmblocks'),
+            checked: !!modestbranding,
+            onChange: v => setAttributes({
+              modestbranding: v
+            }),
+            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Hides the YouTube logo in the control bar.', 'wmblocks')
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Show related videos', 'wmblocks'),
+            checked: !!rel,
+            onChange: v => setAttributes({
+              rel: v
+            }),
+            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('When OFF (rel=0), related videos shown are from the same channel only.', 'wmblocks')
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Privacy-enhanced mode', 'wmblocks'),
+            checked: !!privacyEnhanced,
+            onChange: v => setAttributes({
+              privacyEnhanced: v
+            }),
+            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Uses youtube-nocookie.com — YouTube won\'t store cookie info unless the user plays the video.', 'wmblocks')
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Captions & Playlist', 'wmblocks'),
+        initialOpen: false,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enable captions (cc_load_policy)', 'wmblocks'),
+            checked: !!cc,
+            onChange: v => setAttributes({
+              cc: v
+            }),
+            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Force closed captions to display.', 'wmblocks')
+          })
+        }), cc && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Caption language (cc_lang_pref)', 'wmblocks'),
+          value: ccLang,
+          onChange: v => setAttributes({
+            ccLang: v
+          }),
+          placeholder: "en",
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('ISO 639-1 language code, e.g. en, fr, de, es.', 'wmblocks')
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Playlist ID (optional)', 'wmblocks'),
+          value: playlistId,
+          onChange: v => setAttributes({
+            playlistId: v
+          }),
+          placeholder: "PLxxxxxx\u2026",
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('If set, the player will load this playlist.', 'wmblocks')
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      ...blockProps,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "wmblocks-yt-meta-strip",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          className: "wmblocks-yt-chip",
+          children: "YouTube"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          className: "wmblocks-yt-chip wmblocks-yt-chip--ratio",
+          children: RATIOS.find(r => r.value === ratio)?.label?.split(' ')[0] || ratio
+        }), videoId && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+          className: "wmblocks-yt-chip wmblocks-yt-chip--id",
+          children: ["ID: ", videoId]
+        }), autoplay && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          className: "wmblocks-yt-chip",
+          children: "autoplay"
+        }), !controls && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          className: "wmblocks-yt-chip",
+          children: "no controls"
+        }), loop && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          className: "wmblocks-yt-chip",
+          children: "loop"
+        }), privacyEnhanced && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          className: "wmblocks-yt-chip",
+          children: "\uD83D\uDD12 privacy"
+        }), start > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+          className: "wmblocks-yt-chip",
+          children: ["start: ", start, "s"]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "wmblocks-yt-url-row",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          className: "wmblocks-yt-url-icon",
+          children: "\u25B6"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+          type: "url",
+          className: "wmblocks-yt-url-input",
+          value: inputUrl,
+          onChange: e => setInputUrl(e.target.value),
+          onBlur: e => commitUrl(e.target.value),
+          onKeyDown: e => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              commitUrl(e.target.value);
+            }
+          },
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Paste YouTube URL or video ID here…', 'wmblocks')
+        }), videoId && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+          className: "wmblocks-yt-clear-btn",
+          onClick: () => {
+            setInputUrl('');
+            setAttributes({
+              url: '',
+              videoId: ''
+            });
+            setUrlError('');
+          },
+          title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Clear video', 'wmblocks'),
+          children: "\u2715"
+        })]
+      }), urlError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+        className: "wmblocks-yt-url-error",
+        children: urlError
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "wmblocks-yt-url-formats",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Supported:', 'wmblocks')
+        }), ['youtube.com/watch?v=…', 'youtu.be/…', 'youtube.com/shorts/…', 'youtube.com/live/…', 'Video ID only'].map(f => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("code", {
+          className: "wmblocks-yt-format-tag",
+          children: f
+        }, f))]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "wmblocks-yt-ratio-bar",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          className: "wmblocks-yt-ratio-label",
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Ratio:', 'wmblocks')
+        }), RATIOS.map(r => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("button", {
+          className: 'wmblocks-yt-ratio-btn' + (ratio === r.value ? ' is-active' : ''),
+          onClick: () => setAttributes({
+            ratio: r.value
+          }),
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+            className: "wmblocks-yt-ratio-rect",
+            style: {
+              width: `${Math.round(r.w / 21 * 32)}px`,
+              height: `${Math.round(r.h / 21 * 32)}px`
+            }
+          }), r.w, ":", r.h]
+        }, r.value)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+          className: 'wmblocks-yt-ratio-btn' + (ratio === 'custom' ? ' is-active' : ''),
+          onClick: () => setAttributes({
+            ratio: 'custom'
+          }),
+          children: "\u2699 Custom"
+        }), isCustom && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+          type: "text",
+          className: "wmblocks-yt-custom-ratio-input",
+          value: customRatio,
+          onChange: e => setAttributes({
+            customRatio: e.target.value
+          }),
+          placeholder: "16/9"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "wmblocks-yt-preview-box",
+        style: {
+          paddingTop
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "wmblocks-yt-preview-inner",
+          children: videoId ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+              className: "wmblocks-yt-thumb",
+              src: thumbUrl,
+              alt: title || 'YouTube video thumbnail',
+              onError: e => {
+                e.target.src = thumbFallback;
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              className: "wmblocks-yt-play-overlay",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                className: "wmblocks-yt-play-btn",
+                title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Preview only — video plays on frontend', 'wmblocks'),
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                  className: "wmblocks-yt-play-icon",
+                  children: "\u25B6"
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                className: "wmblocks-yt-play-label",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("strong", {
+                  children: title || (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('YouTube Video', 'wmblocks')
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                  children: videoId
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              className: "wmblocks-yt-param-badges",
+              children: [autoplay && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                className: "wmblocks-yt-param-badge",
+                children: "\u25B6 autoplay"
+              }), mute && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                className: "wmblocks-yt-param-badge",
+                children: "\uD83D\uDD07 muted"
+              }), !controls && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                className: "wmblocks-yt-param-badge",
+                children: "no controls"
+              }), loop && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                className: "wmblocks-yt-param-badge",
+                children: "\u21BA loop"
+              }), privacyEnhanced && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                className: "wmblocks-yt-param-badge",
+                children: "\uD83D\uDD12 privacy"
+              }), modestbranding && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                className: "wmblocks-yt-param-badge",
+                children: "no logo"
+              }), start > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+                className: "wmblocks-yt-param-badge",
+                children: ["\u25B6 ", start, "s"]
+              }), cc && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                className: "wmblocks-yt-param-badge",
+                children: "CC"
+              })]
+            })]
+          }) :
+          /*#__PURE__*/
+          // Empty state
+          (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "wmblocks-yt-empty-state",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+              className: "wmblocks-yt-empty-icon",
+              children: "\u25B6"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+              className: "wmblocks-yt-empty-title",
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Paste a YouTube URL above', 'wmblocks')
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+              className: "wmblocks-yt-empty-sub",
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('The video thumbnail will appear here. All embed options are in the sidebar →', 'wmblocks')
+            })]
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+        className: "wmblocks-yt-footer-hint",
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Thumbnail preview only — full video plays on the frontend · All embed options in sidebar →', 'wmblocks')
+      })]
+    })]
+  });
+}
+
+/***/ },
+
+/***/ "./src/youtube/index.js"
+/*!******************************!*\
+  !*** ./src/youtube/index.js ***!
+  \******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/youtube/style.scss");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/youtube/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./src/youtube/block.json");
+
+
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  // Fully server-side rendered — no InnerBlocks
+  save: () => null
+});
+
+/***/ },
+
+/***/ "./src/youtube/editor.scss"
+/*!*********************************!*\
+  !*** ./src/youtube/editor.scss ***!
+  \*********************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ },
+
+/***/ "./src/youtube/style.scss"
+/*!********************************!*\
+  !*** ./src/youtube/style.scss ***!
+  \********************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ },
+
+/***/ "react/jsx-runtime"
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+(module) {
+
+module.exports = window["ReactJSXRuntime"];
+
+/***/ },
+
+/***/ "@wordpress/block-editor"
+/*!*************************************!*\
+  !*** external ["wp","blockEditor"] ***!
+  \*************************************/
+(module) {
+
+module.exports = window["wp"]["blockEditor"];
+
+/***/ },
+
+/***/ "@wordpress/blocks"
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+(module) {
+
+module.exports = window["wp"]["blocks"];
+
+/***/ },
+
+/***/ "@wordpress/components"
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+(module) {
+
+module.exports = window["wp"]["components"];
+
+/***/ },
+
+/***/ "@wordpress/element"
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+(module) {
+
+module.exports = window["wp"]["element"];
+
+/***/ },
+
+/***/ "@wordpress/i18n"
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+(module) {
+
+module.exports = window["wp"]["i18n"];
+
+/***/ },
+
+/***/ "./src/youtube/block.json"
+/*!********************************!*\
+  !*** ./src/youtube/block.json ***!
+  \********************************/
+(module) {
+
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wmblocks/youtube","version":"0.1.0","title":"YouTube Video","category":"watermelon-blocks","icon":"video-alt3","description":"Embed a YouTube video inside a Bootstrap responsive ratio container. Paste any YouTube URL, pick your aspect ratio, and fine-tune all embed parameters — autoplay, controls, loop, mute, start time, captions, and more.","example":{},"supports":{"html":false,"anchor":true},"attributes":{"url":{"type":"string","default":""},"videoId":{"type":"string","default":""},"ratio":{"type":"string","default":"ratio-16x9"},"customRatio":{"type":"string","default":""},"title":{"type":"string","default":"YouTube video"},"autoplay":{"type":"boolean","default":false},"mute":{"type":"boolean","default":false},"controls":{"type":"boolean","default":true},"loop":{"type":"boolean","default":false},"modestbranding":{"type":"boolean","default":false},"rel":{"type":"boolean","default":true},"privacyEnhanced":{"type":"boolean","default":false},"start":{"type":"number","default":0},"end":{"type":"number","default":0},"playlistId":{"type":"string","default":""},"cc":{"type":"boolean","default":false},"ccLang":{"type":"string","default":"en"}},"textdomain":"wm","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+
+/***/ }
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		if (!(moduleId in __webpack_modules__)) {
+/******/ 			delete __webpack_module_cache__[moduleId];
+/******/ 			var e = new Error("Cannot find module '" + moduleId + "'");
+/******/ 			e.code = 'MODULE_NOT_FOUND';
+/******/ 			throw e;
+/******/ 		}
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	(() => {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var [chunkIds, fn, priority] = deferred[i];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"youtube/index": 0,
+/******/ 			"youtube/style-index": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = globalThis["webpackChunkdiv"] = globalThis["webpackChunkdiv"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["youtube/style-index"], () => (__webpack_require__("./src/youtube/index.js")))
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
+/******/ })()
+;
+//# sourceMappingURL=index.js.map

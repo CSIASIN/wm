@@ -1,0 +1,39 @@
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/dl/editor.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
+.wmblocks-bs-dl-wrapper {
+  border: 2px dashed #fd7e14;
+  padding: 12px;
+}
+.wmblocks-bs-dl-wrapper dl dt [contenteditable]:focus, .wmblocks-bs-dl-wrapper dl dt:focus, .wmblocks-bs-dl-wrapper dl dd [contenteditable]:focus, .wmblocks-bs-dl-wrapper dl dd:focus {
+  outline: 1px dashed #fd7e14;
+  border-radius: 2px;
+}
+.wmblocks-bs-dl-wrapper dl dt, .wmblocks-bs-dl-wrapper dl dd {
+  cursor: text;
+}
+.wmblocks-bs-dl-wrapper .row {
+  position: relative;
+  padding: 4px 0;
+}
+.wmblocks-bs-dl-wrapper .row:hover {
+  background: rgba(253, 126, 20, 0.04);
+  border-radius: 4px;
+}
+.wmblocks-bs-dl-wrapper .wmblocks-dl-row-actions {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.wmblocks-bs-dl-wrapper .row:hover .wmblocks-dl-row-actions,
+.wmblocks-bs-dl-wrapper dt:hover ~ .wmblocks-dl-row-actions,
+.wmblocks-bs-dl-wrapper dd:hover ~ .wmblocks-dl-row-actions {
+  opacity: 1;
+}
+
+/*# sourceMappingURL=index.css.map*/

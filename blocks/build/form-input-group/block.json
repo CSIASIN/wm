@@ -1,0 +1,75 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/form-input-group",
+  "version": "0.1.0",
+  "title": "Input Group",
+  "category": "watermelon-blocks",
+  "icon": "minus",
+  "description": "Bootstrap input-group — input with prepend and/or append addons.",
+  "parent": [
+    "wmblocks/bs-form"
+  ],
+  "supports": {
+    "html": false,
+    "reusable": false
+  },
+  "attributes": {
+    "label": {
+      "type": "string",
+      "default": "Username"
+    },
+    "name": {
+      "type": "string",
+      "default": ""
+    },
+    "fieldType": {
+      "type": "string",
+      "default": "text"
+    },
+    "placeholder": {
+      "type": "string",
+      "default": ""
+    },
+    "prepend": {
+      "type": "string",
+      "default": "@"
+    },
+    "append": {
+      "type": "string",
+      "default": ""
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "size": {
+      "type": "string",
+      "default": ""
+    },
+    "helpText": {
+      "type": "string",
+      "default": ""
+    },
+    "colClass": {
+      "type": "string",
+      "default": ""
+    },
+    "hideLabel": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "usesContext": [
+    "wmblocks/formLayout"
+  ],
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php",
+  "style": "file:./style-index.css"
+}

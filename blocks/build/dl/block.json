@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/dl",
+  "version": "0.1.0",
+  "title": "Description List",
+  "category": "watermelon-blocks",
+  "icon": "editor-ul",
+  "description": "Bootstrap description list — aligned dt/dd pairs with optional column grid layout.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "aligned": {
+      "type": "boolean",
+      "default": true
+    },
+    "dtCol": {
+      "type": "string",
+      "default": "col-sm-3"
+    },
+    "ddCol": {
+      "type": "string",
+      "default": "col-sm-9"
+    },
+    "items": {
+      "type": "array",
+      "default": [
+        {
+          "term": "Full Name",
+          "desc": "John Doe"
+        },
+        {
+          "term": "Job Title",
+          "desc": "Lead Developer"
+        },
+        {
+          "term": "Location",
+          "desc": "New York, USA"
+        }
+      ],
+      "items": {
+        "type": "object"
+      }
+    },
+    "customClass": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

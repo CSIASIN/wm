@@ -1,0 +1,30 @@
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/jumbotron1/editor.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+.wmblocks-jumbotron1, .wmblocks-jumbotron2,
+.wmblocks-jumbotron3, .wmblocks-jumbotron4 {
+  border: 2px dashed #6f42c1;
+  min-height: 80px;
+}
+.wmblocks-jumbotron1 [contenteditable], .wmblocks-jumbotron2 [contenteditable],
+.wmblocks-jumbotron3 [contenteditable], .wmblocks-jumbotron4 [contenteditable] {
+  cursor: text;
+}
+.wmblocks-jumbotron1 [contenteditable]:focus, .wmblocks-jumbotron2 [contenteditable]:focus,
+.wmblocks-jumbotron3 [contenteditable]:focus, .wmblocks-jumbotron4 [contenteditable]:focus {
+  outline: 1px dashed #6f42c1;
+  border-radius: 2px;
+}
+.wmblocks-jumbotron1 [contenteditable]:empty::before, .wmblocks-jumbotron2 [contenteditable]:empty::before,
+.wmblocks-jumbotron3 [contenteditable]:empty::before, .wmblocks-jumbotron4 [contenteditable]:empty::before {
+  content: attr(data-placeholder);
+  color: #adb5bd;
+  font-style: italic;
+  pointer-events: none;
+}
+.wmblocks-jumbotron1 a.btn, .wmblocks-jumbotron2 a.btn,
+.wmblocks-jumbotron3 a.btn, .wmblocks-jumbotron4 a.btn {
+  pointer-events: none;
+}
+
+/*# sourceMappingURL=index.css.map*/

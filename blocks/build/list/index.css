@@ -1,0 +1,25 @@
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/list/editor.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+.wmblocks-bs-list-wrapper {
+  border: 2px dashed #0dcaf0;
+  padding: 12px;
+}
+.wmblocks-bs-list-wrapper ul {
+  padding-left: 0;
+}
+.wmblocks-bs-list-wrapper ul li [contenteditable]:focus {
+  outline: 1px dashed #007cba;
+  border-radius: 2px;
+}
+.wmblocks-bs-list-wrapper .wmblocks-list-item-actions {
+  display: inline-flex;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.wmblocks-bs-list-wrapper li:hover .wmblocks-list-item-actions {
+  opacity: 1;
+}
+
+/*# sourceMappingURL=index.css.map*/

@@ -1,0 +1,24 @@
+.wmblocks-bs-list-wrapper {
+	border: 2px dashed #0dcaf0;
+	padding: 12px;
+
+	ul {
+		padding-left: 0;
+
+		li {
+			[ contenteditable ]:focus { outline: 1px dashed #007cba; border-radius: 2px; }
+		}
+	}
+
+	// Show item actions on hover
+	.wmblocks-list-item-actions {
+		display: inline-flex;
+		gap: 2px;
+		opacity: 0;
+		transition: opacity 0.15s;
+	}
+
+	li:hover .wmblocks-list-item-actions {
+		opacity: 1;
+	}
+}

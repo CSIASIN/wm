@@ -1,0 +1,1 @@
+{"version":3,"file":"youtube/view.js","mappings":";;;;AAAA;AACA,4B","sources":["webpack://div/./src/youtube/view.js"],"sourcesContent":["// YouTube iframes handle all their own JS via the YouTube IFrame API.\n// No custom view.js needed.\n"],"names":[],"sourceRoot":""}

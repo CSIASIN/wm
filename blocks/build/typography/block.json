@@ -1,0 +1,139 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/typography",
+  "version": "0.1.0",
+  "title": "Typography",
+  "category": "watermelon-blocks",
+  "icon": "editor-paragraph",
+  "description": "Bootstrap typography toolkit — one block for all Bootstrap typographic elements: headings (h1–h6 + display classes), lead paragraphs, blockquotes with attribution, unstyled/inline lists, description lists, abbreviations, and inline text elements (mark, del, ins, s, u, small, strong, em). Select the element type and configure everything inline.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "elementType": {
+      "type": "string",
+      "default": "heading"
+    },
+    "content": {
+      "type": "string",
+      "default": "Bootstrap heading"
+    },
+    "headingLevel": {
+      "type": "string",
+      "default": "h2"
+    },
+    "useHeadingClass": {
+      "type": "boolean",
+      "default": false
+    },
+    "headingClassTag": {
+      "type": "string",
+      "default": "p"
+    },
+    "displayClass": {
+      "type": "string",
+      "default": ""
+    },
+    "subText": {
+      "type": "string",
+      "default": ""
+    },
+    "alignment": {
+      "type": "string",
+      "default": ""
+    },
+    "quoteText": {
+      "type": "string",
+      "default": "A well-known quote, contained in a blockquote element."
+    },
+    "quoteSource": {
+      "type": "string",
+      "default": ""
+    },
+    "quoteSourceTitle": {
+      "type": "string",
+      "default": ""
+    },
+    "listType": {
+      "type": "string",
+      "default": "ul"
+    },
+    "listStyle": {
+      "type": "string",
+      "default": ""
+    },
+    "listItems": {
+      "type": "array",
+      "default": [
+        {
+          "id": "i1",
+          "text": "First item"
+        },
+        {
+          "id": "i2",
+          "text": "Second item"
+        },
+        {
+          "id": "i3",
+          "text": "Third item"
+        }
+      ]
+    },
+    "dlItems": {
+      "type": "array",
+      "default": [
+        {
+          "id": "d1",
+          "term": "Term",
+          "definition": "Definition for the term."
+        },
+        {
+          "id": "d2",
+          "term": "Another term",
+          "definition": "This definition is short."
+        }
+      ]
+    },
+    "dlTermCols": {
+      "type": "string",
+      "default": "col-sm-3"
+    },
+    "dlDefCols": {
+      "type": "string",
+      "default": "col-sm-9"
+    },
+    "abbrText": {
+      "type": "string",
+      "default": "HTML"
+    },
+    "abbrTitle": {
+      "type": "string",
+      "default": "HyperText Markup Language"
+    },
+    "abbrInitialism": {
+      "type": "boolean",
+      "default": false
+    },
+    "inlineContent": {
+      "type": "string",
+      "default": "You can use the <mark>mark tag</mark> to highlight text, or use <strong>bold</strong> and <em>italic</em> styles."
+    },
+    "textColor": {
+      "type": "string",
+      "default": ""
+    },
+    "leadContent": {
+      "type": "string",
+      "default": "This is a lead paragraph. It stands out from regular paragraphs."
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

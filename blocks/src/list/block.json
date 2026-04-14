@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/list",
+	"version": "0.1.0",
+	"title": "BS List",
+	"category": "watermelon-blocks",
+	"icon": "list-view",
+	"description": "Bootstrap list — unstyled or inline list items with full inline editing.",
+	"example": {},
+	"supports": { "html": false, "anchor": true },
+	"attributes": {
+		"listStyle": {
+			"type": "string",
+			"default": "list-unstyled"
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{ "text": "First list item" },
+				{ "text": "Second list item" },
+				{ "text": "Third list item" }
+			],
+			"items": { "type": "object" }
+		},
+		"customClass": { "type": "string", "default": "" }
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle":  "file:./index.css",
+	"style":        "file:./style-index.css",
+	"render":       "file:./render.php"
+}

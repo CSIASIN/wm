@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/form-floating",
+  "version": "0.1.0",
+  "title": "Floating Label",
+  "category": "watermelon-blocks",
+  "icon": "editor-textcolor",
+  "description": "Bootstrap floating label input — label animates above the field on focus.",
+  "parent": [
+    "wmblocks/bs-form"
+  ],
+  "supports": {
+    "html": false,
+    "reusable": false
+  },
+  "attributes": {
+    "fieldType": {
+      "type": "string",
+      "default": "text"
+    },
+    "label": {
+      "type": "string",
+      "default": "Email address"
+    },
+    "name": {
+      "type": "string",
+      "default": ""
+    },
+    "placeholder": {
+      "type": "string",
+      "default": " "
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "colClass": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "usesContext": [
+    "wmblocks/formLayout"
+  ],
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php",
+  "style": "file:./style-index.css"
+}

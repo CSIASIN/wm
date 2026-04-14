@@ -1,0 +1,67 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/form-textarea",
+  "version": "0.1.0",
+  "title": "Form Textarea",
+  "category": "watermelon-blocks",
+  "icon": "editor-paragraph",
+  "description": "Bootstrap textarea form control.",
+  "parent": [
+    "wmblocks/bs-form"
+  ],
+  "supports": {
+    "html": false,
+    "reusable": false
+  },
+  "attributes": {
+    "label": {
+      "type": "string",
+      "default": "Message"
+    },
+    "name": {
+      "type": "string",
+      "default": ""
+    },
+    "placeholder": {
+      "type": "string",
+      "default": ""
+    },
+    "rows": {
+      "type": "number",
+      "default": 3
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "helpText": {
+      "type": "string",
+      "default": ""
+    },
+    "colClass": {
+      "type": "string",
+      "default": ""
+    },
+    "hideLabel": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "usesContext": [
+    "wmblocks/formLayout"
+  ],
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php",
+  "style": "file:./style-index.css"
+}

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/form-field",
+  "version": "0.1.0",
+  "title": "Form Field",
+  "category": "watermelon-blocks",
+  "icon": "text-page",
+  "description": "Bootstrap form-control input — text, email, password, number, date, file and more.",
+  "parent": [
+    "wmblocks/form"
+  ],
+  "supports": {
+    "html": false,
+    "reusable": false
+  },
+  "attributes": {
+    "fieldType": {
+      "type": "string",
+      "default": "text"
+    },
+    "label": {
+      "type": "string",
+      "default": "Label"
+    },
+    "name": {
+      "type": "string",
+      "default": ""
+    },
+    "placeholder": {
+      "type": "string",
+      "default": ""
+    },
+    "helpText": {
+      "type": "string",
+      "default": ""
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "readonly": {
+      "type": "boolean",
+      "default": false
+    },
+    "size": {
+      "type": "string",
+      "default": ""
+    },
+    "colClass": {
+      "type": "string",
+      "default": ""
+    },
+    "hideLabel": {
+      "type": "boolean",
+      "default": false
+    },
+    "validFeedback": {
+      "type": "string",
+      "default": ""
+    },
+    "invalidFeedback": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "usesContext": [
+    "wmblocks/formLayout"
+  ],
+  "textdomain": "wm",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

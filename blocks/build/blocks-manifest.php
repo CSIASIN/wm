@@ -230,6 +230,391 @@ return array(
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),
+	'badge-button' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/badge-button',
+		'version' => '0.1.0',
+		'title' => 'Badge on Button',
+		'category' => 'watermelon-blocks',
+		'icon' => 'marker',
+		'description' => 'Bootstrap positioned badge on a button — a button with an absolutely-positioned badge, dot indicator, or SVG marker. Uses position-relative on the button and position-absolute with top/start/translate-middle on the badge. Optionally adds a Bootstrap Icon inside the button itself.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'btnLabel' => array(
+				'type' => 'string',
+				'default' => 'Inbox'
+			),
+			'btnVariant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'btnSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'btnHref' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'btnTarget' => array(
+				'type' => 'string',
+				'default' => '_self'
+			),
+			'btnIconName' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'btnIconPosition' => array(
+				'type' => 'string',
+				'default' => 'before'
+			),
+			'badgeType' => array(
+				'type' => 'string',
+				'default' => 'text'
+			),
+			'badgeLabel' => array(
+				'type' => 'string',
+				'default' => '+99'
+			),
+			'badgeColour' => array(
+				'type' => 'string',
+				'default' => 'text-bg-danger'
+			),
+			'badgeShape' => array(
+				'type' => 'string',
+				'default' => 'rounded-pill'
+			),
+			'badgeTop' => array(
+				'type' => 'string',
+				'default' => 'top-0'
+			),
+			'badgeStart' => array(
+				'type' => 'string',
+				'default' => 'start-100'
+			),
+			'badgeTranslate' => array(
+				'type' => 'string',
+				'default' => 'translate-middle'
+			),
+			'badgeBorderColour' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'badgeSvgName' => array(
+				'type' => 'string',
+				'default' => 'caret-down-fill'
+			),
+			'badgeA11yLabel' => array(
+				'type' => 'string',
+				'default' => 'unread messages'
+			),
+			'alignment' => array(
+				'type' => 'string',
+				'default' => 'left'
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'Blockquote' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/blockquote',
+		'version' => '0.1.0',
+		'title' => 'Blockquote',
+		'category' => 'watermelon-blocks',
+		'icon' => 'format-quote',
+		'description' => 'Bootstrap blockquote with optional citation source — name and title.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'quote' => array(
+				'type' => 'string',
+				'default' => 'A well-known quote, contained in a blockquote element.'
+			),
+			'sourceName' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'sourceTitle' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textAlign' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'breadcrumb-default' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/breadcrumb-default',
+		'version' => '0.1.0',
+		'title' => 'Breadcrumb — Default',
+		'category' => 'watermelon-blocks',
+		'icon' => 'menu-alt3',
+		'description' => 'Bootstrap standard breadcrumb with the default / divider. Add, remove and reorder items inline on the canvas. The last item is always the active current page.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'items' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'b1',
+						'label' => 'Home',
+						'url' => '/'
+					),
+					array(
+						'id' => 'b2',
+						'label' => 'Library',
+						'url' => '/library'
+					),
+					array(
+						'id' => 'b3',
+						'label' => 'Data',
+						'url' => ''
+					)
+				)
+			),
+			'ariaLabel' => array(
+				'type' => 'string',
+				'default' => 'breadcrumb'
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'breadcrumb-divider' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/breadcrumb-divider',
+		'version' => '0.1.0',
+		'title' => 'Breadcrumb — Custom Divider',
+		'category' => 'watermelon-blocks',
+		'icon' => 'menu-alt3',
+		'description' => 'Bootstrap breadcrumb with a custom character divider. Pick from /, >, », •, |, ~, or enter your own character. Uses --bs-breadcrumb-divider CSS custom property.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'items' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'b1',
+						'label' => 'Home',
+						'url' => '/'
+					),
+					array(
+						'id' => 'b2',
+						'label' => 'Library',
+						'url' => '/library'
+					),
+					array(
+						'id' => 'b3',
+						'label' => 'Data',
+						'url' => ''
+					)
+				)
+			),
+			'divider' => array(
+				'type' => 'string',
+				'default' => '>'
+			),
+			'customDivider' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ariaLabel' => array(
+				'type' => 'string',
+				'default' => 'breadcrumb'
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'breadcrumb-styled' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/breadcrumb-styled',
+		'version' => '0.1.0',
+		'title' => 'Breadcrumb — Styled',
+		'category' => 'watermelon-blocks',
+		'icon' => 'menu-alt3',
+		'description' => 'Bootstrap breadcrumb with full visual styling — background colour, padding, border, border-radius, and font size. Makes the breadcrumb visually prominent as a hero sub-bar or page header element.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'items' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'b1',
+						'label' => 'Home',
+						'url' => '/'
+					),
+					array(
+						'id' => 'b2',
+						'label' => 'Library',
+						'url' => '/library'
+					),
+					array(
+						'id' => 'b3',
+						'label' => 'Data',
+						'url' => ''
+					)
+				)
+			),
+			'divider' => array(
+				'type' => 'string',
+				'default' => '/'
+			),
+			'bgColor' => array(
+				'type' => 'string',
+				'default' => 'bg-light'
+			),
+			'padding' => array(
+				'type' => 'string',
+				'default' => 'p-3'
+			),
+			'rounded' => array(
+				'type' => 'string',
+				'default' => 'rounded-3'
+			),
+			'border' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'borderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fontSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'linkColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ariaLabel' => array(
+				'type' => 'string',
+				'default' => 'breadcrumb'
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'breadcrumb-svg' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/breadcrumb-svg',
+		'version' => '0.1.0',
+		'title' => 'Breadcrumb — SVG Divider',
+		'category' => 'watermelon-blocks',
+		'icon' => 'menu-alt3',
+		'description' => 'Bootstrap breadcrumb with an SVG icon as the divider, set via the --bs-breadcrumb-divider CSS custom property as a data URI. Choose from arrow, chevron, dot, dash, or pipe SVG shapes. Colour-aware.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'items' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'b1',
+						'label' => 'Home',
+						'url' => '/'
+					),
+					array(
+						'id' => 'b2',
+						'label' => 'Library',
+						'url' => '/library'
+					),
+					array(
+						'id' => 'b3',
+						'label' => 'Data',
+						'url' => ''
+					)
+				)
+			),
+			'svgDivider' => array(
+				'type' => 'string',
+				'default' => 'arrow'
+			),
+			'dividerColor' => array(
+				'type' => 'string',
+				'default' => '#6c757d'
+			),
+			'ariaLabel' => array(
+				'type' => 'string',
+				'default' => 'breadcrumb'
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
 	'bs-figure' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -1275,6 +1660,66 @@ return array(
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),
+	'dl' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/dl',
+		'version' => '0.1.0',
+		'title' => 'Description List',
+		'category' => 'watermelon-blocks',
+		'icon' => 'editor-ul',
+		'description' => 'Bootstrap description list — aligned dt/dd pairs with optional column grid layout.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'aligned' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'dtCol' => array(
+				'type' => 'string',
+				'default' => 'col-sm-3'
+			),
+			'ddCol' => array(
+				'type' => 'string',
+				'default' => 'col-sm-9'
+			),
+			'items' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'term' => 'Full Name',
+						'desc' => 'John Doe'
+					),
+					array(
+						'term' => 'Job Title',
+						'desc' => 'Lead Developer'
+					),
+					array(
+						'term' => 'Location',
+						'desc' => 'New York, USA'
+					)
+				),
+				'items' => array(
+					'type' => 'object'
+				)
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'dropdown' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -1366,6 +1811,387 @@ return array(
 						'href' => '#',
 						'disabled' => false,
 						'active' => false
+					)
+				)
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'feature-cards' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/feature-cards',
+		'version' => '0.1.0',
+		'title' => 'Feature Cards',
+		'category' => 'watermelon-blocks',
+		'icon' => 'grid-view',
+		'description' => 'Bootstrap features — custom cards layout. A row of cards each with a stacked list of image/avatar, metadata tags (location, time, category), and a heading title. Ideal for blog posts, projects, or team showcases.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'cards' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'k1',
+						'title' => 'Short title, long jacket',
+						'imageUrl' => '',
+						'imageAlt' => 'Card image',
+						'tag1' => 'Earth',
+						'tag2' => '3d',
+						'tagColour' => 'text-bg-primary'
+					),
+					array(
+						'id' => 'k2',
+						'title' => 'Much longer title that wraps to multiple lines',
+						'imageUrl' => '',
+						'imageAlt' => 'Card image',
+						'tag1' => 'Pakistan',
+						'tag2' => '4d',
+						'tagColour' => 'text-bg-success'
+					),
+					array(
+						'id' => 'k3',
+						'title' => 'Another longer title belongs here',
+						'imageUrl' => '',
+						'imageAlt' => 'Card image',
+						'tag1' => 'California',
+						'tag2' => '5d',
+						'tagColour' => 'text-bg-danger'
+					)
+				)
+			),
+			'cols' => array(
+				'type' => 'string',
+				'default' => '3'
+			),
+			'rounded' => array(
+				'type' => 'string',
+				'default' => 'rounded-3'
+			),
+			'shadow' => array(
+				'type' => 'string',
+				'default' => 'shadow-sm'
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'feature-columns' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/feature-columns',
+		'version' => '0.1.0',
+		'title' => 'Feature Columns',
+		'category' => 'watermelon-blocks',
+		'icon' => 'grid-view',
+		'description' => 'Bootstrap features — columns with icons layout. Responsive 3-column grid where each column has a Bootstrap Icon in a coloured rounded square, a heading, body text and an optional CTA link.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'columns' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'c1',
+						'icon' => 'lightning-charge-fill',
+						'iconBg' => 'text-bg-primary',
+						'title' => 'Featured title',
+						'body' => 'Paragraph of text beneath the heading to explain the heading. We\'ll add onto it with another sentence and probably just keep going until we run out of words.',
+						'ctaLabel' => 'Call to action',
+						'ctaUrl' => '#',
+						'ctaVariant' => 'link-primary'
+					),
+					array(
+						'id' => 'c2',
+						'icon' => 'people-fill',
+						'iconBg' => 'text-bg-primary',
+						'title' => 'Featured title',
+						'body' => 'Paragraph of text beneath the heading to explain the heading. We\'ll add onto it with another sentence and probably just keep going until we run out of words.',
+						'ctaLabel' => 'Call to action',
+						'ctaUrl' => '#',
+						'ctaVariant' => 'link-primary'
+					),
+					array(
+						'id' => 'c3',
+						'icon' => 'gear-fill',
+						'iconBg' => 'text-bg-primary',
+						'title' => 'Featured title',
+						'body' => 'Paragraph of text beneath the heading to explain the heading. We\'ll add onto it with another sentence and probably just keep going until we run out of words.',
+						'ctaLabel' => 'Call to action',
+						'ctaUrl' => '#',
+						'ctaVariant' => 'link-primary'
+					)
+				)
+			),
+			'cols' => array(
+				'type' => 'string',
+				'default' => '3'
+			),
+			'iconSize' => array(
+				'type' => 'string',
+				'default' => 'fs-2'
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'feature-hanging' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/feature-hanging',
+		'version' => '0.1.0',
+		'title' => 'Feature Hanging Icons',
+		'category' => 'watermelon-blocks',
+		'icon' => 'grid-view',
+		'description' => 'Bootstrap features — hanging icons layout. 3-column grid where each column has a large icon in a coloured rounded pill that \'hangs\' at the start, with heading, body text and a button.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'items' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'h1',
+						'icon' => 'lightning-charge-fill',
+						'iconBg' => 'text-bg-primary',
+						'title' => 'Featured title',
+						'body' => 'Paragraph of text beneath the heading to explain the heading. We\'ll add onto it with another sentence and probably just keep going until we run out of words.',
+						'btnLabel' => 'Primary button',
+						'btnUrl' => '#',
+						'btnVariant' => 'btn-primary'
+					),
+					array(
+						'id' => 'h2',
+						'icon' => 'people-fill',
+						'iconBg' => 'text-bg-success',
+						'title' => 'Featured title',
+						'body' => 'Paragraph of text beneath the heading to explain the heading. We\'ll add onto it with another sentence and probably just keep going until we run out of words.',
+						'btnLabel' => 'Primary button',
+						'btnUrl' => '#',
+						'btnVariant' => 'btn-success'
+					),
+					array(
+						'id' => 'h3',
+						'icon' => 'gear-fill',
+						'iconBg' => 'text-bg-danger',
+						'title' => 'Featured title',
+						'body' => 'Paragraph of text beneath the heading to explain the heading. We\'ll add onto it with another sentence and probably just keep going until we run out of words.',
+						'btnLabel' => 'Primary button',
+						'btnUrl' => '#',
+						'btnVariant' => 'btn-danger'
+					)
+				)
+			),
+			'cols' => array(
+				'type' => 'string',
+				'default' => '3'
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'feature-icon-grid' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/feature-icon-grid',
+		'version' => '0.1.0',
+		'title' => 'Feature Icon Grid',
+		'category' => 'watermelon-blocks',
+		'icon' => 'grid-view',
+		'description' => 'Bootstrap features — icon grid layout. A dense 2-column or 4-column grid of small icon + heading + short description cells. Perfect for listing many features compactly.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'items' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'g1',
+						'icon' => 'lightning-charge-fill',
+						'iconColour' => 'text-primary',
+						'title' => 'Featured title',
+						'body' => 'Paragraph of text beneath the heading to explain the heading.'
+					),
+					array(
+						'id' => 'g2',
+						'icon' => 'people-fill',
+						'iconColour' => 'text-success',
+						'title' => 'Featured title',
+						'body' => 'Paragraph of text beneath the heading to explain the heading.'
+					),
+					array(
+						'id' => 'g3',
+						'icon' => 'gear-fill',
+						'iconColour' => 'text-danger',
+						'title' => 'Featured title',
+						'body' => 'Paragraph of text beneath the heading to explain the heading.'
+					),
+					array(
+						'id' => 'g4',
+						'icon' => 'globe',
+						'iconColour' => 'text-warning',
+						'title' => 'Featured title',
+						'body' => 'Paragraph of text beneath the heading to explain the heading.'
+					),
+					array(
+						'id' => 'g5',
+						'icon' => 'heart-fill',
+						'iconColour' => 'text-info',
+						'title' => 'Featured title',
+						'body' => 'Paragraph of text beneath the heading to explain the heading.'
+					),
+					array(
+						'id' => 'g6',
+						'icon' => 'graph-up-arrow',
+						'iconColour' => 'text-primary',
+						'title' => 'Featured title',
+						'body' => 'Paragraph of text beneath the heading to explain the heading.'
+					),
+					array(
+						'id' => 'g7',
+						'icon' => 'trophy-fill',
+						'iconColour' => 'text-success',
+						'title' => 'Featured title',
+						'body' => 'Paragraph of text beneath the heading to explain the heading.'
+					),
+					array(
+						'id' => 'g8',
+						'icon' => 'shield-fill-check',
+						'iconColour' => 'text-danger',
+						'title' => 'Featured title',
+						'body' => 'Paragraph of text beneath the heading to explain the heading.'
+					)
+				)
+			),
+			'cols' => array(
+				'type' => 'string',
+				'default' => '4'
+			),
+			'iconSize' => array(
+				'type' => 'string',
+				'default' => 'fs-2'
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'feature-with-title' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/feature-with-title',
+		'version' => '0.1.0',
+		'title' => 'Features with Title',
+		'category' => 'watermelon-blocks',
+		'icon' => 'grid-view',
+		'description' => 'Bootstrap features — section with a left-aligned title and CTA on one side, and a 2×2 icon feature grid on the other. Perfect for a \'Why choose us\' or \'How it works\' marketing section.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'sectionTitle' => array(
+				'type' => 'string',
+				'default' => 'Left-aligned title explaining these awesome features'
+			),
+			'sectionBody' => array(
+				'type' => 'string',
+				'default' => 'Paragraph of text beneath the heading to explain the heading. We\'ll add onto it with another sentence and probably just keep going until we run out of words.'
+			),
+			'btnLabel' => array(
+				'type' => 'string',
+				'default' => 'Primary button'
+			),
+			'btnUrl' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btnVariant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'titleCols' => array(
+				'type' => 'string',
+				'default' => 'col-lg-4'
+			),
+			'featureCols' => array(
+				'type' => 'string',
+				'default' => 'col-lg-8'
+			),
+			'features' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'f1',
+						'icon' => 'lightning-charge-fill',
+						'iconColour' => 'text-primary',
+						'title' => 'Featured title',
+						'body' => 'Paragraph of text beneath the heading to explain the heading.'
+					),
+					array(
+						'id' => 'f2',
+						'icon' => 'people-fill',
+						'iconColour' => 'text-success',
+						'title' => 'Featured title',
+						'body' => 'Paragraph of text beneath the heading to explain the heading.'
+					),
+					array(
+						'id' => 'f3',
+						'icon' => 'gear-fill',
+						'iconColour' => 'text-danger',
+						'title' => 'Featured title',
+						'body' => 'Paragraph of text beneath the heading to explain the heading.'
+					),
+					array(
+						'id' => 'f4',
+						'icon' => 'globe',
+						'iconColour' => 'text-warning',
+						'title' => 'Featured title',
+						'body' => 'Paragraph of text beneath the heading to explain the heading.'
 					)
 				)
 			)
@@ -1495,6 +2321,1349 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
 	),
+	'form' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/form',
+		'version' => '0.1.0',
+		'title' => 'Bootstrap Form',
+		'category' => 'watermelon-blocks',
+		'icon' => 'feedback',
+		'description' => 'Bootstrap form container with configurable action, method, layout and validation.',
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'formAction' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'formMethod' => array(
+				'type' => 'string',
+				'default' => 'post'
+			),
+			'formLayout' => array(
+				'type' => 'string',
+				'default' => 'stacked'
+			),
+			'validated' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'novalidate' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'autocomplete' => array(
+				'type' => 'string',
+				'default' => 'on'
+			),
+			'successMessage' => array(
+				'type' => 'string',
+				'default' => 'Thank you! Your message has been sent.'
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'providesContext' => array(
+			'wmblocks/formLayout' => 'formLayout'
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'form-check' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/form-check',
+		'version' => '0.1.0',
+		'title' => 'Form Check',
+		'category' => 'watermelon-blocks',
+		'icon' => 'yes',
+		'description' => 'Bootstrap checkbox, radio button, or toggle switch.',
+		'parent' => array(
+			'wmblocks/bs-form'
+		),
+		'supports' => array(
+			'html' => false,
+			'reusable' => false
+		),
+		'attributes' => array(
+			'checkType' => array(
+				'type' => 'string',
+				'default' => 'checkbox'
+			),
+			'label' => array(
+				'type' => 'string',
+				'default' => 'Check me out'
+			),
+			'name' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'value' => array(
+				'type' => 'string',
+				'default' => '1'
+			),
+			'checked' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'disabled' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'inline' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'reverse' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'colClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'usesContext' => array(
+			'wmblocks/formLayout'
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'render' => 'file:./render.php',
+		'style' => 'file:./style-index.css'
+	),
+	'form-field' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/form-field',
+		'version' => '0.1.0',
+		'title' => 'Form Field',
+		'category' => 'watermelon-blocks',
+		'icon' => 'text-page',
+		'description' => 'Bootstrap form-control input — text, email, password, number, date, file and more.',
+		'parent' => array(
+			'wmblocks/form'
+		),
+		'supports' => array(
+			'html' => false,
+			'reusable' => false
+		),
+		'attributes' => array(
+			'fieldType' => array(
+				'type' => 'string',
+				'default' => 'text'
+			),
+			'label' => array(
+				'type' => 'string',
+				'default' => 'Label'
+			),
+			'name' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'placeholder' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'helpText' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'required' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'disabled' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'readonly' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'size' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'colClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'hideLabel' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'validFeedback' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'invalidFeedback' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'usesContext' => array(
+			'wmblocks/formLayout'
+		),
+		'textdomain' => 'wm',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'form-floating' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/form-floating',
+		'version' => '0.1.0',
+		'title' => 'Floating Label',
+		'category' => 'watermelon-blocks',
+		'icon' => 'editor-textcolor',
+		'description' => 'Bootstrap floating label input — label animates above the field on focus.',
+		'parent' => array(
+			'wmblocks/bs-form'
+		),
+		'supports' => array(
+			'html' => false,
+			'reusable' => false
+		),
+		'attributes' => array(
+			'fieldType' => array(
+				'type' => 'string',
+				'default' => 'text'
+			),
+			'label' => array(
+				'type' => 'string',
+				'default' => 'Email address'
+			),
+			'name' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'placeholder' => array(
+				'type' => 'string',
+				'default' => ' '
+			),
+			'required' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'disabled' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'colClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'usesContext' => array(
+			'wmblocks/formLayout'
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'render' => 'file:./render.php',
+		'style' => 'file:./style-index.css'
+	),
+	'form-input-group' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/form-input-group',
+		'version' => '0.1.0',
+		'title' => 'Input Group',
+		'category' => 'watermelon-blocks',
+		'icon' => 'minus',
+		'description' => 'Bootstrap input-group — input with prepend and/or append addons.',
+		'parent' => array(
+			'wmblocks/bs-form'
+		),
+		'supports' => array(
+			'html' => false,
+			'reusable' => false
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string',
+				'default' => 'Username'
+			),
+			'name' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fieldType' => array(
+				'type' => 'string',
+				'default' => 'text'
+			),
+			'placeholder' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'prepend' => array(
+				'type' => 'string',
+				'default' => '@'
+			),
+			'append' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'required' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'disabled' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'size' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'helpText' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'colClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'hideLabel' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'usesContext' => array(
+			'wmblocks/formLayout'
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'render' => 'file:./render.php',
+		'style' => 'file:./style-index.css'
+	),
+	'form-range' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/form-range',
+		'version' => '0.1.0',
+		'title' => 'Form Range',
+		'category' => 'watermelon-blocks',
+		'icon' => 'leftright',
+		'description' => 'Bootstrap range input slider.',
+		'parent' => array(
+			'wmblocks/bs-form'
+		),
+		'supports' => array(
+			'html' => false,
+			'reusable' => false
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string',
+				'default' => 'Range'
+			),
+			'name' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'min' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'max' => array(
+				'type' => 'number',
+				'default' => 100
+			),
+			'step' => array(
+				'type' => 'number',
+				'default' => 1
+			),
+			'value' => array(
+				'type' => 'number',
+				'default' => 50
+			),
+			'disabled' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'helpText' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'colClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'hideLabel' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'usesContext' => array(
+			'wmblocks/formLayout'
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'render' => 'file:./render.php',
+		'style' => 'file:./style-index.css'
+	),
+	'form-select' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/form-select',
+		'version' => '0.1.0',
+		'title' => 'Form Select',
+		'category' => 'watermelon-blocks',
+		'icon' => 'arrow-down-alt2',
+		'description' => 'Bootstrap form-select dropdown with configurable options.',
+		'parent' => array(
+			'wmblocks/bs-form'
+		),
+		'supports' => array(
+			'html' => false,
+			'reusable' => false
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string',
+				'default' => 'Select an option'
+			),
+			'name' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'options' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'value' => '',
+						'label' => 'Choose...'
+					),
+					array(
+						'value' => '1',
+						'label' => 'Option 1'
+					),
+					array(
+						'value' => '2',
+						'label' => 'Option 2'
+					)
+				),
+				'items' => array(
+					'type' => 'object'
+				)
+			),
+			'multiple' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'size' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'required' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'disabled' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'helpText' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'colClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'hideLabel' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'usesContext' => array(
+			'wmblocks/formLayout'
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'render' => 'file:./render.php',
+		'style' => 'file:./style-index.css'
+	),
+	'form-submit' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/form-submit',
+		'version' => '0.1.0',
+		'title' => 'Form Submit',
+		'category' => 'watermelon-blocks',
+		'icon' => 'arrow-right-alt',
+		'description' => 'Bootstrap form submit button.',
+		'parent' => array(
+			'wmblocks/bs-form'
+		),
+		'supports' => array(
+			'html' => false,
+			'reusable' => false
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string',
+				'default' => 'Submit'
+			),
+			'variant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'size' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fullWidth' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'disabled' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'colClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'render' => 'file:./render.php',
+		'style' => 'file:./style-index.css'
+	),
+	'form-textarea' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/form-textarea',
+		'version' => '0.1.0',
+		'title' => 'Form Textarea',
+		'category' => 'watermelon-blocks',
+		'icon' => 'editor-paragraph',
+		'description' => 'Bootstrap textarea form control.',
+		'parent' => array(
+			'wmblocks/bs-form'
+		),
+		'supports' => array(
+			'html' => false,
+			'reusable' => false
+		),
+		'attributes' => array(
+			'label' => array(
+				'type' => 'string',
+				'default' => 'Message'
+			),
+			'name' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'placeholder' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'rows' => array(
+				'type' => 'number',
+				'default' => 3
+			),
+			'required' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'disabled' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'readonly' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'helpText' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'colClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'hideLabel' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'usesContext' => array(
+			'wmblocks/formLayout'
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'render' => 'file:./render.php',
+		'style' => 'file:./style-index.css'
+	),
+	'grid-col' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/grid-col',
+		'version' => '0.1.0',
+		'title' => 'Grid Column',
+		'category' => 'watermelon-blocks',
+		'icon' => 'align-pull-left',
+		'description' => 'Bootstrap column — direct child of a grid row with responsive width, offset, order and align.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'col' => array(
+				'type' => 'string',
+				'default' => 'col'
+			),
+			'colSm' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'colMd' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'colLg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'colXl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'colXxl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'offset' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'offsetSm' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'offsetMd' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'offsetLg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'offsetXl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'order' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'orderSm' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'orderMd' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'orderLg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'alignSelf' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'usesContext' => array(
+			'wmblocks/inRow'
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'grid-container' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/grid-container',
+		'version' => '0.1.0',
+		'title' => 'Grid Container',
+		'category' => 'watermelon-blocks',
+		'icon' => 'layout',
+		'description' => 'Bootstrap container — the root wrapper for grid rows and columns.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'containerType' => array(
+				'type' => 'string',
+				'default' => 'container'
+			),
+			'textAlign' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'overflow' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'padding' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'providesContext' => array(
+			'wmblocks/inGrid' => 'containerType'
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'grid-row' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/grid-row',
+		'version' => '0.1.0',
+		'title' => 'Grid Row',
+		'category' => 'watermelon-blocks',
+		'icon' => 'minus',
+		'description' => 'Bootstrap row — horizontal group of columns inside a container.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'gutterX' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gutterY' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gutter' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'rowCols' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'rowColsSm' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'rowColsMd' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'rowColsLg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'rowColsXl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'rowColsXxl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'justifyContent' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'alignItems' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'noGutters' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gutterSm' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gutterXSm' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gutterYSm' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gutterMd' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gutterXMd' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gutterYMd' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gutterLg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gutterXLg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gutterYLg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gutterXl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gutterXXl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gutterYXl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gutterXxl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gutterXXxl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gutterYXxl' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'providesContext' => array(
+			'wmblocks/inRow' => 'rowCols'
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'heading' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/bs-heading',
+		'version' => '0.1.0',
+		'title' => 'BS Heading',
+		'category' => 'watermelon-blocks',
+		'icon' => 'heading',
+		'description' => 'Bootstrap heading — h1–h6 with optional display heading class, text utilities and lead.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'level' => array(
+				'type' => 'number',
+				'default' => 2
+			),
+			'content' => array(
+				'type' => 'string',
+				'default' => 'Bootstrap Heading'
+			),
+			'displayClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textAlign' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fontWeight' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'hero1' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/hero1',
+		'version' => '0.1.0',
+		'title' => 'Hero 1 — Centered',
+		'category' => 'watermelon-blocks',
+		'icon' => 'cover-image',
+		'description' => 'Centered hero with logo, headline, subtext and two buttons.',
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'logoUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'logoId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'logoHeight' => array(
+				'type' => 'string',
+				'default' => '72px'
+			),
+			'heading' => array(
+				'type' => 'string',
+				'default' => 'Centered hero'
+			),
+			'subtext' => array(
+				'type' => 'string',
+				'default' => 'Quickly design and customize responsive mobile-first sites with Bootstrap, the world\'s most popular front-end open source toolkit.'
+			),
+			'btn1Text' => array(
+				'type' => 'string',
+				'default' => 'Primary button'
+			),
+			'btn1Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn1Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'btn2Text' => array(
+				'type' => 'string',
+				'default' => 'Secondary'
+			),
+			'btn2Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn2Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-outline-secondary'
+			),
+			'bgColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'hero2' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/hero2',
+		'version' => '0.1.0',
+		'title' => 'Hero 2 — Centered + Screenshot',
+		'category' => 'watermelon-blocks',
+		'icon' => 'cover-image',
+		'description' => 'Centered hero with headline, subtext, buttons and a screenshot image below.',
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'heading' => array(
+				'type' => 'string',
+				'default' => 'Centered screenshot'
+			),
+			'subtext' => array(
+				'type' => 'string',
+				'default' => 'Quickly design and customize responsive mobile-first sites with Bootstrap, the world\'s most popular front-end open source toolkit.'
+			),
+			'btn1Text' => array(
+				'type' => 'string',
+				'default' => 'Primary button'
+			),
+			'btn1Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn1Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'btn2Text' => array(
+				'type' => 'string',
+				'default' => 'Secondary'
+			),
+			'btn2Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn2Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-outline-secondary'
+			),
+			'imageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'imageAlt' => array(
+				'type' => 'string',
+				'default' => 'App screenshot'
+			),
+			'bgColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'hero3' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/hero3',
+		'version' => '0.1.0',
+		'title' => 'Hero 3 — Left-aligned + Image',
+		'category' => 'watermelon-blocks',
+		'icon' => 'cover-image',
+		'description' => 'Left-aligned hero with headline, text and buttons alongside a right image.',
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'heading' => array(
+				'type' => 'string',
+				'default' => 'Responsive left-aligned hero with image'
+			),
+			'subtext' => array(
+				'type' => 'string',
+				'default' => 'Quickly design and customize responsive mobile-first sites with Bootstrap, the world\'s most popular front-end open source toolkit.'
+			),
+			'btn1Text' => array(
+				'type' => 'string',
+				'default' => 'Primary'
+			),
+			'btn1Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn1Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'btn2Text' => array(
+				'type' => 'string',
+				'default' => 'Default'
+			),
+			'btn2Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn2Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-outline-secondary'
+			),
+			'imageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'imageAlt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'hero4' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/hero4',
+		'version' => '0.1.0',
+		'title' => 'Hero 4 — Sign-up Form',
+		'category' => 'watermelon-blocks',
+		'icon' => 'cover-image',
+		'description' => 'Vertically centered hero with a sign-up form on the right.',
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'heading' => array(
+				'type' => 'string',
+				'default' => 'Vertically centered hero sign-up form'
+			),
+			'subtext' => array(
+				'type' => 'string',
+				'default' => 'Below is an example form built entirely with Bootstrap\'s form controls. Each required form group has a validation state.'
+			),
+			'formAction' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'emailLabel' => array(
+				'type' => 'string',
+				'default' => 'Email address'
+			),
+			'passwordLabel' => array(
+				'type' => 'string',
+				'default' => 'Password'
+			),
+			'rememberLabel' => array(
+				'type' => 'string',
+				'default' => 'Remember me'
+			),
+			'submitText' => array(
+				'type' => 'string',
+				'default' => 'Sign up'
+			),
+			'submitVariant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'legalText' => array(
+				'type' => 'string',
+				'default' => 'By clicking Sign up, you agree to the terms of use.'
+			),
+			'bgColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'hero5' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/hero5',
+		'version' => '0.1.0',
+		'title' => 'Hero 5 — Border + Cropped Image',
+		'category' => 'watermelon-blocks',
+		'icon' => 'cover-image',
+		'description' => 'Border hero with content on the left and a cropped/shadowed image on the right.',
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'heading' => array(
+				'type' => 'string',
+				'default' => 'Border hero with cropped image and shadows'
+			),
+			'subtext' => array(
+				'type' => 'string',
+				'default' => 'Quickly design and customize responsive mobile-first sites with Bootstrap, the world\'s most popular front-end open source toolkit.'
+			),
+			'btn1Text' => array(
+				'type' => 'string',
+				'default' => 'Primary'
+			),
+			'btn1Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn1Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'btn2Text' => array(
+				'type' => 'string',
+				'default' => 'Default'
+			),
+			'btn2Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn2Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-outline-secondary'
+			),
+			'imageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'imageAlt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'hero6' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/hero6',
+		'version' => '0.1.0',
+		'title' => 'Hero 6 — Dark',
+		'category' => 'watermelon-blocks',
+		'icon' => 'cover-image',
+		'description' => 'Dark background hero with headline, subtext, and buttons.',
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'heading' => array(
+				'type' => 'string',
+				'default' => 'Dark color hero'
+			),
+			'subtext' => array(
+				'type' => 'string',
+				'default' => 'Quickly design and customize responsive mobile-first sites with Bootstrap, the world\'s most popular front-end open source toolkit.'
+			),
+			'btn1Text' => array(
+				'type' => 'string',
+				'default' => 'Custom button'
+			),
+			'btn1Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn1Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-outline-light'
+			),
+			'btn2Text' => array(
+				'type' => 'string',
+				'default' => 'Secondary'
+			),
+			'btn2Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn2Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-outline-secondary'
+			),
+			'bgColor' => array(
+				'type' => 'string',
+				'default' => 'bg-dark text-white'
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'hstack' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -1528,7 +3697,7 @@ return array(
 		'providesContext' => array(
 			'wmblocks/stackType' => 'gap'
 		),
-		'textdomain' => 'wmblocks',
+		'textdomain' => 'wm',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
@@ -1708,6 +3877,380 @@ return array(
 				'default' => ''
 			),
 			'objectHeight' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'jumbotron0' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/jumbotron0',
+		'version' => '0.1.0',
+		'title' => 'Jumbotron 1 — With Icon',
+		'category' => 'watermelon-blocks',
+		'icon' => 'star-filled',
+		'description' => 'Jumbotron with an SVG icon at the top, heading, text and two CTA buttons.',
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'iconSvg' => array(
+				'type' => 'string',
+				'default' => '<svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/></svg>'
+			),
+			'iconColor' => array(
+				'type' => 'string',
+				'default' => 'text-body-secondary'
+			),
+			'heading' => array(
+				'type' => 'string',
+				'default' => 'Jumbotron with icon'
+			),
+			'subtext' => array(
+				'type' => 'string',
+				'default' => 'This is a custom jumbotron featuring an SVG image at the top, some longer text that wraps early thanks to a responsive col-* class, and a customized call to action.'
+			),
+			'btn1Text' => array(
+				'type' => 'string',
+				'default' => 'Call to action'
+			),
+			'btn1Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn1Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'btn2Text' => array(
+				'type' => 'string',
+				'default' => 'Secondary link'
+			),
+			'btn2Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn2Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-outline-secondary'
+			),
+			'bgColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'colWidth' => array(
+				'type' => 'string',
+				'default' => 'col-lg-6'
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'jumbotron1' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/jumbotron1',
+		'version' => '0.1.0',
+		'title' => 'Jumbotron 1 — With Icon',
+		'category' => 'watermelon-blocks',
+		'icon' => 'star-filled',
+		'description' => 'Jumbotron with an SVG icon at the top, heading, text and two CTA buttons.',
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'iconSvg' => array(
+				'type' => 'string',
+				'default' => '<svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/></svg>'
+			),
+			'iconColor' => array(
+				'type' => 'string',
+				'default' => 'text-body-secondary'
+			),
+			'heading' => array(
+				'type' => 'string',
+				'default' => 'Jumbotron with icon'
+			),
+			'subtext' => array(
+				'type' => 'string',
+				'default' => 'This is a custom jumbotron featuring an SVG image at the top, some longer text that wraps early thanks to a responsive col-* class, and a customized call to action.'
+			),
+			'btn1Text' => array(
+				'type' => 'string',
+				'default' => 'Call to action'
+			),
+			'btn1Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn1Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'btn2Text' => array(
+				'type' => 'string',
+				'default' => 'Secondary link'
+			),
+			'btn2Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn2Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-outline-secondary'
+			),
+			'bgColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'colWidth' => array(
+				'type' => 'string',
+				'default' => 'col-lg-6'
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'jumbotron2' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/jumbotron2',
+		'version' => '0.1.0',
+		'title' => 'Jumbotron 2 — Placeholder (Faded)',
+		'category' => 'watermelon-blocks',
+		'icon' => 'star-filled',
+		'description' => 'Faded placeholder jumbotron with muted background, heading, text and a single CTA.',
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'heading' => array(
+				'type' => 'string',
+				'default' => 'Placeholder jumbotron'
+			),
+			'subtext' => array(
+				'type' => 'string',
+				'default' => 'This faded back jumbotron is useful for placeholder content. It\'s also a great way to add a bit of context to a page or section when no content is available and to encourage visitors to take a specific action.'
+			),
+			'btn1Text' => array(
+				'type' => 'string',
+				'default' => 'Call to action'
+			),
+			'btn1Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn1Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'bgColor' => array(
+				'type' => 'string',
+				'default' => 'bg-body-tertiary'
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'jumbotron3' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/jumbotron3',
+		'version' => '0.1.0',
+		'title' => 'Jumbotron 3 — Full Width',
+		'category' => 'watermelon-blocks',
+		'icon' => 'star-filled',
+		'description' => 'Full-width edge-to-edge jumbotron with a container inside for aligned content.',
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'heading' => array(
+				'type' => 'string',
+				'default' => 'Full-width jumbotron'
+			),
+			'subtext' => array(
+				'type' => 'string',
+				'default' => 'This takes the basic jumbotron above and makes its background edge-to-edge with a .container inside to align content.'
+			),
+			'btn1Text' => array(
+				'type' => 'string',
+				'default' => 'Call to action'
+			),
+			'btn1Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn1Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'btn2Text' => array(
+				'type' => 'string',
+				'default' => 'Secondary'
+			),
+			'btn2Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn2Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-outline-secondary'
+			),
+			'bgColor' => array(
+				'type' => 'string',
+				'default' => 'bg-body-tertiary'
+			),
+			'containerType' => array(
+				'type' => 'string',
+				'default' => 'container'
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'jumbotron4' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/jumbotron4',
+		'version' => '0.1.0',
+		'title' => 'Jumbotron 4 — Basic',
+		'category' => 'watermelon-blocks',
+		'icon' => 'star-filled',
+		'description' => 'Simple Bootstrap jumbotron sitting within a container, built with utility classes.',
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'heading' => array(
+				'type' => 'string',
+				'default' => 'Basic jumbotron'
+			),
+			'subtext' => array(
+				'type' => 'string',
+				'default' => 'This is a simple Bootstrap jumbotron that sits within a .container, recreated with built-in utility classes.'
+			),
+			'btn1Text' => array(
+				'type' => 'string',
+				'default' => 'Call to action'
+			),
+			'btn1Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn1Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-primary'
+			),
+			'btn2Text' => array(
+				'type' => 'string',
+				'default' => 'Secondary'
+			),
+			'btn2Url' => array(
+				'type' => 'string',
+				'default' => '#'
+			),
+			'btn2Variant' => array(
+				'type' => 'string',
+				'default' => 'btn-outline-secondary'
+			),
+			'bgColor' => array(
+				'type' => 'string',
+				'default' => 'bg-body-tertiary'
+			),
+			'rounded' => array(
+				'type' => 'string',
+				'default' => 'rounded-3'
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
+	'list' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/list',
+		'version' => '0.1.0',
+		'title' => 'BS List',
+		'category' => 'watermelon-blocks',
+		'icon' => 'list-view',
+		'description' => 'Bootstrap list — unstyled or inline list items with full inline editing.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'listStyle' => array(
+				'type' => 'string',
+				'default' => 'list-unstyled'
+			),
+			'items' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'text' => 'First list item'
+					),
+					array(
+						'text' => 'Second list item'
+					),
+					array(
+						'text' => 'Third list item'
+					)
+				),
+				'items' => array(
+					'type' => 'object'
+				)
+			),
+			'customClass' => array(
 				'type' => 'string',
 				'default' => ''
 			)
@@ -3180,6 +5723,147 @@ return array(
 			'colorVariant' => array(
 				'type' => 'string',
 				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'typography' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/typography',
+		'version' => '0.1.0',
+		'title' => 'Typography',
+		'category' => 'watermelon-blocks',
+		'icon' => 'editor-paragraph',
+		'description' => 'Bootstrap typography toolkit — one block for all Bootstrap typographic elements: headings (h1–h6 + display classes), lead paragraphs, blockquotes with attribution, unstyled/inline lists, description lists, abbreviations, and inline text elements (mark, del, ins, s, u, small, strong, em). Select the element type and configure everything inline.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'elementType' => array(
+				'type' => 'string',
+				'default' => 'heading'
+			),
+			'content' => array(
+				'type' => 'string',
+				'default' => 'Bootstrap heading'
+			),
+			'headingLevel' => array(
+				'type' => 'string',
+				'default' => 'h2'
+			),
+			'useHeadingClass' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'headingClassTag' => array(
+				'type' => 'string',
+				'default' => 'p'
+			),
+			'displayClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'subText' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'alignment' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'quoteText' => array(
+				'type' => 'string',
+				'default' => 'A well-known quote, contained in a blockquote element.'
+			),
+			'quoteSource' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'quoteSourceTitle' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'listType' => array(
+				'type' => 'string',
+				'default' => 'ul'
+			),
+			'listStyle' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'listItems' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'i1',
+						'text' => 'First item'
+					),
+					array(
+						'id' => 'i2',
+						'text' => 'Second item'
+					),
+					array(
+						'id' => 'i3',
+						'text' => 'Third item'
+					)
+				)
+			),
+			'dlItems' => array(
+				'type' => 'array',
+				'default' => array(
+					array(
+						'id' => 'd1',
+						'term' => 'Term',
+						'definition' => 'Definition for the term.'
+					),
+					array(
+						'id' => 'd2',
+						'term' => 'Another term',
+						'definition' => 'This definition is short.'
+					)
+				)
+			),
+			'dlTermCols' => array(
+				'type' => 'string',
+				'default' => 'col-sm-3'
+			),
+			'dlDefCols' => array(
+				'type' => 'string',
+				'default' => 'col-sm-9'
+			),
+			'abbrText' => array(
+				'type' => 'string',
+				'default' => 'HTML'
+			),
+			'abbrTitle' => array(
+				'type' => 'string',
+				'default' => 'HyperText Markup Language'
+			),
+			'abbrInitialism' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'inlineContent' => array(
+				'type' => 'string',
+				'default' => 'You can use the <mark>mark tag</mark> to highlight text, or use <strong>bold</strong> and <em>italic</em> styles.'
+			),
+			'textColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'leadContent' => array(
+				'type' => 'string',
+				'default' => 'This is a lead paragraph. It stands out from regular paragraphs.'
 			)
 		),
 		'textdomain' => 'wm',

@@ -1,0 +1,1 @@
+{"version":3,"file":"form/index.css","mappings":";;;AAAA;EACC;EACA;EACA;AACD;AAAC;EAAO;AAGR,C","sources":["webpack://div/./src/form/editor.scss"],"sourcesContent":[".wmblocks-bs-form-wrapper {\n\tborder: 2px dashed #6610f2;\n\tpadding: 12px;\n\tmin-height: 100px;\n\tform { padding: 0; }\n}\n"],"names":[],"sourceRoot":""}

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/feature-hanging",
+  "version": "0.1.0",
+  "title": "Feature Hanging Icons",
+  "category": "watermelon-blocks",
+  "icon": "grid-view",
+  "description": "Bootstrap features — hanging icons layout. 3-column grid where each column has a large icon in a coloured rounded pill that 'hangs' at the start, with heading, body text and a button.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "items": {
+      "type": "array",
+      "default": [
+        {
+          "id": "h1",
+          "icon": "lightning-charge-fill",
+          "iconBg": "text-bg-primary",
+          "title": "Featured title",
+          "body": "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+          "btnLabel": "Primary button",
+          "btnUrl": "#",
+          "btnVariant": "btn-primary"
+        },
+        {
+          "id": "h2",
+          "icon": "people-fill",
+          "iconBg": "text-bg-success",
+          "title": "Featured title",
+          "body": "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+          "btnLabel": "Primary button",
+          "btnUrl": "#",
+          "btnVariant": "btn-success"
+        },
+        {
+          "id": "h3",
+          "icon": "gear-fill",
+          "iconBg": "text-bg-danger",
+          "title": "Featured title",
+          "body": "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+          "btnLabel": "Primary button",
+          "btnUrl": "#",
+          "btnVariant": "btn-danger"
+        }
+      ]
+    },
+    "cols": {
+      "type": "string",
+      "default": "3"
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

@@ -1,0 +1,66 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/feature-columns",
+	"version": "0.1.0",
+	"title": "Feature Columns",
+	"category": "watermelon-blocks",
+	"icon": "grid-view",
+	"description": "Bootstrap features — columns with icons layout. Responsive 3-column grid where each column has a Bootstrap Icon in a coloured rounded square, a heading, body text and an optional CTA link.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"columns": {
+			"type": "array",
+			"default": [
+				{
+					"id": "c1",
+					"icon": "lightning-charge-fill",
+					"iconBg": "text-bg-primary",
+					"title": "Featured title",
+					"body": "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+					"ctaLabel": "Call to action",
+					"ctaUrl": "#",
+					"ctaVariant": "link-primary"
+				},
+				{
+					"id": "c2",
+					"icon": "people-fill",
+					"iconBg": "text-bg-primary",
+					"title": "Featured title",
+					"body": "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+					"ctaLabel": "Call to action",
+					"ctaUrl": "#",
+					"ctaVariant": "link-primary"
+				},
+				{
+					"id": "c3",
+					"icon": "gear-fill",
+					"iconBg": "text-bg-primary",
+					"title": "Featured title",
+					"body": "Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.",
+					"ctaLabel": "Call to action",
+					"ctaUrl": "#",
+					"ctaVariant": "link-primary"
+				}
+			]
+		},
+		"cols": {
+			"type": "string",
+			"default": "3"
+		},
+		"iconSize": {
+			"type": "string",
+			"default": "fs-2"
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

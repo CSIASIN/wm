@@ -1,0 +1,1 @@
+{"version":3,"file":"dropdown/view.js","mappings":";;;;AAAA;AACA;AACA,2E","sources":["webpack://div/./src/dropdown/view.js"],"sourcesContent":["// Bootstrap JS handles all dropdown behaviour via data-bs-toggle=\"dropdown\"\n// and data-bs-auto-close automatically.\n// No custom JS is required as long as Bootstrap JS is loaded by the theme.\n"],"names":[],"sourceRoot":""}

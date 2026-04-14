@@ -1,0 +1,48 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/form-submit",
+	"version": "0.1.0",
+	"title": "Form Submit",
+	"category": "watermelon-blocks",
+	"icon": "arrow-right-alt",
+	"description": "Bootstrap form submit button.",
+	"parent": [
+		"wmblocks/bs-form"
+	],
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"attributes": {
+		"label": {
+			"type": "string",
+			"default": "Submit"
+		},
+		"variant": {
+			"type": "string",
+			"default": "btn-primary"
+		},
+		"size": {
+			"type": "string",
+			"default": ""
+		},
+		"fullWidth": {
+			"type": "boolean",
+			"default": false
+		},
+		"disabled": {
+			"type": "boolean",
+			"default": false
+		},
+		"colClass": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"render": "file:./render.php",
+	"style": "file:./style-index.css"
+}

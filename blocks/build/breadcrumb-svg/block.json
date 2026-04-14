@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/breadcrumb-svg",
+  "version": "0.1.0",
+  "title": "Breadcrumb — SVG Divider",
+  "category": "watermelon-blocks",
+  "icon": "menu-alt3",
+  "description": "Bootstrap breadcrumb with an SVG icon as the divider, set via the --bs-breadcrumb-divider CSS custom property as a data URI. Choose from arrow, chevron, dot, dash, or pipe SVG shapes. Colour-aware.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "items": {
+      "type": "array",
+      "default": [
+        {
+          "id": "b1",
+          "label": "Home",
+          "url": "/"
+        },
+        {
+          "id": "b2",
+          "label": "Library",
+          "url": "/library"
+        },
+        {
+          "id": "b3",
+          "label": "Data",
+          "url": ""
+        }
+      ]
+    },
+    "svgDivider": {
+      "type": "string",
+      "default": "arrow"
+    },
+    "dividerColor": {
+      "type": "string",
+      "default": "#6c757d"
+    },
+    "ariaLabel": {
+      "type": "string",
+      "default": "breadcrumb"
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

@@ -1,0 +1,1 @@
+{"version":3,"file":"bs-images/index.css","mappings":";;;AAAA;;;EAGC;EACA;EACA;AACD,C","sources":["webpack://div/./src/bs-images/editor.scss"],"sourcesContent":[".wmblocks-bs-image-wrapper,\n.wmblocks-bs-figure-wrapper,\n.wmblocks-bs-picture-wrapper {\n\tborder: 2px dashed #6c757d;\n\tpadding: 12px;\n\tmin-height: 80px;\n}\n"],"names":[],"sourceRoot":""}

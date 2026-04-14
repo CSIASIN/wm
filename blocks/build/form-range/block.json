@@ -1,0 +1,67 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/form-range",
+  "version": "0.1.0",
+  "title": "Form Range",
+  "category": "watermelon-blocks",
+  "icon": "leftright",
+  "description": "Bootstrap range input slider.",
+  "parent": [
+    "wmblocks/bs-form"
+  ],
+  "supports": {
+    "html": false,
+    "reusable": false
+  },
+  "attributes": {
+    "label": {
+      "type": "string",
+      "default": "Range"
+    },
+    "name": {
+      "type": "string",
+      "default": ""
+    },
+    "min": {
+      "type": "number",
+      "default": 0
+    },
+    "max": {
+      "type": "number",
+      "default": 100
+    },
+    "step": {
+      "type": "number",
+      "default": 1
+    },
+    "value": {
+      "type": "number",
+      "default": 50
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "helpText": {
+      "type": "string",
+      "default": ""
+    },
+    "colClass": {
+      "type": "string",
+      "default": ""
+    },
+    "hideLabel": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "usesContext": [
+    "wmblocks/formLayout"
+  ],
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php",
+  "style": "file:./style-index.css"
+}

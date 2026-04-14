@@ -1,0 +1,67 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/feature-cards",
+	"version": "0.1.0",
+	"title": "Feature Cards",
+	"category": "watermelon-blocks",
+	"icon": "grid-view",
+	"description": "Bootstrap features — custom cards layout. A row of cards each with a stacked list of image/avatar, metadata tags (location, time, category), and a heading title. Ideal for blog posts, projects, or team showcases.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"cards": {
+			"type": "array",
+			"default": [
+				{
+					"id": "k1",
+					"title": "Short title, long jacket",
+					"imageUrl": "",
+					"imageAlt": "Card image",
+					"tag1": "Earth",
+					"tag2": "3d",
+					"tagColour": "text-bg-primary"
+				},
+				{
+					"id": "k2",
+					"title": "Much longer title that wraps to multiple lines",
+					"imageUrl": "",
+					"imageAlt": "Card image",
+					"tag1": "Pakistan",
+					"tag2": "4d",
+					"tagColour": "text-bg-success"
+				},
+				{
+					"id": "k3",
+					"title": "Another longer title belongs here",
+					"imageUrl": "",
+					"imageAlt": "Card image",
+					"tag1": "California",
+					"tag2": "5d",
+					"tagColour": "text-bg-danger"
+				}
+			]
+		},
+		"cols": {
+			"type": "string",
+			"default": "3"
+		},
+		"rounded": {
+			"type": "string",
+			"default": "rounded-3"
+		},
+		"shadow": {
+			"type": "string",
+			"default": "shadow-sm"
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

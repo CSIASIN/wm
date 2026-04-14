@@ -1,0 +1,14 @@
+.wmblocks-jumbotron1, .wmblocks-jumbotron2,
+.wmblocks-jumbotron3, .wmblocks-jumbotron4 {
+	border: 2px dashed #6f42c1;
+	min-height: 80px;
+
+	[ contenteditable ] {
+		cursor: text;
+		&:focus { outline: 1px dashed #6f42c1; border-radius: 2px; }
+		&:empty::before { content: attr(data-placeholder); color: #adb5bd; font-style: italic; pointer-events: none; }
+	}
+
+	// Prevent btn hover effects from interfering with text editing
+	a.btn { pointer-events: none; }
+}

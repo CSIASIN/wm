@@ -1,0 +1,65 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/jumbotron3",
+	"version": "0.1.0",
+	"title": "Jumbotron 3 — Full Width",
+	"category": "watermelon-blocks",
+	"icon": "star-filled",
+	"description": "Full-width edge-to-edge jumbotron with a container inside for aligned content.",
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": "Full-width jumbotron"
+		},
+		"subtext": {
+			"type": "string",
+			"default": "This takes the basic jumbotron above and makes its background edge-to-edge with a .container inside to align content."
+		},
+		"btn1Text": {
+			"type": "string",
+			"default": "Call to action"
+		},
+		"btn1Url": {
+			"type": "string",
+			"default": "#"
+		},
+		"btn1Variant": {
+			"type": "string",
+			"default": "btn-primary"
+		},
+		"btn2Text": {
+			"type": "string",
+			"default": "Secondary"
+		},
+		"btn2Url": {
+			"type": "string",
+			"default": "#"
+		},
+		"btn2Variant": {
+			"type": "string",
+			"default": "btn-outline-secondary"
+		},
+		"bgColor": {
+			"type": "string",
+			"default": "bg-body-tertiary"
+		},
+		"containerType": {
+			"type": "string",
+			"default": "container"
+		},
+		"customClass": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

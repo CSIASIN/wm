@@ -1,0 +1,1 @@
+{"version":3,"file":"vstack/index.css","mappings":";;;AAAA;EACC;EACA;EACA;AACD;AACC;EACC;EACA;AACF,C","sources":["webpack://div/./src/vstack/editor.scss"],"sourcesContent":[".wmblocks-vstack-wrapper {\n\tborder: 2px dashed #198754;\n\tpadding: 12px;\n\tmin-height: 60px;\n\n\t> .vstack {\n\t\tdisplay: flex;\n\t\tflex-direction: column;\n\t}\n}\n"],"names":[],"sourceRoot":""}

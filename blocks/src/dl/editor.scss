@@ -1,0 +1,37 @@
+.wmblocks-bs-dl-wrapper {
+	border: 2px dashed #fd7e14;
+	padding: 12px;
+
+	dl {
+		dt, dd {
+			[ contenteditable ]:focus,
+			&:focus { outline: 1px dashed #fd7e14; border-radius: 2px; }
+			cursor: text;
+		}
+	}
+
+	.row {
+		position: relative;
+		padding: 4px 0;
+
+		&:hover { background: rgba(253, 126, 20, 0.04); border-radius: 4px; }
+	}
+
+	// Show row actions on hover
+	.wmblocks-dl-row-actions {
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		display: inline-flex;
+		gap: 2px;
+		opacity: 0;
+		transition: opacity 0.15s;
+	}
+
+	.row:hover .wmblocks-dl-row-actions,
+	dt:hover ~ .wmblocks-dl-row-actions,
+	dd:hover ~ .wmblocks-dl-row-actions {
+		opacity: 1;
+	}
+}

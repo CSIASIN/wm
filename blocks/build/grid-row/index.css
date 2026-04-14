@@ -1,0 +1,59 @@
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/grid-row/editor.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+/**
+ * Grid Row — editor styles
+ * Green outline with row label + column gap visualisation.
+ */
+.wp-block-wmblocks-grid-row {
+  position: relative;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  outline: 2px dashed #198754;
+  outline-offset: -1px;
+  padding-top: 22px !important;
+  min-height: 50px;
+  gap: 0;
+}
+.wp-block-wmblocks-grid-row::before {
+  content: "row";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #198754;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: monospace;
+  padding: 2px 8px;
+  border-bottom-right-radius: 4px;
+  line-height: 16px;
+  z-index: 10;
+  pointer-events: none;
+}
+.wp-block-wmblocks-grid-row[class*=row-cols-]::before {
+  content: "row · " attr(class);
+}
+.wp-block-wmblocks-grid-row.justify-content-center::before {
+  content: "row · justify-center";
+}
+.wp-block-wmblocks-grid-row.justify-content-end::before {
+  content: "row · justify-end";
+}
+.wp-block-wmblocks-grid-row.align-items-center::before {
+  content: "row · align-center";
+}
+.wp-block-wmblocks-grid-row > .wp-block-wmblocks-grid-col + .wp-block-wmblocks-grid-col {
+  border-left: 2px dotted rgba(25, 135, 84, 0.3);
+}
+.wp-block-wmblocks-grid-row.is-selected, .wp-block-wmblocks-grid-row.has-child-selected {
+  outline-style: solid;
+}
+.wmblocks-grid-row {
+  min-height: 50px;
+}
+
+/*# sourceMappingURL=index.css.map*/
