@@ -94,7 +94,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 
 			<div { ...blockProps }>
 				{ /* Class badge */ }
-				<div style={ { fontSize: 10, fontFamily: 'monospace', color: '#0d6efd', marginBottom: 6, background: '#f0f6ff', padding: '3px 2px', borderRadius: 4, display: 'inline-block', border: '1px solid #cfe2ff' } }>
+				<div style={ { float:'right', marginTop:'-25px',  fontSize: 10, fontFamily: 'monospace', color: '#0d6efd', marginBottom: 6, background: '#f0f6ff', padding: '3px 2px', borderRadius: 4, display: 'inline-block', border: '1px solid #cfe2ff' } }>
 					{ containerClass }
 				</div>
 				<InnerBlocks

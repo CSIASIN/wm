@@ -3,7 +3,7 @@
  * Purple dashed outline per column with col class label + min-height so
  * empty columns are still clickable and visible.
  */
-
+/*
 .wp-block-wmblocks-grid-col {
 	position: relative;
 	outline: 1px dashed #6610f2;
@@ -85,6 +85,100 @@
 }
 
 // The edit.js blockProps class
+.wmblocks-grid-col {
+	min-height: 60px;
+}*/
+
+.wp-block-wmblocks-grid-col {
+	position: relative;
+	flex: 1 1 0%;       // default to equal-width (matches .col)
+	min-width: 0;        // prevent overflow on long content
+	min-height: 60px;
+	outline: 1px dashed #6610f2;
+	outline-offset: -1px;
+	padding: 5px 3px 5px !important;
+	box-sizing: border-box;
+ 
+	// ── Label badge ──────────────────────────────────────────────────
+	&::before {
+		content: 'col';
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: #6610f2;
+		color: #fff;
+		font-size: 9px;
+		font-weight: 700;
+		font-family: monospace;
+		padding: 1px 6px;
+		border-bottom-right-radius: 4px;
+		line-height: 15px;
+		z-index: 10;
+		pointer-events: none;
+		white-space: nowrap;
+	}
+ 
+	// Specific col-N badge labels
+	@for $i from 1 through 12 {
+		&[class*="col-#{$i}"]::before { content: 'col-#{$i}'; }
+	}
+	&[class*="col-auto"]::before { content: 'col-auto'; }
+	&[class*="col-sm"]::before   { content: 'col-sm'; }
+	&[class*="col-md"]::before   { content: 'col-md'; }
+	&[class*="col-lg"]::before   { content: 'col-lg'; }
+	&[class*="col-xl"]::before   { content: 'col-xl'; }
+ 
+	// ── Flex widths to match Bootstrap col-N fractions ───────────────
+	// When a specific col-N class is present we override flex to match
+	// Bootstrap's exact percentage so the editor preview is accurate.
+	&[class*="col-1"]  { flex: 0 0 8.333333%; max-width: 8.333333%; }
+	&[class*="col-2"]  { flex: 0 0 16.666667%; max-width: 16.666667%; }
+	&[class*="col-3"]  { flex: 0 0 25%; max-width: 25%; }
+	&[class*="col-4"]  { flex: 0 0 33.333333%; max-width: 33.333333%; }
+	&[class*="col-5"]  { flex: 0 0 41.666667%; max-width: 41.666667%; }
+	&[class*="col-6"]  { flex: 0 0 50%; max-width: 50%; }
+	&[class*="col-7"]  { flex: 0 0 58.333333%; max-width: 58.333333%; }
+	&[class*="col-8"]  { flex: 0 0 66.666667%; max-width: 66.666667%; }
+	&[class*="col-9"]  { flex: 0 0 75%; max-width: 75%; }
+	&[class*="col-10"] { flex: 0 0 83.333333%; max-width: 83.333333%; }
+	&[class*="col-11"] { flex: 0 0 91.666667%; max-width: 91.666667%; }
+	&[class*="col-12"] { flex: 0 0 100%; max-width: 100%; }
+	&[class*="col-auto"] { flex: 0 0 auto; max-width: 100%; width: auto; }
+ 
+	// ── Selected state ───────────────────────────────────────────────
+	&.is-selected {
+		outline: 2px solid #6610f2;
+		background: rgba(102, 16, 242, 0.03);
+	}
+ 
+	&.has-child-selected {
+		outline: 1px solid rgba(102, 16, 242, 0.6);
+	}
+ 
+	// ── Inner blocks area ─────────────────────────────────────────────
+	> .block-editor-inner-blocks {
+		height: 100%;
+ 
+		> .block-editor-block-list__layout {
+			min-height: 30px;
+			padding: 2px;
+		}
+	}
+}
+ 
+// ── Hide the block appender that appears inside the flex row ──────────
+// WordPress appends a + button at the end of .block-editor-block-list__layout
+// which breaks the flex layout by acting as an extra flex item.
+.wp-block-wmblocks-grid-row {
+	.block-editor-inner-blocks > .block-editor-block-list__layout {
+		// Appender sits after all columns — display:none keeps it from
+		// taking flex space while still being reachable via the toolbar.
+		> .block-list-appender {
+			display: none;
+		}
+	}
+}
+ 
 .wmblocks-grid-col {
 	min-height: 60px;
 }

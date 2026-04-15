@@ -140,7 +140,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 
 			<div { ...blockProps }>
 				{ /* Compact col class badge */ }
-				<div style={ { fontSize: 10, fontFamily: 'monospace', color: '#6610f2', marginBottom: 4, background: '#f8f5ff', padding: '2px 6px', borderRadius: 3, display: 'inline-block' } }>
+				<div style={ { float:'right', marginTop:'-25px', fontSize: 10, fontFamily: 'monospace', color: '#6610f2', marginBottom: 4, background: '#f8f5ff', padding: '2px 6px', borderRadius: 3, display: 'inline-block' } }>
 					{ colClass || 'col' }
 				</div>
 				<InnerBlocks

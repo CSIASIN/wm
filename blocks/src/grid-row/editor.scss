@@ -2,7 +2,7 @@
  * Grid Row — editor styles
  * Green outline with row label + column gap visualisation.
  */
-
+/*
 .wp-block-wmblocks-grid-row {
 	position: relative;
 	display: flex !important;      // force flex in editor so cols sit side-by-side
@@ -56,4 +56,58 @@
 
 .wmblocks-grid-row {
 	min-height: 50px;
+}*/
+
+.wp-block-wmblocks-grid-row {
+	position: relative;
+	outline: 1px dashed #198754;
+	outline-offset: 0;
+	padding-top: 5px !important;
+	min-height: 60px;
+ 
+	// ── Label badge ──────────────────────────────────────────────────
+	&::before {
+		content: 'row';
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: #198754;
+		color: #fff;
+		font-size: 10px;
+		font-weight: 700;
+		font-family: monospace;
+		padding: 2px 8px;
+		border-bottom-right-radius: 4px;
+		line-height: 16px;
+		z-index: 20;
+		pointer-events: none;
+	}
+ 
+	&.is-selected,
+	&.has-child-selected {
+		outline-style: solid;
+	}
+ 
+	// ── THE KEY FIX ──────────────────────────────────────────────────
+	// The editor wraps InnerBlocks in .block-editor-inner-blocks >
+	// .block-editor-block-list__layout. BOTH wrappers need to be flex
+	// so the columns actually sit side by side.
+ 
+	.block-editor-inner-blocks {
+		width: 100%;
+	}
+ 
+	.block-editor-inner-blocks > .block-editor-block-list__layout {
+		display: flex !important;
+		flex-wrap: wrap !important;
+		width: 100%;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		gap: 0 !important;            // gutters come from col padding, not gap
+		align-items: stretch;
+	}
+}
+ 
+.wmblocks-grid-row {
+	min-height: 60px;
 }

@@ -291,6 +291,8 @@ function Edit({
       ...blockProps,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         style: {
+          float: 'right',
+          marginTop: '-25px',
           fontSize: 10,
           fontFamily: 'monospace',
           color: '#6610f2',

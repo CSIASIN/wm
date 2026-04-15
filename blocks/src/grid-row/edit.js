@@ -220,7 +220,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 
 			<div { ...blockProps }>
 				{ /* Class badge */ }
-				<div style={ { fontSize:10, fontFamily:'monospace', color:'#198754', marginBottom:4, background:'#f0fdf4', padding:'2px 2px', borderRadius:4, display:'inline-block', border:'1px solid #c3e6cb', wordBreak:'break-all' } }>
+				<div style={ { float:'right', marginTop:'-25px', fontSize:10, fontFamily:'monospace', color:'#198754', marginBottom:4, background:'#f0fdf4', padding:'2px 2px', borderRadius:4, display:'inline-block', border:'1px solid #c3e6cb', wordBreak:'break-all' } }>
 					{ rowClass }
 				</div>
 

@@ -85,6 +85,111 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
 	),
+	'Address' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/address',
+		'version' => '0.1.0',
+		'title' => 'Address',
+		'category' => 'watermelon-blocks',
+		'icon' => 'location-alt',
+		'description' => 'Bootstrap address block — semantic <address> element with Bootstrap reboot styles. Supports name, organisation, street, city/state/zip, country, phone, email and website fields. All fields editable inline on the canvas, individually toggled on/off. Multiple presentation styles: plain, card, with border accent and with icons.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'name' => array(
+				'type' => 'string',
+				'default' => 'ACME Corporation'
+			),
+			'showName' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'street' => array(
+				'type' => 'string',
+				'default' => '1123 Fictional St'
+			),
+			'showStreet' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'cityStateZip' => array(
+				'type' => 'string',
+				'default' => 'San Francisco, CA 94103'
+			),
+			'showCityStateZip' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'country' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'showCountry' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'phone' => array(
+				'type' => 'string',
+				'default' => '(123) 456-7890'
+			),
+			'showPhone' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'phoneLabel' => array(
+				'type' => 'string',
+				'default' => 'P'
+			),
+			'email' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'showEmail' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'website' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'showWebsite' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'style' => array(
+				'type' => 'string',
+				'default' => 'plain'
+			),
+			'showIcons' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'accentColor' => array(
+				'type' => 'string',
+				'default' => 'primary'
+			),
+			'textColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fontSize' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
 	'alerts' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,

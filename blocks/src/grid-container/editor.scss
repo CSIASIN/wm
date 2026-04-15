@@ -4,6 +4,7 @@
  */
 
 // Target the block in the editor by its wp-block class
+/*
 .wp-block-wmblocks-grid-container {
 	position: relative;
 	outline: 2px solid #0d6efd;
@@ -47,6 +48,56 @@
 }
 
 // The inner wmblocks-grid-container class used by blockProps in edit.js
+.wmblocks-grid-container {
+	min-height: 60px;
+}**/
+
+.wp-block-wmblocks-grid-container {
+	position: relative;
+	outline: 1px solid #0d6efd;
+	padding-top: 6px !important;
+	min-height: 60px;
+ 
+	// ── Label badge ──────────────────────────────────────────────────
+	&::before {
+		content: 'container';
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: #0d6efd;
+		color: #fff;
+		font-size: 10px;
+		font-weight: 700;
+		font-family: monospace;
+		padding: 2px 8px;
+		border-bottom-right-radius: 4px;
+		line-height: 16px;
+		z-index: 20;
+		pointer-events: none;
+	}
+ 
+	&[class*="container-fluid"]::before { content: 'container-fluid'; }
+	&[class*="container-sm"]::before    { content: 'container-sm'; }
+	&[class*="container-md"]::before    { content: 'container-md'; }
+	&[class*="container-lg"]::before    { content: 'container-lg'; }
+	&[class*="container-xl"]::before    { content: 'container-xl'; }
+	&[class*="container-xxl"]::before   { content: 'container-xxl'; }
+ 
+	&.is-selected,
+	&.has-child-selected {
+		outline-color: #0d6efd;
+	}
+ 
+	// Inner blocks — block-editor wrappers should take full width
+	.block-editor-inner-blocks {
+		width: 100%;
+	}
+ 
+	.block-editor-inner-blocks > .block-editor-block-list__layout {
+		width: 100%;
+	}
+}
+ 
 .wmblocks-grid-container {
 	min-height: 60px;
 }

@@ -1,0 +1,103 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/address",
+  "version": "0.1.0",
+  "title": "Address",
+  "category": "watermelon-blocks",
+  "icon": "location-alt",
+  "description": "Bootstrap address block — semantic <address> element with Bootstrap reboot styles. Supports name, organisation, street, city/state/zip, country, phone, email and website fields. All fields editable inline on the canvas, individually toggled on/off. Multiple presentation styles: plain, card, with border accent and with icons.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "default": "ACME Corporation"
+    },
+    "showName": {
+      "type": "boolean",
+      "default": true
+    },
+    "street": {
+      "type": "string",
+      "default": "1123 Fictional St"
+    },
+    "showStreet": {
+      "type": "boolean",
+      "default": true
+    },
+    "cityStateZip": {
+      "type": "string",
+      "default": "San Francisco, CA 94103"
+    },
+    "showCityStateZip": {
+      "type": "boolean",
+      "default": true
+    },
+    "country": {
+      "type": "string",
+      "default": ""
+    },
+    "showCountry": {
+      "type": "boolean",
+      "default": false
+    },
+    "phone": {
+      "type": "string",
+      "default": "(123) 456-7890"
+    },
+    "showPhone": {
+      "type": "boolean",
+      "default": true
+    },
+    "phoneLabel": {
+      "type": "string",
+      "default": "P"
+    },
+    "email": {
+      "type": "string",
+      "default": ""
+    },
+    "showEmail": {
+      "type": "boolean",
+      "default": false
+    },
+    "website": {
+      "type": "string",
+      "default": ""
+    },
+    "showWebsite": {
+      "type": "boolean",
+      "default": false
+    },
+    "style": {
+      "type": "string",
+      "default": "plain"
+    },
+    "showIcons": {
+      "type": "boolean",
+      "default": false
+    },
+    "accentColor": {
+      "type": "string",
+      "default": "primary"
+    },
+    "textColor": {
+      "type": "string",
+      "default": ""
+    },
+    "fontSize": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}
