@@ -1,0 +1,1 @@
+{"version":3,"file":"bs-icons/style-index.css","mappings":";;;AACA;EAA6B;AAC7B,C","sources":["webpack://div/./src/bs-icons/style.scss"],"sourcesContent":["// Frontend styles handled by Bootstrap / inline SVG\n.wp-block-wmblocks-bs-icon { display: inline-block; }\n"],"names":[],"sourceRoot":""}

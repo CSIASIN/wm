@@ -19,10 +19,12 @@ $heading_class = implode( ' ', array_filter( [
 	$custom_class,
 ], 'strlen' ) );
 
-$wrapper_attributes = get_block_wrapper_attributes();
+$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => $heading_class ] );
 ?>
-<div <?php echo $wrapper_attributes; ?>>
-	<<?php echo $tag; ?><?php if ( $heading_class ) echo ' class="' . $heading_class . '"'; ?>>
+
+	<<?php echo $tag; ?> <?php if ( $heading_class ) echo $wrapper_attributes;  ?>>
 		<?php echo $content; ?>
 	</<?php echo $tag; ?>>
-</div>
+
+
+

@@ -801,6 +801,67 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
 	),
+	'bs-icons' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/bs-icon',
+		'version' => '0.1.0',
+		'title' => 'Bootstrap Icon',
+		'category' => 'watermelon-blocks',
+		'icon' => 'star-filled',
+		'description' => 'Insert any Bootstrap Icon by name with size, color, alignment and link options.',
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'iconName' => array(
+				'type' => 'string',
+				'default' => 'star'
+			),
+			'iconSvg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'size' => array(
+				'type' => 'string',
+				'default' => '2rem'
+			),
+			'color' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'align' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'linkUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'linkTarget' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'ariaLabel' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'bs-images' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,

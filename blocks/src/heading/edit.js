@@ -72,7 +72,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		? DISPLAY_SIZES[ displayClass ]
 		: LEVEL_SIZES[ level ];
 
-	const blockProps = useBlockProps( { className: 'wmblocks-bs-heading-wrapper' } );
+	const blockProps = useBlockProps( { className: [ 'wmblocks-bs-heading-wrapper', headingClass ].filter(Boolean).join(' ') } );
 
 	return (
 		<>

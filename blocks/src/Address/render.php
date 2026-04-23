@@ -118,13 +118,16 @@ $address_content = implode("<br>\n", $lines);
 
 // ── Build address class string ────────────────────────────────────────────
 $address_classes = implode(' ', array_filter([$text_color, $font_size], 'strlen'));
-$address_cls_attr = $address_classes ? ' class="' . esc_attr($address_classes) . '"' : '';
+$address_cls_attr = $address_classes ?  esc_attr($address_classes)  : '';
 
-// ── Build the <address> element ────────────────────────────────────────────
-$address_html = '<address' . $address_cls_attr . '>' . "\n" . $address_content . "\n" . '</address>';
+
 
 // ── Wrap in presentation style ─────────────────────────────────────────────
-$wrapper_attr = get_block_wrapper_attributes();
+$wrapper_attr = get_block_wrapper_attributes( [ 'class' => $address_cls_attr ] );
+
+// ── Build the <address> element ────────────────────────────────────────────
+$address_html = '<address '.$wrapper_attr . '>' . "\n" . $address_content . "\n" . '</address>';
+
 
 switch ($style) {
 	case 'card':
@@ -146,4 +149,4 @@ switch ($style) {
 		break;
 }
 ?>
-<div <?php echo $wrapper_attr; ?>><?php echo $inner; ?></div>
+ <?php echo $inner; ?>
