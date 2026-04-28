@@ -51,7 +51,7 @@ $wrapper_attributes = get_block_wrapper_attributes( [
 	// ── Heading (with optional icon) ──────────────────────────────────
 	if ( $show_heading && $heading ) :
 	?>
-		<h4 class="alert-heading d-flex align-items-center gap-2">
+		<h4 class="alert-heading">
 			<?php if ( $show_icon ) : ?>
 				<i class="bi <?php echo esc_attr( $safe_icon ); ?>" aria-hidden="true"></i>
 			<?php endif; ?>

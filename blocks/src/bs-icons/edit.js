@@ -1,33 +1,66 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, SelectControl, ToggleControl, RangeControl, Spinner } from '@wordpress/components';
+import {
+	PanelBody, TextControl, SelectControl, ToggleControl,
+	Spinner, TabPanel, SearchControl,
+} from '@wordpress/components';
 import { useState, useEffect, useCallback, useRef } from '@wordpress/element';
 import './editor.scss';
 
 const ICON_CDN  = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/icons/';
-// wmblocksIconData is localised by ajax-handler.php via wp_localize_script / wp_add_inline_script.
-// If nonce is empty the AJAX calls will 403 — check ajax-handler.php is required in functions.php.
-const AJAX_DATA = window.wmblocksIconData || { ajaxUrl: 'ajaxurl', nonce: ''};
+const AJAX_DATA = window.wmblocksIconData || { ajaxUrl: 'ajaxurl', nonce: '' };
 if ( ! AJAX_DATA.nonce ) {
-	console.warn( '[wmblocks/bs-icon] wmblocksIconData nonce is empty. Make sure ajax-handler.php is required in functions.php.' );
+	console.warn( '[wmblocks/bs-icon] wmblocksIconData nonce is empty. Ensure ajax-handler.php is required in functions.php.' );
 }
-const PER_PAGE  = 48;
+
+// ── Tab groups — 3 parent tabs, each with sub-categories ─────────────────────
+// "all" is always the first sub-category in every group so users can browse
+// everything within that group without picking a specific sub-category.
+const TAB_GROUPS = [
+	{
+		name:  'interface',
+		title: '🖥 Interface',
+		cats:  [ 'all', 'arrows', 'ui', 'media', 'files', 'devices' ],
+	},
+	{
+		name:  'objects',
+		title: '🏠 Objects',
+		cats:  [ 'all', 'buildings', 'nature', 'commerce', 'people', 'misc', 'shapes' ],
+	},
+	{
+		name:  'connect',
+		title: '💬 Connect',
+		cats:  [ 'all', 'communication', 'social' ],
+	},
+];
+
+// When "all" sub-cat is chosen inside a group, pass this special key to PHP
+// which scans only the categories belonging to that group.
+// e.g. group=interface → category=arrows|ui|media|files|devices
+const GROUP_ALL_KEY = {
+	interface:  'arrows|ui|media|files|devices',
+	objects:    'buildings|nature|commerce|people|misc|shapes',
+	connect:    'communication|social',
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
 
 const COLOR_OPTS = [
-	{ label: '— Inherit —',      value: '' },
-	{ label: 'text-primary',     value: 'text-primary' },
-	{ label: 'text-secondary',   value: 'text-secondary' },
-	{ label: 'text-success',     value: 'text-success' },
-	{ label: 'text-danger',      value: 'text-danger' },
-	{ label: 'text-warning',     value: 'text-warning' },
-	{ label: 'text-info',        value: 'text-info' },
-	{ label: 'text-dark',        value: 'text-dark' },
-	{ label: 'text-light',       value: 'text-light' },
-	{ label: 'text-muted',       value: 'text-muted' },
-	{ label: 'text-white',       value: 'text-white' },
-	{ label: 'text-body',        value: 'text-body' },
+	{ label: '— Inherit —',        value: '' },
+	{ label: 'text-primary',       value: 'text-primary' },
+	{ label: 'text-secondary',     value: 'text-secondary' },
+	{ label: 'text-success',       value: 'text-success' },
+	{ label: 'text-danger',        value: 'text-danger' },
+	{ label: 'text-warning',       value: 'text-warning' },
+	{ label: 'text-info',          value: 'text-info' },
+	{ label: 'text-dark',          value: 'text-dark' },
+	{ label: 'text-light',         value: 'text-light' },
+	{ label: 'text-muted',         value: 'text-muted' },
+	{ label: 'text-white',         value: 'text-white' },
+	{ label: 'text-body',          value: 'text-body' },
 	{ label: 'text-body-emphasis', value: 'text-body-emphasis' },
 ];
+
 const ALIGN_OPTS = [
 	{ label: '— None —',    value: '' },
 	{ label: 'text-start',  value: 'text-start' },
@@ -35,7 +68,8 @@ const ALIGN_OPTS = [
 	{ label: 'text-end',    value: 'text-end' },
 ];
 
-// Fetch SVG via AJAX (with transient cache on server side)
+// ── AJAX helpers ──────────────────────────────────────────────────────────────
+
 async function fetchSvg( name ) {
 	const url = `${ AJAX_DATA.ajaxUrl }?action=wmblocks_icon_svg&nonce=${ AJAX_DATA.nonce }&name=${ encodeURIComponent( name ) }`;
 	try {
@@ -45,12 +79,13 @@ async function fetchSvg( name ) {
 	} catch { return null; }
 }
 
-// Fetch icon list page via AJAX
 async function fetchIcons( { category = 'all', search = '', page = 1 } ) {
+	const normSearch = search.trim().replace( /\s+/g, ' ' );
 	const params = new URLSearchParams( {
 		action:   'wmblocks_icon_list',
 		nonce:    AJAX_DATA.nonce,
-		category, search,
+		category,
+		search:   normSearch,
 		page:     String( page ),
 	} );
 	try {
@@ -60,16 +95,19 @@ async function fetchIcons( { category = 'all', search = '', page = 1 } ) {
 	} catch { return null; }
 }
 
-// ── Icon Grid ────────────────────────────────────────────────────────────────
+// ── Icon Grid ─────────────────────────────────────────────────────────────────
+
 function IconGrid( { onSelect, selectedName } ) {
-	const [ category,   setCategory   ] = useState( 'all' );
-	const [ search,     setSearch     ] = useState( '' );
-	const [ page,       setPage       ] = useState( 1 );
-	const [ icons,      setIcons      ] = useState( [] );
-	const [ totalPages, setTotalPages ] = useState( 1 );
-	const [ total,      setTotal      ] = useState( 0 );
-	const [ loading,    setLoading    ] = useState( false );
-	const [ categories, setCategories ] = useState( [ 'all' ] );
+	const [ search,      setSearch      ] = useState( '' );
+	const [ page,        setPage        ] = useState( 1 );
+	const [ icons,       setIcons       ] = useState( [] );
+	const [ totalPages,  setTotalPages  ] = useState( 1 );
+	const [ total,       setTotal       ] = useState( 0 );
+	const [ loading,     setLoading     ] = useState( false );
+	// activeGroup = one of TAB_GROUPS[].name
+	const [ activeGroup, setActiveGroup ] = useState( 'interface' );
+	// activeCat = sub-category slug within the active group, or 'all'
+	const [ activeCat,   setActiveCat   ] = useState( 'all' );
 	const searchTimer = useRef( null );
 
 	const load = useCallback( async ( cat, srch, pg ) => {
@@ -79,150 +117,170 @@ function IconGrid( { onSelect, selectedName } ) {
 			setIcons( data.icons );
 			setTotalPages( data.pages );
 			setTotal( data.total );
-			if ( data.categories ) setCategories( data.categories );
 		}
 		setLoading( false );
 	}, [] );
 
-	useEffect( () => { load( category, search, page ); }, [] );
+	// Derive the real PHP category key from the current group + sub-cat
+	const resolvedCat = ( group, cat ) =>
+		cat === 'all' ? GROUP_ALL_KEY[ group ] : cat;
+
+	// Initial load
+	useEffect( () => {
+		load( GROUP_ALL_KEY.interface, '', 1 );
+	}, [] );
 
 	const handleSearch = ( val ) => {
 		setSearch( val );
 		setPage( 1 );
 		clearTimeout( searchTimer.current );
-		searchTimer.current = setTimeout( () => load( category, val, 1 ), 400 );
+		// Search always spans ALL icons
+		searchTimer.current = setTimeout( () => load( 'all', val, 1 ), 400 );
 	};
 
-	const handleCategory = ( cat ) => {
-		setCategory( cat );
+	const handleGroupChange = ( groupName ) => {
+		setActiveGroup( groupName );
+		setActiveCat( 'all' );
 		setPage( 1 );
 		setSearch( '' );
-		load( cat, '', 1 );
+		load( GROUP_ALL_KEY[ groupName ], '', 1 );
+	};
+
+	const handleCatChange = ( cat ) => {
+		setActiveCat( cat );
+		setPage( 1 );
+		load( resolvedCat( activeGroup, cat ), search, 1 );
 	};
 
 	const handlePage = ( pg ) => {
 		setPage( pg );
-		load( category, search, pg );
+		load( search ? 'all' : resolvedCat( activeGroup, activeCat ), search, pg );
 	};
+
+	const currentGroup = TAB_GROUPS.find( g => g.name === activeGroup );
+
+	// The 3 parent tabs for TabPanel
+	const parentTabs = TAB_GROUPS.map( g => ( { name: g.name, title: g.title } ) );
 
 	return (
 		<div className="wmblocks-icon-picker">
 
 			{ /* Search */ }
-			<div style={ { padding: '8px', borderBottom: '1px solid #e9ecef' } }>
-				<input
-					type="search"
+			<div className="wmblocks-icon-picker__search">
+				<SearchControl
 					value={ search }
-					onChange={ e => handleSearch( e.target.value ) }
-					placeholder={ __( 'Search icons…', 'wmblocks' ) }
-					style={ { width: '100%', padding: '6px 10px', border: '1px solid #ddd', borderRadius: '4px', fontSize: '13px', outline: 'none', boxSizing: 'border-box' } }
+					onChange={ handleSearch }
+					placeholder={ __( 'Search all icons… (e.g. house heart)', 'wmblocks' ) }
+					hideLabelFromVision
 				/>
-				{ total > 0 && (
-					<div style={ { fontSize: '10px', color: '#adb5bd', marginTop: '4px' } }>
-						{ total } { __( 'icons', 'wmblocks' ) }
-						{ search && ` ${ __( 'matching', 'wmblocks' ) } "${ search }"` }
-					</div>
-				) }
+				<div className="wmblocks-icon-picker__count">
+					{ loading
+						? __( 'Loading…', 'wmblocks' )
+						: `${ total } ${ __( 'icons', 'wmblocks' ) }${ search ? ` ${ __( 'matching', 'wmblocks' ) } "${search}"` : '' }`
+					}
+				</div>
 			</div>
 
-			{ /* Category tabs */ }
-			<div style={ { display: 'flex', overflowX: 'auto', borderBottom: '1px solid #333', background: '#f8f9fa' } }>
-				{ categories.map( cat => (
-					<button key={ cat }
-						onMouseDown={ e => { e.preventDefault(); handleCategory( cat ); } }
-						style={ {
-							padding: '6px 10px', border: 'none', cursor: 'pointer', whiteSpace: 'nowrap',
-							background: category === cat ? '#fff' : 'transparent',
-							borderBottom: category === cat ? '2px solid #0d6efd' : '2px solid transparent',
-							fontSize: '11px', color: category === cat ? '#0d6efd' : '#555',
-							fontWeight: category === cat ? 600 : 400, flexShrink: 0,
-						} }
+			{ /* Only show group tabs + sub-cat pills when not searching */ }
+			{ ! search && (
+				<>
+					{ /* Parent TabPanel — 3 groups */ }
+					<TabPanel
+						className="wmblocks-icon-picker__tabs"
+						activeClass="is-active"
+						tabs={ parentTabs }
+						onSelect={ handleGroupChange }
+						initialTabName={ activeGroup }
 					>
-						{ cat }
-					</button>
-				) ) }
-			</div>
+						{ () => null }
+					</TabPanel>
+
+					{ /* Sub-category pills — scrollable single row */ }
+					{ currentGroup && (
+						<div className="wmblocks-icon-picker__subcats">
+							{ currentGroup.cats.map( cat => (
+								<button
+									key={ cat }
+									className={ `wmblocks-icon-picker__subcat-pill${ activeCat === cat ? ' is-active' : '' }` }
+									onMouseDown={ e => { e.preventDefault(); handleCatChange( cat ); } }
+								>
+									{ cat === 'all' ? __( 'All', 'wmblocks' ) : cat }
+								</button>
+							) ) }
+						</div>
+					) }
+				</>
+			) }
 
 			{ /* Icon grid */ }
-			<div style={ { padding: '8px', minHeight: '160px', position: 'relative' } }>
+			<div className="wmblocks-icon-picker__grid-wrap">
 				{ loading && (
-					<div style={ { position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.8)', zIndex: 2 } }>
+					<div className="wmblocks-icon-picker__loading">
 						<Spinner />
 					</div>
 				) }
-				<div style={ { display: 'grid', gridTemplateColumns: 'repeat(8, 1fr)', gap: '4px' } }>
+				<div className="wmblocks-icon-picker__grid">
 					{ icons.map( name => (
-						<button key={ name }
+						<button
+							key={ name }
 							title={ name }
+							className={ `wmblocks-icon-btn${ selectedName === name ? ' is-selected' : '' }` }
 							onMouseDown={ e => { e.preventDefault(); onSelect( name ); } }
-							style={ {
-								width: '100%', aspectRatio: '1', border: '1px solid',
-								borderColor: selectedName === name ? '#0d6efd' : '#e9ecef',
-								borderRadius: '4px', background: selectedName === name ? '#e8f4fd' : '#fff',
-								cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
-								padding: '4px',
-							} }
 						>
 							<img
 								src={ `${ ICON_CDN }${ name }.svg` }
 								alt={ name }
-								width="18" height="18"
-								style={ { display: 'block', pointerEvents: 'none' } }
+								width="20" height="20"
 								loading="lazy"
 							/>
 						</button>
 					) ) }
 				</div>
-
 				{ ! loading && icons.length === 0 && (
-					<div style={ { textAlign: 'center', color: '#adb5bd', padding: '20px', fontSize: '12px' } }>
-						{ __( 'No icons found', 'wmblocks' ) }
+					<div className="wmblocks-icon-picker__empty">
+						{ __( 'No icons found.', 'wmblocks' ) }
 					</div>
 				) }
 			</div>
 
 			{ /* Pagination */ }
 			{ totalPages > 1 && (
-				<div style={ { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', padding: '8px', borderTop: '1px solid #e9ecef' } }>
-					<button onMouseDown={ e => { e.preventDefault(); if ( page > 1 ) handlePage( page - 1 ); } }
+				<div className="wmblocks-icon-picker__pagination">
+					<button
+						className="wmblocks-icon-picker__page-btn"
 						disabled={ page === 1 }
-						style={ { padding: '3px 8px', border: '1px solid #ddd', borderRadius: '3px', background: '#f8f9fa', cursor: page === 1 ? 'not-allowed' : 'pointer', opacity: page === 1 ? 0.4 : 1, fontSize: '12px' } }
-					>←</button>
-					<span style={ { fontSize: '11px', color: '#555' } }>{ page } / { totalPages }</span>
-					<button onMouseDown={ e => { e.preventDefault(); if ( page < totalPages ) handlePage( page + 1 ); } }
+						onMouseDown={ e => { e.preventDefault(); if ( page > 1 ) handlePage( page - 1 ); } }
+					>‹</button>
+					<span className="wmblocks-icon-picker__page-info">
+						{ page } / { totalPages }
+					</span>
+					<button
+						className="wmblocks-icon-picker__page-btn"
 						disabled={ page === totalPages }
-						style={ { padding: '3px 8px', border: '1px solid #ddd', borderRadius: '3px', background: '#f8f9fa', cursor: page === totalPages ? 'not-allowed' : 'pointer', opacity: page === totalPages ? 0.4 : 1, fontSize: '12px' } }
-					>→</button>
+						onMouseDown={ e => { e.preventDefault(); if ( page < totalPages ) handlePage( page + 1 ); } }
+					>›</button>
 				</div>
 			) }
 		</div>
 	);
 }
 
-// ── Main Block ───────────────────────────────────────────────────────────────
+// ── Main edit ─────────────────────────────────────────────────────────────────
+
 export default function Edit( { attributes, setAttributes } ) {
 	const { iconName, iconSvg, size, textColor, align, linkUrl, linkTarget, ariaLabel, customClass } = attributes;
 	const [ loadingSvg, setLoadingSvg ] = useState( false );
 
-	// Load SVG when icon name changes
 	useEffect( () => {
 		if ( ! iconName ) return;
-		if ( iconSvg && iconSvg.includes( `<!-- ${ iconName } -->` ) ) return; // already loaded
+		if ( iconSvg && iconSvg.includes( `<!-- ${ iconName } -->` ) ) return;
 		setLoadingSvg( true );
 		fetchSvg( iconName ).then( svg => {
-			if ( svg ) {
-				// Tag with comment so we know which icon this SVG belongs to
-				setAttributes( { iconSvg: `<!-- ${ iconName } -->${ svg }` } );
-			}
+			if ( svg ) setAttributes( { iconSvg: `<!-- ${ iconName } -->${ svg }` } );
 			setLoadingSvg( false );
 		} );
 	}, [ iconName ] );
 
-	const handleSelect = ( name ) => {
-		setAttributes( { iconName: name, iconSvg: '' } );
-	};
-
-	// Build display SVG — strip the comment tag, set size
 	const displaySvg = iconSvg
 		? iconSvg.replace( /^<!--[^>]+-->/, '' )
 			.replace( /width="[^"]*"/, `width="${ size }"` )
@@ -230,51 +288,62 @@ export default function Edit( { attributes, setAttributes } ) {
 		: null;
 
 	const wrapClass = [ textColor, align, customClass ].filter( Boolean ).join( ' ' );
-	const blockProps = useBlockProps( { className: [ 'wmblocks-bs-icon-wrapper', wrapClass ].filter( Boolean ).join( ' ' ) } );
+	const blockProps = useBlockProps( {
+		className: [ 'wmblocks-bs-icon-wrapper', wrapClass ].filter( Boolean ).join( ' ' ),
+	} );
 
 	return (
 		<>
 			<InspectorControls>
-				{ /* Icon Picker */ }
+
 				<PanelBody title={ __( 'Choose Icon', 'wmblocks' ) } initialOpen={ true }>
 					{ iconName && (
-						<div style={ { display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px', padding: '8px', background: '#f0f6ff', borderRadius: '4px', border: '1px solid #cfe2ff' } }>
+						<div className="wmblocks-icon-picker__selected-badge">
 							<img src={ `${ ICON_CDN }${ iconName }.svg` } width="24" height="24" alt="" />
-							<code style={ { fontSize: '12px', color: '#0d6efd' } }>bi-{ iconName }</code>
+							<code>bi-{ iconName }</code>
 						</div>
 					) }
-					<IconGrid onSelect={ handleSelect } selectedName={ iconName } />
+					<IconGrid
+						onSelect={ name => setAttributes( { iconName: name, iconSvg: '' } ) }
+						selectedName={ iconName }
+					/>
 				</PanelBody>
 
-				{ /* Appearance */ }
 				<PanelBody title={ __( 'Appearance', 'wmblocks' ) } initialOpen={ true }>
 					<TextControl
 						label={ __( 'Size', 'wmblocks' ) }
 						value={ size }
 						onChange={ v => setAttributes( { size: v } ) }
 						placeholder="2rem"
-						help={ __( 'e.g. 1rem, 2rem, 48px, 3em', 'wmblocks' ) }
+						help={ __( 'Any CSS unit: 2rem, 48px, 3em', 'wmblocks' ) }
 					/>
-					<SelectControl label={ __( 'Color', 'wmblocks' ) }     value={ textColor } options={ COLOR_OPTS }  onChange={ v => setAttributes( { textColor: v } ) } />
-					<SelectControl label={ __( 'Alignment', 'wmblocks' ) } value={ align }     options={ ALIGN_OPTS } onChange={ v => setAttributes( { align: v } ) } />
+					<SelectControl
+						label={ __( 'Color', 'wmblocks' ) }
+						value={ textColor }
+						options={ COLOR_OPTS }
+						onChange={ v => setAttributes( { textColor: v } ) }
+					/>
+					<SelectControl
+						label={ __( 'Alignment', 'wmblocks' ) }
+						value={ align }
+						options={ ALIGN_OPTS }
+						onChange={ v => setAttributes( { align: v } ) }
+					/>
 				</PanelBody>
 
-				{ /* Link */ }
 				<PanelBody title={ __( 'Link', 'wmblocks' ) } initialOpen={ false }>
-					<TextControl label={ __( 'URL', 'wmblocks' ) }   value={ linkUrl }   onChange={ v => setAttributes( { linkUrl: v } ) }   type="url" placeholder="https://" />
+					<TextControl label={ __( 'URL', 'wmblocks' ) } value={ linkUrl } onChange={ v => setAttributes( { linkUrl: v } ) } type="url" placeholder="https://" />
 					<ToggleControl label={ __( 'Open in new tab', 'wmblocks' ) } checked={ !! linkTarget } onChange={ v => setAttributes( { linkTarget: v } ) } />
 					<TextControl label={ __( 'Aria Label', 'wmblocks' ) } value={ ariaLabel } onChange={ v => setAttributes( { ariaLabel: v } ) }
-						help={ __( 'Required for accessibility when using a linked icon without visible text.', 'wmblocks' ) } />
+						help={ __( 'Required for accessibility on linked icons.', 'wmblocks' ) } />
 				</PanelBody>
 
-				{ /* Advanced */ }
 				<PanelBody title={ __( 'Advanced', 'wmblocks' ) } initialOpen={ false }>
 					<TextControl label={ __( 'Extra Classes', 'wmblocks' ) } value={ customClass } onChange={ v => setAttributes( { customClass: v } ) } />
 				</PanelBody>
 
 			</InspectorControls>
 
-			{ /* Canvas preview */ }
 			<div { ...blockProps }>
 				{ loadingSvg && <Spinner /> }
 				{ ! loadingSvg && displaySvg && (
@@ -285,8 +354,8 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 				) }
 				{ ! loadingSvg && ! displaySvg && (
-					<div style={ { display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '8px 12px', border: '2px dashed #dee2e6', borderRadius: '4px', color: '#adb5bd', fontSize: '12px' } }>
-						<span>🔵</span>{ __( 'Select an icon in the sidebar →', 'wmblocks' ) }
+					<div className="wmblocks-bs-icon-placeholder">
+						<span>⬡</span>{ __( 'Select an icon →', 'wmblocks' ) }
 					</div>
 				) }
 			</div>

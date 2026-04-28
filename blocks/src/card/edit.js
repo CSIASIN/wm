@@ -52,18 +52,23 @@ const ALIGN_OPTIONS = [
 ];
 
 const BODY_TEMPLATE = [
-	[ 'core/heading',   { level: 5, placeholder: __( 'Card title…', 'wmblocks' ) } ],
-	[ 'core/paragraph', { placeholder: __( 'Card body text…', 'wmblocks' )        } ],
+	[ 'core/heading',   { level: 5, placeholder: __( 'Card title…', 'wmblocks' ), className: 'card-title' } ],
+	[ 'core/paragraph', { placeholder: __( 'Card body text…', 'wmblocks' ), className: 'card-text'        } ],
+	[ 'wmblocks/buttons', { placeholder: __( 'Go Somewhere', 'wmblocks' )        } ],
 ];
 
 export default function Edit( { attributes, setAttributes } ) {
 	const { bgColor, borderColor, shadow, borderRadius, noBorder, textAlign, customWidth } = attributes;
 
-	// Build preview card classes
+	// 1. Build the Bootstrap classes
 	const cardClasses = [ 'card', bgColor, borderColor, shadow, borderRadius, noBorder ? 'border-0' : '', textAlign ]
 		.filter( Boolean ).join( ' ' );
 
-	const blockProps = useBlockProps( { className: 'wmblocks-card-wrapper' } );
+	// 2. Apply classes and styles directly to the block wrapper
+	const blockProps = useBlockProps( { 
+		className: cardClasses,
+		style: { width: customWidth || undefined }
+	} );
 
 	return (
 		<>
@@ -120,19 +125,18 @@ export default function Edit( { attributes, setAttributes } ) {
 				</PanelBody>
 			</InspectorControls>
 
+			{/* Use the blockProps on the card div itself */}
 			<div { ...blockProps }>
-				<div className="wmblocks-card-label">
+				{/* Helper label for the editor only */}
+				<div className="wmblocks-card-label" style={{  fontSize: '10px', position: 'absolute', top: 0, left: 0, backgroundColor: 'green', color: 'white', padding: '1px 3px', }}>
 					<span>Card</span>
-					{ bgColor     && <span className="wmblocks-card-chip">{ bgColor }</span> }
-					{ shadow      && <span className="wmblocks-card-chip">{ shadow }</span> }
-					{ noBorder    && <span className="wmblocks-card-chip">no border</span> }
-					{ customWidth && <span className="wmblocks-card-chip">{ customWidth }</span> }
+					{ bgColor     && <span className="wmblocks-card-chip"> • { bgColor }</span> }
+					{ shadow      && <span className="wmblocks-card-chip"> • { shadow }</span> }
+					{ customWidth && <span className="wmblocks-card-chip"> • { customWidth }</span> }
 				</div>
 
-				<div className={ cardClasses } style={ customWidth ? { width: customWidth } : {} }>
-					<div className="card-body">
-						<InnerBlocks template={ BODY_TEMPLATE } templateLock={ false } />
-					</div>
+				<div className="card-body">
+					<InnerBlocks template={ BODY_TEMPLATE } templateLock={ true } />
 				</div>
 			</div>
 		</>

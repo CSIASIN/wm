@@ -11,7 +11,6 @@ import {
 	ToggleControl,
 	ToolbarGroup,
 	ToolbarButton,
-	PanelRow, ExternalLink,
 } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import './editor.scss';
@@ -193,18 +192,6 @@ export default function Edit( { attributes, setAttributes } ) {
 						help={ __( 'When on, badges flow as inline elements inside text rather than a flex row.', 'wmblocks' ) }
 					/>
 				</PanelBody>
-				        <InspectorControls>
-               <div style={ { display: 'flex', alignItems: 'left', gap: '4px', marginBottom: '10px', padding: '6px 10px', background: '#f0f6fc', borderRadius: '4px', border: '1px solid #c8e1ff' } }>
-                    <PanelRow>
-                        <p>{ __( 'Need help with this block?', 'wm' ) }</p>
-                    </PanelRow>
-                    <PanelRow>
-                        <ExternalLink href="https://www.csias.in">
-                            { __( 'View Full Documentation', 'wm' ) }
-                        </ExternalLink>
-                    </PanelRow>
-</div>
-            </InspectorControls>
 			</InspectorControls>
 
 			{/* ══════════════════════════════════════════════════════════
@@ -284,7 +271,7 @@ export default function Edit( { attributes, setAttributes } ) {
 											className={ 'wmblocks-badge-action wmblocks-badge-action--expand' + ( isExpanded ? ' is-active' : '' ) }
 											onClick={ () => setExpandedId( isExpanded ? null : badge.id ) }
 											title={ isExpanded ? __( 'Close options', 'wmblocks' ) : __( 'Open options', 'wmblocks' ) }
-										>{ isExpanded ? '▲' : '▼' }</button>
+										>{ isExpanded ? '▲ Close' : '▼ Edit' }</button>
 										<button
 											className="wmblocks-badge-action wmblocks-badge-action--remove"
 											onClick={ () => removeBadge( badge.id ) }
@@ -297,6 +284,19 @@ export default function Edit( { attributes, setAttributes } ) {
 								{/* ── Expanded options panel ──────────────────── */}
 								{ isExpanded && (
 									<div className="wmblocks-badge-item__detail">
+
+										{/* ── Panel header with close button ── */}
+										<div className="wmblocks-badge-detail-header">
+											<span className="wmblocks-badge-detail-header__title">
+												{ __( 'Badge', 'wmblocks' ) } { index + 1 }
+												{ badge.text ? ` — "${ badge.text.replace( /<[^>]*>/g, '' ) }"` : '' }
+											</span>
+											<button
+												className="wmblocks-badge-detail-close"
+												onClick={ () => setExpandedId( null ) }
+												title={ __( 'Close panel', 'wmblocks' ) }
+											>✕ { __( 'Close', 'wmblocks' ) }</button>
+										</div>
 
 										{/* Colour swatches */}
 										<div className="wmblocks-badge-detail-row">
@@ -418,7 +418,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 				{/* ── Footer hint ──────────────────────────────────────── */}
 				<p className="wmblocks-badge-footer-hint">
-					{ __( 'Click label to edit · ▼ for colour, shape & link · colours in toolbar', 'wmblocks' ) }
+					{ __( 'Click label to edit inline · ▼ Edit opens options · ✕ Close returns to badges · colours in toolbar', 'wmblocks' ) }
 				</p>
 
 			</div>

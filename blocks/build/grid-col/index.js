@@ -63,7 +63,7 @@ const ALIGN_SELF_OPTS = [none, ...['start', 'end', 'center', 'baseline', 'stretc
 }))];
 
 // Wide allowed blocks — col accepts everything so authors can nest rows inside
-const ALLOWED = ['wmblocks/grid-row', 'wmblocks/grid-container', 'wmblocks/container', 'wmblocks/flex-container', 'wmblocks/vstack', 'wmblocks/hstack', 'core/paragraph', 'core/heading', 'core/image', 'core/list', 'core/group', 'core/columns', 'core/html', 'wmblocks/bs-image', 'wmblocks/bs-figure', 'wmblocks/object-fit', 'wmblocks/accordion', 'wmblocks/tabs', 'wmblocks/carousel', 'wmblocks/collapse', 'wmblocks/modal', 'wmblocks/toast', 'wmblocks/progress', 'wmblocks/list-group', 'wmblocks/bs-form', 'wmblocks/icon-link', 'wmblocks/image-link', 'wmblocks/position-wrapper'];
+const ALLOWED = ['wmblocks/grid-row', 'wmblocks/grid-container', 'wmblocks/container', 'wmblocks/flex-container', 'wmblocks/vstack', 'wmblocks/hstack', 'core/paragraph', 'core/heading', 'core/image', 'core/list', 'core/group', 'core/columns', 'core/html', 'wmblocks/bs-image', 'wmblocks/bs-figure', 'wmblocks/object-fit', 'wmblocks/accordion', 'wmblocks/tabs', 'wmblocks/carousel', 'wmblocks/collapse', 'wmblocks/modal', 'wmblocks/toast', 'wmblocks/progress', 'wmblocks/list-group', 'wmblocks/bs-form', 'wmblocks/icon-link', 'wmblocks/image-link', 'wmblocks/position-wrapper', 'wmblocks/card'];
 const CONTENT_TEMPLATE = [['core/paragraph', {
   placeholder: 'Column content…'
 }]];

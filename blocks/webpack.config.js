@@ -8,5 +8,6 @@ module.exports = {
 		'formats/tooltips/index': path.resolve( process.cwd(), 'src/formats/tooltips/index.js' ),
 		'formats/popover/index': path.resolve( process.cwd(), 'src/formats/popover/index.js' ),
 		'formats/text-utils/index': path.resolve( process.cwd(), 'src/formats/text-utils/index.js' ),
+		'formats/inline-icon/index': path.resolve( process.cwd(), 'src/formats/inline-icon/index.js' ),
 	},
 };

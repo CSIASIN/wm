@@ -41,7 +41,7 @@ const ALLOWED = [
 	'wmblocks/accordion', 'wmblocks/tabs', 'wmblocks/carousel',
 	'wmblocks/collapse', 'wmblocks/modal', 'wmblocks/toast',
 	'wmblocks/progress', 'wmblocks/list-group', 'wmblocks/bs-form',
-	'wmblocks/icon-link', 'wmblocks/image-link', 'wmblocks/position-wrapper',
+	'wmblocks/icon-link', 'wmblocks/image-link', 'wmblocks/position-wrapper','wmblocks/card',
 ];
 
 const CONTENT_TEMPLATE = [

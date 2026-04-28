@@ -11,9 +11,5 @@ registerBlockType( metadata.name, {
 	 * save() persists InnerBlocks so the child content (iframe, image, video…)
 	 * is stored in post_content and passed to render.php as $content.
 	 */
-	save: () => (
-		<div { ...useBlockProps.save() }>
-			<InnerBlocks.Content />
-		</div>
-	),
+	save: () => <InnerBlocks.Content />,
 } );

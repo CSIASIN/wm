@@ -1,6 +1,209 @@
 /*!*************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/bs-icons/editor.scss ***!
   \*************************************************************************************************************************************************************************************************************************************************/
+.wmblocks-icon-picker {
+  margin: 0 -16px;
+}
+.wmblocks-icon-picker__search {
+  padding: 8px 12px 6px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.wmblocks-icon-picker__search .components-search-control {
+  margin-bottom: 4px;
+}
+.wmblocks-icon-picker__search .components-search-control input[type=search] {
+  font-size: 13px;
+  height: 32px;
+}
+.wmblocks-icon-picker__count {
+  font-size: 10px;
+  color: #a0a0a0;
+  margin-top: 2px;
+  padding: 0 2px;
+  min-height: 14px;
+}
+.wmblocks-icon-picker__tabs .components-tab-panel__tabs {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  background: #1e1e1e;
+  padding: 0;
+  margin: 0;
+  gap: 0;
+}
+.wmblocks-icon-picker__tabs .components-tab-panel__tabs-item {
+  flex: 1;
+  padding: 8px 4px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #ccc;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  text-align: center;
+  transition: color 0.1s, background 0.1s;
+}
+.wmblocks-icon-picker__tabs .components-tab-panel__tabs-item:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.07);
+}
+.wmblocks-icon-picker__tabs .components-tab-panel__tabs-item.is-active {
+  color: #fff;
+  border-bottom-color: #3858e9;
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+}
+.wmblocks-icon-picker__tabs .components-tab-panel__tab-content {
+  display: none;
+}
+.wmblocks-icon-picker__subcats {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding: 6px 10px;
+  background: #f6f7f7;
+  border-bottom: 1px solid #e0e0e0;
+  scrollbar-width: none;
+}
+.wmblocks-icon-picker__subcats::-webkit-scrollbar {
+  display: none;
+}
+.wmblocks-icon-picker__subcat-pill {
+  flex-shrink: 0;
+  padding: 3px 9px;
+  font-size: 11px;
+  font-weight: 400;
+  color: #555;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  text-transform: capitalize;
+  transition: all 0.1s;
+}
+.wmblocks-icon-picker__subcat-pill:hover {
+  border-color: #3858e9;
+  color: #3858e9;
+  background: #f0f3ff;
+}
+.wmblocks-icon-picker__subcat-pill.is-active {
+  background: #3858e9;
+  border-color: #3858e9;
+  color: #fff;
+  font-weight: 600;
+}
+.wmblocks-icon-picker__grid-wrap {
+  position: relative;
+  min-height: 140px;
+  padding: 8px;
+}
+.wmblocks-icon-picker__loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 5;
+  border-radius: 4px;
+}
+.wmblocks-icon-picker__grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 3px;
+}
+.wmblocks-icon-picker__empty {
+  text-align: center;
+  color: #a0a0a0;
+  font-size: 12px;
+  font-style: italic;
+  padding: 24px 12px;
+}
+.wmblocks-icon-picker__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 12px 8px;
+  border-top: 1px solid #e0e0e0;
+}
+.wmblocks-icon-picker__page-info {
+  font-size: 11px;
+  color: #555;
+  min-width: 40px;
+  text-align: center;
+}
+.wmblocks-icon-picker__selected-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  background: #f0f3ff;
+  border: 1px solid #c5cdf8;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.wmblocks-icon-picker__selected-badge img {
+  flex-shrink: 0;
+}
+.wmblocks-icon-picker__selected-badge code {
+  font-size: 12px;
+  color: #3858e9;
+  font-family: monospace;
+}
+.wmblocks-icon-picker__page-btn {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background: #f6f7f7;
+  font-size: 16px;
+  cursor: pointer;
+  line-height: 1;
+  color: #333;
+  transition: background 0.1s;
+}
+.wmblocks-icon-picker__page-btn:hover:not(:disabled) {
+  background: #e8ecfd;
+  border-color: #3858e9;
+  color: #3858e9;
+}
+.wmblocks-icon-picker__page-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.wmblocks-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 4px;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.1s, background 0.1s;
+}
+.wmblocks-icon-btn img {
+  display: block;
+  pointer-events: none;
+}
+.wmblocks-icon-btn:hover {
+  border-color: #3858e9;
+  background: #f0f3ff;
+}
+.wmblocks-icon-btn.is-selected {
+  border-color: #3858e9;
+  background: #e8ecfd;
+  box-shadow: 0 0 0 1px #3858e9;
+}
 .wmblocks-bs-icon-wrapper {
   border: 2px dashed #6f42c1;
   padding: 8px;
@@ -11,15 +214,15 @@
 .wmblocks-bs-icon-wrapper svg {
   display: block;
 }
-.wmblocks-icon-picker {
-  border: 1px solid #e9ecef;
+.wmblocks-bs-icon-placeholder {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: 2px dashed #dee2e6;
   border-radius: 4px;
-  overflow: hidden;
-  margin: 0 -16px;
-}
-.wmblocks-icon-picker button:focus {
-  outline: 2px solid #0d6efd;
-  outline-offset: -2px;
+  color: #a0a0a0;
+  font-size: 12px;
 }
 
 /*# sourceMappingURL=index.css.map*/

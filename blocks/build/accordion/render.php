@@ -8,10 +8,10 @@ $accordion_class = implode( ' ', array_filter( [
 	$flush ? 'accordion-flush' : '',
 ], 'strlen' ) );
 
-$wrapper_attributes = get_block_wrapper_attributes();
+$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => $accordion_class ] );
 ?>
-<div <?php echo $wrapper_attributes; ?>>
-	<div class="<?php echo $accordion_class; ?>" id="<?php echo $accordion_id; ?>">
+
+	<div <?php echo $wrapper_attributes; ?> id="<?php echo $accordion_id; ?>">
 		<?php foreach ( $block->inner_blocks as $item ) :
 			if ( $item->name !== 'wmblocks/accordion-item' ) continue;
 
@@ -51,4 +51,4 @@ $wrapper_attributes = get_block_wrapper_attributes();
 			</div>
 		<?php endforeach; ?>
 	</div>
-</div>
+

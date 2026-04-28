@@ -3,12 +3,12 @@
   \*********************************************************************************************************************************************************************************************************************************************/
 .wmblocks-card-wrapper {
   border: 2px dashed #20c997;
-  padding: 12px;
+  padding: 2px;
   border-radius: 6px;
   background: #f0fdf8;
 }
 .wmblocks-card-wrapper .wmblocks-card-label {
-  display: flex;
+  display: block;
   align-items: center;
   gap: 5px;
   font-size: 10px;

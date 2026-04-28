@@ -23,7 +23,7 @@ const RATIOS = [
 
 // Default InnerBlocks template: a placeholder iframe
 const RATIO_TEMPLATE = [
-	[ 'core/html', { content: '<iframe src="https://www.youtube.com/embed/vlDzYIIOYmM" title="Video" allowfullscreen></iframe>' } ],
+	[ 'core/html', { content: '<iframe src="https://www.youtube.com/watch?v=XqZsoesa55w" title="Video" allowfullscreen></iframe>' } ],
 ];
 
 // ── Compute padding-top % for a ratio string ───────────────────────────────

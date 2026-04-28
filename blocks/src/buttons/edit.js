@@ -441,14 +441,14 @@ export default function Edit( { attributes, setAttributes } ) {
 										title={ __( 'Move right / down', 'wmblocks' ) }
 									>→</button>
 									<button
-										className="wmblocks-btn-action wmblocks-btn-action--expand"
+										className={ 'wmblocks-btn-action wmblocks-btn-action--expand' + ( isExpanded ? ' is-active' : '' ) }
 										onClick={ ( e ) => {
 											e.stopPropagation();
 											setSelectedId( btn.id );
 											setExpandedId( isExpanded ? null : btn.id );
 										} }
 										title={ isExpanded ? __( 'Close options', 'wmblocks' ) : __( 'Open options', 'wmblocks' ) }
-									>{ isExpanded ? '▲' : '▼' }</button>
+									>{ isExpanded ? '▲ Close' : '▼ Edit' }</button>
 									<button
 										className="wmblocks-btn-action"
 										onClick={ ( e ) => { e.stopPropagation(); duplicateBtn( btn.id ); } }
@@ -465,6 +465,19 @@ export default function Edit( { attributes, setAttributes } ) {
 								{/* ── Expanded options panel ─────────────────────── */}
 								{ isExpanded && (
 									<div className="wmblocks-btn-item__detail" onClick={ ( e ) => e.stopPropagation() }>
+
+										{/* ── Panel header with close button ── */}
+										<div className="wmblocks-btn-detail-header">
+											<span className="wmblocks-btn-detail-header__title">
+												{ __( 'Button', 'wmblocks' ) } { index + 1 }
+												{ btn.label ? ` — "${ btn.label.replace( /<[^>]*>/g, '' ) }"` : '' }
+											</span>
+											<button
+												className="wmblocks-btn-detail-close"
+												onClick={ ( e ) => { e.stopPropagation(); setExpandedId( null ); } }
+												title={ __( 'Close panel', 'wmblocks' ) }
+											>✕ { __( 'Close', 'wmblocks' ) }</button>
+										</div>
 
 										{/* Variant quick-pick swatches */}
 										<div className="wmblocks-btn-detail-row">
@@ -600,7 +613,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 				{/* ── Footer hint ─────────────────────────────────────── */}
 				<p className="wmblocks-btn-footer-hint">
-					{ __( 'Click a button to select · ▼ for URL & options · style & layout in sidebar →', 'wmblocks' ) }
+					{ __( 'Click label to edit inline · ▼ Edit opens options · ✕ Close returns to buttons · style & layout in sidebar →', 'wmblocks' ) }
 				</p>
 
 			</div>

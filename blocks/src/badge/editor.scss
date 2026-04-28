@@ -71,17 +71,12 @@
 			p { margin: 0; display: inline; }
 		}
 
-		// ── Action buttons (← → ▼ ✕) ──────────────────────────────
+		// ── Action buttons (← → ▼ Edit ✕) ────────────────────────────
 		&__actions {
-			display: inline-flex;
-			gap: 2px;
-			opacity: 0;
-			transition: opacity 0.15s;
-		}
-
-		&:hover &__actions,
-		&--expanded &__actions {
-			opacity: 1;
+			display:    inline-flex;
+			gap:        2px;
+			opacity:    1;           // always visible — user must be able to find ▼ Edit
+			margin-top: 4px;
 		}
 
 		// ── Expanded detail panel ──────────────────────────────────
@@ -132,11 +127,28 @@
 		}
 
 		&--expand {
-			font-size: 7px;
+			font-size:   9px;
+			width:       auto;
+			padding:     0 8px;
+			gap:         3px;
+			font-weight: 700;
+			white-space: nowrap;
+			height:      20px;
+			// Make ▼ Edit visually stand out as the main action
+			background:  #fff4ed;
+			border-color:#fdd7b5;
+			color:       #c05a00;
+
+			&:hover:not(:disabled) {
+				background:  #fd7e14;
+				border-color:#fd7e14;
+				color:       #fff;
+			}
+
 			&.is-active {
-				background: #fff4ed;
-				border-color: #fd7e14;
-				color: #fd7e14;
+				background:  #fd7e14;
+				border-color:#fd7e14;
+				color:       #fff;
 			}
 		}
 
@@ -145,6 +157,52 @@
 				background: #dc3545;
 				border-color: #dc3545;
 			}
+		}
+	}
+
+	// ══════════════════════════════════════════════════════════════════
+	// DETAIL PANEL HEADER + CLOSE BUTTON
+	// ══════════════════════════════════════════════════════════════════
+	.wmblocks-badge-detail-header {
+		display:         flex;
+		align-items:     center;
+		justify-content: space-between;
+		gap:             8px;
+		margin-bottom:   8px;
+		padding-bottom:  8px;
+		border-bottom:   1px solid #f5c2c7;
+
+		&__title {
+			font-size:      11px;
+			font-weight:    700;
+			color:          #842029;
+			white-space:    nowrap;
+			overflow:       hidden;
+			text-overflow:  ellipsis;
+			max-width:      160px;
+		}
+	}
+
+	.wmblocks-badge-detail-close {
+		display:       inline-flex;
+		align-items:   center;
+		gap:           4px;
+		padding:       3px 10px;
+		border:        1px solid #f5c2c7;
+		border-radius: 20px;
+		background:    #fff;
+		color:         #dc3545;
+		font-size:     11px;
+		font-weight:   700;
+		cursor:        pointer;
+		flex-shrink:   0;
+		transition:    all 0.12s;
+		white-space:   nowrap;
+
+		&:hover {
+			background:    #dc3545;
+			border-color:  #dc3545;
+			color:         #fff;
 		}
 	}
 

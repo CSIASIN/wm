@@ -52,7 +52,7 @@ const RATIOS = [{
 
 // Default InnerBlocks template: a placeholder iframe
 const RATIO_TEMPLATE = [['core/html', {
-  content: '<iframe src="https://www.youtube.com/embed/vlDzYIIOYmM" title="Video" allowfullscreen></iframe>'
+  content: '<iframe src="https://www.youtube.com/watch?v=XqZsoesa55w" title="Video" allowfullscreen></iframe>'
 }]];
 
 // ── Compute padding-top % for a ratio string ───────────────────────────────
@@ -318,10 +318,7 @@ __webpack_require__.r(__webpack_exports__);
    * save() persists InnerBlocks so the child content (iframe, image, video…)
    * is stored in post_content and passed to render.php as $content.
    */
-  save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save(),
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
-  })
+  save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
 });
 
 /***/ },

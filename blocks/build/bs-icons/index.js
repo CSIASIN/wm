@@ -30,16 +30,42 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const ICON_CDN = 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/icons/';
-// wmblocksIconData is localised by ajax-handler.php via wp_localize_script / wp_add_inline_script.
-// If nonce is empty the AJAX calls will 403 — check ajax-handler.php is required in functions.php.
 const AJAX_DATA = window.wmblocksIconData || {
   ajaxUrl: 'ajaxurl',
   nonce: ''
 };
 if (!AJAX_DATA.nonce) {
-  console.warn('[wmblocks/bs-icon] wmblocksIconData nonce is empty. Make sure ajax-handler.php is required in functions.php.');
+  console.warn('[wmblocks/bs-icon] wmblocksIconData nonce is empty. Ensure ajax-handler.php is required in functions.php.');
 }
-const PER_PAGE = 48;
+
+// ── Tab groups — 3 parent tabs, each with sub-categories ─────────────────────
+// "all" is always the first sub-category in every group so users can browse
+// everything within that group without picking a specific sub-category.
+const TAB_GROUPS = [{
+  name: 'interface',
+  title: '🖥 Interface',
+  cats: ['all', 'arrows', 'ui', 'media', 'files', 'devices']
+}, {
+  name: 'objects',
+  title: '🏠 Objects',
+  cats: ['all', 'buildings', 'nature', 'commerce', 'people', 'misc', 'shapes']
+}, {
+  name: 'connect',
+  title: '💬 Connect',
+  cats: ['all', 'communication', 'social']
+}];
+
+// When "all" sub-cat is chosen inside a group, pass this special key to PHP
+// which scans only the categories belonging to that group.
+// e.g. group=interface → category=arrows|ui|media|files|devices
+const GROUP_ALL_KEY = {
+  interface: 'arrows|ui|media|files|devices',
+  objects: 'buildings|nature|commerce|people|misc|shapes',
+  connect: 'communication|social'
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 const COLOR_OPTS = [{
   label: '— Inherit —',
   value: ''
@@ -94,7 +120,8 @@ const ALIGN_OPTS = [{
   value: 'text-end'
 }];
 
-// Fetch SVG via AJAX (with transient cache on server side)
+// ── AJAX helpers ──────────────────────────────────────────────────────────────
+
 async function fetchSvg(name) {
   const url = `${AJAX_DATA.ajaxUrl}?action=wmblocks_icon_svg&nonce=${AJAX_DATA.nonce}&name=${encodeURIComponent(name)}`;
   try {
@@ -105,18 +132,17 @@ async function fetchSvg(name) {
     return null;
   }
 }
-
-// Fetch icon list page via AJAX
 async function fetchIcons({
   category = 'all',
   search = '',
   page = 1
 }) {
+  const normSearch = search.trim().replace(/\s+/g, ' ');
   const params = new URLSearchParams({
     action: 'wmblocks_icon_list',
     nonce: AJAX_DATA.nonce,
     category,
-    search,
+    search: normSearch,
     page: String(page)
   });
   try {
@@ -128,19 +154,22 @@ async function fetchIcons({
   }
 }
 
-// ── Icon Grid ────────────────────────────────────────────────────────────────
+// ── Icon Grid ─────────────────────────────────────────────────────────────────
+
 function IconGrid({
   onSelect,
   selectedName
 }) {
-  const [category, setCategory] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)('all');
   const [search, setSearch] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)('');
   const [page, setPage] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(1);
   const [icons, setIcons] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)([]);
   const [totalPages, setTotalPages] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(1);
   const [total, setTotal] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(0);
   const [loading, setLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
-  const [categories, setCategories] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(['all']);
+  // activeGroup = one of TAB_GROUPS[].name
+  const [activeGroup, setActiveGroup] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)('interface');
+  // activeCat = sub-category slug within the active group, or 'all'
+  const [activeCat, setActiveCat] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)('all');
   const searchTimer = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useRef)(null);
   const load = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useCallback)(async (cat, srch, pg) => {
     setLoading(true);
@@ -153,200 +182,133 @@ function IconGrid({
       setIcons(data.icons);
       setTotalPages(data.pages);
       setTotal(data.total);
-      if (data.categories) setCategories(data.categories);
     }
     setLoading(false);
   }, []);
+
+  // Derive the real PHP category key from the current group + sub-cat
+  const resolvedCat = (group, cat) => cat === 'all' ? GROUP_ALL_KEY[group] : cat;
+
+  // Initial load
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
-    load(category, search, page);
+    load(GROUP_ALL_KEY.interface, '', 1);
   }, []);
   const handleSearch = val => {
     setSearch(val);
     setPage(1);
     clearTimeout(searchTimer.current);
-    searchTimer.current = setTimeout(() => load(category, val, 1), 400);
+    // Search always spans ALL icons
+    searchTimer.current = setTimeout(() => load('all', val, 1), 400);
   };
-  const handleCategory = cat => {
-    setCategory(cat);
+  const handleGroupChange = groupName => {
+    setActiveGroup(groupName);
+    setActiveCat('all');
     setPage(1);
     setSearch('');
-    load(cat, '', 1);
+    load(GROUP_ALL_KEY[groupName], '', 1);
+  };
+  const handleCatChange = cat => {
+    setActiveCat(cat);
+    setPage(1);
+    load(resolvedCat(activeGroup, cat), search, 1);
   };
   const handlePage = pg => {
     setPage(pg);
-    load(category, search, pg);
+    load(search ? 'all' : resolvedCat(activeGroup, activeCat), search, pg);
   };
+  const currentGroup = TAB_GROUPS.find(g => g.name === activeGroup);
+
+  // The 3 parent tabs for TabPanel
+  const parentTabs = TAB_GROUPS.map(g => ({
+    name: g.name,
+    title: g.title
+  }));
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     className: "wmblocks-icon-picker",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-      style: {
-        padding: '8px',
-        borderBottom: '1px solid #e9ecef'
-      },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-        type: "search",
+      className: "wmblocks-icon-picker__search",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SearchControl, {
         value: search,
-        onChange: e => handleSearch(e.target.value),
-        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Search icons…', 'wmblocks'),
-        style: {
-          width: '100%',
-          padding: '6px 10px',
-          border: '1px solid #ddd',
-          borderRadius: '4px',
-          fontSize: '13px',
-          outline: 'none',
-          boxSizing: 'border-box'
-        }
-      }), total > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-        style: {
-          fontSize: '10px',
-          color: '#adb5bd',
-          marginTop: '4px'
-        },
-        children: [total, " ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('icons', 'wmblocks'), search && ` ${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('matching', 'wmblocks')} "${search}"`]
+        onChange: handleSearch,
+        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Search all icons… (e.g. house heart)', 'wmblocks'),
+        hideLabelFromVision: true
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "wmblocks-icon-picker__count",
+        children: loading ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Loading…', 'wmblocks') : `${total} ${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('icons', 'wmblocks')}${search ? ` ${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('matching', 'wmblocks')} "${search}"` : ''}`
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-      style: {
-        display: 'flex',
-        overflowX: 'auto',
-        borderBottom: '1px solid #333',
-        background: '#f8f9fa'
-      },
-      children: categories.map(cat => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-        onMouseDown: e => {
-          e.preventDefault();
-          handleCategory(cat);
-        },
-        style: {
-          padding: '6px 10px',
-          border: 'none',
-          cursor: 'pointer',
-          whiteSpace: 'nowrap',
-          background: category === cat ? '#fff' : 'transparent',
-          borderBottom: category === cat ? '2px solid #0d6efd' : '2px solid transparent',
-          fontSize: '11px',
-          color: category === cat ? '#0d6efd' : '#555',
-          fontWeight: category === cat ? 600 : 400,
-          flexShrink: 0
-        },
-        children: cat
-      }, cat))
+    }), !search && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TabPanel, {
+        className: "wmblocks-icon-picker__tabs",
+        activeClass: "is-active",
+        tabs: parentTabs,
+        onSelect: handleGroupChange,
+        initialTabName: activeGroup,
+        children: () => null
+      }), currentGroup && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "wmblocks-icon-picker__subcats",
+        children: currentGroup.cats.map(cat => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+          className: `wmblocks-icon-picker__subcat-pill${activeCat === cat ? ' is-active' : ''}`,
+          onMouseDown: e => {
+            e.preventDefault();
+            handleCatChange(cat);
+          },
+          children: cat === 'all' ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('All', 'wmblocks') : cat
+        }, cat))
+      })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-      style: {
-        padding: '8px',
-        minHeight: '160px',
-        position: 'relative'
-      },
+      className: "wmblocks-icon-picker__grid-wrap",
       children: [loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        style: {
-          position: 'absolute',
-          inset: 0,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background: 'rgba(255,255,255,0.8)',
-          zIndex: 2
-        },
+        className: "wmblocks-icon-picker__loading",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Spinner, {})
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        style: {
-          display: 'grid',
-          gridTemplateColumns: 'repeat(8, 1fr)',
-          gap: '4px'
-        },
+        className: "wmblocks-icon-picker__grid",
         children: icons.map(name => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
           title: name,
+          className: `wmblocks-icon-btn${selectedName === name ? ' is-selected' : ''}`,
           onMouseDown: e => {
             e.preventDefault();
             onSelect(name);
           },
-          style: {
-            width: '100%',
-            aspectRatio: '1',
-            border: '1px solid',
-            borderColor: selectedName === name ? '#0d6efd' : '#e9ecef',
-            borderRadius: '4px',
-            background: selectedName === name ? '#e8f4fd' : '#fff',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '4px'
-          },
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
             src: `${ICON_CDN}${name}.svg`,
             alt: name,
-            width: "18",
-            height: "18",
-            style: {
-              display: 'block',
-              pointerEvents: 'none'
-            },
+            width: "20",
+            height: "20",
             loading: "lazy"
           })
         }, name))
       }), !loading && icons.length === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        style: {
-          textAlign: 'center',
-          color: '#adb5bd',
-          padding: '20px',
-          fontSize: '12px'
-        },
-        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('No icons found', 'wmblocks')
+        className: "wmblocks-icon-picker__empty",
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('No icons found.', 'wmblocks')
       })]
     }), totalPages > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-      style: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '4px',
-        padding: '8px',
-        borderTop: '1px solid #e9ecef'
-      },
+      className: "wmblocks-icon-picker__pagination",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+        className: "wmblocks-icon-picker__page-btn",
+        disabled: page === 1,
         onMouseDown: e => {
           e.preventDefault();
           if (page > 1) handlePage(page - 1);
         },
-        disabled: page === 1,
-        style: {
-          padding: '3px 8px',
-          border: '1px solid #ddd',
-          borderRadius: '3px',
-          background: '#f8f9fa',
-          cursor: page === 1 ? 'not-allowed' : 'pointer',
-          opacity: page === 1 ? 0.4 : 1,
-          fontSize: '12px'
-        },
-        children: "\u2190"
+        children: "\u2039"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
-        style: {
-          fontSize: '11px',
-          color: '#555'
-        },
+        className: "wmblocks-icon-picker__page-info",
         children: [page, " / ", totalPages]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+        className: "wmblocks-icon-picker__page-btn",
+        disabled: page === totalPages,
         onMouseDown: e => {
           e.preventDefault();
           if (page < totalPages) handlePage(page + 1);
         },
-        disabled: page === totalPages,
-        style: {
-          padding: '3px 8px',
-          border: '1px solid #ddd',
-          borderRadius: '3px',
-          background: '#f8f9fa',
-          cursor: page === totalPages ? 'not-allowed' : 'pointer',
-          opacity: page === totalPages ? 0.4 : 1,
-          fontSize: '12px'
-        },
-        children: "\u2192"
+        children: "\u203A"
       })]
     })]
   });
 }
 
-// ── Main Block ───────────────────────────────────────────────────────────────
+// ── Main edit ─────────────────────────────────────────────────────────────────
+
 function Edit({
   attributes,
   setAttributes
@@ -363,30 +325,17 @@ function Edit({
     customClass
   } = attributes;
   const [loadingSvg, setLoadingSvg] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
-
-  // Load SVG when icon name changes
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
     if (!iconName) return;
-    if (iconSvg && iconSvg.includes(`<!-- ${iconName} -->`)) return; // already loaded
+    if (iconSvg && iconSvg.includes(`<!-- ${iconName} -->`)) return;
     setLoadingSvg(true);
     fetchSvg(iconName).then(svg => {
-      if (svg) {
-        // Tag with comment so we know which icon this SVG belongs to
-        setAttributes({
-          iconSvg: `<!-- ${iconName} -->${svg}`
-        });
-      }
+      if (svg) setAttributes({
+        iconSvg: `<!-- ${iconName} -->${svg}`
+      });
       setLoadingSvg(false);
     });
   }, [iconName]);
-  const handleSelect = name => {
-    setAttributes({
-      iconName: name,
-      iconSvg: ''
-    });
-  };
-
-  // Build display SVG — strip the comment tag, set size
   const displaySvg = iconSvg ? iconSvg.replace(/^<!--[^>]+-->/, '').replace(/width="[^"]*"/, `width="${size}"`).replace(/height="[^"]*"/, `height="${size}"`) : null;
   const wrapClass = [textColor, align, customClass].filter(Boolean).join(' ');
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
@@ -398,30 +347,20 @@ function Edit({
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Choose Icon', 'wmblocks'),
         initialOpen: true,
         children: [iconName && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-          style: {
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            marginBottom: '10px',
-            padding: '8px',
-            background: '#f0f6ff',
-            borderRadius: '4px',
-            border: '1px solid #cfe2ff'
-          },
+          className: "wmblocks-icon-picker__selected-badge",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
             src: `${ICON_CDN}${iconName}.svg`,
             width: "24",
             height: "24",
             alt: ""
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("code", {
-            style: {
-              fontSize: '12px',
-              color: '#0d6efd'
-            },
             children: ["bi-", iconName]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(IconGrid, {
-          onSelect: handleSelect,
+          onSelect: name => setAttributes({
+            iconName: name,
+            iconSvg: ''
+          }),
           selectedName: iconName
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
@@ -434,7 +373,7 @@ function Edit({
             size: v
           }),
           placeholder: "2rem",
-          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('e.g. 1rem, 2rem, 48px, 3em', 'wmblocks')
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Any CSS unit: 2rem, 48px, 3em', 'wmblocks')
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Color', 'wmblocks'),
           value: textColor,
@@ -473,7 +412,7 @@ function Edit({
           onChange: v => setAttributes({
             ariaLabel: v
           }),
-          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Required for accessibility when using a linked icon without visible text.', 'wmblocks')
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Required for accessibility on linked icons.', 'wmblocks')
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Advanced', 'wmblocks'),
@@ -495,19 +434,10 @@ function Edit({
         },
         title: iconName
       }), !loadingSvg && !displaySvg && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-        style: {
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '6px',
-          padding: '8px 12px',
-          border: '2px dashed #dee2e6',
-          borderRadius: '4px',
-          color: '#adb5bd',
-          fontSize: '12px'
-        },
+        className: "wmblocks-bs-icon-placeholder",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-          children: "\uD83D\uDD35"
-        }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Select an icon in the sidebar →', 'wmblocks')]
+          children: "\u2B21"
+        }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Select an icon →', 'wmblocks')]
       })]
     })]
   });

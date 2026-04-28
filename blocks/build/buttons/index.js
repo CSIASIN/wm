@@ -551,14 +551,14 @@ function Edit({
                 title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Move right / down', 'wmblocks'),
                 children: "\u2192"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-                className: "wmblocks-btn-action wmblocks-btn-action--expand",
+                className: 'wmblocks-btn-action wmblocks-btn-action--expand' + (isExpanded ? ' is-active' : ''),
                 onClick: e => {
                   e.stopPropagation();
                   setSelectedId(btn.id);
                   setExpandedId(isExpanded ? null : btn.id);
                 },
                 title: isExpanded ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Close options', 'wmblocks') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Open options', 'wmblocks'),
-                children: isExpanded ? '▲' : '▼'
+                children: isExpanded ? '▲ Close' : '▼ Edit'
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
                 className: "wmblocks-btn-action",
                 onClick: e => {
@@ -581,6 +581,20 @@ function Edit({
               className: "wmblocks-btn-item__detail",
               onClick: e => e.stopPropagation(),
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                className: "wmblocks-btn-detail-header",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+                  className: "wmblocks-btn-detail-header__title",
+                  children: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button', 'wmblocks'), " ", index + 1, btn.label ? ` — "${btn.label.replace(/<[^>]*>/g, '')}"` : '']
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("button", {
+                  className: "wmblocks-btn-detail-close",
+                  onClick: e => {
+                    e.stopPropagation();
+                    setExpandedId(null);
+                  },
+                  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Close panel', 'wmblocks'),
+                  children: ["\u2715 ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Close', 'wmblocks')]
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                 className: "wmblocks-btn-detail-row",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
                   className: "wmblocks-btn-detail-label",
@@ -747,7 +761,7 @@ function Edit({
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
         className: "wmblocks-btn-footer-hint",
-        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Click a button to select · ▼ for URL & options · style & layout in sidebar →', 'wmblocks')
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Click label to edit inline · ▼ Edit opens options · ✕ Close returns to buttons · style & layout in sidebar →', 'wmblocks')
       })]
     })]
   });

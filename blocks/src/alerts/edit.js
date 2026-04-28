@@ -292,12 +292,12 @@ export default function Edit( { attributes, setAttributes } ) {
 					  * Users can drop in paragraphs, lists, buttons, images —
 					  * anything — directly inside the alert.
 					  */}
-					<div className="wmblocks-alert-body">
+					
 						<InnerBlocks
 							template={ ALERT_BODY_TEMPLATE }
 							templateLock={ false }
 						/>
-					</div>
+				
 
 					{/* Optional alert-link row */}
 					{ showLink && (

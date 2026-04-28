@@ -24,12 +24,12 @@ $card_classes = implode( ' ', array_filter(
 ) );
 
 $width_style  = $custom_width ? ' style="width:' . esc_attr( $custom_width ) . ';"' : '';
-$wrapper_attr = get_block_wrapper_attributes();
+$wrapper_attr = get_block_wrapper_attributes( [ 'class' => $card_classes ] );
 ?>
-<div <?php echo $wrapper_attr; ?>>
-	<div class="<?php echo esc_attr( $card_classes ); ?>"<?php echo $width_style; ?>>
+
+	<div <?php echo $wrapper_attr; ?> <?php echo $width_style; ?>>
 		<div class="card-body">
 			<?php echo $content; ?>
 		</div>
 	</div>
-</div>
+

@@ -132,9 +132,13 @@ const ALIGN_OPTIONS = [{
 }];
 const BODY_TEMPLATE = [['core/heading', {
   level: 5,
-  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Card title…', 'wmblocks')
+  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Card title…', 'wmblocks'),
+  className: 'card-title'
 }], ['core/paragraph', {
-  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Card body text…', 'wmblocks')
+  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Card body text…', 'wmblocks'),
+  className: 'card-text'
+}], ['wmblocks/buttons', {
+  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Go Somewhere', 'wmblocks')
 }]];
 function Edit({
   attributes,
@@ -150,10 +154,15 @@ function Edit({
     customWidth
   } = attributes;
 
-  // Build preview card classes
+  // 1. Build the Bootstrap classes
   const cardClasses = ['card', bgColor, borderColor, shadow, borderRadius, noBorder ? 'border-0' : '', textAlign].filter(Boolean).join(' ');
+
+  // 2. Apply classes and styles directly to the block wrapper
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-    className: 'wmblocks-card-wrapper'
+    className: cardClasses,
+    style: {
+      width: customWidth || undefined
+    }
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.BlockControls, {
@@ -245,32 +254,32 @@ function Edit({
       ...blockProps,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "wmblocks-card-label",
+        style: {
+          fontSize: '10px',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          backgroundColor: 'green',
+          color: 'white',
+          padding: '1px 3px'
+        },
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
           children: "Card"
-        }), bgColor && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        }), bgColor && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
           className: "wmblocks-card-chip",
-          children: bgColor
-        }), shadow && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+          children: [" \u2022 ", bgColor]
+        }), shadow && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
           className: "wmblocks-card-chip",
-          children: shadow
-        }), noBorder && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+          children: [" \u2022 ", shadow]
+        }), customWidth && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
           className: "wmblocks-card-chip",
-          children: "no border"
-        }), customWidth && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-          className: "wmblocks-card-chip",
-          children: customWidth
+          children: [" \u2022 ", customWidth]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        className: cardClasses,
-        style: customWidth ? {
-          width: customWidth
-        } : {},
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          className: "card-body",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
-            template: BODY_TEMPLATE,
-            templateLock: false
-          })
+        className: "card-body",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
+          template: BODY_TEMPLATE,
+          templateLock: true
         })
       })]
     })]

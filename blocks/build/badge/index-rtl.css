@@ -58,11 +58,8 @@
 .wmblocks-badge-wrapper .wmblocks-badge-item__actions {
   display: inline-flex;
   gap: 2px;
-  opacity: 0;
-  transition: opacity 0.15s;
-}
-.wmblocks-badge-wrapper .wmblocks-badge-item:hover .wmblocks-badge-wrapper .wmblocks-badge-item__actions, .wmblocks-badge-wrapper .wmblocks-badge-item--expanded .wmblocks-badge-wrapper .wmblocks-badge-item__actions {
   opacity: 1;
+  margin-top: 4px;
 }
 .wmblocks-badge-wrapper .wmblocks-badge-item__detail {
   background: #fff4ed;
@@ -104,16 +101,69 @@
   cursor: default;
 }
 .wmblocks-badge-wrapper .wmblocks-badge-action--expand {
-  font-size: 7px;
+  font-size: 9px;
+  width: auto;
+  padding: 0 8px;
+  gap: 3px;
+  font-weight: 700;
+  white-space: nowrap;
+  height: 20px;
+  background: #fff4ed;
+  border-color: #fdd7b5;
+  color: #c05a00;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-action--expand:hover:not(:disabled) {
+  background: #fd7e14;
+  border-color: #fd7e14;
+  color: #fff;
 }
 .wmblocks-badge-wrapper .wmblocks-badge-action--expand.is-active {
-  background: #fff4ed;
+  background: #fd7e14;
   border-color: #fd7e14;
-  color: #fd7e14;
+  color: #fff;
 }
 .wmblocks-badge-wrapper .wmblocks-badge-action--remove:hover:not(:disabled) {
   background: #dc3545;
   border-color: #dc3545;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f5c2c7;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-detail-header__title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #842029;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-detail-close {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border: 1px solid #f5c2c7;
+  border-radius: 20px;
+  background: #fff;
+  color: #dc3545;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+.wmblocks-badge-wrapper .wmblocks-badge-detail-close:hover {
+  background: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
 }
 .wmblocks-badge-wrapper .wmblocks-badge-detail-row {
   display: flex;

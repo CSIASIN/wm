@@ -267,8 +267,8 @@ function Edit({
           children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('💊 Pill', 'wmblocks')
         })
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Layout', 'wmblocks'),
         initialOpen: true,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
@@ -302,30 +302,7 @@ function Edit({
           }),
           help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('When on, badges flow as inline elements inside text rather than a flex row.', 'wmblocks')
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-          style: {
-            display: 'flex',
-            alignItems: 'left',
-            gap: '4px',
-            marginBottom: '10px',
-            padding: '6px 10px',
-            background: '#f0f6fc',
-            borderRadius: '4px',
-            border: '1px solid #c8e1ff'
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
-              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Need help with this block?', 'wm')
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ExternalLink, {
-              href: "https://www.csias.in",
-              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('View Full Documentation', 'wm')
-            })
-          })]
-        })
-      })]
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       ...blockProps,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -393,7 +370,7 @@ function Edit({
                   className: 'wmblocks-badge-action wmblocks-badge-action--expand' + (isExpanded ? ' is-active' : ''),
                   onClick: () => setExpandedId(isExpanded ? null : badge.id),
                   title: isExpanded ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Close options', 'wmblocks') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Open options', 'wmblocks'),
-                  children: isExpanded ? '▲' : '▼'
+                  children: isExpanded ? '▲ Close' : '▼ Edit'
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
                   className: "wmblocks-badge-action wmblocks-badge-action--remove",
                   onClick: () => removeBadge(badge.id),
@@ -405,6 +382,17 @@ function Edit({
             }), isExpanded && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
               className: "wmblocks-badge-item__detail",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                className: "wmblocks-badge-detail-header",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+                  className: "wmblocks-badge-detail-header__title",
+                  children: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Badge', 'wmblocks'), " ", index + 1, badge.text ? ` — "${badge.text.replace(/<[^>]*>/g, '')}"` : '']
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("button", {
+                  className: "wmblocks-badge-detail-close",
+                  onClick: () => setExpandedId(null),
+                  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Close panel', 'wmblocks'),
+                  children: ["\u2715 ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Close', 'wmblocks')]
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                 className: "wmblocks-badge-detail-row",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
                   className: "wmblocks-badge-detail-label",
@@ -547,7 +535,7 @@ function Edit({
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
         className: "wmblocks-badge-footer-hint",
-        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Click label to edit · ▼ for colour, shape & link · colours in toolbar', 'wmblocks')
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Click label to edit inline · ▼ Edit opens options · ✕ Close returns to badges · colours in toolbar', 'wmblocks')
       })]
     })]
   });

@@ -46,10 +46,10 @@ if ( $ratio === 'custom' && $custom_ratio ) {
 }
 
 // ── Block wrapper ─────────────────────────────────────────────────────────
-$wrapper_attr = get_block_wrapper_attributes();
+$wrapper_attr = get_block_wrapper_attributes( [ 'class' => $ratio_classes ] );
 ?>
-<div <?php echo $wrapper_attr; ?>>
-	<div class="<?php echo esc_attr( $ratio_classes ); ?>"<?php echo $ratio_style; ?>>
+
+	<div <?php echo  $wrapper_attr; ?> <?php echo $ratio_style; ?>>
 		<?php echo $content; ?>
 	</div>
-</div>
+

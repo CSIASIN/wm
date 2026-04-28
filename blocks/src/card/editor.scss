@@ -1,11 +1,11 @@
 .wmblocks-card-wrapper {
 	border: 2px dashed #20c997;
-	padding: 12px;
+	padding: 2px;
 	border-radius: 6px;
 	background: #f0fdf8;
 
 	.wmblocks-card-label {
-		display: flex; align-items: center; gap: 5px;
+		display: block; align-items: center; gap: 5px;
 		font-size: 10px; font-weight: 700; text-transform: uppercase;
 		letter-spacing: .08em; color: #20c997; margin-bottom: 10px;
 	}
