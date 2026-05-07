@@ -12,10 +12,10 @@ $img_alt   = ! empty( $attributes['imageAlt'] )    ? esc_attr( $attributes['imag
 $bg        = ! empty( $attributes['bgColor'] )     ? esc_attr( $attributes['bgColor'] )       : '';
 $custom    = ! empty( $attributes['customClass'] ) ? esc_attr( $attributes['customClass'] )   : '';
 $wrap_class = implode( ' ', array_filter( [ 'container px-4 py-5', $bg, $custom ], 'strlen' ) );
-$wrapper_attributes = get_block_wrapper_attributes();
+$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => $wrap_class ] );
 ?>
-<div <?php echo $wrapper_attributes; ?>>
-<div class="<?php echo $wrap_class; ?>" style="border-top:1px solid #dee2e6;border-bottom:1px solid #dee2e6;">
+
+<div <?php echo $wrapper_attributes; ?> style="border-top:1px solid #dee2e6;border-bottom:1px solid #dee2e6;">
   <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
     <?php if ( $img_url ) : ?>
     <div class="col-10 col-sm-8 col-lg-6">
@@ -32,4 +32,4 @@ $wrapper_attributes = get_block_wrapper_attributes();
     </div>
   </div>
 </div>
-</div>
+

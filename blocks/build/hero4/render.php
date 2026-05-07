@@ -12,10 +12,9 @@ $bg          = ! empty( $attributes['bgColor'] )       ? esc_attr( $attributes['
 $custom      = ! empty( $attributes['customClass'] )   ? esc_attr( $attributes['customClass'] )     : '';
 $wrap_class  = implode( ' ', array_filter( [ 'py-5', $bg, $custom ], 'strlen' ) );
 $uid = wp_unique_id( 'hero4-' );
-$wrapper_attributes = get_block_wrapper_attributes();
+$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => $wrap_class ] );
 ?>
 <div <?php echo $wrapper_attributes; ?>>
-<div class="<?php echo $wrap_class; ?>">
   <div class="container">
     <div class="row align-items-center g-5 py-5">
       <div class="col-lg-7">
@@ -45,5 +44,4 @@ $wrapper_attributes = get_block_wrapper_attributes();
       </div>
     </div>
   </div>
-</div>
 </div>

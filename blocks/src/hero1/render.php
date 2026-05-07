@@ -12,10 +12,10 @@ $btn2_var    = ! empty( $attributes['btn2Variant'] ) ? esc_attr( $attributes['bt
 $bg          = ! empty( $attributes['bgColor'] )     ? esc_attr( $attributes['bgColor'] )       : '';
 $custom      = ! empty( $attributes['customClass'] ) ? esc_attr( $attributes['customClass'] )   : '';
 $wrap_class  = implode( ' ', array_filter( [ 'px-4 py-5 text-center', $bg, $custom ], 'strlen' ) );
-$wrapper_attributes = get_block_wrapper_attributes();
+$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => $wrap_class ] );
 ?>
+
 <div <?php echo $wrapper_attributes; ?>>
-<div class="<?php echo $wrap_class; ?>">
   <div class="container py-5">
     <?php if ( $logo_url ) : ?><img src="<?php echo $logo_url; ?>" class="d-block mx-auto mb-4" style="height:<?php echo $logo_h; ?>;" alt=""><?php endif; ?>
     <h1 class="display-5 fw-bold"><?php echo $heading; ?></h1>
@@ -28,4 +28,4 @@ $wrapper_attributes = get_block_wrapper_attributes();
     </div>
   </div>
 </div>
-</div>
+

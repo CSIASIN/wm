@@ -12,10 +12,10 @@ $img_alt   = ! empty( $attributes['imageAlt'] )    ? esc_attr( $attributes['imag
 $bg        = ! empty( $attributes['bgColor'] )     ? esc_attr( $attributes['bgColor'] )       : '';
 $custom    = ! empty( $attributes['customClass'] ) ? esc_attr( $attributes['customClass'] )   : '';
 $wrap_class = implode( ' ', array_filter( [ 'px-4 py-5 text-center', $bg, $custom ], 'strlen' ) );
-$wrapper_attributes = get_block_wrapper_attributes();
+$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => $wrap_class ] );
 ?>
+
 <div <?php echo $wrapper_attributes; ?>>
-<div class="<?php echo $wrap_class; ?>">
   <div class="container py-5">
     <h1 class="display-5 fw-bold"><?php echo $heading; ?></h1>
     <div class="col-lg-6 mx-auto">
@@ -32,4 +32,4 @@ $wrapper_attributes = get_block_wrapper_attributes();
     <?php endif; ?>
   </div>
 </div>
-</div>
+
