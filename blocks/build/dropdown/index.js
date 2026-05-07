@@ -455,6 +455,9 @@ function Edit({
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                 className: "wmblocks-dd-item__actions",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+                  style: {
+                    color: 'blue'
+                  },
                   className: "wmblocks-dd-action-btn",
                   onClick: () => moveItem(item.id, -1),
                   disabled: index === 0,

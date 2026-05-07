@@ -1,0 +1,189 @@
+// ── Toolbar icon ──────────────────────────────────────────────────────────────
+.wm-color-tool-icon {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2px;
+	padding: 2px 4px;
+	min-width: 26px;
+
+	&__label {
+		display: block;
+		font-size: 14px;
+		line-height: 1;
+		color: currentColor;
+	}
+
+	&__bar {
+		display: block;
+		width: 20px;
+		height: 3px;
+		border-radius: 2px;
+		transition: background 0.15s;
+	}
+}
+
+// ── Modal shell ───────────────────────────────────────────────────────────────
+.wm-color-modal {
+
+	&.components-modal__frame {
+		width:      min( 520px, 96vw ) !important;
+		max-width:  min( 520px, 96vw ) !important;
+		height:     auto !important;
+		max-height: 85vh !important;
+	}
+
+	.components-modal__content {
+		padding:    0 !important;
+		overflow-y: auto;
+	}
+
+	.components-modal__header {
+		padding:       10px 16px;
+		border-bottom: 1px solid #e0e0e0;
+		flex-shrink:   0;
+
+		.components-modal__header-heading {
+			font-size:   14px;
+			font-weight: 600;
+		}
+	}
+}
+
+// ── Modal body ────────────────────────────────────────────────────────────────
+.wm-color-modal__body {
+	padding: 12px 16px 16px;
+}
+
+// ── Active colour row ─────────────────────────────────────────────────────────
+.wm-color-modal__current {
+	display:       flex;
+	align-items:   center;
+	gap:           8px;
+	padding:       7px 10px;
+	background:    #f6f7f7;
+	border:        1px solid #e0e0e0;
+	border-radius: 4px;
+	margin-bottom: 12px;
+
+	.components-color-indicator {
+		flex-shrink:   0;
+		width:         18px !important;
+		height:        18px !important;
+		border-radius: 50%;
+		border:        1px solid rgba(0,0,0,0.15);
+	}
+
+	&-code {
+		flex:        1;
+		font-family: monospace;
+		font-size:   12px;
+		color:       #3858e9;
+	}
+}
+
+// ── WP TabPanel overrides ─────────────────────────────────────────────────────
+.wm-color-modal__tabpanel {
+
+	// Tab strip
+	.components-tab-panel__tabs {
+		display:       flex;
+		border:        1px solid #e0e0e0;
+		border-radius: 4px;
+		overflow:      hidden;
+		margin-bottom: 12px;
+		background:    #f6f7f7;
+		gap:           0;
+	}
+
+	.components-tab-panel__tabs-item {
+		flex:        1;
+		padding:     8px 0;
+		font-size:   12px;
+		font-weight: 500;
+		color:       #555;
+		border:      none;
+		border-bottom: 2px solid transparent;
+		border-radius: 0;
+		background:  transparent;
+		cursor:      pointer;
+		text-align:  center;
+		transition:  background 0.1s, color 0.1s;
+
+		& + & { border-left: 1px solid #e0e0e0; }
+
+		&:hover { background: #ececec; color: #1e1e1e; }
+
+		&.is-active {
+			background:    #3858e9;
+			color:         #fff;
+			font-weight:   600;
+			border-bottom: 2px solid #3858e9;
+		}
+	}
+
+	// Tab content area — no extra padding needed, swatches/picker handle their own
+	.components-tab-panel__tab-content { padding: 0; }
+}
+
+// ── Tab content wrapper ───────────────────────────────────────────────────────
+.wm-color-modal__tab-content {
+	padding-top: 4px;
+}
+
+// ── Preset swatch grid ────────────────────────────────────────────────────────
+.wm-color-modal__swatches {
+	display:               grid;
+	grid-template-columns: repeat( 7, 1fr );
+	gap:                   7px;
+	padding:               4px 0 8px;
+}
+
+.wm-color-swatch {
+	display:         flex;
+	align-items:     center;
+	justify-content: center;
+	width:           100%;
+	aspect-ratio:    1;
+	border-radius:   6px;
+	border:          2px solid transparent;
+	cursor:          pointer;
+	transition:      transform 0.1s, box-shadow 0.1s, border-color 0.1s;
+	font-size:       11px;
+	padding:         0;
+
+	&:hover {
+		transform:  scale( 1.18 );
+		box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+		z-index:    1;
+		position:   relative;
+	}
+
+	&.is-selected {
+		border-color: #3858e9 !important;
+		box-shadow:   0 0 0 3px rgba(56,88,233,0.3);
+		transform:    scale( 1.1 );
+	}
+}
+
+// ── Custom colour picker ──────────────────────────────────────────────────────
+.wm-color-modal__picker {
+	padding-top: 4px;
+
+	.components-color-picker {
+		padding:   0;
+		max-width: none;
+		width:     100%;
+
+		.components-color-picker__saturation {
+			padding-bottom: 55% !important;
+		}
+	}
+
+	.components-button {
+		margin-top:      12px;
+		width:           100%;
+		justify-content: center;
+	}
+}

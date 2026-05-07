@@ -6,9 +6,5 @@ import metadata from './block.json';
 
 registerBlockType( metadata.name, {
 	edit: Edit,
-	save: () => (
-		<div { ...useBlockProps.save() }>
-			<InnerBlocks.Content />
-		</div>
-	),
+save: () => <InnerBlocks.Content />,
 } );

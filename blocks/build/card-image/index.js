@@ -169,21 +169,19 @@ function Edit({
     badgeText,
     badgeVariant,
     showLink,
-    linkText,
-    linkUrl,
-    linkVariant,
+    // linkText, linkUrl, and linkVariant are no longer needed here
     bgColor,
     borderColor,
     shadow,
     textAlign,
     noBorder
   } = attributes;
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-    className: 'wmblocks-card-image-wrapper'
-  });
   const cardClasses = ['card', bgColor, borderColor, shadow, noBorder ? 'border-0' : '', textAlign].filter(Boolean).join(' ');
   const isHorizontal = imagePosition === 'left' || imagePosition === 'right';
   const isOverlay = imagePosition === 'overlay';
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: cardClasses
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.BlockControls, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToolbarGroup, {
@@ -264,38 +262,16 @@ function Edit({
             })
           })]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Link Button', 'wmblocks'),
         initialOpen: false,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Show Button', 'wmblocks'),
           checked: !!showLink,
           onChange: v => setAttributes({
             showLink: v
           })
-        }), showLink && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button Text', 'wmblocks'),
-            value: linkText,
-            onChange: v => setAttributes({
-              linkText: v
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button URL', 'wmblocks'),
-            value: linkUrl,
-            onChange: v => setAttributes({
-              linkUrl: v
-            }),
-            placeholder: "https://"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button Style', 'wmblocks'),
-            value: linkVariant,
-            options: BTN_VARIANTS,
-            onChange: v => setAttributes({
-              linkVariant: v
-            })
-          })]
-        })]
+        })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Card Style', 'wmblocks'),
         initialOpen: false,
@@ -326,9 +302,30 @@ function Edit({
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "wmblocks-card-image-label",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+          style: {
+            marginTop: '-10px',
+            fontSize: 10,
+            fontFamily: 'monospace',
+            color: '#fcfcfc',
+            marginBottom: 6,
+            background: 'hotpink',
+            padding: '3px 2px',
+            borderRadius: 4,
+            display: 'inline-block',
+            border: '1px solid #cfe2ff'
+          },
           children: "Card + Image"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
           className: "wmblocks-card-image-chip",
+          style: {
+            marginTop: '-10px',
+            fontSize: 10,
+            fontFamily: 'monospace',
+            color: '#fcfcfc',
+            marginBottom: 6,
+            background: 'hotpink',
+            padding: '3px 2px'
+          },
           children: imagePosition
         }), bgColor && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
           className: "wmblocks-card-image-chip",
@@ -349,19 +346,15 @@ function Edit({
             children: renderImageArea(imageUrl, imageId, imageAlt, setAttributes, true)
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: 'col',
-            children: renderCardBody({
-              title,
-              subtitle,
-              bodyText,
-              showBadge,
-              badgeText,
-              badgeVariant,
-              showLink,
-              linkText,
-              linkUrl,
-              linkVariant,
-              isOverlay: false,
-              setAttributes
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CardBody, {
+              title: title,
+              subtitle: subtitle,
+              bodyText: bodyText,
+              showBadge: showBadge,
+              badgeText: badgeText,
+              badgeVariant: badgeVariant,
+              showLink: showLink,
+              setAttributes: setAttributes
             })
           }), imagePosition === 'right' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: imageCol,
@@ -373,38 +366,30 @@ function Edit({
         (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
           children: [renderImageArea(imageUrl, imageId, imageAlt, setAttributes, false), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "card-img-overlay",
-            children: renderCardBody({
-              title,
-              subtitle,
-              bodyText,
-              showBadge,
-              badgeText,
-              badgeVariant,
-              showLink,
-              linkText,
-              linkUrl,
-              linkVariant,
-              isOverlay: true,
-              setAttributes
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CardBody, {
+              title: title,
+              subtitle: subtitle,
+              bodyText: bodyText,
+              showBadge: showBadge,
+              badgeText: badgeText,
+              badgeVariant: badgeVariant,
+              showLink: showLink,
+              setAttributes: setAttributes
             })
           })]
         }) :
         /*#__PURE__*/
         // Top / Bottom card
         (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-          children: [imagePosition === 'top' && renderImageArea(imageUrl, imageId, imageAlt, setAttributes, false, 'top'), renderCardBody({
-            title,
-            subtitle,
-            bodyText,
-            showBadge,
-            badgeText,
-            badgeVariant,
-            showLink,
-            linkText,
-            linkUrl,
-            linkVariant,
-            isOverlay: false,
-            setAttributes
+          children: [imagePosition === 'top' && renderImageArea(imageUrl, imageId, imageAlt, setAttributes, false, 'top'), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(CardBody, {
+            title: title,
+            subtitle: subtitle,
+            bodyText: bodyText,
+            showBadge: showBadge,
+            badgeText: badgeText,
+            badgeVariant: badgeVariant,
+            showLink: showLink,
+            setAttributes: setAttributes
           }), imagePosition === 'bottom' && renderImageArea(imageUrl, imageId, imageAlt, setAttributes, false, 'bottom')]
         })
       })]
@@ -455,7 +440,9 @@ function renderImageArea(imageUrl, imageId, imageAlt, setAttributes, isHorizonta
     })
   });
 }
-function renderCardBody({
+
+// ── CHANGED: Converted to a proper React Component (PascalCase) ────────────
+function CardBody({
   title,
   subtitle,
   bodyText,
@@ -463,10 +450,6 @@ function renderCardBody({
   badgeText,
   badgeVariant,
   showLink,
-  linkText,
-  linkUrl,
-  linkVariant,
-  isOverlay,
   setAttributes
 }) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -507,15 +490,15 @@ function renderCardBody({
       }),
       allowedFormats: ['core/bold', 'core/italic', 'core/link'],
       placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Card body text…', 'wmblocks')
-    }), showLink && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
-      tagName: "a",
-      className: 'btn ' + linkVariant,
-      value: linkText,
-      onChange: v => setAttributes({
-        linkText: v
-      }),
-      allowedFormats: [],
-      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Button text…', 'wmblocks')
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      style: {
+        display: showLink ? 'block' : 'none'
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
+        allowedBlocks: ['wmblocks/buttons'],
+        template: [['wmblocks/buttons']],
+        templateLock: "all"
+      })
     })]
   });
 }
@@ -531,16 +514,22 @@ function renderCardBody({
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/card-image/style.scss");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/card-image/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./src/card-image/block.json");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/card-image/style.scss");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit */ "./src/card-image/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/card-image/block.json");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
-  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
-  save: () => null // server-side rendered
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
+  edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
+  save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
 });
 
 /***/ },

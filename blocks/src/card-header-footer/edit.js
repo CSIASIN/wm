@@ -33,8 +33,8 @@ const BORDER_OPTIONS = [
 ];
 
 const BODY_TEMPLATE = [
-	[ 'core/heading',   { level: 2, placeholder: __( 'Card title…', 'wmblocks' )      } ],
-	[ 'core/paragraph', { placeholder: __( 'Card body content…', 'wmblocks' )         } ],
+	[ 'core/heading',   { level: 5, placeholder: __( 'Card title…', 'wmblocks' ), className: 'card-title'} ],
+	[ 'core/paragraph', { placeholder: __( 'Card body content…', 'wmblocks' ), className: 'card-text'} ],
 	[ 'wmblocks/buttons', {} ],
 ];
 
@@ -129,10 +129,10 @@ export default function Edit( { attributes, setAttributes } ) {
 
 				{/* Label strip */}
 				<div className="wmblocks-card-hf-label">
-					<span>Card + Header/Footer</span>
-					{ showHeader && <span className="wmblocks-card-hf-chip">header</span> }
-					{ showFooter && <span className="wmblocks-card-hf-chip">footer</span> }
-					{ shadow && <span className="wmblocks-card-hf-chip">{ shadow }</span> }
+					<span style={{  fontSize: '10px',  backgroundColor: 'fuchsia', color: 'white', padding: '1px 3px', }}>Card + Header/Footer</span>
+					{ showHeader && <span className="wmblocks-card-hf-chip" style={{  fontSize: '10px',  backgroundColor: 'fuchsia', color: 'white', padding: '1px 3px', }}>header</span> }
+					{ showFooter && <span className="wmblocks-card-hf-chip" style={{  fontSize: '10px',  backgroundColor: 'fuchsia', color: 'white', padding: '1px 3px', }}>footer</span> }
+					{ shadow && <span className="wmblocks-card-hf-chip" style={{  fontSize: '10px',  backgroundColor: 'fuchsia', color: 'white', padding: '1px 3px', }}>{ shadow }</span> }
 				</div>
 
 				<div className={ cardClasses } style={ customWidth ? { width: customWidth } : {} }>
@@ -154,7 +154,8 @@ export default function Edit( { attributes, setAttributes } ) {
 					<div className="card-body">
 						<InnerBlocks
 							template={ BODY_TEMPLATE }
-							templateLock={ false }
+							templateLock={ true }
+							renderAppender={ true }
 						/>
 					</div>
 

@@ -13,11 +13,73 @@
  * via `global`, which would silently return NULL in this context.
  */
 
+
+
+// ── Read & sanitise block-level attributes ────────────────────────────────
+$buttons        = ( isset( $attributes['buttons'] ) && is_array( $attributes['buttons'] ) )
+                  ? $attributes['buttons'] : [];
+$layout         = isset( $attributes['layout'] )        ? $attributes['layout']        : 'inline';
+$group_mode     = ! empty( $attributes['groupMode'] );
+$group_size     = isset( $attributes['groupSize'] )     ? $attributes['groupSize']     : '';
+$group_vertical = ! empty( $attributes['groupVertical'] );
+$alignment      = isset( $attributes['alignment'] )     ? $attributes['alignment']     : 'left';
+$gap_raw        = isset( $attributes['gap'] )           ? $attributes['gap']           : 'gap-2';
+
+// Validate gap & group-size against allowlists (also inline — no globals)
+$ok_gaps       = [ '', 'gap-1', 'gap-2', 'gap-3', 'gap-4', 'gap-5' ];
+$ok_group_size = [ '', 'btn-group-sm', 'btn-group-lg' ];
+$safe_gap       = in_array( $gap_raw,    $ok_gaps,       true ) ? $gap_raw    : 'gap-2';
+$safe_grp_size  = in_array( $group_size, $ok_group_size, true ) ? $group_size : '';
+
+// Alignment → Bootstrap flex utility
+$align_map   = [
+	'left'   => 'justify-content-start',
+	'center' => 'justify-content-center',
+	'right'  => 'justify-content-end',
+];
+$align_class = isset( $align_map[ $alignment ] ) ? $align_map[ $alignment ] : 'justify-content-start';
+
+// ── Decide how much wrapper markup is needed ──────────────────────────────
+//
+// Goal: keep the output as lean as Bootstrap itself would produce.
+//
+//  • 1 button  + inline layout + no group  → bare button/link, no inner div
+//  • 1 button  + stack layout              → d-grid wrapper (makes it full-width)
+//  • 1 button  + group mode                → btn-group wrapper (semantically correct)
+//  • 2+ buttons + inline layout            → d-flex wrapper with gap + alignment
+//  • 2+ buttons + stack layout             → d-grid wrapper
+//  • 2+ buttons + group mode               → btn-group wrapper
+//
+// The outer <div class="wp-block-wmblocks-buttons"> from get_block_wrapper_attributes()
+// is required by WordPress (for anchor, className, spacing supports) but we keep
+// everything INSIDE it as lean as possible.
+
+$button_count = count( $buttons );
+$is_single_inline = ( $button_count === 1 && ! $group_mode && $layout !== 'stack' );
+
+// For single inline button, pass alignment via the wrapper itself
+$wrapper_extra_classes = '';
+if ( $is_single_inline ) {
+	$wrapper_extra_classes = match ( $alignment ) {
+		'center' => 'd-flex justify-content-center',
+		'right'  => 'd-flex justify-content-end',
+		default  => '', // left — no extra wrapper classes needed
+	};
+}
+
+$wrapper_attributes = get_block_wrapper_attributes(
+	$wrapper_extra_classes ? [ 'class' => $wrapper_extra_classes ] : []
+);
+//echo $wrapper_attributes;
+$clean_attributes = str_replace(array('class="', '"'), '', $wrapper_attributes);
+//echo $clean_attributes;
+
+
 // ── Helper: build one button/link HTML string ─────────────────────────────
 // All allowlists live here so they are always in scope — no globals needed.
 if ( ! function_exists( 'wmblocks_render_single_button' ) ) {
 
-	function wmblocks_render_single_button( array $btn ): string {
+	function wmblocks_render_single_button( array $btn, mixed $wrapAttr ): string {
 
 		// ── Allowlists (defined inline — safe from scope issues) ──────
 		$ok_variants = [
@@ -89,70 +151,15 @@ if ( ! function_exists( 'wmblocks_render_single_button' ) ) {
 		$aria_attr = $active   ? ' aria-pressed="true"' : '';
 
 		return '<a href="' . $href . '"'
-		       . ' class="' . esc_attr( $classes ) . '"'
+		       . ' class="' . esc_attr( $classes ) . ' '. $wrapAttr . '"'
 		       . ' target="' . esc_attr( $target ) . '"'
 		       . $rel_attr . $dis_attr . $aria_attr . '>'
 		       . $label . '</a>';
 	}
 }
 
-// ── Read & sanitise block-level attributes ────────────────────────────────
-$buttons        = ( isset( $attributes['buttons'] ) && is_array( $attributes['buttons'] ) )
-                  ? $attributes['buttons'] : [];
-$layout         = isset( $attributes['layout'] )        ? $attributes['layout']        : 'inline';
-$group_mode     = ! empty( $attributes['groupMode'] );
-$group_size     = isset( $attributes['groupSize'] )     ? $attributes['groupSize']     : '';
-$group_vertical = ! empty( $attributes['groupVertical'] );
-$alignment      = isset( $attributes['alignment'] )     ? $attributes['alignment']     : 'left';
-$gap_raw        = isset( $attributes['gap'] )           ? $attributes['gap']           : 'gap-2';
-
-// Validate gap & group-size against allowlists (also inline — no globals)
-$ok_gaps       = [ '', 'gap-1', 'gap-2', 'gap-3', 'gap-4', 'gap-5' ];
-$ok_group_size = [ '', 'btn-group-sm', 'btn-group-lg' ];
-$safe_gap       = in_array( $gap_raw,    $ok_gaps,       true ) ? $gap_raw    : 'gap-2';
-$safe_grp_size  = in_array( $group_size, $ok_group_size, true ) ? $group_size : '';
-
-// Alignment → Bootstrap flex utility
-$align_map   = [
-	'left'   => 'justify-content-start',
-	'center' => 'justify-content-center',
-	'right'  => 'justify-content-end',
-];
-$align_class = isset( $align_map[ $alignment ] ) ? $align_map[ $alignment ] : 'justify-content-start';
-
-// ── Decide how much wrapper markup is needed ──────────────────────────────
-//
-// Goal: keep the output as lean as Bootstrap itself would produce.
-//
-//  • 1 button  + inline layout + no group  → bare button/link, no inner div
-//  • 1 button  + stack layout              → d-grid wrapper (makes it full-width)
-//  • 1 button  + group mode                → btn-group wrapper (semantically correct)
-//  • 2+ buttons + inline layout            → d-flex wrapper with gap + alignment
-//  • 2+ buttons + stack layout             → d-grid wrapper
-//  • 2+ buttons + group mode               → btn-group wrapper
-//
-// The outer <div class="wp-block-wmblocks-buttons"> from get_block_wrapper_attributes()
-// is required by WordPress (for anchor, className, spacing supports) but we keep
-// everything INSIDE it as lean as possible.
-
-$button_count = count( $buttons );
-$is_single_inline = ( $button_count === 1 && ! $group_mode && $layout !== 'stack' );
-
-// For single inline button, pass alignment via the wrapper itself
-$wrapper_extra_classes = '';
-if ( $is_single_inline ) {
-	$wrapper_extra_classes = match ( $alignment ) {
-		'center' => 'd-flex justify-content-center',
-		'right'  => 'd-flex justify-content-end',
-		default  => '', // left — no extra wrapper classes needed
-	};
-}
-
-$wrapper_attributes = get_block_wrapper_attributes(
-	$wrapper_extra_classes ? [ 'class' => $wrapper_extra_classes ] : []
-);
 ?>
-<div <?php echo $wrapper_attributes; ?>>
+
 
 <?php if ( $group_mode ) :
 	// ── Button Group: btn-group or btn-group-vertical ─────────────────
@@ -163,7 +170,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 ?>
 	<div class="<?php echo esc_attr( $grp_classes ); ?>" role="group" aria-label="<?php esc_attr_e( 'Button group', 'wmblocks' ); ?>">
 		<?php foreach ( $buttons as $btn ) : ?>
-			<?php echo wmblocks_render_single_button( $btn ); ?>
+			<?php echo wmblocks_render_single_button( $btn, $clean_attributes ); ?>
 		<?php endforeach; ?>
 	</div>
 
@@ -172,13 +179,13 @@ $wrapper_attributes = get_block_wrapper_attributes(
 ?>
 	<div class="d-grid gap-2">
 		<?php foreach ( $buttons as $btn ) : ?>
-			<?php echo wmblocks_render_single_button( $btn ); ?>
+			<?php echo wmblocks_render_single_button( $btn , $clean_attributes ); ?>
 		<?php endforeach; ?>
 	</div>
 
 <?php elseif ( $is_single_inline ) :
 	// ── Single button, inline: no inner wrapper at all ────────────────
-	echo wmblocks_render_single_button( $buttons[0] );
+	echo wmblocks_render_single_button( $buttons[0], $clean_attributes );
 ?>
 <?php else :
 	// ── Multiple buttons, inline: flex row with gap + alignment ───────
@@ -188,12 +195,11 @@ $wrapper_attributes = get_block_wrapper_attributes(
 		$safe_gap,
 	], 'strlen' ) );
 ?>
-	<div class="<?php echo esc_attr( $flex_classes ); ?>">
+	<div class="<?php echo esc_attr( $flex_classes ); ?> <?php echo $clean_attributes; ?>">
 		<?php foreach ( $buttons as $btn ) : ?>
-			<?php echo wmblocks_render_single_button( $btn ); ?>
+			<?php echo wmblocks_render_single_button( $btn ,''); ?>
 		<?php endforeach; ?>
 	</div>
 
 <?php endif; ?>
 
-</div>

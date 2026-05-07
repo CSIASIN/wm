@@ -1,271 +1,302 @@
-// ── Toolbar button ────────────────────────────────────────────────────────────
-// Handled inline in the component.
-
-// ── Base span styles for all inline icons in the editor ──────────────────────
-// These are compiled into index.css and enqueued as editorStyle in block.json.
-// They apply in the main editor document. For the iframe canvas we also inject
-// styles dynamically via JS (see index.js injectIconStyle function).
-
+// ── Base span styles ─────────────────────────────────────────────────────────
+// Applied in the editor (via editorStyle) and in the editor iframe (via add_editor_style).
+// The SVG is injected as a real DOM node by JS — these styles just size the container.
 .wm-inline-icon[data-icon] {
 	display: inline-block;
 	width: 1em;
 	height: 1em;
 	min-width: 1em;
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-position: center;
 	vertical-align: -0.125em;
-	color: transparent; // hide the ZWNBSP anchor character
+	// Hide the ZWNBSP anchor character that anchors the span in the rich text value
+	color: transparent;
 	font-size: inherit;
 	line-height: 1;
 	cursor: text;
-}
 
-// ── Inline icon preview inside the editor ────────────────────────────────────
-// The span placeholder is visible in the editor via a loading skeleton,
-// then replaced with the real SVG by the MutationObserver in index.js.
+	// When SVG is injected, make it visible
+	svg {
+		display: inline-block;
+		width: 1em;
+		height: 1em;
+		vertical-align: -0.125em;
+		pointer-events: none;
+		// SVG uses fill="currentColor" but parent has color:transparent — override
+		color: initial;
+		fill: currentColor;
+	}
 
-.block-editor-rich-text__editable {
-
-	.wm-inline-icon {
-		display: inline-flex;
-		align-items: center;
-		vertical-align: middle;
-		position: relative;
-
-		// SVG loaded state — just let it render naturally
-		svg {
-			display: inline-block;
-			width: 1em;
-			height: 1em;
-			vertical-align: -0.125em;
-			pointer-events: none;
-		}
-
-		// Loading state — show a subtle placeholder box while SVG fetches
-		&[data-loading],
-		&:not(:has(svg)) {
-			display: inline-block;
-			width:  1em;
-			height: 1em;
-			min-width:  14px;
-			min-height: 14px;
-			background: linear-gradient( 90deg, #e9ecef 25%, #dee2e6 50%, #e9ecef 75% );
-			background-size: 200% 100%;
-			animation: wm-icon-shimmer 1.2s infinite;
-			border-radius: 2px;
-			vertical-align: middle;
-		}
+	// Loading shimmer — shown while SVG is being fetched
+	&:not(:has(svg)) {
+		background: linear-gradient(
+			90deg,
+			#e9ecef 25%,
+			#dee2e6 50%,
+			#e9ecef 75%
+		);
+		background-size: 200% 100%;
+		animation: wm-shimmer 1.2s infinite;
+		border-radius: 2px;
 	}
 }
 
-@keyframes wm-icon-shimmer {
-	0%   { background-position: 200% 0; }
+@keyframes wm-shimmer {
+	0%   { background-position:  200% 0; }
 	100% { background-position: -200% 0; }
 }
 
-// ── Popover shell ─────────────────────────────────────────────────────────────
-
-.wm-inline-icon-popover {
-	width: 320px;
-	background: #fff;
-	border-radius: 4px;
-	overflow: hidden;
-	box-shadow: 0 4px 24px rgba(0,0,0,0.15);
-
-	&__header {
+// ── Modal shell ───────────────────────────────────────────────────────────────
+.wm-icon-modal {
+	// WP Modal adds .components-modal__frame — we size it here
+	&.components-modal__frame {
+		width: min( 900px, 92vw );
+		height: min( 80vh, 820px );
 		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 8px 12px;
-		background: #1e1e1e;
-		color: #fff;
-		font-size: 12px;
-		font-weight: 600;
+		flex-direction: column;
 	}
 
-	&__remove {
-		font-size: 11px;
-		padding: 2px 7px;
-		border: 1px solid rgba(255,255,255,0.35);
-		border-radius: 3px;
-		background: transparent;
-		color: #fca5a5;
-		cursor: pointer;
-		&:hover { background: rgba(255,255,255,0.1); }
+	// Modal content area fills remaining height
+	.components-modal__content {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		padding: 0;
 	}
 
-	&__active {
-		display: flex;
-		align-items: center;
-		gap: 6px;
-		padding: 5px 12px;
-		background: #f0f3ff;
+	// Header stays at natural height
+	.components-modal__header {
+		flex-shrink: 0;
 		border-bottom: 1px solid #e0e0e0;
-		font-size: 11px;
+		padding: 12px 16px;
 
-		code { color: #3858e9; font-family: monospace; font-size: 11px; }
+		.components-modal__header-heading {
+			font-size: 15px;
+			font-weight: 600;
+		}
 	}
 }
 
-// ── Compact picker (reuses same structure as block picker, smaller) ────────────
+// ── Modal body ────────────────────────────────────────────────────────────────
+.wm-icon-modal__body {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	padding: 0;
+}
 
-.wm-inline-icon-picker {
+// ── Search row ────────────────────────────────────────────────────────────────
+.wm-icon-modal__search-row {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 16px 8px;
+	flex-shrink: 0;
+	border-bottom: 1px solid #f0f0f0;
+}
 
-	&__search {
-		display: flex;
-		align-items: center;
-		gap: 6px;
-		padding: 6px 10px;
-		border-bottom: 1px solid #e0e0e0;
+.wm-icon-modal__search-wrap {
+	flex: 1;
 
-		.components-search-control {
-			flex: 1;
-			margin-bottom: 0;
-			input[type="search"] { font-size: 12px; height: 28px; }
+	.components-search-control {
+		margin-bottom: 0;
+
+		input[type="search"] {
+			font-size: 14px;
+			height: 38px;
+			border-radius: 4px;
 		}
 	}
+}
 
-	&__count {
-		font-size: 10px;
-		color: #a0a0a0;
-		white-space: nowrap;
-		flex-shrink: 0;
-	}
+.wm-icon-modal__count {
+	flex-shrink: 0;
+	font-size: 12px;
+	color: #757575;
+	white-space: nowrap;
+	min-width: 80px;
+	text-align: right;
 
-	// Group tabs — slim dark strip
-	&__tabs {
-		.components-tab-panel__tabs {
-			display: flex;
-			background: #2c2c2c;
-			padding: 0;
-			margin: 0;
-			border-bottom: 1px solid #e0e0e0;
-		}
+	.components-spinner { margin: 0; }
+}
 
-		.components-tab-panel__tabs-item {
-			flex: 1;
-			padding: 6px 4px;
-			font-size: 10px;
-			font-weight: 500;
-			color: #bbb;
-			border: none;
-			border-bottom: 2px solid transparent;
-			border-radius: 0;
-			background: transparent;
-			cursor: pointer;
-			text-align: center;
-			white-space: nowrap;
+// ── Hovered icon hint bar ─────────────────────────────────────────────────────
+.wm-icon-modal__hint {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 5px 16px;
+	min-height: 28px;
+	background: #f9f9f9;
+	border-bottom: 1px solid #f0f0f0;
+	font-size: 12px;
+	flex-shrink: 0;
 
-			&:hover { color: #fff; background: rgba(255,255,255,0.07); }
+	img { flex-shrink: 0; }
 
-			&.is-active {
-				color: #fff;
-				border-bottom-color: #3858e9;
-				background: rgba(255,255,255,0.1);
-				font-weight: 600;
-			}
-		}
-
-		.components-tab-panel__tab-content { display: none; }
-	}
-
-	// Sub-cat pills
-	&__subcats {
-		display: flex;
-		gap: 3px;
-		overflow-x: auto;
-		padding: 5px 8px;
-		background: #f6f7f7;
-		border-bottom: 1px solid #e0e0e0;
-		scrollbar-width: none;
-		&::-webkit-scrollbar { display: none; }
-	}
-
-	&__pill {
-		flex-shrink: 0;
-		padding: 2px 7px;
-		font-size: 10px;
-		color: #555;
-		background: #fff;
-		border: 1px solid #ddd;
-		border-radius: 20px;
-		cursor: pointer;
-		white-space: nowrap;
-		text-transform: capitalize;
-
-		&:hover  { border-color: #3858e9; color: #3858e9; background: #f0f3ff; }
-		&.is-active { background: #3858e9; border-color: #3858e9; color: #fff; font-weight: 600; }
-	}
-
-	// Grid
-	&__grid-wrap {
-		position: relative;
-		min-height: 100px;
-		padding: 6px 8px;
-	}
-
-	&__spinner {
-		position: absolute;
-		inset: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background: rgba(255,255,255,0.8);
-		z-index: 5;
-	}
-
-	&__grid {
-		display: grid;
-		grid-template-columns: repeat( 8, 1fr );
-		gap: 3px;
-	}
-
-	&__btn {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		aspect-ratio: 1;
-		padding: 3px;
-		border: 1px solid #e8e8e8;
+	code {
+		font-family: monospace;
+		font-size: 12px;
+		color: #3858e9;
+		background: #eef0fc;
+		padding: 1px 6px;
 		border-radius: 3px;
-		background: #fff;
-		cursor: pointer;
-		transition: all 0.1s;
-
-		img { display: block; pointer-events: none; }
-
-		&:hover { border-color: #3858e9; background: #f0f3ff; }
-		&.is-loading { opacity: 0.5; cursor: wait; }
 	}
+}
 
-	&__empty {
-		text-align: center;
-		color: #a0a0a0;
-		font-size: 11px;
-		padding: 16px;
-		margin: 0;
-	}
+// ── Group tabs ────────────────────────────────────────────────────────────────
+.wm-icon-modal__tabs {
+	flex-shrink: 0;
 
-	// Pagination
-	&__pager {
+	.components-tab-panel__tabs {
 		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 6px;
-		padding: 5px;
-		border-top: 1px solid #e0e0e0;
+		background: #1e1e1e;
+		border-bottom: 1px solid #e0e0e0;
+		padding: 0;
+		margin: 0;
+		gap: 0;
+	}
 
-		span { font-size: 11px; color: #555; min-width: 36px; text-align: center; }
+	.components-tab-panel__tabs-item {
+		flex: 1;
+		padding: 10px 8px;
+		font-size: 12px;
+		font-weight: 500;
+		color: #bbb;
+		border: none;
+		border-bottom: 3px solid transparent;
+		border-radius: 0;
+		background: transparent;
+		cursor: pointer;
+		text-align: center;
+		white-space: nowrap;
+		transition: color 0.1s, background 0.1s;
 
-		button {
-			width: 22px; height: 22px;
-			display: flex; align-items: center; justify-content: center;
-			border: 1px solid #ddd; border-radius: 3px;
-			background: #f6f7f7; font-size: 14px; cursor: pointer; color: #333;
-			&:hover:not(:disabled) { background: #e8ecfd; border-color: #3858e9; color: #3858e9; }
-			&:disabled { opacity: 0.35; cursor: not-allowed; }
+		&:hover { color: #fff; background: rgba(255,255,255,0.07); }
+
+		&.is-active {
+			color: #fff;
+			border-bottom-color: #3858e9;
+			background: rgba(255,255,255,0.1);
+			font-weight: 600;
 		}
 	}
+
+	.components-tab-panel__tab-content { display: none; }
+}
+
+// ── Sub-category pills ────────────────────────────────────────────────────────
+.wm-icon-modal__subcats {
+	display: flex;
+	gap: 6px;
+	padding: 8px 16px;
+	overflow-x: auto;
+	flex-shrink: 0;
+	background: #f6f7f7;
+	border-bottom: 1px solid #e0e0e0;
+	scrollbar-width: none;
+	&::-webkit-scrollbar { display: none; }
+}
+
+.wm-icon-modal__pill {
+	flex-shrink: 0;
+	padding: 4px 12px;
+	font-size: 12px;
+	color: #555;
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 20px;
+	cursor: pointer;
+	white-space: nowrap;
+	text-transform: capitalize;
+	transition: all 0.1s;
+
+	&:hover  { border-color: #3858e9; color: #3858e9; background: #f0f3ff; }
+
+	&.is-active {
+		background: #3858e9;
+		border-color: #3858e9;
+		color: #fff;
+		font-weight: 600;
+	}
+}
+
+// ── Icon grid (scrollable) ────────────────────────────────────────────────────
+.wm-icon-modal__grid-wrap {
+	flex: 1;           // takes all remaining modal height
+	overflow-y: auto;  // THIS is the scrollable area
+	padding: 12px 16px;
+	position: relative;
+	min-height: 200px;
+}
+
+.wm-icon-modal__loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 40px;
+}
+
+.wm-icon-modal__empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 48px 24px;
+	text-align: center;
+	color: #555;
+
+	p { margin: 6px 0; }
+}
+
+.wm-icon-modal__grid {
+	display: grid;
+	grid-template-columns: repeat( auto-fill, minmax( 48px, 1fr ) );
+	gap: 6px;
+}
+
+// ── Individual icon button ────────────────────────────────────────────────────
+.wm-icon-modal__icon-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	aspect-ratio: 1;
+	padding: 8px;
+	border: 1px solid #e8e8e8;
+	border-radius: 6px;
+	background: #fff;
+	cursor: pointer;
+	transition: all 0.12s;
+
+	img { display: block; pointer-events: none; }
+
+	&:hover {
+		border-color: #3858e9;
+		background: #f0f3ff;
+		transform: scale( 1.1 );
+		box-shadow: 0 2px 8px rgba(56, 88, 233, 0.2);
+		z-index: 1;
+		position: relative;
+	}
+
+	&:active { transform: scale( 0.95 ); }
+}
+
+// ── Pagination ────────────────────────────────────────────────────────────────
+.wm-icon-modal__pagination {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	padding: 12px 16px;
+	border-top: 1px solid #e0e0e0;
+	flex-shrink: 0;
+	background: #f9f9f9;
+}
+
+.wm-icon-modal__page-info {
+	font-size: 13px;
+	color: #555;
+	min-width: 100px;
+	text-align: center;
 }

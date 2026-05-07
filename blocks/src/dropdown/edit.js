@@ -343,6 +343,7 @@ export default function Edit( { attributes, setAttributes } ) {
 									{/* Row action buttons */}
 									<div className="wmblocks-dd-item__actions">
 										<button
+											style={{ color: 'blue',}}
 											className="wmblocks-dd-action-btn"
 											onClick={ () => moveItem( item.id, -1 ) }
 											disabled={ index === 0 }

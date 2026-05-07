@@ -159,11 +159,8 @@ __webpack_require__.r(__webpack_exports__);
  * Bootstrap Icon — Inline Format
  *
  * Storage: <span class="wm-inline-icon" data-icon="NAME">&#xFEFF;</span>
- * Editor preview: editor.scss targets the span via data-icon attribute selector
- *                 and sets background-image to the CDN SVG URL at build time
- *                 for commonly used icons. Dynamic icons get a style injected
- *                 into BOTH the main document and the editor iframe document.
- * Frontend: inline-icon-render.php replaces span with real inline SVG.
+ * Editor preview: CSS background-image injected into both main doc + iframe
+ * Frontend: inline-icon-render.php replaces span with real inline SVG
  */
 
 
@@ -203,14 +200,16 @@ const GROUP_ALL_KEY = {
 async function fetchIcons({
   category = 'all',
   search = '',
-  page = 1
+  page = 1,
+  perPage = 80
 }) {
   const params = new URLSearchParams({
     action: 'wmblocks_icon_list',
     nonce: AJAX_DATA.nonce,
     category,
     search: search.trim().replace(/\s+/g, ' '),
-    page: String(page)
+    page: String(page),
+    per_page: String(perPage)
   });
   try {
     const r = await fetch(`${AJAX_DATA.ajaxUrl}?${params}`);
@@ -221,91 +220,102 @@ async function fetchIcons({
   }
 }
 
-// ── Editor preview: inject CSS into all documents ────────────────────────────
-// Gutenberg renders the block editor in an <iframe> (the "canvas").
-// Styles added to the main document head do NOT reach the iframe.
-// We must inject into every document where icon spans may appear.
+// ── Editor SVG preview — CSS only, never touch contentEditable DOM ────────────
+//
+// CRITICAL: We must NEVER inject anything into the contentEditable span.
+// Gutenberg serialises the contentEditable DOM to produce post_content.
+// If we inject an SVG into the span, Gutenberg saves the SVG (broken by
+// its HTML serialiser) into post_content — which is exactly the bug.
+//
+// Solution: inject a <style> tag with background-image rules into every
+// document (main + iframe). The span shows the icon via CSS background-image
+// without touching the DOM content Gutenberg reads for serialisation.
 
 const injectedIcons = new Set();
-function getEditorDocuments() {
+function getEditorDocs() {
   const docs = [document];
-  // Find the Gutenberg editor canvas iframe
-  document.querySelectorAll('iframe[name="editor-canvas"], iframe.editor-canvas__iframe, iframe[title]').forEach(iframe => {
+  document.querySelectorAll('iframe').forEach(f => {
     try {
-      if (iframe.contentDocument) docs.push(iframe.contentDocument);
+      if (f.contentDocument && f.contentDocument !== document) {
+        docs.push(f.contentDocument);
+      }
     } catch {}
   });
   return docs;
 }
 function injectIconStyle(name) {
-  if (injectedIcons.has(name)) return;
-  injectedIcons.add(name);
-  const svgUrl = `${ICON_CDN}${encodeURIComponent(name)}.svg`;
-  const css = `
-.wm-inline-icon[data-icon="${name}"] {
-	display: inline-block !important;
-	width: 1em !important;
-	height: 1em !important;
-	min-width: 1em !important;
-	background-image: url('${svgUrl}') !important;
-	background-repeat: no-repeat !important;
-	background-size: contain !important;
-	background-position: center !important;
-	vertical-align: -0.125em !important;
-	color: transparent !important;
-	font-size: inherit !important;
-	line-height: 1 !important;
-}`;
+  if (!name) return;
 
-  // Inject into ALL documents (main + any iframes)
-  getEditorDocuments().forEach(doc => {
-    let styleTag = doc.getElementById('wm-inline-icon-styles');
-    if (!styleTag) {
-      styleTag = doc.createElement('style');
-      styleTag.id = 'wm-inline-icon-styles';
-      doc.head?.appendChild(styleTag);
-    }
-    styleTag.textContent += css;
+  // Always re-inject into all docs — new iframes may have appeared
+  const css = [`.wm-inline-icon[data-icon="${name}"] {`, `  background-image: url('${ICON_CDN}${encodeURIComponent(name)}.svg');`, `  background-repeat: no-repeat;`, `  background-size: contain;`, `  background-position: center;`, `  display: inline-block;`, `  width: 1em;`, `  height: 1em;`, `  min-width: 1em;`, `  color: transparent;`, `  vertical-align: -0.125em;`, `  font-size: inherit;`, `  line-height: 1;`, `}`].join('\n');
+  if (!injectedIcons.has(name)) {
+    injectedIcons.add(name);
+  }
+  getEditorDocs().forEach(doc => {
+    try {
+      let styleEl = doc.getElementById('wm-inline-icon-styles');
+      if (!styleEl) {
+        styleEl = doc.createElement('style');
+        styleEl.id = 'wm-inline-icon-styles';
+        (doc.head || doc.documentElement).appendChild(styleEl);
+      }
+      // Only add if not already present for this icon
+      if (!styleEl.textContent.includes(`data-icon="${name}"`)) {
+        styleEl.textContent += css;
+      }
+    } catch {}
+  });
+}
+function scanAndInjectStyles() {
+  getEditorDocs().forEach(doc => {
+    try {
+      doc.querySelectorAll('.wm-inline-icon[data-icon]').forEach(span => {
+        injectIconStyle(span.getAttribute('data-icon'));
+      });
+    } catch {}
   });
 }
 
-// Watch for new icon spans in ALL documents and inject their styles
-function scanForNewIcons() {
-  getEditorDocuments().forEach(doc => {
-    doc.querySelectorAll('.wm-inline-icon[data-icon]').forEach(span => {
-      injectIconStyle(span.getAttribute('data-icon'));
-    });
-  });
-}
-
-// Observe main document — also re-check for new iframes being added
-new MutationObserver(scanForNewIcons).observe(document.body, {
+// Watch main document for new icon spans
+new MutationObserver(scanAndInjectStyles).observe(document.body, {
   childList: true,
   subtree: true
 });
 
-// Re-scan periodically for iframe mount (iframe loads async after script runs)
-const iframeCheckInterval = setInterval(() => {
-  scanForNewIcons();
-  // Stop polling once we find the editor iframe
-  if (document.querySelector('iframe[name="editor-canvas"], iframe.editor-canvas__iframe')) {
-    clearInterval(iframeCheckInterval);
-    // Start observing the iframe's document too
-    const iframe = document.querySelector('iframe[name="editor-canvas"], iframe.editor-canvas__iframe');
+// Poll for editor iframes and observe them too
+const iframeTimer = setInterval(() => {
+  const iframes = Array.from(document.querySelectorAll('iframe'));
+  iframes.forEach(f => {
     try {
-      if (iframe?.contentDocument?.body) {
-        new MutationObserver(scanForNewIcons).observe(iframe.contentDocument.body, {
+      if (f.contentDocument?.body && !f._wmStyleObserving) {
+        f._wmStyleObserving = true;
+        // Inject all already-known icons into the new iframe doc
+        injectedIcons.forEach(name => injectIconStyle(name));
+        // Watch for new icons inside this iframe
+        new MutationObserver(scanAndInjectStyles).observe(f.contentDocument.body, {
           childList: true,
           subtree: true
         });
+        scanAndInjectStyles();
       }
     } catch {}
-  }
-}, 500);
+  });
+  if (iframes.length) clearInterval(iframeTimer);
+}, 300);
 
-// ── Icon picker ───────────────────────────────────────────────────────────────
-function InlineIconPicker({
-  onPick
+// wp.data subscriber to catch editor state changes
+if (window.wp?.data) {
+  let scanDebounce;
+  wp.data.subscribe(() => {
+    clearTimeout(scanDebounce);
+    scanDebounce = setTimeout(scanAndInjectStyles, 150);
+  });
+}
+
+// ── Icon Modal ────────────────────────────────────────────────────────────────
+function IconModal({
+  onPick,
+  onClose
 }) {
   const [search, setSearch] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)('');
   const [page, setPage] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(1);
@@ -315,6 +325,7 @@ function InlineIconPicker({
   const [loading, setLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
   const [activeGroup, setActiveGroup] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)('interface');
   const [activeCat, setActiveCat] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)('all');
+  const [hovered, setHovered] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)('');
   const timer = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useRef)(null);
   const resolvedCat = (g, c) => c === 'all' ? GROUP_ALL_KEY[g] : c;
   const load = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useCallback)(async (cat, srch, pg) => {
@@ -322,7 +333,8 @@ function InlineIconPicker({
     const data = await fetchIcons({
       category: cat,
       search: srch,
-      page: pg
+      page: pg,
+      perPage: 80
     });
     if (data) {
       setIcons(data.icons);
@@ -350,7 +362,7 @@ function InlineIconPicker({
   const handleCat = c => {
     setActiveCat(c);
     setPage(1);
-    load(resolvedCat(activeGroup, c), '', 1);
+    load(resolvedCat(activeGroup, c), search, 1);
   };
   const handlePage = d => {
     const p = page + d;
@@ -362,84 +374,126 @@ function InlineIconPicker({
     name: g.name,
     title: g.title
   }));
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    className: "wm-inline-icon-picker",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-      className: "wm-inline-icon-picker__search",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SearchControl, {
-        value: search,
-        onChange: handleSearch,
-        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Search icons…', 'wmblocks'),
-        hideLabelFromVision: true
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-        className: "wm-inline-icon-picker__count",
-        children: loading ? '…' : `${total} icons`
-      })]
-    }), !search && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TabPanel, {
-        className: "wm-inline-icon-picker__tabs",
-        activeClass: "is-active",
-        tabs: parentTabs,
-        onSelect: handleGroup,
-        initialTabName: activeGroup,
-        children: () => null
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Modal, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Insert Bootstrap Icon', 'wmblocks'),
+    onRequestClose: onClose,
+    className: "wm-icon-modal",
+    size: "large",
+    isFullScreen: false,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      className: "wm-icon-modal__body",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "wm-icon-modal__search-row",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "wm-icon-modal__search-wrap",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SearchControl, {
+            value: search,
+            onChange: handleSearch,
+            placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Search all 1500+ icons… e.g. house fill, arrow up', 'wmblocks'),
+            hideLabelFromVision: true
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          className: "wm-icon-modal__count",
+          children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Spinner, {}) : `${total} ${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('icons', 'wmblocks')}${search ? ` ${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('found', 'wmblocks')}` : ''}`
+        })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        className: "wm-inline-icon-picker__subcats",
-        children: currentGroup?.cats.map(cat => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-          className: `wm-inline-icon-picker__pill${activeCat === cat ? ' is-active' : ''}`,
-          onMouseDown: e => {
-            e.preventDefault();
-            handleCat(cat);
-          },
-          children: cat === 'all' ? 'All' : cat
-        }, cat))
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-      className: "wm-inline-icon-picker__grid-wrap",
-      children: [loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        className: "wm-inline-icon-picker__spinner",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Spinner, {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        className: "wm-inline-icon-picker__grid",
-        children: icons.map(name => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-          title: name,
-          className: "wm-inline-icon-picker__btn",
-          onMouseDown: e => {
-            e.preventDefault();
-            onPick(name);
-          },
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-            src: `${ICON_CDN}${name}.svg`,
-            alt: name,
+        className: "wm-icon-modal__hint",
+        children: hovered ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+            src: `${ICON_CDN}${hovered}.svg`,
             width: "16",
             height: "16",
-            loading: "lazy"
-          })
-        }, name))
-      }), !loading && icons.length === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
-        className: "wm-inline-icon-picker__empty",
-        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('No icons found.', 'wmblocks')
+            alt: ""
+          }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("code", {
+            children: hovered
+          })]
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          style: {
+            color: '#aaa'
+          },
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Hover an icon to see its name, click to insert', 'wmblocks')
+        })
+      }), !search && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TabPanel, {
+          className: "wm-icon-modal__tabs",
+          activeClass: "is-active",
+          tabs: parentTabs,
+          onSelect: handleGroup,
+          initialTabName: activeGroup,
+          children: () => null
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "wm-icon-modal__subcats",
+          children: currentGroup?.cats.map(cat => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+            className: `wm-icon-modal__pill${activeCat === cat ? ' is-active' : ''}`,
+            onMouseDown: e => {
+              e.preventDefault();
+              handleCat(cat);
+            },
+            children: cat === 'all' ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('All', 'wmblocks') : cat
+          }, cat))
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "wm-icon-modal__grid-wrap",
+        children: [loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "wm-icon-modal__loading",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Spinner, {})
+        }), !loading && icons.length === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          className: "wm-icon-modal__empty",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+            style: {
+              fontSize: 48
+            },
+            children: "\uD83D\uDD0D"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+            children: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('No icons found for', 'wmblocks'), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("strong", {
+              children: ["\"", search, "\""]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+            style: {
+              color: '#aaa',
+              fontSize: 12
+            },
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Try a different keyword, e.g. "arrow" or "house"', 'wmblocks')
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "wm-icon-modal__grid",
+          children: icons.map(name => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+            title: name,
+            className: "wm-icon-modal__icon-btn",
+            onClick: () => onPick(name),
+            onMouseEnter: () => setHovered(name),
+            onMouseLeave: () => setHovered(''),
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+              src: `${ICON_CDN}${name}.svg`,
+              alt: name,
+              width: "24",
+              height: "24",
+              loading: "lazy"
+            })
+          }, name))
+        })]
+      }), totalPages > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "wm-icon-modal__pagination",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+          variant: "secondary",
+          disabled: page === 1,
+          onClick: () => {
+            if (page > 1) handlePage(-1);
+          },
+          children: ["\u2190 ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Prev', 'wmblocks')]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+          className: "wm-icon-modal__page-info",
+          children: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Page', 'wmblocks'), " ", page, " / ", totalPages]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+          variant: "secondary",
+          disabled: page === totalPages,
+          onClick: () => {
+            if (page < totalPages) handlePage(1);
+          },
+          children: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Next', 'wmblocks'), " \u2192"]
+        })]
       })]
-    }), totalPages > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-      className: "wm-inline-icon-picker__pager",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-        disabled: page === 1,
-        onMouseDown: e => {
-          e.preventDefault();
-          if (page > 1) handlePage(-1);
-        },
-        children: "\u2039"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
-        children: [page, " / ", totalPages]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-        disabled: page === totalPages,
-        onMouseDown: e => {
-          e.preventDefault();
-          if (page < totalPages) handlePage(1);
-        },
-        children: "\u203A"
-      })]
-    })]
+    })
   });
 }
 
@@ -449,11 +503,11 @@ function InlineIconButton({
   onChange,
   isActive
 }) {
-  const [open, setOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+  const [modalOpen, setModalOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
   const activeIconName = ((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.getActiveFormats)(value) || []).find(f => f.type === FORMAT_NAME)?.attributes?.['data-icon'] || '';
   const handlePick = name => {
-    setOpen(false);
-    injectIconStyle(name); // inject CSS immediately on insert
+    setModalOpen(false);
+    injectIconStyle(name);
     const charValue = (0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.create)({
       text: ZWNBSP
     });
@@ -475,53 +529,27 @@ function InlineIconButton({
         style: {
           fontWeight: 700,
           fontSize: 13,
-          padding: '0 3px',
+          padding: '0 4px',
           color: isActive ? '#3858e9' : 'currentColor',
           border: `1px solid ${isActive ? '#3858e9' : 'transparent'}`,
           borderRadius: 3
         },
-        children: "\u2B21"
+        children: activeIconName ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+          src: `${ICON_CDN}${activeIconName}.svg`,
+          width: "16",
+          height: "16",
+          alt: activeIconName,
+          style: {
+            verticalAlign: 'middle'
+          }
+        }) : '⬡'
       }),
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Insert Bootstrap Icon', 'wmblocks'),
-      onClick: () => setOpen(v => !v),
+      onClick: () => setModalOpen(true),
       isActive: isActive
-    }), open && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Popover, {
-      placement: "bottom-start",
-      onClose: () => setOpen(false),
-      focusOnMount: false,
-      noArrow: true,
-      style: {
-        zIndex: 999999
-      },
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-        className: "wm-inline-icon-popover",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-          className: "wm-inline-icon-popover__header",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Insert Icon', 'wmblocks')
-          }), activeIconName && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
-            style: {
-              display: 'flex',
-              alignItems: 'center',
-              gap: 4
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-              src: `${ICON_CDN}${activeIconName}.svg`,
-              width: "14",
-              height: "14",
-              alt: ""
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("code", {
-              style: {
-                fontSize: 10,
-                color: '#aaa'
-              },
-              children: activeIconName
-            })]
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(InlineIconPicker, {
-          onPick: handlePick
-        })]
-      })
+    }), modalOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(IconModal, {
+      onPick: handlePick,
+      onClose: () => setModalOpen(false)
     })]
   });
 }

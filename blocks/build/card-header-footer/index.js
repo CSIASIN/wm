@@ -124,10 +124,12 @@ const BORDER_OPTIONS = [{
   value: 'border-light'
 }];
 const BODY_TEMPLATE = [['core/heading', {
-  level: 2,
-  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Card title…', 'wmblocks')
+  level: 5,
+  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Card title…', 'wmblocks'),
+  className: 'card-title'
 }], ['core/paragraph', {
-  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Card body content…', 'wmblocks')
+  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Card body content…', 'wmblocks'),
+  className: 'card-text'
 }], ['wmblocks/buttons', {}]];
 function Edit({
   attributes,
@@ -276,15 +278,39 @@ function Edit({
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "wmblocks-card-hf-label",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+          style: {
+            fontSize: '10px',
+            backgroundColor: 'fuchsia',
+            color: 'white',
+            padding: '1px 3px'
+          },
           children: "Card + Header/Footer"
         }), showHeader && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
           className: "wmblocks-card-hf-chip",
+          style: {
+            fontSize: '10px',
+            backgroundColor: 'fuchsia',
+            color: 'white',
+            padding: '1px 3px'
+          },
           children: "header"
         }), showFooter && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
           className: "wmblocks-card-hf-chip",
+          style: {
+            fontSize: '10px',
+            backgroundColor: 'fuchsia',
+            color: 'white',
+            padding: '1px 3px'
+          },
           children: "footer"
         }), shadow && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
           className: "wmblocks-card-hf-chip",
+          style: {
+            fontSize: '10px',
+            backgroundColor: 'fuchsia',
+            color: 'white',
+            padding: '1px 3px'
+          },
           children: shadow
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -307,7 +333,8 @@ function Edit({
           className: "card-body",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
             template: BODY_TEMPLATE,
-            templateLock: false
+            templateLock: true,
+            renderAppender: true
           })
         }), showFooter && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           className: 'card-footer text-muted ' + footerBgVariant,
@@ -352,10 +379,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
   edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
-  save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save(),
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
-  })
+  save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
 });
 
 /***/ },

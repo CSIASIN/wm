@@ -2,8 +2,8 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/card-header-footer/editor.scss ***!
   \***********************************************************************************************************************************************************************************************************************************************************/
 .wmblocks-card-hf-wrapper {
-  border: 2px dashed #fd7e14;
-  padding: 12px;
+  border: 1px dashed #fd7e14;
+  padding: 1px 5px;
   border-radius: 6px;
   background: #fff9f5;
 }

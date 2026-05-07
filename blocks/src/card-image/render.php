@@ -37,7 +37,7 @@ if ( ! in_array( $image_pos, $ok_positions, true ) ) $image_pos = 'top';
 $is_horizontal = in_array( $image_pos, [ 'left', 'right' ], true );
 $is_overlay    = $image_pos === 'overlay';
 $card_classes  = wmblocks_card_image_classes( $attributes );
-$wrapper_attr  = get_block_wrapper_attributes();
+$wrapper_attr  = get_block_wrapper_attributes( [ 'class' => $card_classes ] );
 
 // ── Image tag helper
 $img_top    = $image_url ? '<img src="' . $image_url . '" class="card-img-top" alt="' . $image_alt . '">'    : '';
@@ -49,10 +49,21 @@ $img_side   = $image_url ? '<img src="' . $image_url . '" class="img-fluid round
 $badge_html    = $show_badge ? '<span class="badge mb-2 ' . $badge_var . '">' . $badge_text . '</span>' : '';
 $subtitle_html = $subtitle   ? '<h6 class="card-subtitle mb-2 text-muted">' . $subtitle . '</h6>' : '';
 $link_html     = $show_link  ? '<a href="' . $link_url . '" class="btn ' . $link_var . '">' . $link_text . '</a>' : '';
-$body_html     = '<div class="card-body">' . $badge_html . '<h5 class="card-title">' . $title . '</h5>' . $subtitle_html . '<p class="card-text">' . $body_text . '</p>' . $link_html . '</div>';
+$body_html = '<div class="card-body">';
+$body_html .= $badge_html;
+$body_html .= '<h5 class="card-title">' . $title . '</h5>';
+$body_html .= $subtitle_html;
+$body_html .= '<p class="card-text">' . $body_text . '</p>';
+
+// Only echo the InnerBlocks content if show_link is true
+if ( $show_link && ! empty( $content ) ) {
+    $body_html .= '<div class="wmblocks-button-wrapper">' . $content . '</div>';
+}
+
+$body_html .= '</div>';
 ?>
 <div <?php echo $wrapper_attr; ?>>
-<div class="<?php echo esc_attr( $card_classes ); ?>">
+
 
 <?php if ( $is_horizontal ) : ?>
 	<div class="row g-0">
@@ -79,4 +90,4 @@ $body_html     = '<div class="card-body">' . $badge_html . '<h5 class="card-titl
 <?php endif; ?>
 
 </div>
-</div>
+

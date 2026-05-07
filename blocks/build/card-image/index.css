@@ -67,5 +67,9 @@
 .wmblocks-card-image-wrapper .card-title, .wmblocks-card-image-wrapper .card-subtitle, .wmblocks-card-image-wrapper .card-text {
   margin-bottom: 8px !important;
 }
+.card {
+  padding: 1px 5px;
+  margin: 1px;
+}
 
 /*# sourceMappingURL=index.css.map*/

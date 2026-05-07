@@ -36,10 +36,10 @@ $ftr_bg         = ( isset( $attributes['footerBgVariant'] ) && in_array( $attrib
 $custom_width   = ! empty( $attributes['customWidth'] )   ? $attributes['customWidth']                   : '';
 $card_classes   = wmblocks_card_hf_card_classes( $attributes );
 $width_style    = $custom_width ? ' style="width:' . esc_attr( $custom_width ) . ';"' : '';
-$wrapper_attr   = get_block_wrapper_attributes();
+$wrapper_attr   = get_block_wrapper_attributes( [ 'class' => $card_classes ] );
 ?>
-<div <?php echo $wrapper_attr; ?>>
-	<div class="<?php echo esc_attr( $card_classes ); ?>"<?php echo $width_style; ?>>
+
+	<div <?php echo $wrapper_attr ; ?> <?php echo $width_style; ?>>
 
 		<?php if ( $show_header && $header_text ) : ?>
 			<div class="card-header <?php echo esc_attr( $hdr_bg ); ?>">
@@ -58,4 +58,4 @@ $wrapper_attr   = get_block_wrapper_attributes();
 		<?php endif; ?>
 
 	</div>
-</div>
+
