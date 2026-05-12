@@ -28,7 +28,7 @@
     },
     "anchor": {
       "type": "string",
-      "default": "containerID"
+      "default": ""
     },
     "customCSS": {
       "type": "string",

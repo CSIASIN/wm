@@ -41,7 +41,7 @@ const ALLOWED = [
 	'wmblocks/accordion', 'wmblocks/tabs', 'wmblocks/carousel',
 	'wmblocks/collapse', 'wmblocks/modal', 'wmblocks/toast',
 	'wmblocks/progress', 'wmblocks/list-group', 'wmblocks/bs-form',
-	'wmblocks/icon-link', 'wmblocks/image-link', 'wmblocks/position-wrapper','wmblocks/card','wmblocks/card-image','wmblocks/card-header-footer',
+	'wmblocks/icon-link', 'wmblocks/buttons','wmblocks/button-group','wmblocks/image-link', 'wmblocks/position-wrapper','wmblocks/card','wmblocks/card-image','wmblocks/card-header-footer',
 ];
 
 const CONTENT_TEMPLATE = [

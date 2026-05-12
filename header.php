@@ -37,6 +37,7 @@
   </style>
   <script>
     var ajaxurl = "<?php echo admin_url("admin-ajax.php") ?>";
+    var nouncevalue = "<?php echo wp_create_nonce( 'watermelon' ) ?>";
     var themeurl = "<?php echo get_template_directory_uri() ?>";
     var homeurl = "<?php echo home_url() ?>";
     var loginurl = "<?php echo wp_login_url(get_permalink()); ?>";

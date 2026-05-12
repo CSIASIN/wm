@@ -1704,7 +1704,7 @@ return array(
 			),
 			'anchor' => array(
 				'type' => 'string',
-				'default' => 'containerID'
+				'default' => ''
 			),
 			'customCSS' => array(
 				'type' => 'string',
@@ -3195,6 +3195,10 @@ return array(
 				'type' => 'string',
 				'default' => 'container'
 			),
+			'anchor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
 			'textAlign' => array(
 				'type' => 'string',
 				'default' => ''
@@ -3208,6 +3212,46 @@ return array(
 				'default' => ''
 			),
 			'padding' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgImageId' => array(
+				'type' => 'integer',
+				'default' => 0
+			),
+			'bgImageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgImageAlt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgSize' => array(
+				'type' => 'string',
+				'default' => 'cover'
+			),
+			'bgPosition' => array(
+				'type' => 'string',
+				'default' => 'center center'
+			),
+			'bgRepeat' => array(
+				'type' => 'string',
+				'default' => 'no-repeat'
+			),
+			'bgAttachment' => array(
+				'type' => 'string',
+				'default' => 'scroll'
+			),
+			'bgOverlayColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgOverlayOpacity' => array(
+				'type' => 'number',
+				'default' => 0.4
+			),
+			'minHeight' => array(
 				'type' => 'string',
 				'default' => ''
 			)

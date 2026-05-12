@@ -11,5 +11,6 @@ module.exports = {
 		'formats/inline-icon/index': path.resolve( process.cwd(), 'src/formats/inline-icon/index.js' ),
 		'formats/color/index': path.resolve( process.cwd(), 'src/formats/color/index.js' ),
 		'formats/badge/index': path.resolve( process.cwd(), 'src/formats/badge/index.js' ),
+		'formats/ask-ai/index': path.resolve( process.cwd(), 'src/formats/ask-ai/index.js' ),
 	},
 };

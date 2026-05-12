@@ -170,17 +170,15 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Bootstrap Badge — Inline Format
  *
- * Wraps selected text in a Bootstrap badge:
- *   <span class="badge wm-badge bg-primary">text</span>
+ * Wraps selected text in a Bootstrap badge with optional link.
+ * Also supports a position-absolute indicator dot attached to selected text.
  *
- * Available in: all rich-text blocks — h1–h6, p, li, button, quote, etc.
- * Uses addFilter(blocks.registerBlockType) to inject into allowedFormats
- * on blocks that have an explicit whitelist.
+ * Format 1: wmblocks/wm-badge
+ *   <a href="..." class="badge wm-badge bg-primary text-white">text</a>   (with link)
+ *   <span class="badge wm-badge bg-primary text-white">text</span>        (no link)
  *
- * Toolbar button opens a WP Modal with:
- *   - Badge style picker (14 Bootstrap variants, pill toggle, size toggle)
- *   - Live preview of the badge
- *   - Remove button
+ * Format 2: wmblocks/wm-badge-indicator
+ *   <span class="position-relative wm-badge-host">text<span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle wm-badge-indicator"></span></span>
  */
 
 
@@ -189,143 +187,206 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const FORMAT_NAME = 'wmblocks/wm-badge';
+const FORMAT_BADGE = 'wmblocks/wm-badge';
+const FORMAT_INDICATOR = 'wmblocks/wm-badge-indicator';
 
 // ── Badge variants ────────────────────────────────────────────────────────────
 const VARIANTS = [{
   label: 'Primary',
   bg: 'bg-primary',
-  text: 'text-white',
-  preview: '#0d6efd'
+  text: 'text-white'
 }, {
   label: 'Secondary',
   bg: 'bg-secondary',
-  text: 'text-white',
-  preview: '#6c757d'
+  text: 'text-white'
 }, {
   label: 'Success',
   bg: 'bg-success',
-  text: 'text-white',
-  preview: '#198754'
+  text: 'text-white'
 }, {
   label: 'Danger',
   bg: 'bg-danger',
-  text: 'text-white',
-  preview: '#dc3545'
+  text: 'text-white'
 }, {
   label: 'Warning',
   bg: 'bg-warning',
-  text: 'text-dark',
-  preview: '#ffc107'
+  text: 'text-dark'
 }, {
   label: 'Info',
   bg: 'bg-info',
-  text: 'text-dark',
-  preview: '#0dcaf0'
+  text: 'text-dark'
 }, {
   label: 'Light',
   bg: 'bg-light',
-  text: 'text-dark',
-  preview: '#f8f9fa'
+  text: 'text-dark'
 }, {
   label: 'Dark',
   bg: 'bg-dark',
-  text: 'text-white',
-  preview: '#212529'
+  text: 'text-white'
 }, {
   label: 'White',
   bg: 'bg-white',
-  text: 'text-dark',
-  preview: '#ffffff'
+  text: 'text-dark'
 }, {
   label: 'Primary Subtle',
   bg: 'bg-primary-subtle',
-  text: 'text-primary-emphasis',
-  preview: '#cfe2ff'
+  text: 'text-primary-emphasis'
 }, {
   label: 'Secondary Subtle',
   bg: 'bg-secondary-subtle',
-  text: 'text-secondary-emphasis',
-  preview: '#e2e3e5'
+  text: 'text-secondary-emphasis'
 }, {
   label: 'Success Subtle',
   bg: 'bg-success-subtle',
-  text: 'text-success-emphasis',
-  preview: '#d1e7dd'
+  text: 'text-success-emphasis'
 }, {
   label: 'Danger Subtle',
   bg: 'bg-danger-subtle',
-  text: 'text-danger-emphasis',
-  preview: '#f8d7da'
+  text: 'text-danger-emphasis'
 }, {
   label: 'Warning Subtle',
   bg: 'bg-warning-subtle',
-  text: 'text-warning-emphasis',
-  preview: '#fff3cd'
+  text: 'text-warning-emphasis'
 }, {
   label: 'Info Subtle',
   bg: 'bg-info-subtle',
-  text: 'text-info-emphasis',
-  preview: '#cff4fc'
+  text: 'text-info-emphasis'
 }];
 
-// ── Get active badge class from selection ─────────────────────────────────────
-function getActiveBadgeClass(value) {
-  const active = ((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.getActiveFormats)(value) || []).find(f => f.type === FORMAT_NAME);
-  if (!active) return null;
-  return active.attributes?.class || null;
-}
+// Indicator colour options
+const INDICATOR_COLORS = [{
+  label: 'Danger (red)',
+  value: 'bg-danger'
+}, {
+  label: 'Success (green)',
+  value: 'bg-success'
+}, {
+  label: 'Warning',
+  value: 'bg-warning'
+}, {
+  label: 'Primary',
+  value: 'bg-primary'
+}, {
+  label: 'Secondary',
+  value: 'bg-secondary'
+}, {
+  label: 'Info',
+  value: 'bg-info'
+}, {
+  label: 'Dark',
+  value: 'bg-dark'
+}, {
+  label: 'Light',
+  value: 'bg-light'
+}];
 
-// Build class string from options
-function buildClass(bg, text, pill, sm) {
-  return ['badge wm-badge', bg, text, pill ? 'rounded-pill' : '', sm ? 'badge-sm' : ''].filter(Boolean).join(' ');
-}
+// Indicator position options
+const INDICATOR_POSITIONS = [{
+  label: 'Top right (default)',
+  value: 'top-0 start-100 translate-middle'
+}, {
+  label: 'Top left',
+  value: 'top-0 start-0 translate-middle'
+}, {
+  label: 'Bottom right',
+  value: 'bottom-0 start-100 translate-middle'
+}, {
+  label: 'Bottom left',
+  value: 'bottom-0 start-0 translate-middle'
+}, {
+  label: 'Top center',
+  value: 'top-0 start-50 translate-middle'
+}, {
+  label: 'Bottom center',
+  value: 'bottom-0 start-50 translate-middle'
+}];
 
-// Parse options back from a class string
-function parseClass(cls) {
-  if (!cls) return {
-    bg: 'bg-primary',
-    text: 'text-white',
-    pill: false,
-    sm: false
-  };
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function getTextForBg(bgVal) {
+  return VARIANTS.find(x => x.bg === bgVal)?.text || 'text-white';
+}
+function buildBadgeClass(bg, pill, sm) {
+  return ['badge wm-badge', bg, getTextForBg(bg), pill ? 'rounded-pill' : '', sm ? 'badge-sm' : ''].filter(Boolean).join(' ');
+}
+function parseBadgeAttrs(attrs) {
+  const cls = attrs?.class || '';
   const parts = cls.split(' ');
-  const bg = parts.find(c => c.startsWith('bg-')) || 'bg-primary';
-  const text = parts.find(c => c.startsWith('text-')) || 'text-white';
-  const pill = parts.includes('rounded-pill');
-  const sm = parts.includes('badge-sm');
   return {
-    bg,
-    text,
-    pill,
-    sm
+    bg: parts.find(c => c.startsWith('bg-')) || 'bg-primary',
+    pill: parts.includes('rounded-pill'),
+    sm: parts.includes('badge-sm'),
+    href: attrs?.href || '',
+    target: attrs?.target || ''
+  };
+}
+function getActiveFormat(value, fmtName) {
+  return ((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.getActiveFormats)(value) || []).find(f => f.type === fmtName) || null;
+}
+
+// Build indicator host class string
+function buildIndicatorHostClass(color, position, size) {
+  const sizeClass = size === 'lg' ? 'p-3' : size === 'sm' ? 'p-1' : 'p-2';
+  return `position-relative wm-badge-host|${color}|${position}|${sizeClass}`;
+}
+function parseIndicatorClass(cls) {
+  if (!cls) return {
+    color: 'bg-danger',
+    position: 'top-0 start-100 translate-middle',
+    size: 'p-2'
+  };
+  const parts = cls.split('|');
+  return {
+    color: parts[1] || 'bg-danger',
+    position: parts[2] || 'top-0 start-100 translate-middle',
+    size: parts[3] || 'p-2'
   };
 }
 
 // ── Badge Modal ───────────────────────────────────────────────────────────────
 function BadgeModal({
-  activeClass,
-  onApply,
-  onClear,
+  activeAttrs,
+  indicatorAttrs,
+  onApplyBadge,
+  onClearBadge,
+  onApplyIndicator,
+  onClearIndicator,
   onClose
 }) {
-  const parsed = parseClass(activeClass);
+  const parsed = parseBadgeAttrs(activeAttrs);
+  const indParsed = parseIndicatorClass(indicatorAttrs?.class);
   const [bg, setBg] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(parsed.bg);
   const [pill, setPill] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(parsed.pill);
   const [sm, setSm] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(parsed.sm);
-
-  // Derive text colour automatically from chosen bg variant
-  const getTextForBg = bgVal => {
-    const v = VARIANTS.find(x => x.bg === bgVal);
-    return v ? v.text : 'text-white';
+  const [href, setHref] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(parsed.href);
+  const [newTab, setNewTab] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(parsed.target === '_blank');
+  const [indColor, setIndColor] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(indParsed.color);
+  const [indPos, setIndPos] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(indParsed.position);
+  const [indSize, setIndSize] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(indParsed.size);
+  const badgeClass = buildBadgeClass(bg, pill, sm);
+  const hasBadge = !!activeAttrs;
+  const hasIndicator = !!indicatorAttrs;
+  const handleApplyBadge = () => {
+    const attrs = {
+      class: badgeClass
+    };
+    if (href) {
+      attrs.href = href;
+      if (newTab) {
+        attrs.target = '_blank';
+        attrs.rel = 'noopener noreferrer';
+      }
+    }
+    onApplyBadge(attrs, !!href);
   };
-  const previewClass = buildClass(bg, getTextForBg(bg), pill, sm);
-  const previewColor = VARIANTS.find(v => v.bg === bg)?.preview || '#0d6efd';
-  const handleApply = () => {
-    onApply(buildClass(bg, getTextForBg(bg), pill, sm));
+  const handleApplyIndicator = () => {
+    onApplyIndicator({
+      color: indColor,
+      position: indPos,
+      size: indSize
+    });
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Modal, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Insert Badge', 'wmblocks'),
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Badge & Indicator', 'wmblocks'),
     onRequestClose: onClose,
     className: "wm-badge-modal",
     size: "medium",
@@ -333,25 +394,47 @@ function BadgeModal({
       className: "wm-badge-modal__body",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "wm-badge-modal__preview",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-          className: `${previewClass} wm-badge-modal__preview-badge`,
+        children: [href ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
+          href: "#",
+          className: badgeClass,
+          onClick: e => e.preventDefault(),
+          style: {
+            fontSize: 13
+          },
           children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Preview', 'wmblocks')
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("code", {
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+          className: badgeClass,
+          style: {
+            fontSize: 13
+          },
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Preview', 'wmblocks')
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("code", {
           className: "wm-badge-modal__preview-code",
-          children: previewClass
+          children: [badgeClass, href ? ` → ${href}` : '']
         })]
-      }), activeClass && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      }), hasBadge && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "wm-badge-modal__current",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Active:', 'wmblocks')
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Badge active', 'wmblocks')
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("code", {
-          children: activeClass
+          children: activeAttrs?.class
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
           variant: "tertiary",
           isDestructive: true,
           size: "compact",
-          onClick: onClear,
+          onClick: onClearBadge,
           children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('✕ Remove badge', 'wmblocks')
+        })]
+      }), hasIndicator && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "wm-badge-modal__current wm-badge-modal__current--indicator",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Indicator active', 'wmblocks')
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+          variant: "tertiary",
+          isDestructive: true,
+          size: "compact",
+          onClick: onClearIndicator,
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('✕ Remove indicator', 'wmblocks')
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TabPanel, {
         className: "wm-badge-modal__tabpanel",
@@ -362,63 +445,210 @@ function BadgeModal({
         }, {
           name: 'options',
           title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Options', 'wmblocks')
+        }, {
+          name: 'link',
+          title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Link', 'wmblocks')
+        }, {
+          name: 'indicator',
+          title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Indicator', 'wmblocks')
         }],
         children: tab => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           className: "wm-badge-modal__tab-content",
-          children: [tab.name === 'style' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-            className: "wm-badge-modal__variants",
-            children: VARIANTS.map(({
-              label,
-              bg: vBg,
-              text: vText,
-              preview
-            }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
-              title: label,
-              className: `wm-badge-variant${bg === vBg ? ' is-selected' : ''}`,
-              onClick: () => setBg(vBg),
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                className: `badge wm-badge ${vBg} ${vText}${pill ? ' rounded-pill' : ''}`,
-                style: {
-                  fontSize: 11,
-                  letterSpacing: 0
-                },
-                children: label
-              })
-            }, vBg))
-          }), tab.name === 'options' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-            className: "wm-badge-modal__options",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Pill badge (rounded-pill)', 'wmblocks'),
-              checked: pill,
-              onChange: setPill,
-              help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Adds fully rounded corners — Bootstrap .rounded-pill class.', 'wmblocks')
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Small badge (badge-sm)', 'wmblocks'),
-              checked: sm,
-              onChange: setSm,
-              help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Reduces font size and padding for a compact badge.', 'wmblocks')
+          children: [tab.name === 'style' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              className: "wm-badge-modal__variants",
+              children: VARIANTS.map(({
+                label,
+                bg: vBg
+              }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+                title: label,
+                className: `wm-badge-variant${bg === vBg ? ' is-selected' : ''}`,
+                onClick: () => setBg(vBg),
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                  className: `badge wm-badge ${vBg} ${getTextForBg(vBg)}${pill ? ' rounded-pill' : ''}`,
+                  style: {
+                    fontSize: 11,
+                    letterSpacing: 0
+                  },
+                  children: label
+                })
+              }, vBg))
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-              className: "wm-badge-modal__option-preview",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                className: previewClass,
-                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Preview', 'wmblocks')
+              className: "wm-badge-modal__footer",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                variant: "primary",
+                onClick: handleApplyBadge,
+                children: hasBadge ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Update badge', 'wmblocks') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Apply badge', 'wmblocks')
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                variant: "secondary",
+                onClick: onClose,
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Cancel', 'wmblocks')
+              })]
+            })]
+          }), tab.name === 'options' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              className: "wm-badge-modal__options",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Pill badge (rounded-pill)', 'wmblocks'),
+                checked: pill,
+                onChange: setPill,
+                help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Fully rounded corners.', 'wmblocks')
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Small badge (badge-sm)', 'wmblocks'),
+                checked: sm,
+                onChange: setSm,
+                help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Compact size — smaller font and padding.', 'wmblocks')
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                className: "wm-badge-modal__option-preview",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                  className: badgeClass,
+                  children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Preview', 'wmblocks')
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("code", {
+                  children: badgeClass
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              className: "wm-badge-modal__footer",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                variant: "primary",
+                onClick: handleApplyBadge,
+                children: hasBadge ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Update badge', 'wmblocks') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Apply badge', 'wmblocks')
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                variant: "secondary",
+                onClick: onClose,
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Cancel', 'wmblocks')
+              })]
+            })]
+          }), tab.name === 'link' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              className: "wm-badge-modal__options",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('URL', 'wmblocks'),
+                value: href,
+                onChange: setHref,
+                type: "url",
+                placeholder: "https://",
+                help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Wraps the badge in an <a> tag. Leave empty for a plain <span>.', 'wmblocks')
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Open in new tab', 'wmblocks'),
+                checked: newTab,
+                onChange: setNewTab,
+                disabled: !href
+              }), href && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                className: "wm-badge-modal__option-preview",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
+                  href: "#",
+                  className: badgeClass,
+                  onClick: e => e.preventDefault(),
+                  children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Preview link', 'wmblocks')
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("code", {
+                  children: `<a href="${href}" class="${badgeClass}">`
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              className: "wm-badge-modal__footer",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                variant: "primary",
+                onClick: handleApplyBadge,
+                children: hasBadge ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Update badge', 'wmblocks') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Apply badge', 'wmblocks')
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                variant: "secondary",
+                onClick: onClose,
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Cancel', 'wmblocks')
+              })]
+            })]
+          }), tab.name === 'indicator' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+              className: "wm-badge-modal__indicator-desc",
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Wraps the selected text in a position-relative container and adds an absolute-positioned dot indicator.', 'wmblocks')
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              className: "wm-badge-modal__indicator-preview",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
+                className: "position-relative d-inline-block",
+                style: {
+                  padding: '2px 4px'
+                },
+                children: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Text', 'wmblocks'), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                  className: `position-absolute ${indPos} ${indSize} ${indColor} border border-2 border-light rounded-circle wm-badge-indicator`
+                })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("code", {
-                children: previewClass
+                className: "wm-badge-modal__preview-code",
+                children: `position-relative → ${indColor} dot at ${INDICATOR_POSITIONS.find(p => p.value === indPos)?.label}`
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              className: "wm-badge-modal__section-label",
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Indicator colour', 'wmblocks')
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              className: "wm-badge-modal__indicator-colors",
+              children: INDICATOR_COLORS.map(({
+                label,
+                value
+              }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("button", {
+                title: label,
+                className: `wm-badge-ind-color${indColor === value ? ' is-selected' : ''}`,
+                onClick: () => setIndColor(value),
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                  className: `badge wm-badge ${value} rounded-circle p-2`,
+                  children: "\xA0"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                  className: "wm-badge-ind-color__label",
+                  children: label
+                })]
+              }, value))
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              className: "wm-badge-modal__section-label",
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Position', 'wmblocks')
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              className: "wm-badge-modal__indicator-positions",
+              children: INDICATOR_POSITIONS.map(({
+                label,
+                value
+              }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+                className: `wm-badge-ind-pos${indPos === value ? ' is-selected' : ''}`,
+                onClick: () => setIndPos(value),
+                children: label
+              }, value))
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              className: "wm-badge-modal__section-label",
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Dot size', 'wmblocks')
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              className: "wm-badge-modal__indicator-sizes",
+              children: [{
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Small', 'wmblocks'),
+                value: 'p-1'
+              }, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Medium', 'wmblocks'),
+                value: 'p-2'
+              }, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Large', 'wmblocks'),
+                value: 'p-3'
+              }].map(({
+                label,
+                value
+              }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+                className: `wm-badge-ind-size${indSize === value ? ' is-selected' : ''}`,
+                onClick: () => setIndSize(value),
+                children: label
+              }, value))
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              className: "wm-badge-modal__footer",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                variant: "primary",
+                onClick: handleApplyIndicator,
+                children: hasIndicator ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Update indicator', 'wmblocks') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Apply indicator', 'wmblocks')
+              }), hasIndicator && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                variant: "secondary",
+                isDestructive: true,
+                onClick: onClearIndicator,
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Remove indicator', 'wmblocks')
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                variant: "secondary",
+                onClick: onClose,
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Cancel', 'wmblocks')
               })]
             })]
           })]
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        className: "wm-badge-modal__footer",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
-          variant: "primary",
-          onClick: handleApply,
-          children: activeClass ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Update badge', 'wmblocks') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Apply badge', 'wmblocks')
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
-          variant: "secondary",
-          onClick: onClose,
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Cancel', 'wmblocks')
-        })]
       })]
     })
   });
@@ -431,62 +661,97 @@ function BadgeButton({
   isActive
 }) {
   const [open, setOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
-  const activeClass = getActiveBadgeClass(value);
-  const handleApply = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useCallback)(cls => {
+  const activeBadgeFmt = getActiveFormat(value, FORMAT_BADGE);
+  const activeIndicatorFmt = getActiveFormat(value, FORMAT_INDICATOR);
+  const isAnyActive = !!activeBadgeFmt || !!activeIndicatorFmt;
+  const handleApplyBadge = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useCallback)((attrs, isLink) => {
     setOpen(false);
-    onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.applyFormat)(value, {
-      type: FORMAT_NAME,
+    // Remove existing badge/indicator first, then re-apply
+    let v = (0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.removeFormat)(value, FORMAT_BADGE);
+    onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.applyFormat)(v, {
+      type: FORMAT_BADGE,
+      attributes: attrs
+    }));
+  }, [value, onChange]);
+  const handleClearBadge = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useCallback)(() => {
+    setOpen(false);
+    onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.removeFormat)(value, FORMAT_BADGE));
+  }, [value, onChange]);
+  const handleApplyIndicator = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useCallback)(({
+    color,
+    position,
+    size
+  }) => {
+    setOpen(false);
+    let v = (0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.removeFormat)(value, FORMAT_INDICATOR);
+    onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.applyFormat)(v, {
+      type: FORMAT_INDICATOR,
       attributes: {
-        class: cls
+        'data-ind-color': color,
+        'data-ind-pos': position,
+        'data-ind-size': size,
+        'class': 'position-relative wm-badge-host'
       }
     }));
   }, [value, onChange]);
-  const handleClear = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useCallback)(() => {
+  const handleClearIndicator = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useCallback)(() => {
     setOpen(false);
-    onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.removeFormat)(value, FORMAT_NAME));
+    onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.removeFormat)(value, FORMAT_INDICATOR));
   }, [value, onChange]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichTextToolbarButton, {
       icon: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
         className: "wm-badge-tool-icon",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-          className: `badge wm-badge bg-primary text-white wm-badge-tool-icon__badge`,
+          className: "badge wm-badge bg-primary text-white wm-badge-tool-icon__badge",
           children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Badge', 'wmblocks')
         })
       }),
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Badge', 'wmblocks'),
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Badge / Indicator', 'wmblocks'),
       onClick: () => setOpen(v => !v),
-      isActive: !!activeClass
+      isActive: isAnyActive
     }), open && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(BadgeModal, {
-      activeClass: activeClass,
-      onApply: handleApply,
-      onClear: handleClear,
+      activeAttrs: activeBadgeFmt?.attributes || null,
+      indicatorAttrs: activeIndicatorFmt?.attributes || null,
+      onApplyBadge: handleApplyBadge,
+      onClearBadge: handleClearBadge,
+      onApplyIndicator: handleApplyIndicator,
+      onClearIndicator: handleClearIndicator,
       onClose: () => setOpen(false)
     })]
   });
 }
 
 // ── Inject into ALL rich-text blocks ──────────────────────────────────────────
-function injectBadgeFormat(settings) {
+function injectBadgeFormats(settings) {
   if (!settings || typeof settings !== 'object') return settings;
   if (Array.isArray(settings.allowedFormats)) {
-    if (settings.allowedFormats.includes(FORMAT_NAME)) return settings;
+    const existing = settings.allowedFormats;
+    const toAdd = [FORMAT_BADGE, FORMAT_INDICATOR].filter(f => !existing.includes(f));
+    if (!toAdd.length) return settings;
     return {
       ...settings,
-      allowedFormats: [...settings.allowedFormats, FORMAT_NAME]
+      allowedFormats: [...existing, ...toAdd]
     };
   }
   return settings;
 }
-(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_4__.addFilter)('blocks.registerBlockType', 'wmblocks/inject-badge-format', injectBadgeFormat);
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_4__.addFilter)('blocks.registerBlockType', 'wmblocks/inject-badge-formats', injectBadgeFormats);
 
-// ── Register format ───────────────────────────────────────────────────────────
-(0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.registerFormatType)(FORMAT_NAME, {
+// ── Register BADGE format ─────────────────────────────────────────────────────
+// tagName is 'a' when a link is set, 'span' otherwise.
+// We register as 'span' and rely on the editor saving the correct tag.
+// On the frontend the PHP render filter (or theme) can upgrade span→a if needed.
+// The cleaner approach: register with className only and let PHP handle the tag.
+(0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.registerFormatType)(FORMAT_BADGE, {
   title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Badge', 'wmblocks'),
   tagName: 'span',
   className: 'wm-badge',
   attributes: {
-    class: 'class'
+    class: 'class',
+    href: 'href',
+    target: 'target',
+    rel: 'rel'
   },
   edit({
     value,
@@ -498,6 +763,27 @@ function injectBadgeFormat(settings) {
       onChange: onChange,
       isActive: isActive
     });
+  }
+});
+
+// ── Register INDICATOR format ─────────────────────────────────────────────────
+(0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.registerFormatType)(FORMAT_INDICATOR, {
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Badge Indicator', 'wmblocks'),
+  tagName: 'span',
+  className: 'wm-badge-host',
+  attributes: {
+    class: 'class',
+    'data-ind-color': 'data-ind-color',
+    'data-ind-pos': 'data-ind-pos',
+    'data-ind-size': 'data-ind-size'
+  },
+  edit({
+    value,
+    onChange,
+    isActive
+  }) {
+    // BadgeButton handles both formats — no separate edit needed for indicator
+    return null;
   }
 });
 })();

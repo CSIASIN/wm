@@ -16,10 +16,10 @@
 // ── Modal ─────────────────────────────────────────────────────────────────────
 .wm-badge-modal {
 	&.components-modal__frame {
-		width:      min( 540px, 96vw ) !important;
-		max-width:  min( 540px, 96vw ) !important;
+		width:      min( 560px, 96vw ) !important;
+		max-width:  min( 560px, 96vw ) !important;
 		height:     auto !important;
-		max-height: 85vh !important;
+		max-height: 88vh !important;
 	}
 
 	.components-modal__content {
@@ -39,13 +39,13 @@
 }
 
 .wm-badge-modal__body {
-	padding: 14px 16px 16px;
-	display: flex;
+	padding:        14px 16px 16px;
+	display:        flex;
 	flex-direction: column;
-	gap: 12px;
+	gap:            12px;
 }
 
-// ── Live preview strip ────────────────────────────────────────────────────────
+// ── Live preview ──────────────────────────────────────────────────────────────
 .wm-badge-modal__preview {
 	display:       flex;
 	align-items:   center;
@@ -55,19 +55,22 @@
 	border:        1px solid #e0e0e0;
 	border-radius: 6px;
 
-	&-badge {
-		font-size: 13px !important;
-		padding:   4px 10px !important;
+	a.badge, span.badge {
+		font-size:      13px !important;
+		padding:        4px 10px !important;
+		text-decoration: none;
 	}
 
 	&-code {
+		flex:        1;
 		font-family: monospace;
 		font-size:   11px;
 		color:       #6c757d;
+		word-break:  break-all;
 	}
 }
 
-// ── Active badge row ──────────────────────────────────────────────────────────
+// ── Active badge / indicator rows ─────────────────────────────────────────────
 .wm-badge-modal__current {
 	display:       flex;
 	align-items:   center;
@@ -84,6 +87,13 @@
 		font-size:   11px;
 		font-family: monospace;
 		color:       #fd7e14;
+		word-break:  break-all;
+	}
+
+	&--indicator {
+		background:  #f0f8ff;
+		border-color:#b8d4f0;
+		code { color: #0d6efd; }
 	}
 }
 
@@ -96,13 +106,12 @@
 		border-radius: 4px;
 		overflow:      hidden;
 		background:    #f6f7f7;
-		gap:           0;
 		margin-bottom: 0;
 	}
 
 	.components-tab-panel__tabs-item {
 		flex:          1;
-		padding:       8px 0;
+		padding:       8px 4px;
 		font-size:     12px;
 		font-weight:   500;
 		color:         #555;
@@ -115,7 +124,6 @@
 		transition:    background 0.1s, color 0.1s;
 
 		& + & { border-left: 1px solid #e0e0e0; }
-
 		&:hover { background: #ececec; color: #1e1e1e; }
 
 		&.is-active {
@@ -138,6 +146,7 @@
 	display:               grid;
 	grid-template-columns: repeat( auto-fill, minmax( 110px, 1fr ) );
 	gap:                   8px;
+	margin-bottom:         12px;
 }
 
 .wm-badge-variant {
@@ -174,7 +183,8 @@
 .wm-badge-modal__options {
 	display:        flex;
 	flex-direction: column;
-	gap:            8px;
+	gap:            4px;
+	margin-bottom:  12px;
 }
 
 .wm-badge-modal__option-preview {
@@ -185,7 +195,7 @@
 	background:    #f6f7f7;
 	border:        1px solid #e0e0e0;
 	border-radius: 4px;
-	margin-top:    4px;
+	margin-top:    8px;
 
 	code {
 		font-size:   11px;
@@ -194,12 +204,124 @@
 	}
 }
 
+// ── Indicator tab ─────────────────────────────────────────────────────────────
+.wm-badge-modal__indicator-desc {
+	font-size:     12px;
+	color:         #6c757d;
+	margin:        0 0 10px;
+	padding:       8px 10px;
+	background:    #f0f8ff;
+	border:        1px solid #cfe2ff;
+	border-radius: 4px;
+	line-height:   1.5;
+}
+
+.wm-badge-modal__indicator-preview {
+	display:       flex;
+	align-items:   center;
+	gap:           16px;
+	padding:       16px 14px;
+	background:    #f6f7f7;
+	border:        1px solid #e0e0e0;
+	border-radius: 6px;
+	margin-bottom: 12px;
+
+	code {
+		font-size:   11px;
+		font-family: monospace;
+		color:       #6c757d;
+		flex:        1;
+	}
+}
+
+.wm-badge-modal__section-label {
+	font-size:     11px;
+	font-weight:   600;
+	color:         #555;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	margin:        10px 0 6px;
+}
+
+// Indicator colour buttons
+.wm-badge-modal__indicator-colors {
+	display:               grid;
+	grid-template-columns: repeat( 4, 1fr );
+	gap:                   6px;
+	margin-bottom:         4px;
+}
+
+.wm-badge-ind-color {
+	display:         flex;
+	align-items:     center;
+	gap:             6px;
+	padding:         6px 8px;
+	border:          2px solid #e0e0e0;
+	border-radius:   6px;
+	background:      #fff;
+	cursor:          pointer;
+	font-size:       11px;
+	transition:      border-color 0.1s;
+
+	.badge { pointer-events: none; width: 16px; height: 16px; padding: 0 !important; }
+
+	&__label { color: #555; }
+
+	&:hover   { border-color: #3858e9; }
+	&.is-selected { border-color: #3858e9; box-shadow: 0 0 0 2px rgba(56,88,233,0.2); }
+}
+
+// Indicator position buttons
+.wm-badge-modal__indicator-positions {
+	display:               grid;
+	grid-template-columns: repeat( 2, 1fr );
+	gap:                   6px;
+	margin-bottom:         4px;
+}
+
+.wm-badge-ind-pos {
+	padding:       7px 10px;
+	border:        2px solid #e0e0e0;
+	border-radius: 4px;
+	background:    #fff;
+	cursor:        pointer;
+	font-size:     11px;
+	color:         #555;
+	text-align:    left;
+	transition:    border-color 0.1s;
+
+	&:hover    { border-color: #3858e9; color: #3858e9; }
+	&.is-selected { border-color: #3858e9; background: #f0f3ff; color: #3858e9; font-weight: 600; }
+}
+
+// Indicator size buttons
+.wm-badge-modal__indicator-sizes {
+	display: flex;
+	gap:     6px;
+}
+
+.wm-badge-ind-size {
+	flex:          1;
+	padding:       7px 0;
+	border:        2px solid #e0e0e0;
+	border-radius: 4px;
+	background:    #fff;
+	cursor:        pointer;
+	font-size:     11px;
+	color:         #555;
+	text-align:    center;
+	transition:    border-color 0.1s;
+
+	&:hover    { border-color: #3858e9; color: #3858e9; }
+	&.is-selected { border-color: #3858e9; background: #f0f3ff; color: #3858e9; font-weight: 600; }
+}
+
 // ── Footer buttons ────────────────────────────────────────────────────────────
 .wm-badge-modal__footer {
-	display:       flex;
-	gap:           8px;
-	padding-top:   4px;
-	border-top:    1px solid #e0e0e0;
-	margin-top:    4px;
+	display:         flex;
+	gap:             8px;
+	padding-top:     12px;
+	border-top:      1px solid #e0e0e0;
+	margin-top:      4px;
 	justify-content: flex-end;
 }

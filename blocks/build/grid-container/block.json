@@ -17,6 +17,10 @@
       "type": "string",
       "default": "container"
     },
+    "anchor": {
+      "type": "string",
+      "default": ""
+    },
     "textAlign": {
       "type": "string",
       "default": ""
@@ -30,6 +34,46 @@
       "default": ""
     },
     "padding": {
+      "type": "string",
+      "default": ""
+    },
+    "bgImageId": {
+      "type": "integer",
+      "default": 0
+    },
+    "bgImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "bgImageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "bgSize": {
+      "type": "string",
+      "default": "cover"
+    },
+    "bgPosition": {
+      "type": "string",
+      "default": "center center"
+    },
+    "bgRepeat": {
+      "type": "string",
+      "default": "no-repeat"
+    },
+    "bgAttachment": {
+      "type": "string",
+      "default": "scroll"
+    },
+    "bgOverlayColor": {
+      "type": "string",
+      "default": ""
+    },
+    "bgOverlayOpacity": {
+      "type": "number",
+      "default": 0.4
+    },
+    "minHeight": {
       "type": "string",
       "default": ""
     }

@@ -48,72 +48,23 @@ const BG_OPTS = [{
   label: "Secondary (bg-secondary text-white)",
   value: "bg-secondary text-white"
 }];
-const BTN_VARIANTS = [{
-  label: "Primary",
-  value: "btn-primary"
-}, {
-  label: "Secondary",
-  value: "btn-secondary"
-}, {
-  label: "Outline Primary",
-  value: "btn-outline-primary"
-}, {
-  label: "Outline Secondary",
-  value: "btn-outline-secondary"
-}, {
-  label: "Outline Light",
-  value: "btn-outline-light"
-}, {
-  label: "Outline Dark",
-  value: "btn-outline-dark"
-}, {
-  label: "Success",
-  value: "btn-success"
-}, {
-  label: "Danger",
-  value: "btn-danger"
-}, {
-  label: "Warning",
-  value: "btn-warning"
-}, {
-  label: "Link",
-  value: "btn-link"
-}];
-const E = ({
-  tag: Tag = "span",
-  value,
-  onChange,
-  style = {},
-  placeholder = ""
-}) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Tag, {
-  contentEditable: true,
-  suppressContentEditableWarning: true,
-  onInput: e => onChange(e.currentTarget.textContent),
-  onKeyDown: e => Tag !== "p" && e.key === "Enter" && e.preventDefault(),
-  style: {
-    outline: "none",
-    cursor: "text",
-    ...style
-  },
-  "data-placeholder": placeholder,
-  children: value
-});
+const HERO_TEMPLATE = [['wmblocks/bs-image', {
+  width: 'auto',
+  height: '72px',
+  className: 'mb-4 d-block mx-auto'
+}], ['wmblocks/bs-heading', {
+  content: 'Start Your Adventure',
+  level: 1,
+  className: 'display-1 fw-bold'
+}], ['core/paragraph', {
+  content: 'At the heart of the debate lies a single question... What if everything we assumed about X is backward? A quiet revolution has been unfolding in... Every generation redraws the boundaries of... One statistic disrupts the comfortable narrative:',
+  className: 'lead mb-4'
+}], ['wmblocks/buttons', {}]];
 function Edit({
   attributes,
   setAttributes
 }) {
   const {
-    logoUrl,
-    logoId,
-    logoHeight,
-    heading,
-    subtext,
-    btn1Text,
-    btn1Url,
-    btn1Variant,
-    btn2Text,
-    btn2Url,
-    btn2Variant,
     bgColor,
     customClass
   } = attributes;
@@ -122,183 +73,32 @@ function Edit({
     className: "wmblocks-hero1"
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Logo", "wmblocks"),
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Hero Style", "wmblocks"),
         initialOpen: true,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
-            onSelect: m => setAttributes({
-              logoUrl: m.url,
-              logoId: m.id
-            }),
-            allowedTypes: ["image"],
-            value: logoId,
-            render: ({
-              open
-            }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-              children: [logoUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-                src: logoUrl,
-                style: {
-                  height: logoHeight,
-                  marginBottom: 8,
-                  display: "block"
-                },
-                alt: ""
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
-                variant: "secondary",
-                size: "small",
-                onClick: open,
-                children: logoUrl ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Change Logo", "wmblocks") : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Upload Logo", "wmblocks")
-              }), logoUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
-                variant: "secondary",
-                size: "small",
-                isDestructive: true,
-                onClick: () => setAttributes({
-                  logoUrl: "",
-                  logoId: 0
-                }),
-                style: {
-                  marginLeft: 6
-                },
-                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Remove", "wmblocks")
-              })]
-            })
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Logo Height", "wmblocks"),
-          value: logoHeight,
-          onChange: v => setAttributes({
-            logoHeight: v
-          }),
-          placeholder: "72px"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Buttons", "wmblocks"),
-        initialOpen: false,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Button 1 Text", "wmblocks"),
-          value: btn1Text,
-          onChange: v => setAttributes({
-            btn1Text: v
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Button 1 URL", "wmblocks"),
-          value: btn1Url,
-          onChange: v => setAttributes({
-            btn1Url: v
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Button 1 Style", "wmblocks"),
-          value: btn1Variant,
-          options: BTN_VARIANTS,
-          onChange: v => setAttributes({
-            btn1Variant: v
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Button 2 Text", "wmblocks"),
-          value: btn2Text,
-          onChange: v => setAttributes({
-            btn2Text: v
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Button 2 URL", "wmblocks"),
-          value: btn2Url,
-          onChange: v => setAttributes({
-            btn2Url: v
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Button 2 Style", "wmblocks"),
-          value: btn2Variant,
-          options: BTN_VARIANTS,
-          onChange: v => setAttributes({
-            btn2Variant: v
-          })
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Style", "wmblocks"),
-        initialOpen: false,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Background", "wmblocks"),
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Background Color", "wmblocks"),
           value: bgColor,
           options: BG_OPTS,
           onChange: v => setAttributes({
             bgColor: v
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Extra Classes", "wmblocks"),
-          value: customClass,
-          onChange: v => setAttributes({
-            customClass: v
-          })
-        })]
-      })]
+        })
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       ...blockProps,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: wrapClass,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           className: "container py-5",
-          children: [logoUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-            src: logoUrl,
-            style: {
-              height: logoHeight,
-              marginBottom: "1rem"
-            },
-            alt: "",
-            className: "d-block mx-auto"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(E, {
-            tag: "h1",
-            value: heading,
-            onChange: v => setAttributes({
-              heading: v
-            }),
-            style: {
-              fontWeight: 700,
-              marginBottom: "1rem",
-              fontSize: "2.5rem"
-            },
-            placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Hero heading…", "wmblocks")
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "col-lg-6 mx-auto",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(E, {
-              tag: "p",
-              value: subtext,
-              onChange: v => setAttributes({
-                subtext: v
-              }),
-              style: {
-                display: "block",
-                fontSize: "1.1rem",
-                marginBottom: "1.5rem",
-                color: "#555"
-              },
-              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Subtext…", "wmblocks")
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-              className: "d-grid gap-2 d-sm-flex justify-content-sm-center",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
-                href: "#",
-                className: `btn ${btn1Variant} btn-lg px-4 gap-3`,
-                onClick: e => e.preventDefault(),
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(E, {
-                  value: btn1Text,
-                  onChange: v => setAttributes({
-                    btn1Text: v
-                  })
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
-                href: "#",
-                className: `btn ${btn2Variant} btn-lg px-4`,
-                onClick: e => e.preventDefault(),
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(E, {
-                  value: btn2Text,
-                  onChange: v => setAttributes({
-                    btn2Text: v
-                  })
-                })
-              })]
-            })]
-          })]
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "col-lg-7 mx-auto text-center",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
+              template: HERO_TEMPLATE,
+              templateLock: false
+            })
+          })
         })
       })
     })]
@@ -324,16 +124,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 
-
+ // Don't forget to import InnerBlocks
 
 
 
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
   edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
-  save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
-  })
+  /**
+   * The save function must return InnerBlocks.Content 
+   * so that the child blocks are actually saved to the database.
+   */
+  save: () => {
+    const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save();
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      ...blockProps,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
+    });
+  }
 });
 
 /***/ },

@@ -25,7 +25,7 @@
  */
 
 /* eslint-disable no-console */
-console.log('Hello World! (from wmblocks-container block)');
+//console.log( 'Hello World! (from wmblocks-container block)' );
 /* eslint-enable no-console */
 /******/ })()
 ;
