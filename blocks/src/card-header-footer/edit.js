@@ -155,7 +155,7 @@ export default function Edit( { attributes, setAttributes } ) {
 						<InnerBlocks
 							template={ BODY_TEMPLATE }
 							templateLock={ true }
-							renderAppender={ true }
+							renderAppender={ false }
 						/>
 					</div>
 

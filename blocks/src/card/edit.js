@@ -136,7 +136,7 @@ export default function Edit( { attributes, setAttributes } ) {
 				</div>
 
 				<div className="card-body">
-					<InnerBlocks template={ BODY_TEMPLATE } templateLock={ true } renderAppender={ true } />
+					<InnerBlocks template={ BODY_TEMPLATE } templateLock={ true } renderAppender={ false } />
 				</div>
 			</div>
 		</>
