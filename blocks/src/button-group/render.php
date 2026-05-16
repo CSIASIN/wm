@@ -14,7 +14,7 @@
  * never via `global` — because WordPress runs render.php inside
  * a function scope where global variables are not accessible.
  */
-
+$anchor  = ! empty( $attributes['anchor'] ) ? ' id="' . esc_attr( $attributes['anchor'] ) . '"' : '';
 // ── Helper: render a single standard button or link ───────────────────────
 if ( ! function_exists( 'wmblocks_btngroup_render_button' ) ) {
 	function wmblocks_btngroup_render_button( array $btn, string $group_size = '' ): string {
@@ -178,7 +178,7 @@ foreach ( $buttons as $index => $btn ) {
 $wrapper_extra = $needs_align_wrap ? [ 'class' => 'd-flex ' . $align_class ] : [];
 $wrapper_attr  = get_block_wrapper_attributes( $wrapper_extra );
 ?>
-<div <?php echo $wrapper_attr; ?>>
+<div <?php echo $wrapper_attr; ?><?php echo $anchor; ?>>
 
 <?php if ( $group_mode === 'toolbar' ) :
 	// ── Button Toolbar — wraps the group inside a toolbar container ───

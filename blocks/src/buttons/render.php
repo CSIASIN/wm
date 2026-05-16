@@ -16,6 +16,7 @@
 
 
 // ── Read & sanitise block-level attributes ────────────────────────────────
+$anchor  = ! empty( $attributes['anchor'] ) ? ' id="' . esc_attr( $attributes['anchor'] ) . '"' : '';
 $buttons        = ( isset( $attributes['buttons'] ) && is_array( $attributes['buttons'] ) )
                   ? $attributes['buttons'] : [];
 $layout         = isset( $attributes['layout'] )        ? $attributes['layout']        : 'inline';
@@ -79,7 +80,7 @@ $clean_attributes = str_replace(array('class="', '"'), '', $wrapper_attributes);
 // All allowlists live here so they are always in scope — no globals needed.
 if ( ! function_exists( 'wmblocks_render_single_button' ) ) {
 
-	function wmblocks_render_single_button( array $btn, mixed $wrapAttr ): string {
+	function wmblocks_render_single_button( array $btn, mixed $wrapAttr , string $anchorID): string {
 
 		// ── Allowlists (defined inline — safe from scope issues) ──────
 		$ok_variants = [
@@ -150,7 +151,7 @@ if ( ! function_exists( 'wmblocks_render_single_button' ) ) {
 		$dis_attr  = $disabled ? ' tabindex="-1" aria-disabled="true"' : '';
 		$aria_attr = $active   ? ' aria-pressed="true"' : '';
 
-		return '<a href="' . $href . '"'
+		return '<a '. $anchorID .' href="' . $href . '"'
 		       . ' class="' . esc_attr( $classes ) . ' '. $wrapAttr . '"'
 		       . ' target="' . esc_attr( $target ) . '"'
 		       . $rel_attr . $dis_attr . $aria_attr . '>'
@@ -170,7 +171,7 @@ if ( ! function_exists( 'wmblocks_render_single_button' ) ) {
 ?>
 	<div class="<?php echo esc_attr( $grp_classes ); ?>" role="group" aria-label="<?php esc_attr_e( 'Button group', 'wmblocks' ); ?>">
 		<?php foreach ( $buttons as $btn ) : ?>
-			<?php echo wmblocks_render_single_button( $btn, $clean_attributes ); ?>
+			<?php echo wmblocks_render_single_button( $btn, $clean_attributes, $anchor ); ?>
 		<?php endforeach; ?>
 	</div>
 
@@ -179,13 +180,13 @@ if ( ! function_exists( 'wmblocks_render_single_button' ) ) {
 ?>
 	<div class="d-grid gap-2">
 		<?php foreach ( $buttons as $btn ) : ?>
-			<?php echo wmblocks_render_single_button( $btn , $clean_attributes ); ?>
+			<?php echo wmblocks_render_single_button( $btn , $clean_attributes , $anchor); ?>
 		<?php endforeach; ?>
 	</div>
 
 <?php elseif ( $is_single_inline ) :
 	// ── Single button, inline: no inner wrapper at all ────────────────
-	echo wmblocks_render_single_button( $buttons[0], $clean_attributes );
+	echo wmblocks_render_single_button( $buttons[0], $clean_attributes, $anchor );
 ?>
 <?php else :
 	// ── Multiple buttons, inline: flex row with gap + alignment ───────

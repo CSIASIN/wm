@@ -1,0 +1,44 @@
+/**
+ * The following styles get applied inside the editor only.
+ */
+
+.wp-block-wmblocks-card-basic {
+    // Add a light dashed border so the card is visible when empty
+    border: 1px dashed red !important;
+    min-height: 20px;
+    transition: border-color 0.2s ease;
+
+    &:hover {
+        border-color: #007cba !important; // WordPress Blue on hover
+    }
+
+    // The "Card" label in the top left
+    &::before {
+        content: "Card Basic";
+        top: -12px;
+        left: 10px;
+        background-color: #666;
+        padding: 0 8px;
+        color: #fff;
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+        border-radius: 2px;
+        z-index: 20;
+        pointer-events: none;
+    }
+
+    // Adjust the label color when the block is selected
+    &.is-selected {
+        border: 1px solid #007cba !important;
+        
+        &::before {
+            background-color: #007cba;
+        }
+    }
+}
+
+// Ensure InnerBlocks placeholder doesn't collapse
+.wp-block-wmblocks-card-basic .card-body {
+    min-height: 20px;
+}

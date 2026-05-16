@@ -1,0 +1,39 @@
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/card-basic/editor.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ */
+.wp-block-wmblocks-card-basic {
+  border: 1px dashed red !important;
+  min-height: 20px;
+  transition: border-color 0.2s ease;
+}
+.wp-block-wmblocks-card-basic:hover {
+  border-color: #007cba !important;
+}
+.wp-block-wmblocks-card-basic::before {
+  content: "Card Basic";
+  top: -12px;
+  left: 10px;
+  background-color: #666;
+  padding: 0 8px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 2px;
+  z-index: 20;
+  pointer-events: none;
+}
+.wp-block-wmblocks-card-basic.is-selected {
+  border: 1px solid #007cba !important;
+}
+.wp-block-wmblocks-card-basic.is-selected::before {
+  background-color: #007cba;
+}
+.wp-block-wmblocks-card-basic .card-body {
+  min-height: 20px;
+}
+
+/*# sourceMappingURL=index.css.map*/

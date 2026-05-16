@@ -32,7 +32,7 @@ const ALIGN_SELF_OPTS = [
 
 // Wide allowed blocks — col accepts everything so authors can nest rows inside
 const ALLOWED = [
-	'wmblocks/grid-row', 'wmblocks/grid-container',
+	'wmblocks/bs-heading','wmblocks/grid-row', 'wmblocks/grid-container', 'wmblocks/card-basic',
 	'wmblocks/container', 'wmblocks/flex-container',
 	'wmblocks/vstack', 'wmblocks/hstack',
 	'core/paragraph', 'core/heading', 'core/image', 'core/list',
@@ -147,6 +147,7 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 					allowedBlocks={ ALLOWED }
 					template={ CONTENT_TEMPLATE }
 					templateLock={ false }
+					renderAppender={ InnerBlocks.ButtonBlockAppender }
 				/>
 			</div>
 		</>

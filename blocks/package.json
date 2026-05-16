@@ -1,8 +1,8 @@
 {
-	"name": "div",
+	"name": "wmblocks",
 	"version": "0.1.0",
-	"description": "Div are a basic building block of Watermelon that contain, pad, and align your content within a given device or viewport.",
-	"author": "The WordPress Contributors",
+	"description": "Watermelon Blocks, Heading, Grid, Row, Columns, Card, Alert, Formats for Tooltip, Popover, Inline color and background, Inline SVG, and more about 100 blocks",
+	"author": "Fahim Akhtar",
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
 	"scripts": {

@@ -129,8 +129,6 @@ const FONT_WEIGHT_OPTS = [{
   label: 'fst-italic',
   value: 'fst-italic'
 }];
-
-// Level → default sizes for editor preview
 const LEVEL_SIZES = {
   1: '2em',
   2: '1.65em',
@@ -139,7 +137,6 @@ const LEVEL_SIZES = {
   5: '1.05em',
   6: '0.95em'
 };
-// Display class → approximate font sizes for preview
 const DISPLAY_SIZES = {
   'display-1': '4.5rem',
   'display-2': '4rem',
@@ -162,11 +159,7 @@ function Edit({
     customClass
   } = attributes;
   const Tag = `h${level}`;
-
-  // Build the full class string
-  const headingClass = [displayClass || '', textAlign || '', textColor || '', fontWeight || '', customClass || ''].filter(Boolean).join(' ');
-
-  // Preview font-size — display class overrides heading level size
+  const headingClass = [displayClass, textAlign, textColor, fontWeight, customClass].filter(Boolean).join(' ');
   const previewFontSize = displayClass ? DISPLAY_SIZES[displayClass] : LEVEL_SIZES[level];
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
     className: ['wmblocks-bs-heading-wrapper', headingClass].filter(Boolean).join(' ')
@@ -189,12 +182,7 @@ function Edit({
             isActive: level === n,
             onClick: () => setAttributes({
               level: n
-            }),
-            extraProps: {
-              style: {
-                fontWeight: level === n ? 700 : 400
-              }
-            }
+            })
           }))
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToolbarGroup, {
@@ -221,26 +209,25 @@ function Edit({
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
             className: `dashicons dashicons-${icon}`,
             style: {
-              fontSize: 18,
-              lineHeight: '36px'
+              fontSize: 18
             }
           })
         }, cls))
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Heading', 'wmblocks'),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Heading Settings', 'wmblocks'),
         initialOpen: true,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           style: {
-            marginBottom: 12
+            marginBottom: 15
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
             style: {
               fontSize: 11,
               fontWeight: 600,
-              color: '#1e1e1e',
-              marginBottom: 6
+              display: 'block',
+              marginBottom: 8
             },
             children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Level', 'wmblocks')
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
@@ -249,23 +236,20 @@ function Edit({
               gap: 4
             },
             children: [1, 2, 3, 4, 5, 6].map(n => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("button", {
-              onMouseDown: e => {
-                e.preventDefault();
-                setAttributes({
-                  level: n
-                });
-              },
+              type: "button",
+              onClick: () => setAttributes({
+                level: n
+              }),
               style: {
-                width: 36,
+                flex: 1,
                 height: 32,
                 border: '1px solid',
                 borderColor: level === n ? '#007cba' : '#ddd',
                 borderRadius: 4,
                 cursor: 'pointer',
-                background: level === n ? '#007cba' : '#f8f9fa',
+                background: level === n ? '#007cba' : '#fff',
                 color: level === n ? '#fff' : '#333',
-                fontWeight: level === n ? 700 : 400,
-                fontSize: 13
+                fontWeight: level === n ? 700 : 400
               },
               children: ["H", n]
             }, n))
@@ -276,8 +260,7 @@ function Edit({
           options: DISPLAY_OPTS,
           onChange: v => setAttributes({
             displayClass: v
-          }),
-          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('display-1 to display-6 — larger, thinner headings for hero sections.', 'wmblocks')
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Text Align', 'wmblocks'),
           value: textAlign,
@@ -314,8 +297,7 @@ function Edit({
           display: 'flex',
           alignItems: 'center',
           gap: 6,
-          marginBottom: 6,
-          flexWrap: 'wrap'
+          marginBottom: 8
         },
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
           style: {
@@ -326,34 +308,23 @@ function Edit({
             padding: '1px 7px',
             borderRadius: 10
           },
-          children: Tag
+          children: Tag.toUpperCase()
         }), headingClass && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("code", {
           style: {
             fontSize: 10,
             color: '#6c757d',
             background: '#f8f9fa',
-            padding: '2px 6px',
-            borderRadius: 3
+            padding: '2px 6px'
           },
           children: [".", headingClass.split(' ').join(' .')]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Tag, {
-        className: headingClass || undefined,
-        contentEditable: true,
-        suppressContentEditableWarning: true,
-        onInput: e => setAttributes({
-          content: e.currentTarget.textContent
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+        tagName: Tag,
+        value: content,
+        onChange: val => setAttributes({
+          content: val
         }),
-        onKeyDown: e => e.key === 'Enter' && e.preventDefault(),
-        style: {
-          outline: 'none',
-          cursor: 'text',
-          fontSize: previewFontSize,
-          fontWeight: displayClass ? 300 : undefined,
-          lineHeight: 1.2,
-          textAlign: textAlign ? textAlign.replace('text-', '') : undefined
-        },
-        children: content
+        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enter heading...', 'wmblocks')
       })]
     })]
   });
@@ -375,9 +346,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/heading/style.scss");
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit */ "./src/heading/edit.js");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/heading/block.json");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
-
 
 
 
@@ -385,7 +353,7 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
   edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
-  save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
+  save: () => null
 });
 
 /***/ },

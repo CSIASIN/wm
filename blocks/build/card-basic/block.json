@@ -1,0 +1,110 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/card-basic",
+  "version": "0.1.0",
+  "title": "Card Basic",
+  "category": "watermelon-blocks",
+  "icon": "index-card",
+  "description": "A basic Bootstrap card wrapper.",
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "anchor": {
+      "type": "string",
+      "default": ""
+    },
+    "padding": {
+      "type": "string",
+      "default": ""
+    },
+    "margin": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": ""
+    },
+    "textColor": {
+      "type": "string",
+      "default": ""
+    },
+    "shadow": {
+      "type": "string",
+      "default": ""
+    },
+    "opacity": {
+      "type": "number",
+      "default": 100
+    },
+    "borderSides": {
+      "type": "array",
+      "default": []
+    },
+    "borderRemove": {
+      "type": "array",
+      "default": []
+    },
+    "borderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "borderOpacityClass": {
+      "type": "string",
+      "default": ""
+    },
+    "borderOpacityCustom": {
+      "type": "string",
+      "default": ""
+    },
+    "borderSize": {
+      "type": "string",
+      "default": ""
+    },
+    "borderRadius": {
+      "type": "string",
+      "default": ""
+    },
+    "borderRadiusSize": {
+      "type": "string",
+      "default": ""
+    },
+    "customCSS": {
+      "type": "string",
+      "default": ""
+    },
+    "hideXs": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideSm": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideMd": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideLg": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideXl": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideXxl": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

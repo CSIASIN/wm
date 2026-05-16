@@ -63,7 +63,7 @@ const ALIGN_SELF_OPTS = [none, ...['start', 'end', 'center', 'baseline', 'stretc
 }))];
 
 // Wide allowed blocks — col accepts everything so authors can nest rows inside
-const ALLOWED = ['wmblocks/grid-row', 'wmblocks/grid-container', 'wmblocks/container', 'wmblocks/flex-container', 'wmblocks/vstack', 'wmblocks/hstack', 'core/paragraph', 'core/heading', 'core/image', 'core/list', 'core/group', 'core/columns', 'core/html', 'wmblocks/bs-image', 'wmblocks/bs-figure', 'wmblocks/object-fit', 'wmblocks/accordion', 'wmblocks/tabs', 'wmblocks/carousel', 'wmblocks/collapse', 'wmblocks/modal', 'wmblocks/toast', 'wmblocks/progress', 'wmblocks/list-group', 'wmblocks/bs-form', 'wmblocks/icon-link', 'wmblocks/buttons', 'wmblocks/button-group', 'wmblocks/image-link', 'wmblocks/position-wrapper', 'wmblocks/card', 'wmblocks/card-image', 'wmblocks/card-header-footer'];
+const ALLOWED = ['wmblocks/bs-heading', 'wmblocks/grid-row', 'wmblocks/grid-container', 'wmblocks/card-basic', 'wmblocks/container', 'wmblocks/flex-container', 'wmblocks/vstack', 'wmblocks/hstack', 'core/paragraph', 'core/heading', 'core/image', 'core/list', 'core/group', 'core/columns', 'core/html', 'wmblocks/bs-image', 'wmblocks/bs-figure', 'wmblocks/object-fit', 'wmblocks/accordion', 'wmblocks/tabs', 'wmblocks/carousel', 'wmblocks/collapse', 'wmblocks/modal', 'wmblocks/toast', 'wmblocks/progress', 'wmblocks/list-group', 'wmblocks/bs-form', 'wmblocks/icon-link', 'wmblocks/buttons', 'wmblocks/button-group', 'wmblocks/image-link', 'wmblocks/position-wrapper', 'wmblocks/card', 'wmblocks/card-image', 'wmblocks/card-header-footer'];
 const CONTENT_TEMPLATE = [['core/paragraph', {
   placeholder: 'Column content…'
 }]];
@@ -306,7 +306,8 @@ function Edit({
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
         allowedBlocks: ALLOWED,
         template: CONTENT_TEMPLATE,
-        templateLock: false
+        templateLock: false,
+        renderAppender: _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.ButtonBlockAppender
       })]
     })]
   });

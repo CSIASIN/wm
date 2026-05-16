@@ -3,7 +3,7 @@
  * render.php — wmblocks/card (base card)
  * $content = InnerBlocks HTML (the card body contents)
  */
-
+$anchor  = ! empty( $attributes['anchor'] ) ? ' id="' . esc_attr( $attributes['anchor'] ) . '"' : '';
 $ok_bg      = [ '', 'text-bg-primary','text-bg-secondary','text-bg-success','text-bg-danger','text-bg-warning','text-bg-info','text-bg-light','text-bg-dark' ];
 $ok_border  = [ '', 'border-primary','border-secondary','border-success','border-danger','border-warning','border-info','border-light','border-dark' ];
 $ok_shadow  = [ '', 'shadow-sm', 'shadow', 'shadow-lg' ];
@@ -27,7 +27,7 @@ $width_style  = $custom_width ? ' style="width:' . esc_attr( $custom_width ) . '
 $wrapper_attr = get_block_wrapper_attributes( [ 'class' => $card_classes ] );
 ?>
 
-	<div <?php echo $wrapper_attr; ?> <?php echo $width_style; ?>>
+	<div <?php echo $anchor; ?> <?php echo $wrapper_attr; ?> <?php echo $width_style; ?>>
 		<div class="card-body">
 			<?php echo $content; ?>
 		</div>

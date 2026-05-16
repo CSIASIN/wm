@@ -334,7 +334,7 @@ function Edit({
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
             template: BODY_TEMPLATE,
             templateLock: true,
-            renderAppender: true
+            renderAppender: false
           })
         }), showFooter && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           className: 'card-footer text-muted ' + footerBgVariant,
@@ -377,7 +377,67 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const cardHeaderFooterIcon = ({
+  size = 24,
+  color = "currentColor",
+  className = ""
+}) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
+  width: size,
+  height: size,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  className: className,
+  xmlns: "http://www.w3.org/2000/svg",
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("mask", {
+    id: "path-2-inside-1_1623_2735",
+    fill: "white",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
+      y: "4",
+      width: "24",
+      height: "16",
+      rx: "1"
+    })
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
+    y: "4",
+    width: "24",
+    height: "16",
+    rx: "1",
+    fill: "white",
+    stroke: "#007CED",
+    "stroke-width": "3",
+    mask: "url(#path-2-inside-1_1623_2735)"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
+    y: "7",
+    width: "24",
+    height: "1.5",
+    fill: "#007CED"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
+    y: "16",
+    width: "24",
+    height: "1.5",
+    fill: "#007CED"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
+    x: "4",
+    y: "9.75",
+    width: "8",
+    height: "1",
+    fill: "#007CED"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
+    x: "4",
+    y: "11.75",
+    width: "12",
+    height: "1",
+    fill: "#007CED"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
+    x: "4",
+    y: "13.75",
+    width: "16",
+    height: "1",
+    fill: "#007CED"
+  })]
+});
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
+  icon: cardHeaderFooterIcon,
   edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
   save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
 });

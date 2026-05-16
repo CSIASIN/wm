@@ -1051,6 +1051,10 @@ return array(
 					'vertical'
 				)
 			),
+			'anchor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
 			'size' => array(
 				'type' => 'string',
 				'default' => ''
@@ -1170,6 +1174,10 @@ return array(
 					)
 				)
 			),
+			'anchor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
 			'layout' => array(
 				'type' => 'string',
 				'default' => 'inline'
@@ -1250,6 +1258,124 @@ return array(
 			'customWidth' => array(
 				'type' => 'string',
 				'default' => ''
+			),
+			'anchor' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'card-basic' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/card-basic',
+		'version' => '0.1.0',
+		'title' => 'Card Basic',
+		'category' => 'watermelon-blocks',
+		'icon' => 'index-card',
+		'description' => 'A basic Bootstrap card wrapper.',
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'anchor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'padding' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'margin' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'backgroundColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'shadow' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'opacity' => array(
+				'type' => 'number',
+				'default' => 100
+			),
+			'borderSides' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'borderRemove' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'borderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderOpacityClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderOpacityCustom' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderRadius' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderRadiusSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customCSS' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'hideXs' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideSm' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideMd' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideLg' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideXl' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideXxl' => array(
+				'type' => 'boolean',
+				'default' => false
 			)
 		),
 		'textdomain' => 'wm',

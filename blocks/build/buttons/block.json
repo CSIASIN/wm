@@ -32,6 +32,10 @@
         }
       ]
     },
+    "anchor": {
+      "type": "string",
+      "default": ""
+    },
     "layout": {
       "type": "string",
       "default": "inline"

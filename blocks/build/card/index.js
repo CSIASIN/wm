@@ -280,7 +280,7 @@ function Edit({
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
           template: BODY_TEMPLATE,
           templateLock: true,
-          renderAppender: true
+          renderAppender: false
         })
       })]
     })]
@@ -311,7 +311,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// Custom SVG icon representing a container/layout block
+
+const cardIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
+  viewBox: "0 0 24 24",
+  fill: "none",
+  xmlns: "http://www.w3.org/2000/svg",
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
+    d: "M2 10H22V17C22 17.5523 21.5523 18 21 18H3C2.44772 18 2 17.5523 2 17V10Z",
+    fill: "#007FFF"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
+    d: "M22 10L2 10L2 7C2 6.44772 2.44772 6 3 6L21 6C21.5523 6 22 6.44771 22 7L22 10Z",
+    fill: "#007FFF"
+  })]
+});
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
+  icon: cardIcon,
   edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
   save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
 });
@@ -398,7 +413,7 @@ module.exports = window["wp"]["i18n"];
   \*****************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wmblocks/card","version":"0.1.0","title":"Card","category":"watermelon-blocks","icon":"media-default","description":"Bootstrap base card — a flexible content container. Add any blocks inside the card body.","example":{},"supports":{"html":false,"anchor":true},"attributes":{"bgColor":{"type":"string","default":""},"textColor":{"type":"string","default":""},"borderColor":{"type":"string","default":""},"shadow":{"type":"string","default":""},"borderRadius":{"type":"string","default":""},"noBorder":{"type":"boolean","default":false},"textAlign":{"type":"string","default":""},"customWidth":{"type":"string","default":""}},"textdomain":"wm","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wmblocks/card","version":"0.1.0","title":"Card","category":"watermelon-blocks","icon":"media-default","description":"Bootstrap base card — a flexible content container. Add any blocks inside the card body.","example":{},"supports":{"html":false,"anchor":true},"attributes":{"bgColor":{"type":"string","default":""},"textColor":{"type":"string","default":""},"borderColor":{"type":"string","default":""},"shadow":{"type":"string","default":""},"borderRadius":{"type":"string","default":""},"noBorder":{"type":"boolean","default":false},"textAlign":{"type":"string","default":""},"customWidth":{"type":"string","default":""},"anchor":{"type":"string","default":""}},"textdomain":"wm","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }
 

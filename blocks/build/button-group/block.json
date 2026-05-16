@@ -22,6 +22,10 @@
         "vertical"
       ]
     },
+    "anchor": {
+      "type": "string",
+      "default": ""
+    },
     "size": {
       "type": "string",
       "default": ""
