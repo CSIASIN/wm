@@ -3,21 +3,30 @@ import { useBlockProps, InspectorControls, RichText, BlockControls, MediaUpload,
 import { PanelBody, SelectControl, ToggleControl, TextControl, ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import './editor.scss';
 
-const BG_OPTIONS = [
-    { label: 'Default',   value: '' }, { label: 'Primary', value: 'text-bg-primary' },
-    { label: 'Secondary', value: 'text-bg-secondary' }, { label: 'Success', value: 'text-bg-success' },
-    { label: 'Danger',    value: 'text-bg-danger' },    { label: 'Warning', value: 'text-bg-warning' },
-    { label: 'Info',      value: 'text-bg-info' },      { label: 'Light',   value: 'text-bg-light' },
-    { label: 'Dark',      value: 'text-bg-dark' },
+// Import Shared Controls
+import { PaddingControl, MarginControl } from '../../controls/spacingControls';
+import { BackgroundColorControl, TextColorControl, OpacityControl, ShadowControl, BorderControl, CustomCSSControl } from '../../controls/visualControls';
+import { VisibilityControl } from '../../controls/visibilityControl';
+
+const IMG_POSITION_OPTIONS = [
+    { label: 'Top',                value: 'top'     },
+    { label: 'Bottom',             value: 'bottom'  },
+    { label: 'Overlay',            value: 'overlay' },
+    { label: 'Left (horizontal)',  value: 'left'    },
+    { label: 'Right (horizontal)', value: 'right'   },
 ];
 
-const BTN_VARIANTS = [
-    { label: 'Primary', value: 'btn-primary' }, { label: 'Secondary', value: 'btn-secondary' },
-    { label: 'Success', value: 'btn-success' }, { label: 'Danger',    value: 'btn-danger' },
-    { label: 'Warning', value: 'btn-warning' }, { label: 'Info',      value: 'btn-info' },
-    { label: 'Dark',    value: 'btn-dark' },    { label: 'Light',     value: 'btn-light' },
-    { label: 'Outline Primary',   value: 'btn-outline-primary' },
-    { label: 'Outline Secondary', value: 'btn-outline-secondary' },
+const IMG_COL_OPTIONS = [
+    { label: '1/4 width', value: 'col-md-3' },
+    { label: '1/3 width', value: 'col-md-4' },
+    { label: '1/2 width', value: 'col-md-6' },
+    { label: '2/5 width', value: 'col-md-5' },
+];
+
+const OBJECT_FIT_OPTIONS = [
+    { label: 'Cover (Fill & Crop)', value: 'cover' },
+    { label: 'Contain (Fit Inside)', value: 'contain' },
+    { label: 'Fill (Stretch)', value: 'fill' },
 ];
 
 const BADGE_VARIANTS = [
@@ -27,43 +36,55 @@ const BADGE_VARIANTS = [
     { label: 'Dark',    value: 'bg-dark text-white' },     { label: 'Light', value: 'bg-light text-dark' },
 ];
 
-const IMG_POSITION_OPTIONS = [
-    { label: 'Top',        value: 'top'     },
-    { label: 'Bottom',     value: 'bottom'  },
-    { label: 'Overlay',    value: 'overlay' },
-    { label: 'Left (horizontal)',  value: 'left'    },
-    { label: 'Right (horizontal)', value: 'right'   },
-];
-
-const SHADOW_OPTIONS = [
-    { label: 'None', value: '' }, { label: 'Small', value: 'shadow-sm' },
-    { label: 'Default', value: 'shadow' }, { label: 'Large', value: 'shadow-lg' },
-];
-
-const IMG_COL_OPTIONS = [
-    { label: '1/4 width', value: 'col-md-4' },
-    { label: '1/3 width', value: 'col-md-4 col-lg-4' },
-    { label: '1/2 width', value: 'col-md-6' },
-    { label: '2/5 width', value: 'col-md-5' },
-];
-
 export default function Edit( { attributes, setAttributes } ) {
     const {
-        imageUrl, imageAlt, imageId,
-        imagePosition, imageCol,
-        title, subtitle, bodyText,
-        showBadge, badgeText, badgeVariant,
-        showLink, // linkText, linkUrl, and linkVariant are no longer needed here
-        bgColor, borderColor, shadow, textAlign, noBorder,
+        imageUrl, imageAlt, imageId, imagePosition, imageCol, imageHeight, imageWidth, imageObjectFit,
+        title, subtitle, bodyText, showBadge, badgeText, badgeVariant, showLink, textAlign,
+        margin, padding, backgroundColor, textColor, opacity, shadow, customCSS,
+        borderSides, borderRemove, borderColor, borderOpacityClass, borderOpacityCustom, borderSize, borderRadius, borderRadiusSize,
+        hideXs, hideSm, hideMd, hideLg, hideXl, hideXxl
     } = attributes;
 
-    const cardClasses = [ 'card', bgColor, borderColor, shadow, noBorder ? 'border-0' : '', textAlign ]
-        .filter( Boolean ).join( ' ' );
     const isHorizontal = imagePosition === 'left' || imagePosition === 'right';
     const isOverlay    = imagePosition === 'overlay';
 
+    // Parse utility custom inline rules
+    const parseInlineCSS = ( cssString ) => {
+        if ( ! cssString ) return {};
+        return cssString.split( ';' ).reduce( ( styleObj, rule ) => {
+            const [ property, value ] = rule.split( ':' );
+            if ( property && value ) {
+                const camelProp = property.trim().replace( /-([a-z])/g, ( _, l ) => l.toUpperCase() );
+                styleObj[ camelProp ] = value.trim();
+            }
+            return styleObj;
+        }, {} );
+    };
+
+    const borderClasses = [
+        ...( borderSides || [] ), ...( borderRemove || [] ),
+        borderColor, borderOpacityClass, borderSize, borderRadius, borderRadiusSize,
+    ].filter( Boolean ).join( ' ' );
+
+    const visibilityClasses = [
+        !! hideXs  ? 'd-none d-sm-block'   : '',
+        !! hideSm  ? 'd-sm-none d-md-block' : '',
+        !! hideMd  ? 'd-md-none d-lg-block' : '',
+        !! hideLg  ? 'd-lg-none d-xl-block' : '',
+        !! hideXl  ? 'd-xl-none d-xxl-block': '',
+        !! hideXxl ? 'd-xxl-none'           : '',
+    ].filter( Boolean ).join( ' ' );
+
     const blockProps = useBlockProps( { 
-        className: cardClasses 
+        className: [
+            'card', padding, margin, backgroundColor, borderClasses, visibilityClasses, shadow, textAlign
+        ].filter( Boolean ).join( ' ' ),
+        style: {
+            opacity: opacity !== 100 ? opacity / 100 : undefined,
+            color: textColor || undefined,
+            ...( borderOpacityCustom ? { '--bs-border-opacity': borderOpacityCustom } : {} ),
+            ...parseInlineCSS( customCSS ),
+        }
     });
 
     return (
@@ -88,138 +109,115 @@ export default function Edit( { attributes, setAttributes } ) {
             </BlockControls>
 
             <InspectorControls>
-                <PanelBody title={ __( 'Image', 'wmblocks' ) } initialOpen={ true }>
-                    <SelectControl label={ __( 'Image Position', 'wmblocks' ) } value={ imagePosition }
-                        options={ IMG_POSITION_OPTIONS } onChange={ ( v ) => setAttributes( { imagePosition: v } ) }
-                    />
+                <PanelBody title={ __( 'Image Setup', 'wmblocks' ) } initialOpen={ true }>
+                    <SelectControl label={ __( 'Image Position', 'wmblocks' ) } value={ imagePosition } options={ IMG_POSITION_OPTIONS } onChange={ ( v ) => setAttributes( { imagePosition: v } ) } />
                     { isHorizontal && (
-                        <SelectControl label={ __( 'Image Column Width', 'wmblocks' ) } value={ imageCol }
-                            options={ IMG_COL_OPTIONS } onChange={ ( v ) => setAttributes( { imageCol: v } ) }
-                        />
+                        <SelectControl label={ __( 'Column Width', 'wmblocks' ) } value={ imageCol } options={ IMG_COL_OPTIONS } onChange={ ( v ) => setAttributes( { imageCol: v } ) } />
                     ) }
-                    <TextControl label={ __( 'Image Alt Text', 'wmblocks' ) } value={ imageAlt }
-                        onChange={ ( v ) => setAttributes( { imageAlt: v } ) }
-                    />
+                    <TextControl label={ __( 'Image Alt Text', 'wmblocks' ) } value={ imageAlt } onChange={ ( v ) => setAttributes( { imageAlt: v } ) } />
+                    
+                    { imageUrl && (
+                        <>
+                            <hr />
+                            <TextControl label={ __( 'Image Height (e.g. 250px, 100%, auto)', 'wmblocks' ) } value={ imageHeight } placeholder="e.g. 240px" onChange={ ( v ) => setAttributes( { imageHeight: v } ) } />
+                            <TextControl label={ __( 'Image Width (e.g. 100%, 50vw)', 'wmblocks' ) } value={ imageWidth } placeholder="100%" onChange={ ( v ) => setAttributes( { imageWidth: v } ) } />
+                            <SelectControl label={ __( 'Image Crop Rule (Object Fit)', 'wmblocks' ) } value={ imageObjectFit } options={ OBJECT_FIT_OPTIONS } onChange={ ( v ) => setAttributes( { imageObjectFit: v } ) } />
+                        </>
+                    ) }
                 </PanelBody>
+
                 <PanelBody title={ __( 'Badge', 'wmblocks' ) } initialOpen={ false }>
-                    <ToggleControl label={ __( 'Show Badge', 'wmblocks' ) } checked={ !! showBadge }
-                        onChange={ ( v ) => setAttributes( { showBadge: v } ) }
-                    />
+                    <ToggleControl label={ __( 'Show Badge', 'wmblocks' ) } checked={ !! showBadge } onChange={ ( v ) => setAttributes( { showBadge: v } ) } />
                     { showBadge && <>
-                        <TextControl label={ __( 'Badge Text', 'wmblocks' ) } value={ badgeText }
-                            onChange={ ( v ) => setAttributes( { badgeText: v } ) }
-                        />
-                        <SelectControl label={ __( 'Badge Colour', 'wmblocks' ) } value={ badgeVariant }
-                            options={ BADGE_VARIANTS } onChange={ ( v ) => setAttributes( { badgeVariant: v } ) }
-                        />
+                        <TextControl label={ __( 'Badge Text', 'wmblocks' ) } value={ badgeText } onChange={ ( v ) => setAttributes( { badgeText: v } ) } />
+                        <SelectControl label={ __( 'Badge Colour', 'wmblocks' ) } value={ badgeVariant } options={ BADGE_VARIANTS } onChange={ ( v ) => setAttributes( { badgeVariant: v } ) } />
                     </> }
                 </PanelBody>
+
                 <PanelBody title={ __( 'Link Button', 'wmblocks' ) } initialOpen={ false }>
-                    <ToggleControl label={ __( 'Show Button', 'wmblocks' ) } checked={ !! showLink }
-                        onChange={ ( v ) => setAttributes( { showLink: v } ) }
-                    />
-                    { /* Note: Button Text, URL, and Style are now configured directly inside the wmblocks/button block */ }
+                    <ToggleControl label={ __( 'Show Button', 'wmblocks' ) } checked={ !! showLink } onChange={ ( v ) => setAttributes( { showLink: v } ) } />
                 </PanelBody>
-                <PanelBody title={ __( 'Card Style', 'wmblocks' ) } initialOpen={ false }>
-                    <SelectControl label={ __( 'Background', 'wmblocks' ) } value={ bgColor }
-                        options={ BG_OPTIONS } onChange={ ( v ) => setAttributes( { bgColor: v } ) }
-                    />
-                    <SelectControl label={ __( 'Shadow', 'wmblocks' ) } value={ shadow }
-                        options={ SHADOW_OPTIONS } onChange={ ( v ) => setAttributes( { shadow: v } ) }
-                    />
-                    <ToggleControl label={ __( 'No Border', 'wmblocks' ) } checked={ !! noBorder }
-                        onChange={ ( v ) => setAttributes( { noBorder: v } ) }
-                    />
-                </PanelBody>
+
+                {/* Shared Theme Controls integrated below */}
+                <PaddingControl value={ padding } onChange={ ( v ) => setAttributes( { padding: v } ) } />
+                <MarginControl value={ margin } onChange={ ( v ) => setAttributes( { margin: v } ) } />
+                <BackgroundColorControl value={ backgroundColor } onChange={ ( v ) => setAttributes( { backgroundColor: v } ) } />
+                <TextColorControl value={ textColor } onChange={ ( v ) => setAttributes( { textColor: v } ) } />
+                <OpacityControl value={ opacity } onChange={ ( v ) => setAttributes( { opacity: v } ) } />
+                <ShadowControl value={ shadow } onChange={ ( v ) => setAttributes( { shadow: v } ) } />
+                <BorderControl
+                    borderSides={ borderSides } borderRemove={ borderRemove } borderColor={ borderColor }
+                    borderOpacityClass={ borderOpacityClass } borderOpacityCustom={ borderOpacityCustom }
+                    borderSize={ borderSize } borderRadius={ borderRadius } borderRadiusSize={ borderRadiusSize }
+                    setAttributes={ setAttributes }
+                />
+                <CustomCSSControl value={ customCSS } onChange={ ( v ) => setAttributes( { customCSS: v } ) } />
+                <VisibilityControl
+                    hideXs={ hideXs } hideSm={ hideSm } hideMd={ hideMd }
+                    hideLg={ hideLg } hideXl={ hideXl } hideXxl={ hideXxl }
+                    setAttributes={ setAttributes }
+                />
             </InspectorControls>
 
             <div { ...blockProps }>
-                <div className="wmblocks-card-image-label">
-                    <span style={ { marginTop:'-10px',  fontSize: 10, fontFamily: 'monospace', color: '#fcfcfc', marginBottom: 6, background: 'hotpink', padding: '3px 2px', borderRadius: 4, display: 'inline-block', border: '1px solid #cfe2ff' } }>
-                        Card + Image</span>
-                    <span className="wmblocks-card-image-chip" style={ { marginTop:'-10px',  fontSize: 10, fontFamily: 'monospace', color: '#fcfcfc', marginBottom: 6, background: 'hotpink', padding: '3px 2px', } }>{ imagePosition }</span>
-                    { bgColor && <span className="wmblocks-card-image-chip">{ bgColor }</span> }
-                    { shadow  && <span className="wmblocks-card-image-chip">{ shadow }</span> }
-                </div>
-
-                <div className={ cardClasses } style={ { overflow: 'hidden' } }>
-
-                    { /* Horizontal card — row layout */ }
+                <div style={ { overflow: 'hidden', position: 'relative', width: '100%' } }>
                     { isHorizontal ? (
-                        <div className="row g-0">
+                        <div class="row g-0">
                             { imagePosition === 'left' && (
-                                <div className={ imageCol }>
-                                    { renderImageArea( imageUrl, imageId, imageAlt, setAttributes, true ) }
-                                </div>
+                                <div class={ imageCol }>{ renderImageArea( imageUrl, imageId, imageAlt, setAttributes, true, '', imageHeight, imageWidth, imageObjectFit ) }</div>
                             ) }
-                            <div className={ 'col' }>
-                                {/* CHANGED: Now rendered as a proper React Component */}
-                                <CardBody 
-                                    title={title} subtitle={subtitle} bodyText={bodyText} 
-                                    showBadge={showBadge} badgeText={badgeText} badgeVariant={badgeVariant} 
-                                    showLink={showLink} setAttributes={setAttributes} 
-                                />
+                            <div class="col">
+                                <CardBody title={title} subtitle={subtitle} bodyText={bodyText} showBadge={showBadge} badgeText={badgeText} badgeVariant={badgeVariant} showLink={showLink} setAttributes={setAttributes} />
                             </div>
                             { imagePosition === 'right' && (
-                                <div className={ imageCol }>
-                                    { renderImageArea( imageUrl, imageId, imageAlt, setAttributes, true ) }
-                                </div>
+                                <div class={ imageCol }>{ renderImageArea( imageUrl, imageId, imageAlt, setAttributes, true, '', imageHeight, imageWidth, imageObjectFit ) }</div>
                             ) }
                         </div>
                     ) : isOverlay ? (
-                        // Overlay card
                         <>
-                            { renderImageArea( imageUrl, imageId, imageAlt, setAttributes, false ) }
-                            <div className="card-img-overlay">
-                                <CardBody 
-                                    title={title} subtitle={subtitle} bodyText={bodyText} 
-                                    showBadge={showBadge} badgeText={badgeText} badgeVariant={badgeVariant} 
-                                    showLink={showLink} setAttributes={setAttributes} 
-                                />
+                            { renderImageArea( imageUrl, imageId, imageAlt, setAttributes, false, '', imageHeight, imageWidth, imageObjectFit ) }
+                            <div class="card-img-overlay">
+                                <CardBody title={title} subtitle={subtitle} bodyText={bodyText} showBadge={showBadge} badgeText={badgeText} badgeVariant={badgeVariant} showLink={showLink} setAttributes={setAttributes} />
                             </div>
                         </>
                     ) : (
-                        // Top / Bottom card
                         <>
-                            { imagePosition === 'top'    && renderImageArea( imageUrl, imageId, imageAlt, setAttributes, false, 'top' ) }
-                            <CardBody 
-                                title={title} subtitle={subtitle} bodyText={bodyText} 
-                                showBadge={showBadge} badgeText={badgeText} badgeVariant={badgeVariant} 
-                                showLink={showLink} setAttributes={setAttributes} 
-                            />
-                            { imagePosition === 'bottom' && renderImageArea( imageUrl, imageId, imageAlt, setAttributes, false, 'bottom' ) }
+                            { imagePosition === 'top' && renderImageArea( imageUrl, imageId, imageAlt, setAttributes, false, 'top', imageHeight, imageWidth, imageObjectFit ) }
+                            <CardBody title={title} subtitle={subtitle} bodyText={bodyText} showBadge={showBadge} badgeText={badgeText} badgeVariant={badgeVariant} showLink={showLink} setAttributes={setAttributes} />
+                            { imagePosition === 'bottom' && renderImageArea( imageUrl, imageId, imageAlt, setAttributes, false, 'bottom', imageHeight, imageWidth, imageObjectFit ) }
                         </>
                     ) }
-
                 </div>
             </div>
         </>
     );
 }
 
-// ── Canvas sub-renderers ───────────────────────────────────────────────────
-function renderImageArea( imageUrl, imageId, imageAlt, setAttributes, isHorizontal, position = '' ) {
-    const imgClass = isHorizontal
-        ? 'img-fluid rounded-start h-100 w-100'
-        : position === 'bottom' ? 'card-img-bottom' : 'card-img-top';
+function renderImageArea( imageUrl, imageId, imageAlt, setAttributes, isHorizontal, position = '', height, width, objectFit ) {
+    const imgClass = isHorizontal ? 'img-fluid rounded-start' : position === 'bottom' ? 'card-img-bottom' : 'card-img-top';
+    
+    // Fallbacks if customized sizing fields are left empty
+    const customStyles = {
+        display: 'block',
+        width: width || '100%',
+        height: height || ( isHorizontal ? '100%' : '200px' ),
+        objectFit: objectFit || 'cover'
+    };
 
     return (
         <MediaUploadCheck>
             <MediaUpload
                 onSelect={ ( media ) => setAttributes( { imageUrl: media.url, imageId: media.id, imageAlt: media.alt || '' } ) }
-                allowedTypes={ [ 'image' ] }
-                value={ imageId }
+                allowedTypes={ [ 'image' ] } value={ imageId }
                 render={ ( { open } ) => (
-                    <div className="wmblocks-card-img-area" onClick={ open }>
+                    <div className="wmblocks-card-img-area" onClick={ open } style={ { cursor: 'pointer', height: '100%' } }>
                         { imageUrl ? (
-                            <img src={ imageUrl } alt={ imageAlt } className={ imgClass } style={ { display: 'block', width: '100%', objectFit: 'cover', minHeight: isHorizontal ? '100%' : '180px', maxHeight: isHorizontal ? 'none' : '240px' } } />
+                            <img src={ imageUrl } alt={ imageAlt } className={ imgClass } style={ customStyles } />
                         ) : (
-                            <div className="wmblocks-card-img-placeholder">
-                                <span>🖼</span>
-                                <span>{ isHorizontal ? __( 'Click to set image', 'wmblocks' ) : __( 'Click to set card image', 'wmblocks' ) }</span>
+                            <div className="wmblocks-card-img-placeholder" style={ { background: '#f0f0f0', padding: '40px 10px', textAlign: 'center', border: '1px dashed #ccc' } }>
+                                <span>🖼 Click to set card image</span>
                             </div>
                         ) }
-                        <div className="wmblocks-card-img-overlay-btn">{ imageUrl ? __( 'Change image', 'wmblocks' ) : __( 'Upload image', 'wmblocks' ) }</div>
                     </div>
                 ) }
             />
@@ -227,41 +225,22 @@ function renderImageArea( imageUrl, imageId, imageAlt, setAttributes, isHorizont
     );
 }
 
-// ── CHANGED: Converted to a proper React Component (PascalCase) ────────────
 function CardBody( { title, subtitle, bodyText, showBadge, badgeText, badgeVariant, showLink, setAttributes } ) {
     return (
         <div className="card-body">
             { showBadge && (
-                <RichText tagName="span" className={ 'badge mb-2 ' + badgeVariant }
-                    value={ badgeText } onChange={ ( v ) => setAttributes( { badgeText: v } ) }
-                    allowedFormats={ [] } placeholder={ __( 'Badge…', 'wmblocks' ) }
-                />
+                <RichText tagName="span" className={ 'badge mb-2 ' + badgeVariant } value={ badgeText } onChange={ ( v ) => setAttributes( { badgeText: v } ) } allowedFormats={ [] } placeholder={ __( 'Badge…', 'wmblocks' ) } />
             ) }
-            <RichText tagName="h5" className="card-title"
-                value={ title } onChange={ ( v ) => setAttributes( { title: v } ) }
-                allowedFormats={ [ 'core/bold', 'core/italic' ] }
-                placeholder={ __( 'Card title…', 'wmblocks' ) }
-            />
+            <RichText tagName="h5" className="card-title" value={ title } onChange={ ( v ) => setAttributes( { title: v } ) } allowedFormats={ [ 'core/bold', 'core/italic' ] } placeholder={ __( 'Card title…', 'wmblocks' ) } />
             { subtitle && (
-                <RichText tagName="h6" className="card-subtitle mb-2 text-muted"
-                    value={ subtitle } onChange={ ( v ) => setAttributes( { subtitle: v } ) }
-                    allowedFormats={ [ 'core/bold', 'core/italic' ] }
-                    placeholder={ __( 'Subtitle…', 'wmblocks' ) }
-                />
+                <RichText tagName="h6" className="card-subtitle mb-2 text-muted" value={ subtitle } onChange={ ( v ) => setAttributes( { subtitle: v } ) } allowedFormats={ [ 'core/bold', 'core/italic' ] } placeholder={ __( 'Subtitle…', 'wmblocks' ) } />
             ) }
-            <RichText tagName="p" className="card-text"
-                value={ bodyText } onChange={ ( v ) => setAttributes( { bodyText: v } ) }
-                allowedFormats={ [ 'core/bold', 'core/italic', 'core/link' ] }
-                placeholder={ __( 'Card body text…', 'wmblocks' ) }
-            />
-            
-            <div style={ { display: showLink ? 'block' : 'none' } }>
-                <InnerBlocks
-                    allowedBlocks={ [ 'wmblocks/buttons' ] }
-                    template={ [ [ 'wmblocks/buttons' ] ] }
-                    templateLock="all"
-                />
-            </div>
+            <RichText tagName="p" className="card-text" value={ bodyText } onChange={ ( v ) => setAttributes( { bodyText: v } ) } allowedFormats={ [ 'core/bold', 'core/italic', 'core/link' ] } placeholder={ __( 'Card body text…', 'wmblocks' ) } />
+            { showLink && (
+                <div className="wmblocks-button-wrapper mt-3">
+                    <InnerBlocks allowedBlocks={ [ 'wmblocks/buttons' ] } template={ [ [ 'wmblocks/buttons' ] ] } templateLock="all" />
+                </div>
+            ) }
         </div>
     );
 }

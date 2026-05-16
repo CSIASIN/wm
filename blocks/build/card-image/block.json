@@ -7,12 +7,15 @@
   "category": "watermelon-blocks",
   "icon": "format-image",
   "description": "Bootstrap card with image, title, subtitle, body text, and an optional button link. Supports top, bottom, overlay, and horizontal (side-by-side) layouts.",
-  "example": {},
   "supports": {
     "html": false,
     "anchor": true
   },
   "attributes": {
+    "anchor": {
+      "type": "string",
+      "default": ""
+    },
     "imageUrl": {
       "type": "string",
       "default": ""
@@ -32,6 +35,18 @@
     "imageCol": {
       "type": "string",
       "default": "col-md-4"
+    },
+    "imageHeight": {
+      "type": "string",
+      "default": ""
+    },
+    "imageWidth": {
+      "type": "string",
+      "default": "100%"
+    },
+    "imageObjectFit": {
+      "type": "string",
+      "default": "cover"
     },
     "title": {
       "type": "string",
@@ -61,18 +76,6 @@
       "type": "boolean",
       "default": true
     },
-    "linkText": {
-      "type": "string",
-      "default": "Go somewhere"
-    },
-    "linkUrl": {
-      "type": "string",
-      "default": "#"
-    },
-    "linkVariant": {
-      "type": "string",
-      "default": "btn-primary"
-    },
     "bgColor": {
       "type": "string",
       "default": ""
@@ -90,6 +93,82 @@
       "default": ""
     },
     "noBorder": {
+      "type": "boolean",
+      "default": false
+    },
+    "padding": {
+      "type": "string",
+      "default": ""
+    },
+    "margin": {
+      "type": "string",
+      "default": "mb-3"
+    },
+    "textColor": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": ""
+    },
+    "opacity": {
+      "type": "number",
+      "default": 100
+    },
+    "borderSides": {
+      "type": "array",
+      "default": []
+    },
+    "borderRemove": {
+      "type": "array",
+      "default": []
+    },
+    "borderOpacityClass": {
+      "type": "string",
+      "default": ""
+    },
+    "borderOpacityCustom": {
+      "type": "string",
+      "default": ""
+    },
+    "borderSize": {
+      "type": "string",
+      "default": ""
+    },
+    "borderRadius": {
+      "type": "string",
+      "default": ""
+    },
+    "borderRadiusSize": {
+      "type": "string",
+      "default": ""
+    },
+    "customCSS": {
+      "type": "string",
+      "default": ""
+    },
+    "hideXs": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideSm": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideMd": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideLg": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideXl": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideXxl": {
       "type": "boolean",
       "default": false
     }

@@ -1520,14 +1520,15 @@ return array(
 		'category' => 'watermelon-blocks',
 		'icon' => 'format-image',
 		'description' => 'Bootstrap card with image, title, subtitle, body text, and an optional button link. Supports top, bottom, overlay, and horizontal (side-by-side) layouts.',
-		'example' => array(
-			
-		),
 		'supports' => array(
 			'html' => false,
 			'anchor' => true
 		),
 		'attributes' => array(
+			'anchor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
 			'imageUrl' => array(
 				'type' => 'string',
 				'default' => ''
@@ -1547,6 +1548,18 @@ return array(
 			'imageCol' => array(
 				'type' => 'string',
 				'default' => 'col-md-4'
+			),
+			'imageHeight' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageWidth' => array(
+				'type' => 'string',
+				'default' => '100%'
+			),
+			'imageObjectFit' => array(
+				'type' => 'string',
+				'default' => 'cover'
 			),
 			'title' => array(
 				'type' => 'string',
@@ -1576,18 +1589,6 @@ return array(
 				'type' => 'boolean',
 				'default' => true
 			),
-			'linkText' => array(
-				'type' => 'string',
-				'default' => 'Go somewhere'
-			),
-			'linkUrl' => array(
-				'type' => 'string',
-				'default' => '#'
-			),
-			'linkVariant' => array(
-				'type' => 'string',
-				'default' => 'btn-primary'
-			),
 			'bgColor' => array(
 				'type' => 'string',
 				'default' => ''
@@ -1605,6 +1606,86 @@ return array(
 				'default' => ''
 			),
 			'noBorder' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'padding' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'margin' => array(
+				'type' => 'string',
+				'default' => 'mb-3'
+			),
+			'textColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'backgroundColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'opacity' => array(
+				'type' => 'number',
+				'default' => 100
+			),
+			'borderSides' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'borderRemove' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'borderOpacityClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderOpacityCustom' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderRadius' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderRadiusSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customCSS' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'hideXs' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideSm' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideMd' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideLg' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideXl' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideXxl' => array(
 				'type' => 'boolean',
 				'default' => false
 			)
