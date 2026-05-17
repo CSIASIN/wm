@@ -3,6 +3,7 @@
  * render.php — wmblocks/card-group
  * $content = InnerBlocks HTML (child card blocks)
  */
+$anchor  = ! empty( $attributes['anchor'] ) ? ' id="' . esc_attr( $attributes['anchor'] ) . '"' : '';
 
 $layout   = isset( $attributes['layout'] ) ? $attributes['layout'] : 'grid';
 $cols     = isset( $attributes['cols'] )   ? (int) $attributes['cols']   : 3;
@@ -23,7 +24,7 @@ $wrapper_attr = get_block_wrapper_attributes();
 if ( $layout === 'card-group' ) :
 	// Bootstrap card-group: flush, equal height, no gap
 ?>
-<div <?php echo $wrapper_attr; ?>>
+<div <?php echo $wrapper_attr; ?> <?php echo $anchor; ?>>
 	<div class="card-group">
 		<?php echo $content; ?>
 	</div>
@@ -32,7 +33,7 @@ if ( $layout === 'card-group' ) :
 <?php elseif ( $layout === 'deck' ) :
 	// Flex deck with gap
 ?>
-<div <?php echo $wrapper_attr; ?>>
+<div <?php echo $wrapper_attr; ?> <?php echo $anchor; ?>>
 	<div class="d-flex flex-wrap <?php echo esc_attr( $safe_gap ); ?>">
 		<?php echo $content; ?>
 	</div>
@@ -48,7 +49,7 @@ if ( $layout === 'card-group' ) :
 		$safe_gap ? 'g-' . str_replace( 'gap-', '', $safe_gap ) : 'g-3',
 	] );
 ?>
-<div <?php echo $wrapper_attr; ?>>
+<div <?php echo $wrapper_attr; ?> <?php echo $anchor; ?>>
 	<div class="<?php echo esc_attr( $row_classes ); ?>">
 		<?php echo $content; ?>
 	</div>

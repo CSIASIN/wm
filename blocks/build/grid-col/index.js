@@ -491,7 +491,62 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// Custom SVG icon representing a column block
+
+const columnIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("svg", {
+  viewBox: "0 0 24 24",
+  fill: "none",
+  xmlns: "http://www.w3.org/2000/svg",
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("mask", {
+    id: "path-2-inside-1_1379_3010",
+    fill: "white",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+      x: "2",
+      y: "2",
+      width: "20",
+      height: "20",
+      rx: "1"
+    })
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+    x: "2",
+    y: "2",
+    width: "20",
+    height: "20",
+    rx: "1",
+    fill: "white",
+    stroke: "#007CED",
+    "stroke-width": "3",
+    mask: "url(#path-2-inside-1_1379_3010)"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+    x: "11.5742",
+    y: "3.375",
+    width: "0.75",
+    height: "17.25",
+    fill: "white",
+    stroke: "#007CED",
+    "stroke-width": "0.75"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+    x: "0.375",
+    y: "0.375",
+    width: "0.75",
+    height: "8.25",
+    transform: "matrix(0 1 1 0 3 7.75)",
+    fill: "white",
+    stroke: "#007CED",
+    "stroke-width": "0.75"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+    x: "20.625",
+    y: "15.125",
+    width: "0.75",
+    height: "8.25",
+    transform: "rotate(90 20.625 15.125)",
+    fill: "white",
+    stroke: "#007CED",
+    "stroke-width": "0.75"
+  })]
+});
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
+  icon: columnIcon,
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
 });

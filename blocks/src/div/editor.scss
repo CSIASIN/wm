@@ -5,5 +5,13 @@
  */
 
 .wp-block-wmblocks-div {
-	border: 1px dotted #f00;
+    min-height: 40px;
+    outline: 1px dashed rgba(0,0,0,0.2); // Subtle indicator
+    outline-offset: -1px;
+    transition: outline-color 0.2s ease;
+    
+    // Shows a bolder outline when selected
+    &.is-selected {
+        outline-color: #007cba; // WP Blue
+    }
 }

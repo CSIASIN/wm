@@ -1402,6 +1402,10 @@ return array(
 			'anchor' => true
 		),
 		'attributes' => array(
+			'anchor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
 			'layout' => array(
 				'type' => 'string',
 				'default' => 'grid'
@@ -2018,13 +2022,125 @@ return array(
 		'version' => '0.1.0',
 		'title' => 'Div',
 		'category' => 'watermelon-blocks',
-		'icon' => 'smiley',
-		'description' => 'Div aredd a basic building block of Watermelon that contain, pad, and align your content within a given device or viewport.',
-		'example' => array(
-			
-		),
+		'icon' => 'grid-view',
+		'description' => 'A basic building block container to group, pad, and align your content.',
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'anchor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'padding' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'margin' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'backgroundColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'opacity' => array(
+				'type' => 'number',
+				'default' => 100
+			),
+			'shadow' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderSides' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'borderRemove' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'borderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderOpacityClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderOpacityCustom' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderRadius' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderRadiusSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customCSS' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'hideXs' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideSm' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideMd' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideLg' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideXl' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideXxl' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'bgImageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgImageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'bgGradient' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgVideoUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgVideoId' => array(
+				'type' => 'number',
+				'default' => 0
+			)
 		),
 		'textdomain' => 'wm',
 		'editorScript' => 'file:./index.js',

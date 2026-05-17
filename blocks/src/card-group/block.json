@@ -9,7 +9,10 @@
 	"description": "A responsive grid or Bootstrap card-group that holds multiple Card with Image children side by side.",
 	"example": {},
 	"supports": { "html": false, "anchor": true },
-	"attributes": {
+	"attributes": {		"anchor": {
+			"type": "string",
+			"default": ""
+		},
 		"layout":   { "type": "string", "default": "grid"  },
 		"cols":     { "type": "string", "default": "3"     },
 		"gap":      { "type": "string", "default": "gap-3" },

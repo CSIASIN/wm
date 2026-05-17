@@ -685,7 +685,76 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// Custom SVG icon representing a row block
+
+const rowIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("svg", {
+  viewBox: "0 0 24 24",
+  fill: "none",
+  xmlns: "http://www.w3.org/2000/svg",
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("mask", {
+    id: "path-2-inside-1_1647_3556",
+    fill: "white",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+      x: "2",
+      y: "2",
+      width: "20",
+      height: "6",
+      rx: "1"
+    })
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+    x: "2",
+    y: "2",
+    width: "20",
+    height: "6",
+    rx: "1",
+    fill: "white",
+    stroke: "#007CED",
+    "stroke-width": "3",
+    mask: "url(#path-2-inside-1_1647_3556)"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("mask", {
+    id: "path-3-inside-2_1647_3556",
+    fill: "white",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+      x: "2",
+      y: "9",
+      width: "20",
+      height: "6",
+      rx: "1"
+    })
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+    x: "2",
+    y: "9",
+    width: "20",
+    height: "6",
+    rx: "1",
+    fill: "white",
+    stroke: "#007CED",
+    "stroke-width": "3",
+    mask: "url(#path-3-inside-2_1647_3556)"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("mask", {
+    id: "path-4-inside-3_1647_3556",
+    fill: "white",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+      x: "2",
+      y: "16",
+      width: "20",
+      height: "6",
+      rx: "1"
+    })
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+    x: "2",
+    y: "16",
+    width: "20",
+    height: "6",
+    rx: "1",
+    fill: "white",
+    stroke: "#007CED",
+    "stroke-width": "3",
+    mask: "url(#path-4-inside-3_1647_3556)"
+  })]
+});
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
+  icon: rowIcon,
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
 });

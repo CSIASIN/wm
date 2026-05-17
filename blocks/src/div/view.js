@@ -21,5 +21,5 @@
  */
  
 /* eslint-disable no-console */
-console.log("Hello Fahim World! (from wmblocks-div block)");
+//console.log("Hello Fahim World! (from wmblocks-div block)");
 /* eslint-enable no-console */
