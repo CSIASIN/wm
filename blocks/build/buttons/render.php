@@ -198,7 +198,7 @@ if ( ! function_exists( 'wmblocks_render_single_button' ) ) {
 ?>
 	<div class="<?php echo esc_attr( $flex_classes ); ?> <?php echo $clean_attributes; ?>">
 		<?php foreach ( $buttons as $btn ) : ?>
-			<?php echo wmblocks_render_single_button( $btn ,''); ?>
+			<?php echo wmblocks_render_single_button( $btn ,'', $anchor); ?>
 		<?php endforeach; ?>
 	</div>
 
