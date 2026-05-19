@@ -2,6 +2,242 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./controls/background.js"
+/*!********************************!*\
+  !*** ./controls/background.js ***!
+  \********************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   BackgroundControl: () => (/* binding */ BackgroundControl)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+const BackgroundControl = ({
+  bgImageUrl,
+  bgImageId,
+  bgGradient,
+  bgVideoUrl,
+  bgVideoId,
+  setAttributes
+}) => {
+  // Helpers to clear competing backgrounds when a new one is applied
+  const onSelectImage = media => {
+    setAttributes({
+      bgImageId: media.id,
+      bgImageUrl: media.url,
+      bgGradient: '',
+      bgVideoId: 0,
+      bgVideoUrl: ''
+    });
+  };
+  const onSelectGradient = currentGradient => {
+    setAttributes({
+      // If Gutenberg sends undefined (when cleared), save it as an empty string
+      bgGradient: currentGradient || '',
+      bgImageId: 0,
+      bgImageUrl: '',
+      bgVideoId: 0,
+      bgVideoUrl: ''
+    });
+  };
+  const onSelectVideo = media => {
+    setAttributes({
+      bgVideoId: media.id,
+      bgVideoUrl: media.url,
+      bgImageId: 0,
+      bgImageUrl: '',
+      bgGradient: ''
+    });
+  };
+
+  // Helper to completely clear all backgrounds
+  const clearBackgrounds = () => {
+    setAttributes({
+      bgImageId: 0,
+      bgImageUrl: '',
+      bgGradient: '',
+      bgVideoId: 0,
+      bgVideoUrl: ''
+    });
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Advanced Background', 'wm'),
+    initialOpen: false,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TabPanel, {
+      className: "wm-background-tabs",
+      activeClass: "is-active",
+      tabs: [{
+        name: 'image',
+        title: 'Image',
+        className: 'tab-image'
+      }, {
+        name: 'gradient',
+        title: 'Gradient',
+        className: 'tab-gradient'
+      }, {
+        name: 'video',
+        title: 'Video',
+        className: 'tab-video'
+      }],
+      children: tab => {
+        if (tab.name === 'image') {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "wm-bg-image-control",
+            style: {
+              marginTop: '15px'
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
+                onSelect: onSelectImage,
+                allowedTypes: ['image'],
+                value: bgImageId,
+                render: ({
+                  open
+                }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+                  children: bgImageUrl ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                    style: {
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '10px'
+                    },
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+                      src: bgImageUrl,
+                      alt: "Background preview",
+                      style: {
+                        width: '100%',
+                        borderRadius: '4px'
+                      }
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+                      variant: "secondary",
+                      onClick: open,
+                      children: "Replace Image"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+                      variant: "link",
+                      isDestructive: true,
+                      onClick: clearBackgrounds,
+                      children: "Remove Image"
+                    })]
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+                    variant: "primary",
+                    onClick: open,
+                    style: {
+                      width: '100%',
+                      justifyContent: 'center'
+                    },
+                    children: "Select Image"
+                  })
+                })
+              })
+            })
+          });
+        }
+        if (tab.name === 'gradient') {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "wm-bg-gradient-control",
+            style: {
+              marginTop: '15px'
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.GradientPicker
+            // FIX: Force empty strings to be 'undefined' so the parser doesn't crash
+            , {
+              value: bgGradient || undefined,
+              onChange: onSelectGradient,
+              gradients: [{
+                name: 'Subtle Ash',
+                gradient: 'linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)',
+                slug: 'subtle-ash'
+              }, {
+                name: 'Night Sky',
+                gradient: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)',
+                slug: 'night-sky'
+              }]
+            }), bgGradient && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+              variant: "link",
+              isDestructive: true,
+              onClick: clearBackgrounds,
+              style: {
+                marginTop: '10px'
+              },
+              children: "Clear Gradient"
+            })]
+          });
+        }
+        if (tab.name === 'video') {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "wm-bg-video-control",
+            style: {
+              marginTop: '15px'
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+              style: {
+                fontSize: '12px',
+                color: '#666'
+              },
+              children: "Video will play automatically, muted, in a loop behind your content."
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
+                onSelect: onSelectVideo,
+                allowedTypes: ['video'],
+                value: bgVideoId,
+                render: ({
+                  open
+                }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+                  children: bgVideoUrl ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                    style: {
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '10px'
+                    },
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("video", {
+                      src: bgVideoUrl,
+                      style: {
+                        width: '100%',
+                        borderRadius: '4px'
+                      },
+                      muted: true
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+                      variant: "secondary",
+                      onClick: open,
+                      children: "Replace Video"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+                      variant: "link",
+                      isDestructive: true,
+                      onClick: clearBackgrounds,
+                      children: "Remove Video"
+                    })]
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+                    variant: "primary",
+                    onClick: open,
+                    style: {
+                      width: '100%',
+                      justifyContent: 'center'
+                    },
+                    children: "Select Video"
+                  })
+                })
+              })
+            })]
+          });
+        }
+      }
+    })
+  });
+};
+
+/***/ },
+
 /***/ "./controls/spacingControls.js"
 /*!*************************************!*\
   !*** ./controls/spacingControls.js ***!
@@ -1202,54 +1438,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _controls_spacingControls__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../controls/spacingControls */ "./controls/spacingControls.js");
 /* harmony import */ var _controls_visualControls__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../controls/visualControls */ "./controls/visualControls.js");
 /* harmony import */ var _controls_visibilityControl__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../controls/visibilityControl */ "./controls/visibilityControl.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
-
-
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-
-
-/**
- * WordPress components used for the sidebar panel and select control.
- */
-
-//import { PanelBody, SelectControl } from '@wordpress/components';
-
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
-
-
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
- * @return {Element} Element to render.
- */
-//const { InspectorControls } = wp.editor;
-//const { PanelBody } = wp.components;
+/* harmony import */ var _controls_background__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../controls/background */ "./controls/background.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__);
 
 
 
-// Shared controls — copy the controls/ folder next to each block's src folder
 
 
 
+// Shared controls
+
+
+
+ // <-- Import custom control file
 
 function Edit({
   attributes,
@@ -1277,14 +1479,20 @@ function Edit({
     hideLg,
     hideXl,
     hideXxl,
-    shadow
+    shadow,
+    bgImageUrl,
+    bgImageId,
+    bgGradient,
+    bgVideoUrl,
+    bgVideoId,
+    containerType // <-- Destructure new attributes
   } = attributes;
   if (preview) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
       style: {
         width: '100%'
       },
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("img", {
         src: _block_preview_png__WEBPACK_IMPORTED_MODULE_4__,
         alt: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Container block preview', 'wm'),
         style: {
@@ -1308,8 +1516,22 @@ function Edit({
   };
   const borderClasses = [...(borderSides || []), ...(borderRemove || []), borderColor, borderOpacityClass, borderSize, borderRadius, borderRadiusSize].filter(Boolean).join(' ');
   const visibilityClasses = [!!hideXs ? 'd-none d-sm-block' : '', !!hideSm ? 'd-sm-none d-md-block' : '', !!hideMd ? 'd-md-none d-lg-block' : '', !!hideLg ? 'd-lg-none d-xl-block' : '', !!hideXl ? 'd-xl-none d-xxl-block' : '', !!hideXxl ? 'd-xxl-none' : ''].filter(Boolean).join(' ');
+
+  // 1. Process dynamic image or gradient background layers
+  const dynamicBgStyles = {};
+  if (bgImageUrl) {
+    dynamicBgStyles.backgroundImage = `url(${bgImageUrl})`;
+    dynamicBgStyles.backgroundSize = 'cover';
+    dynamicBgStyles.backgroundPosition = 'center';
+  } else if (bgGradient) {
+    dynamicBgStyles.background = bgGradient;
+  }
+
+  // 2. Build out unified block props styling arrays
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
     style: {
+      ...dynamicBgStyles,
+      // Injects image or gradient values cleanly
       opacity: opacity !== 100 ? opacity / 100 : undefined,
       color: textColor || undefined,
       ...(borderOpacityCustom ? {
@@ -1318,40 +1540,87 @@ function Edit({
       ...parseInlineCSS(customCSS)
     }
   });
-  const combinedClassName = [blockProps.className, 'container', padding, margin, backgroundColor, borderClasses, visibilityClasses, shadow].filter(Boolean).map(c => c.trim()).filter(Boolean).join(' ');
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_spacingControls__WEBPACK_IMPORTED_MODULE_5__.PaddingControl, {
+  const combinedClassName = [blockProps.className, containerType, 'position-relative',
+  // Mandatory for positioning back-end video element
+  'overflow-hidden',
+  // Prevents video leaking out container bounds
+  padding, margin, backgroundColor, borderClasses, visibilityClasses, shadow].filter(Boolean).map(c => c.trim()).filter(Boolean).join(' ');
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Container Layout', 'wm'),
+        initialOpen: true,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Container Width Class', 'wm'),
+          value: containerType,
+          options: [{
+            label: '— None —',
+            value: ''
+          }, {
+            label: 'Fixed Width (container)',
+            value: 'container'
+          }, {
+            label: 'Full Width (container-fluid)',
+            value: 'container-fluid'
+          }, {
+            label: 'Mobile-Fluid up to SM (container-sm)',
+            value: 'container-sm'
+          }, {
+            label: 'Mobile-Fluid up to MD (container-md)',
+            value: 'container-md'
+          }, {
+            label: 'Tablet-Fluid up to LG (container-lg)',
+            value: 'container-lg'
+          }, {
+            label: 'Desktop-Fluid up to XL (container-xl)',
+            value: 'container-xl'
+          }, {
+            label: 'Wide-Fluid up to XXL (container-xxl)',
+            value: 'container-xxl'
+          }],
+          onChange: v => setAttributes({
+            containerType: v
+          }),
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Controls the max-width properties across viewport sizes based on Bootstrap breakpoints.', 'wm')
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_controls_spacingControls__WEBPACK_IMPORTED_MODULE_5__.PaddingControl, {
         value: padding,
         onChange: v => setAttributes({
           padding: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_spacingControls__WEBPACK_IMPORTED_MODULE_5__.MarginControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_controls_spacingControls__WEBPACK_IMPORTED_MODULE_5__.MarginControl, {
         value: margin,
         onChange: v => setAttributes({
           margin: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_6__.BackgroundColorControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_6__.BackgroundColorControl, {
         value: backgroundColor,
         onChange: v => setAttributes({
           backgroundColor: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_6__.OpacityControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_controls_background__WEBPACK_IMPORTED_MODULE_8__.BackgroundControl, {
+        bgImageUrl: bgImageUrl,
+        bgImageId: bgImageId,
+        bgGradient: bgGradient,
+        bgVideoUrl: bgVideoUrl,
+        bgVideoId: bgVideoId,
+        setAttributes: setAttributes
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_6__.OpacityControl, {
         value: opacity,
         onChange: v => setAttributes({
           opacity: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_6__.TextColorControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_6__.TextColorControl, {
         value: textColor,
         onChange: v => setAttributes({
           textColor: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_6__.ShadowControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_6__.ShadowControl, {
         value: shadow,
         onChange: v => setAttributes({
           shadow: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_6__.BorderControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_6__.BorderControl, {
         borderSides: borderSides,
         borderRemove: borderRemove,
         borderColor: borderColor,
@@ -1361,12 +1630,12 @@ function Edit({
         borderRadius: borderRadius,
         borderRadiusSize: borderRadiusSize,
         setAttributes: setAttributes
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_6__.CustomCSSControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_6__.CustomCSSControl, {
         value: customCSS,
         onChange: v => setAttributes({
           customCSS: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_visibilityControl__WEBPACK_IMPORTED_MODULE_7__.VisibilityControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_controls_visibilityControl__WEBPACK_IMPORTED_MODULE_7__.VisibilityControl, {
         hideXs: hideXs,
         hideSm: hideSm,
         hideMd: hideMd,
@@ -1375,10 +1644,35 @@ function Edit({
         hideXxl: hideXxl,
         setAttributes: setAttributes
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
       ...blockProps,
       className: combinedClassName,
-      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Container – used for grid, row and columns', 'wm')
+      children: [bgVideoUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("video", {
+        src: bgVideoUrl,
+        autoPlay: true,
+        muted: true,
+        loop: true,
+        playsInline: true,
+        style: {
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: 0,
+          pointerEvents: 'none'
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+        style: {
+          position: 'relative',
+          zIndex: 1,
+          width: '100%'
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
+          renderAppender: _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.ButtonBlockAppender
+        })
+      })]
     })]
   });
 }
@@ -1394,17 +1688,20 @@ function Edit({
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/container/style.scss");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/container/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./src/container/block.json");
-/* harmony import */ var _block_preview_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block-preview.png */ "./src/container/block-preview.png");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/container/style.scss");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit */ "./src/container/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/container/block.json");
+/* harmony import */ var _block_preview_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./block-preview.png */ "./src/container/block-preview.png");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
+
 
 
 /**
@@ -1431,10 +1728,10 @@ __webpack_require__.r(__webpack_exports__);
 
 // Custom SVG icon representing a container/layout block
 
-const containerIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
+const containerIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24",
-  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("rect", {
     x: "2",
     y: "4",
     width: "20",
@@ -1444,14 +1741,14 @@ const containerIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE
     fill: "none",
     stroke: "currentColor",
     strokeWidth: "2"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("line", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("line", {
     x1: "2",
     y1: "9",
     x2: "22",
     y2: "9",
     stroke: "currentColor",
     strokeWidth: "1.5"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("line", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("line", {
     x1: "6",
     y1: "13",
     x2: "18",
@@ -1459,7 +1756,7 @@ const containerIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE
     stroke: "currentColor",
     strokeWidth: "1.5",
     strokeDasharray: "2 1"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("line", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("line", {
     x1: "6",
     y1: "16",
     x2: "14",
@@ -1469,15 +1766,15 @@ const containerIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE
     strokeDasharray: "2 1"
   })]
 });
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
   icon: containerIcon,
   example: {
     attributes: {
       preview: true
     }
   },
-  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
-  save: () => null
+  edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
+  save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
 });
 
 /***/ },
@@ -1572,7 +1869,7 @@ module.exports = window["wp"]["i18n"];
   \**********************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wmblocks/container","version":"0.1.0","title":"Container","category":"watermelon-blocks","icon":"layout","description":"Containers are a fundamental building block of Watermelon theme that contain, pad, and align your content within a given device or viewport.","example":{"attributes":{"padding":"p-3","customCSS":"height:80px;"}},"supports":{"html":false,"anchor":true},"attributes":{"padding":{"type":"string","default":"p-0"},"margin":{"type":"string","default":""},"anchor":{"type":"string","default":""},"customCSS":{"type":"string","default":""},"preview":{"type":"boolean","default":false},"backgroundColor":{"type":"string","default":""},"opacity":{"type":"number","default":100},"borderSides":{"type":"array","default":[],"items":{"type":"string"}},"borderRemove":{"type":"array","default":[],"items":{"type":"string"}},"borderColor":{"type":"string","default":""},"borderOpacityClass":{"type":"string","default":""},"borderOpacityCustom":{"type":"string","default":""},"borderSize":{"type":"string","default":""},"borderRadius":{"type":"string","default":""},"borderRadiusSize":{"type":"string","default":""},"textColor":{"type":"string","default":""},"hideXs":{"type":"boolean","default":false},"hideSm":{"type":"boolean","default":false},"hideMd":{"type":"boolean","default":false},"hideLg":{"type":"boolean","default":false},"hideXl":{"type":"boolean","default":false},"hideXxl":{"type":"boolean","default":false},"shadow":{"type":"string","default":""}},"textdomain":"wm","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wmblocks/container","version":"0.1.0","title":"Container","category":"watermelon-blocks","icon":"layout","description":"Containers are a fundamental building block of Watermelon theme that contain, pad, and align your content within a given device or viewport.","example":{"attributes":{"padding":"p-3","customCSS":"height:80px;"}},"supports":{"html":false,"anchor":true},"attributes":{"containerType":{"type":"string","default":"container"},"padding":{"type":"string","default":"p-0"},"margin":{"type":"string","default":""},"anchor":{"type":"string","default":""},"customCSS":{"type":"string","default":""},"preview":{"type":"boolean","default":false},"backgroundColor":{"type":"string","default":""},"opacity":{"type":"number","default":100},"borderSides":{"type":"array","default":[],"items":{"type":"string"}},"borderRemove":{"type":"array","default":[],"items":{"type":"string"}},"borderColor":{"type":"string","default":""},"borderOpacityClass":{"type":"string","default":""},"borderOpacityCustom":{"type":"string","default":""},"borderSize":{"type":"string","default":""},"borderRadius":{"type":"string","default":""},"borderRadiusSize":{"type":"string","default":""},"textColor":{"type":"string","default":""},"hideXs":{"type":"boolean","default":false},"hideSm":{"type":"boolean","default":false},"hideMd":{"type":"boolean","default":false},"hideLg":{"type":"boolean","default":false},"hideXl":{"type":"boolean","default":false},"hideXxl":{"type":"boolean","default":false},"shadow":{"type":"string","default":""},"bgImageUrl":{"type":"string","default":""},"bgImageId":{"type":"number","default":0},"bgGradient":{"type":"string","default":""},"bgVideoUrl":{"type":"string","default":""},"bgVideoId":{"type":"number","default":0}},"textdomain":"wm","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }
 

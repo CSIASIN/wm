@@ -99,6 +99,26 @@
     "hideXxl": {
       "type": "boolean",
       "default": false
+    },
+    "bgImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "bgImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "bgGradient": {
+      "type": "string",
+      "default": ""
+    },
+    "bgVideoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "bgVideoId": {
+      "type": "number",
+      "default": 0
     }
   },
   "textdomain": "wm",

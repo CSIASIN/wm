@@ -32,6 +32,46 @@ const BackgroundControl = ({
   bgVideoId,
   setAttributes
 }) => {
+  // Helpers to clear competing backgrounds when a new one is applied
+  const onSelectImage = media => {
+    setAttributes({
+      bgImageId: media.id,
+      bgImageUrl: media.url,
+      bgGradient: '',
+      bgVideoId: 0,
+      bgVideoUrl: ''
+    });
+  };
+  const onSelectGradient = currentGradient => {
+    setAttributes({
+      // If Gutenberg sends undefined (when cleared), save it as an empty string
+      bgGradient: currentGradient || '',
+      bgImageId: 0,
+      bgImageUrl: '',
+      bgVideoId: 0,
+      bgVideoUrl: ''
+    });
+  };
+  const onSelectVideo = media => {
+    setAttributes({
+      bgVideoId: media.id,
+      bgVideoUrl: media.url,
+      bgImageId: 0,
+      bgImageUrl: '',
+      bgGradient: ''
+    });
+  };
+
+  // Helper to completely clear all backgrounds
+  const clearBackgrounds = () => {
+    setAttributes({
+      bgImageId: 0,
+      bgImageUrl: '',
+      bgGradient: '',
+      bgVideoId: 0,
+      bgVideoUrl: ''
+    });
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Advanced Background', 'wm'),
     initialOpen: false,
@@ -52,7 +92,6 @@ const BackgroundControl = ({
         className: 'tab-video'
       }],
       children: tab => {
-        // --- IMAGE TAB ---
         if (tab.name === 'image') {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
             className: "wm-bg-image-control",
@@ -61,10 +100,7 @@ const BackgroundControl = ({
             },
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
-                onSelect: media => setAttributes({
-                  bgImageId: media.id,
-                  bgImageUrl: media.url
-                }),
+                onSelect: onSelectImage,
                 allowedTypes: ['image'],
                 value: bgImageId,
                 render: ({
@@ -90,10 +126,7 @@ const BackgroundControl = ({
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
                       variant: "link",
                       isDestructive: true,
-                      onClick: () => setAttributes({
-                        bgImageId: 0,
-                        bgImageUrl: ''
-                      }),
+                      onClick: clearBackgrounds,
                       children: "Remove Image"
                     })]
                   }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
@@ -110,21 +143,17 @@ const BackgroundControl = ({
             })
           });
         }
-
-        // --- GRADIENT TAB ---
         if (tab.name === 'gradient') {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             className: "wm-bg-gradient-control",
             style: {
               marginTop: '15px'
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.GradientPicker, {
-              value: bgGradient,
-              onChange: currentGradient => setAttributes({
-                bgGradient: currentGradient
-              })
-              // You can add your own theme gradients here
-              ,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.GradientPicker
+            // FIX: Force empty strings to be 'undefined' so the parser doesn't crash
+            , {
+              value: bgGradient || undefined,
+              onChange: onSelectGradient,
               gradients: [{
                 name: 'Subtle Ash',
                 gradient: 'linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)',
@@ -137,9 +166,7 @@ const BackgroundControl = ({
             }), bgGradient && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
               variant: "link",
               isDestructive: true,
-              onClick: () => setAttributes({
-                bgGradient: ''
-              }),
+              onClick: clearBackgrounds,
               style: {
                 marginTop: '10px'
               },
@@ -147,8 +174,6 @@ const BackgroundControl = ({
             })]
           });
         }
-
-        // --- VIDEO TAB ---
         if (tab.name === 'video') {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             className: "wm-bg-video-control",
@@ -163,10 +188,7 @@ const BackgroundControl = ({
               children: "Video will play automatically, muted, in a loop behind your content."
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
-                onSelect: media => setAttributes({
-                  bgVideoId: media.id,
-                  bgVideoUrl: media.url
-                }),
+                onSelect: onSelectVideo,
                 allowedTypes: ['video'],
                 value: bgVideoId,
                 render: ({
@@ -192,10 +214,7 @@ const BackgroundControl = ({
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
                       variant: "link",
                       isDestructive: true,
-                      onClick: () => setAttributes({
-                        bgVideoId: 0,
-                        bgVideoUrl: ''
-                      }),
+                      onClick: clearBackgrounds,
                       children: "Remove Video"
                     })]
                   }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
@@ -1469,7 +1488,8 @@ function Edit({
     dynamicBgStyles.backgroundSize = 'cover';
     dynamicBgStyles.backgroundPosition = 'center';
   } else if (bgGradient) {
-    dynamicBgStyles.backgroundImage = bgGradient; // Gradients use backgroundImage, not backgroundColor
+    // USE 'background' instead of 'backgroundImage' for maximum compatibility
+    dynamicBgStyles.background = bgGradient;
   }
   const parseInlineCSS = cssString => {
     if (!cssString) return {};

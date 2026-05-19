@@ -1376,6 +1376,26 @@ return array(
 			'hideXxl' => array(
 				'type' => 'boolean',
 				'default' => false
+			),
+			'bgImageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgImageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'bgGradient' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgVideoUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgVideoId' => array(
+				'type' => 'number',
+				'default' => 0
 			)
 		),
 		'textdomain' => 'wm',
@@ -1905,6 +1925,10 @@ return array(
 			'anchor' => true
 		),
 		'attributes' => array(
+			'containerType' => array(
+				'type' => 'string',
+				'default' => 'container'
+			),
 			'padding' => array(
 				'type' => 'string',
 				'default' => 'p-0'
@@ -2006,6 +2030,26 @@ return array(
 			'shadow' => array(
 				'type' => 'string',
 				'default' => ''
+			),
+			'bgImageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgImageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'bgGradient' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgVideoUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgVideoId' => array(
+				'type' => 'number',
+				'default' => 0
 			)
 		),
 		'textdomain' => 'wm',

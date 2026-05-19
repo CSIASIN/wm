@@ -250,14 +250,14 @@ wp_enqueue_script(
 		false,
 		true
 	);
-
+/*
 	wp_enqueue_script(
     'ask-ai-format',
     get_template_directory_uri() . '/blocks/build/formats/ask-ai/index.js',
     ['wp-rich-text', 'wp-element', 'wp-block-editor', 'wp-i18n', 'wp-components'],
     false,
     true
-);
+);*/
 
 // Pass customizer options to the JS file
 wp_localize_script( 'ask-ai-format', 'wmAiSettings', [

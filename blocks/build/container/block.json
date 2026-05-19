@@ -18,6 +18,10 @@
     "anchor": true
   },
   "attributes": {
+    "containerType": {
+      "type": "string",
+      "default": "container"
+    },
     "padding": {
       "type": "string",
       "default": "p-0"
@@ -115,6 +119,26 @@
     "shadow": {
       "type": "string",
       "default": ""
+    },
+    "bgImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "bgImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "bgGradient": {
+      "type": "string",
+      "default": ""
+    },
+    "bgVideoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "bgVideoId": {
+      "type": "number",
+      "default": 0
     }
   },
   "textdomain": "wm",

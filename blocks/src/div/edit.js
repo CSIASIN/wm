@@ -15,14 +15,15 @@ export default function Edit( { attributes, setAttributes } ) {
         hideXs, hideSm, hideMd, hideLg, hideXl, hideXxl,bgImageUrl, bgImageId, bgGradient, bgVideoUrl, bgVideoId
     } = attributes;
 
-    // 1. Calculate Background Inline Styles safely
+// 1. Calculate Background Inline Styles safely
 const dynamicBgStyles = {};
 if ( bgImageUrl ) {
     dynamicBgStyles.backgroundImage = `url(${ bgImageUrl })`;
     dynamicBgStyles.backgroundSize = 'cover';
     dynamicBgStyles.backgroundPosition = 'center';
 } else if ( bgGradient ) {
-    dynamicBgStyles.backgroundImage = bgGradient; // Gradients use backgroundImage, not backgroundColor
+    // USE 'background' instead of 'backgroundImage' for maximum compatibility
+    dynamicBgStyles.background = bgGradient; 
 }
     const parseInlineCSS = ( cssString ) => {
         if ( ! cssString ) return {};
