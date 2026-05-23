@@ -9,7 +9,7 @@ import blockPreview from './block-preview.png';
 import { PaddingControl, MarginControl } from '../../controls/spacingControls';
 import { BackgroundColorControl, TextColorControl, OpacityControl, ShadowControl, BorderControl, CustomCSSControl } from '../../controls/visualControls';
 import { VisibilityControl } from '../../controls/visibilityControl';
-import { BackgroundControl } from '../../controls/background'; // <-- Import custom control file
+import { BackgroundControl } from '../../controls/background';
 
 export default function Edit( { attributes, setAttributes } ) {
     const {
@@ -17,7 +17,7 @@ export default function Edit( { attributes, setAttributes } ) {
         borderSides, borderRemove, borderColor, borderOpacityClass,
         borderOpacityCustom, borderSize, borderRadius, borderRadiusSize,
         textColor, hideXs, hideSm, hideMd, hideLg, hideXl, hideXxl, shadow,
-        bgImageUrl, bgImageId, bgGradient, bgVideoUrl, bgVideoId, containerType // <-- Destructure new attributes
+        bgImageUrl, bgImageId, bgGradient, bgVideoUrl, bgVideoId, containerType
     } = attributes;
 
     if ( preview ) {
@@ -68,7 +68,7 @@ export default function Edit( { attributes, setAttributes } ) {
     // 2. Build out unified block props styling arrays
     const blockProps = useBlockProps( {
         style: {
-            ...dynamicBgStyles, // Injects image or gradient values cleanly
+            ...dynamicBgStyles,
             opacity: opacity !== 100 ? opacity / 100 : undefined,
             color: textColor || undefined,
             ...( borderOpacityCustom ? { '--bs-border-opacity': borderOpacityCustom } : {} ),
@@ -76,42 +76,58 @@ export default function Edit( { attributes, setAttributes } ) {
         },
     } );
 
+    const hasVideo = !! bgVideoUrl;
+
     const combinedClassName = [
         blockProps.className,
         containerType,
-        'position-relative', // Mandatory for positioning back-end video element
-        'overflow-hidden',   // Prevents video leaking out container bounds
+        hasVideo ? 'position-relative' : '',
+        hasVideo ? 'overflow-hidden' : '',
         padding, margin, backgroundColor,
         borderClasses, visibilityClasses, shadow,
     ].filter( Boolean ).map( ( c ) => c.trim() ).filter( Boolean ).join( ' ' );
 
+    const CONTAINER_TEMPLATE = [
+    [ 
+        'core/paragraph', 
+        { 
+            placeholder: __( "Add your container content here... You can use this as holder block for all blocks", 'wm' ),
+            fontSize: 'small',
+            style: {
+                typography: {
+                    fontStyle: 'italic',
+                    fontFamily: 'monospace'
+                }
+            }
+        } 
+    ]
+];
+
     return (
         <>
             <InspectorControls>
-				{/* New Layout/Width Control Panel */}
-            <PanelBody title={ __( 'Container Layout', 'wm' ) } initialOpen={ true }>
-                <SelectControl
-                    label={ __( 'Container Width Class', 'wm' ) }
-                    value={ containerType }
-                    options={ [
-                        { label: '— None —', value: '' },
-                        { label: 'Fixed Width (container)', value: 'container' },
-                        { label: 'Full Width (container-fluid)', value: 'container-fluid' },
-                        { label: 'Mobile-Fluid up to SM (container-sm)', value: 'container-sm' },
-                        { label: 'Mobile-Fluid up to MD (container-md)', value: 'container-md' },
-                        { label: 'Tablet-Fluid up to LG (container-lg)', value: 'container-lg' },
-                        { label: 'Desktop-Fluid up to XL (container-xl)', value: 'container-xl' },
-                        { label: 'Wide-Fluid up to XXL (container-xxl)', value: 'container-xxl' },
-                    ] }
-                    onChange={ ( v ) => setAttributes( { containerType: v } ) }
-                    help={ __( 'Controls the max-width properties across viewport sizes based on Bootstrap breakpoints.', 'wm' ) }
-                />
-            </PanelBody>
+                <PanelBody title={ __( 'Container Layout', 'wm' ) } initialOpen={ true }>
+                    <SelectControl
+                        label={ __( 'Container Width Class', 'wm' ) }
+                        value={ containerType }
+                        options={ [
+                            { label: '— None —', value: '' },
+                            { label: 'Fixed Width (container)', value: 'container' },
+                            { label: 'Full Width (container-fluid)', value: 'container-fluid' },
+                            { label: 'Mobile-Fluid up to SM (container-sm)', value: 'container-sm' },
+                            { label: 'Mobile-Fluid up to MD (container-md)', value: 'container-md' },
+                            { label: 'Tablet-Fluid up to LG (container-lg)', value: 'container-lg' },
+                            { label: 'Desktop-Fluid up to XL (container-xl)', value: 'container-xl' },
+                            { label: 'Wide-Fluid up to XXL (container-xxl)', value: 'container-xxl' },
+                        ] }
+                        onChange={ ( v ) => setAttributes( { containerType: v } ) }
+                        help={ __( 'Controls the max-width properties across viewport sizes based on Bootstrap breakpoints.', 'wm' ) }
+                    />
+                </PanelBody>
                 <PaddingControl         value={ padding }         onChange={ ( v ) => setAttributes( { padding: v } ) } />
                 <MarginControl          value={ margin }          onChange={ ( v ) => setAttributes( { margin: v } ) } />
                 <BackgroundColorControl value={ backgroundColor } onChange={ ( v ) => setAttributes( { backgroundColor: v } ) } />
                 
-                {/* Advanced Background Control Panel Panel Integration */}
                 <BackgroundControl 
                     bgImageUrl={ bgImageUrl } bgImageId={ bgImageId }
                     bgGradient={ bgGradient }
@@ -142,25 +158,26 @@ export default function Edit( { attributes, setAttributes } ) {
             </InspectorControls>
             
             <div { ...blockProps } className={ combinedClassName }>
-                {/* Visual rendering logic of the background video inside Gutenberg */}
-                { bgVideoUrl && (
-                    <video 
-                        src={ bgVideoUrl } 
-                        autoPlay muted loop playsInline
-                        style={ {
-                            position: 'absolute',
-                            top: 0, left: 0, width: '100%', height: '100%',
-                            objectFit: 'cover',
-                            zIndex: 0, 
-                            pointerEvents: 'none'
-                        } }
-                    />
+                { hasVideo ? (
+                    <>
+                        <video 
+                            src={ bgVideoUrl } 
+                            autoPlay muted loop playsInline
+                            style={ {
+                                position: 'absolute',
+                                top: 0, left: 0, width: '100%', height: '100%',
+                                objectFit: 'cover',
+                                zIndex: 0, 
+                                pointerEvents: 'none'
+                            } }
+                        />
+                        <div style={ { position: 'relative', zIndex: 1, width: '100%' } }>
+                            <InnerBlocks renderAppender={ InnerBlocks.ButtonBlockAppender } />
+                        </div>
+                    </>
+                ) : (
+                    <InnerBlocks  template={ CONTAINER_TEMPLATE } renderAppender={ InnerBlocks.ButtonBlockAppender } />
                 ) }
-
-                {/* Main Content Bucket Layer stacked safely above background media components */}
-                <div style={ { position: 'relative', zIndex: 1, width: '100%' } }>
-                    <InnerBlocks renderAppender={ InnerBlocks.ButtonBlockAppender } />
-                </div>
             </div>
         </>
     );

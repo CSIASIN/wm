@@ -210,7 +210,7 @@ function renderImageArea( imageUrl, imageId, imageAlt, setAttributes, isHorizont
                 onSelect={ ( media ) => setAttributes( { imageUrl: media.url, imageId: media.id, imageAlt: media.alt || '' } ) }
                 allowedTypes={ [ 'image' ] } value={ imageId }
                 render={ ( { open } ) => (
-                    <div className="wmblocks-card-img-area" onClick={ open } style={ { cursor: 'pointer', height: '100%' } }>
+                    <div className="wmblocks-card-img-area" onClick={ open } style={ { cursor: 'pointer', minHeight: '100px' } }>
                         { imageUrl ? (
                             <img src={ imageUrl } alt={ imageAlt } className={ imgClass } style={ customStyles } />
                         ) : (

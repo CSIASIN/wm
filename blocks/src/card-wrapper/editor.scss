@@ -1,0 +1,23 @@
+.wp-block-wmblocks-card-wrapper {
+    min-height: 40px;
+    outline: 1px dashed rgba(0,0,0,0.2);
+    outline-offset: -1px;
+    transition: outline-color 0.2s ease;
+    position: relative;
+
+    &.is-selected {
+        outline-color: #007cba; // WP Blue
+    }
+}
+
+.wp-block-wmblocks-card-wrapper:before {
+    background-color: rgba(0, 0, 0, .6);
+    padding: 0 5px;
+    color: #fff;
+    font-size: 9px;
+    z-index: 20;
+    content: "CARD";
+    top: -2.5px;
+    left: -2.5px;
+    position: absolute;
+}

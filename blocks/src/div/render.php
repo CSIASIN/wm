@@ -2,8 +2,8 @@
 /**
  * render.php — wmblocks/div
  */
-
-$classes = [];
+$anchor  = ! empty( $attributes['anchor'] ) ? ' id="' . esc_attr( $attributes['anchor'] ) . '"' : '';
+$classes = ['div'];
 
 if ( ! empty( $attributes['backgroundColor'] ) ) {
     $classes[] = esc_attr( $attributes['backgroundColor'] );
@@ -44,8 +44,7 @@ if ( ! empty( $attributes['customCSS'] ) ) {
     $styles[] = rtrim( esc_attr( $attributes['customCSS'] ), ';' );
 }
 
-
-// 1. Merge Background Image / Gradient
+// Merge Background Image / Gradient
 if ( ! empty( $attributes['bgImageUrl'] ) ) {
     $styles[] = 'background-image: url(' . esc_url( $attributes['bgImageUrl'] ) . ')';
     $styles[] = 'background-size: cover';
@@ -54,35 +53,37 @@ if ( ! empty( $attributes['bgImageUrl'] ) ) {
     $styles[] = 'background-image: ' . esc_attr( $attributes['bgGradient'] );
 }
 
-// Ensure the container handles video overlays properly
-$classes[] = 'position-relative';
-$classes[] = 'overflow-hidden';
+$has_video = ! empty( $attributes['bgVideoUrl'] );
 
-$wrapper_args = [ 'class' => implode( ' ', array_filter( $classes ) ) ];
+// Ensure the container handles video overlays properly only if video exists
+if ( $has_video ) {
+    $classes[] = 'position-relative';
+    $classes[] = 'overflow-hidden';
+}
+
+$wrapper_args = [ 'class' => implode( ' ', array_filter( array_map( 'trim', $classes ) ) ) ];
 
 if ( ! empty( $styles ) ) {
     $wrapper_args['style'] = implode( '; ', $styles );
 }
 
-// Ensure the wrapper attributes handle both classes, styles, and the custom block ID anchor.
 $wrapper_attr = get_block_wrapper_attributes( $wrapper_args );
-
 ?>
 
-<div <?php echo $wrapper_attr; ?>>
+<div <?php echo $wrapper_attr; ?> <?php echo $anchor; ?>>
     
-    <?php /* Render HTML Video tag if a video is set */ ?>
-    <?php if ( ! empty( $attributes['bgVideoUrl'] ) ) : ?>
+    <?php if ( $has_video ) : ?>
         <video 
             src="<?php echo esc_url( $attributes['bgVideoUrl'] ); ?>" 
             autoplay muted loop playsinline
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none;"
         ></video>
-    <?php endif; ?>
-
-    <?php /* Wrap content so it renders above the video */ ?>
-    <div style="position: relative; z-index: 1;">
+        
+        <div style="position: relative; z-index: 1;">
+            <?php echo $content; ?>
+        </div>
+    <?php else : ?>
         <?php echo $content; ?>
-    </div>
+    <?php endif; ?>
     
 </div>

@@ -1,0 +1,130 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/card-header",
+  "title": "Card Header",
+  "category": "watermelon-blocks",
+  "parent": [
+    "wmblocks/card"
+  ],
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "anchor": {
+      "type": "string",
+      "default": ""
+    },
+    "padding": {
+      "type": "string",
+      "default": ""
+    },
+    "margin": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": ""
+    },
+    "opacity": {
+      "type": "number",
+      "default": 100
+    },
+    "textColor": {
+      "type": "string",
+      "default": ""
+    },
+    "shadow": {
+      "type": "string",
+      "default": ""
+    },
+    "customCSS": {
+      "type": "string",
+      "default": ""
+    },
+    "borderSides": {
+      "type": "array",
+      "default": []
+    },
+    "borderRemove": {
+      "type": "array",
+      "default": []
+    },
+    "borderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "borderOpacityClass": {
+      "type": "string",
+      "default": ""
+    },
+    "borderOpacityCustom": {
+      "type": "string",
+      "default": ""
+    },
+    "borderSize": {
+      "type": "string",
+      "default": ""
+    },
+    "borderRadius": {
+      "type": "string",
+      "default": ""
+    },
+    "borderRadiusSize": {
+      "type": "string",
+      "default": ""
+    },
+    "hideXs": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideSm": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideMd": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideLg": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideXl": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideXxl": {
+      "type": "boolean",
+      "default": false
+    },
+    "bgImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "bgImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "bgGradient": {
+      "type": "string",
+      "default": ""
+    },
+    "bgVideoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "bgVideoId": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "render": "file:./render.php",
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}

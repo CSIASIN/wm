@@ -1210,67 +1210,6 @@ return array(
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),
-	'card' => array(
-		'$schema' => 'https://schemas.wp.org/trunk/block.json',
-		'apiVersion' => 3,
-		'name' => 'wmblocks/card',
-		'version' => '0.1.0',
-		'title' => 'Card',
-		'category' => 'watermelon-blocks',
-		'icon' => 'media-default',
-		'description' => 'Bootstrap base card — a flexible content container. Add any blocks inside the card body.',
-		'example' => array(
-			
-		),
-		'supports' => array(
-			'html' => false,
-			'anchor' => true
-		),
-		'attributes' => array(
-			'bgColor' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'textColor' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'borderColor' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'shadow' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'borderRadius' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'noBorder' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'textAlign' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'customWidth' => array(
-				'type' => 'string',
-				'default' => ''
-			),
-			'anchor' => array(
-				'type' => 'string',
-				'default' => ''
-			)
-		),
-		'textdomain' => 'wm',
-		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
-		'render' => 'file:./render.php',
-		'viewScript' => 'file:./view.js'
-	),
 	'card-basic' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -1312,6 +1251,140 @@ return array(
 			'opacity' => array(
 				'type' => 'number',
 				'default' => 100
+			),
+			'borderSides' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'borderRemove' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'borderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderOpacityClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderOpacityCustom' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderRadius' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderRadiusSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customCSS' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'hideXs' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideSm' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideMd' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideLg' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideXl' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideXxl' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'bgImageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgImageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'bgGradient' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgVideoUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgVideoId' => array(
+				'type' => 'number',
+				'default' => 0
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'card-body' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/card-body',
+		'version' => '0.1.0',
+		'title' => 'Card Body',
+		'category' => 'watermelon-blocks',
+		'icon' => 'editor-table',
+		'description' => 'The inner structural content container for building cards or standalone sections.',
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'anchor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'padding' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'margin' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'backgroundColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'opacity' => array(
+				'type' => 'number',
+				'default' => 100
+			),
+			'shadow' => array(
+				'type' => 'string',
+				'default' => ''
 			),
 			'borderSides' => array(
 				'type' => 'array',
@@ -1452,6 +1525,140 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'card-header' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/card-header',
+		'title' => 'Card Header',
+		'category' => 'watermelon-blocks',
+		'parent' => array(
+			'wmblocks/card'
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'anchor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'padding' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'margin' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'backgroundColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'opacity' => array(
+				'type' => 'number',
+				'default' => 100
+			),
+			'textColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'shadow' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customCSS' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderSides' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'borderRemove' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'borderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderOpacityClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderOpacityCustom' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderRadius' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderRadiusSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'hideXs' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideSm' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideMd' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideLg' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideXl' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideXxl' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'bgImageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgImageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'bgGradient' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgVideoUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgVideoId' => array(
+				'type' => 'number',
+				'default' => 0
+			)
+		),
+		'render' => 'file:./render.php',
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
 		'viewScript' => 'file:./view.js'
 	),
 	'card-header-footer' => array(
@@ -1712,6 +1919,302 @@ return array(
 			'hideXxl' => array(
 				'type' => 'boolean',
 				'default' => false
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
+	'card-title' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/card-title',
+		'version' => '0.1.0',
+		'title' => 'Card Title',
+		'category' => 'watermelon-blocks',
+		'parent' => array(
+			'wmblocks/card-body'
+		),
+		'icon' => 'heading',
+		'description' => 'Standard Bootstrap card title with heading level 5.',
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'anchor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'level' => array(
+				'type' => 'number',
+				'default' => 5
+			),
+			'content' => array(
+				'type' => 'string',
+				'default' => 'Card Title'
+			),
+			'displayClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textAlign' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fontWeight' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => 'card-title'
+			),
+			'padding' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'margin' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'backgroundColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'opacity' => array(
+				'type' => 'number',
+				'default' => 100
+			),
+			'shadow' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderSides' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'borderRemove' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'borderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderOpacityClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderOpacityCustom' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderRadius' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderRadiusSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customCSS' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'hideXs' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideSm' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideMd' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideLg' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideXl' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideXxl' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'bgImageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgImageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'bgGradient' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgVideoUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgVideoId' => array(
+				'type' => 'number',
+				'default' => 0
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'render' => 'file:./render.php'
+	),
+	'card-wrapper' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/card-wrapper',
+		'version' => '0.1.0',
+		'title' => 'Card Wrapper',
+		'category' => 'watermelon-blocks',
+		'icon' => 'grid-view',
+		'description' => 'A layout card container wrapper with adjustable width constraints.',
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'anchor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'padding' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'margin' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'backgroundColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'opacity' => array(
+				'type' => 'number',
+				'default' => 100
+			),
+			'shadow' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderSides' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'borderRemove' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'borderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderOpacityClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderOpacityCustom' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderRadius' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderRadiusSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customCSS' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'hideXs' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideSm' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideMd' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideLg' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideXl' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideXxl' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'bgImageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgImageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'bgGradient' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgVideoUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgVideoId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'cardWidth' => array(
+				'type' => 'string',
+				'default' => '18rem'
 			)
 		),
 		'textdomain' => 'wm',
@@ -3779,7 +4282,7 @@ return array(
 		'title' => 'BS Heading',
 		'category' => 'watermelon-blocks',
 		'icon' => 'heading',
-		'description' => 'Bootstrap heading — h1–h6 with optional display heading class, text utilities and lead.',
+		'description' => 'Bootstrap heading — h1–h6 with custom container backgrounds, spacing, borders, display styles, and responsiveness.',
 		'example' => array(
 			
 		),
@@ -3788,6 +4291,10 @@ return array(
 			'anchor' => true
 		),
 		'attributes' => array(
+			'anchor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
 			'level' => array(
 				'type' => 'number',
 				'default' => 2
@@ -3815,6 +4322,110 @@ return array(
 			'customClass' => array(
 				'type' => 'string',
 				'default' => ''
+			),
+			'padding' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'margin' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'backgroundColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'opacity' => array(
+				'type' => 'number',
+				'default' => 100
+			),
+			'shadow' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderSides' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'borderRemove' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'borderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderOpacityClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderOpacityCustom' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderRadius' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'borderRadiusSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customCSS' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'hideXs' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideSm' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideMd' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideLg' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideXl' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'hideXxl' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'bgImageUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgImageId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'bgGradient' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgVideoUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bgVideoId' => array(
+				'type' => 'number',
+				'default' => 0
 			)
 		),
 		'textdomain' => 'wm',

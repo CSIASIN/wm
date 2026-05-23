@@ -1,20 +1,14 @@
 <?php
 /**
  * PHP file to use when rendering the block type on the server to show on the front end.
- *
- * The following variables are exposed to the file:
- * $attributes (array): The block attributes.
- * $content (string): The block default content.
- * $block (WP_Block): The block instance.
- *
- * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
-
+$anchor  = ! empty( $attributes['anchor'] ) ? ' id="' . esc_attr( $attributes['anchor'] ) . '"' : '';
 $padding    = isset( $attributes['padding'] ) ? esc_attr( $attributes['padding'] ) : '';
 $background = ! empty( $attributes['backgroundColor'] ) ? ' ' . esc_attr( $attributes['backgroundColor'] ) : '';
 $margin     = isset( $attributes['margin'] )      ? esc_attr( $attributes['margin'] )      : '';
 $shadow     = ! empty( $attributes['shadow'] )            ? esc_attr( trim( $attributes['shadow'] ) )               : '';
-$container_type = isset( $attributes['containerType'] )   ? esc_attr( $attributes['containerType'] ) : 'container-fluid'; // <-- Add here
+$container_type = isset( $attributes['containerType'] )   ? esc_attr( $attributes['containerType'] ) : 'container-fluid';
+
 // Visibility classes — one per breakpoint
 $visibility = '';
 if ( ! empty( $attributes['hideXs'] ) )  $visibility .= ' d-none d-sm-block';
@@ -33,7 +27,7 @@ $border_size          = ! empty( $attributes['borderSize'] )        ? ' ' . esc_
 $border_radius        = ! empty( $attributes['borderRadius'] )      ? ' ' . esc_attr( $attributes['borderRadius'] )  : '';
 $border_radius_size   = ! empty( $attributes['borderRadiusSize'] )  ? ' ' . esc_attr( $attributes['borderRadiusSize'] ) : '';
 
-// Build inline styles array — all in one place, passed into wrapper attributes
+// Build inline styles array
 $styles = [];
 
 // Advanced Background: Image / Gradient conditional integration
@@ -57,11 +51,11 @@ if ( ! empty( $attributes['borderOpacityCustom'] ) ) {
 if ( ! empty( $attributes['customCSS'] ) ) {
     $styles[] = rtrim( esc_attr( $attributes['customCSS'] ), ';' );
 }
+
+$has_video = ! empty( $attributes['bgVideoUrl'] );
  
-$all_classes = implode( ' ', array_filter( [
-    $container_type, // <-- CHANGED: Swapped static 'container' with the dynamic type variable
-    'position-relative', // Needed for positioning video layers
-    'overflow-hidden',   // Clips absolute video content tracking vectors
+$class_list = [
+    $container_type,
     $padding,
     $margin,
     $background,
@@ -74,20 +68,25 @@ $all_classes = implode( ' ', array_filter( [
     $border_radius,
     $border_radius_size,
     $visibility,
-], 'strlen' ) );
- 
-// Pass BOTH class and style into get_block_wrapper_attributes so they are merged into one style attribute
-$wrapper_args = array( 'class' => $all_classes );
+];
+
+// Context structure attributes logic handles background tracking layers
+if ( $has_video ) {
+    $class_list[] = 'position-relative';
+    $class_list[] = 'overflow-hidden';
+}
+
+$wrapper_args = array( 'class' => implode( ' ', array_filter( array_map( 'trim', $class_list ), 'strlen' ) ) );
+
 if ( ! empty( $styles ) ) {
     $wrapper_args['style'] = implode( '; ', $styles );
 }
  
 $wrapper_attributes = get_block_wrapper_attributes( $wrapper_args );
 ?>
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; ?> <?php echo $anchor; ?>>
 
-    <?php /* Advanced Background Layer: Video Output Engine */ ?>
-    <?php if ( ! empty( $attributes['bgVideoUrl'] ) ) : ?>
+    <?php if ( $has_video ) : ?>
         <video 
             src="<?php echo esc_url( $attributes['bgVideoUrl'] ); ?>" 
             autoplay 
@@ -96,11 +95,12 @@ $wrapper_attributes = get_block_wrapper_attributes( $wrapper_args );
             playsinline
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none;"
         ></video>
-    <?php endif; ?>
 
-    <?php /* Context Stacking Wrapper: Renders content elements perfectly over backgrounds */ ?>
-    <div style="position: relative; z-index: 1; width: 100%; height: 100%;">
+        <div style="position: relative; z-index: 1; width: 100%; height: 100%;">
+            <?php echo $content; ?>
+        </div>
+    <?php else : ?>
         <?php echo $content; ?>
-    </div>
+    <?php endif; ?>
     
 </div>

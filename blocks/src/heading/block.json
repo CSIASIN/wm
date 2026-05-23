@@ -6,24 +6,149 @@
 	"title": "BS Heading",
 	"category": "watermelon-blocks",
 	"icon": "heading",
-	"description": "Bootstrap heading — h1–h6 with optional display heading class, text utilities and lead.",
+	"description": "Bootstrap heading — h1–h6 with custom container backgrounds, spacing, borders, display styles, and responsiveness.",
 	"example": {},
-	"supports": { "html": false, "anchor": true },
-"attributes": {
-    "level": { "type": "number", "default": 2 },
-    "content": { 
-        "type": "string", 
-        "default": "Bootstrap Heading" 
-    },
-    "displayClass": { "type": "string", "default": "" },
-    "textAlign":    { "type": "string", "default": "" },
-    "textColor":    { "type": "string", "default": "" },
-    "fontWeight":   { "type": "string", "default": "" },
-    "customClass":  { "type": "string", "default": "" }
-},
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"anchor": {
+			"type": "string",
+			"default": ""
+		},
+		"level": {
+			"type": "number",
+			"default": 2
+		},
+		"content": {
+			"type": "string",
+			"default": "Bootstrap Heading"
+		},
+		"displayClass": {
+			"type": "string",
+			"default": ""
+		},
+		"textAlign": {
+			"type": "string",
+			"default": ""
+		},
+		"textColor": {
+			"type": "string",
+			"default": ""
+		},
+		"fontWeight": {
+			"type": "string",
+			"default": ""
+		},
+		"customClass": {
+			"type": "string",
+			"default": ""
+		},
+		"padding": {
+			"type": "string",
+			"default": ""
+		},
+		"margin": {
+			"type": "string",
+			"default": ""
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": ""
+		},
+		"opacity": {
+			"type": "number",
+			"default": 100
+		},
+		"shadow": {
+			"type": "string",
+			"default": ""
+		},
+		"borderSides": {
+			"type": "array",
+			"default": []
+		},
+		"borderRemove": {
+			"type": "array",
+			"default": []
+		},
+		"borderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderOpacityClass": {
+			"type": "string",
+			"default": ""
+		},
+		"borderOpacityCustom": {
+			"type": "string",
+			"default": ""
+		},
+		"borderSize": {
+			"type": "string",
+			"default": ""
+		},
+		"borderRadius": {
+			"type": "string",
+			"default": ""
+		},
+		"borderRadiusSize": {
+			"type": "string",
+			"default": ""
+		},
+		"customCSS": {
+			"type": "string",
+			"default": ""
+		},
+		"hideXs": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideSm": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideMd": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideLg": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideXl": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideXxl": {
+			"type": "boolean",
+			"default": false
+		},
+		"bgImageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"bgImageId": {
+			"type": "number",
+			"default": 0
+		},
+		"bgGradient": {
+			"type": "string",
+			"default": ""
+		},
+		"bgVideoUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"bgVideoId": {
+			"type": "number",
+			"default": 0
+		}
+	},
 	"textdomain": "wm",
 	"editorScript": "file:./index.js",
-	"editorStyle":  "file:./index.css",
-	"style":        "file:./style-index.css",
-	"render":       "file:./render.php"
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
 }

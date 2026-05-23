@@ -11,9 +11,21 @@
   outline: 1px dashed rgba(0, 0, 0, 0.2);
   outline-offset: -1px;
   transition: outline-color 0.2s ease;
+  position: relative;
 }
 .wp-block-wmblocks-div.is-selected {
   outline-color: #007cba;
+}
+.wp-block-wmblocks-div:before {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 0 5px;
+  color: #fff;
+  font-size: 9px;
+  z-index: 20;
+  content: "DIV";
+  top: -2.5px;
+  left: -2.5px;
+  position: absolute;
 }
 
 /*# sourceMappingURL=index.css.map*/

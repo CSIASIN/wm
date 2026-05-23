@@ -12,19 +12,19 @@ export default function Edit( { attributes, setAttributes } ) {
     const {
         padding, margin, backgroundColor, textColor, opacity, shadow, customCSS,
         borderSides, borderRemove, borderColor, borderOpacityClass, borderOpacityCustom, borderSize, borderRadius, borderRadiusSize,
-        hideXs, hideSm, hideMd, hideLg, hideXl, hideXxl,bgImageUrl, bgImageId, bgGradient, bgVideoUrl, bgVideoId
+        hideXs, hideSm, hideMd, hideLg, hideXl, hideXxl, bgImageUrl, bgImageId, bgGradient, bgVideoUrl, bgVideoId
     } = attributes;
 
-// 1. Calculate Background Inline Styles safely
-const dynamicBgStyles = {};
-if ( bgImageUrl ) {
-    dynamicBgStyles.backgroundImage = `url(${ bgImageUrl })`;
-    dynamicBgStyles.backgroundSize = 'cover';
-    dynamicBgStyles.backgroundPosition = 'center';
-} else if ( bgGradient ) {
-    // USE 'background' instead of 'backgroundImage' for maximum compatibility
-    dynamicBgStyles.background = bgGradient; 
-}
+    // 1. Calculate Background Inline Styles safely
+    const dynamicBgStyles = {};
+    if ( bgImageUrl ) {
+        dynamicBgStyles.backgroundImage = `url(${ bgImageUrl })`;
+        dynamicBgStyles.backgroundSize = 'cover';
+        dynamicBgStyles.backgroundPosition = 'center';
+    } else if ( bgGradient ) {
+        dynamicBgStyles.background = bgGradient; 
+    }
+
     const parseInlineCSS = ( cssString ) => {
         if ( ! cssString ) return {};
         return cssString.split( ';' ).reduce( ( styleObj, rule ) => {
@@ -51,28 +51,48 @@ if ( bgImageUrl ) {
         !! hideXxl ? 'd-xxl-none'           : '',
     ].filter( Boolean ).join( ' ' );
 
+    const hasVideo = !! bgVideoUrl;
+
     const blockProps = useBlockProps( {
         className: [
-            'wmblocks-div', 'position-relative', 'overflow-hidden', padding, margin, backgroundColor, borderClasses, visibilityClasses, shadow
+            'wmblocks-div', 
+            hasVideo ? 'position-relative' : '', 
+            hasVideo ? 'overflow-hidden' : '', 
+            padding, margin, backgroundColor, borderClasses, visibilityClasses, shadow
         ].filter( Boolean ).join( ' ' ),
         style: {
-            ...dynamicBgStyles, // Add Image/Gradient background
+            ...dynamicBgStyles,
             opacity: opacity !== 100 ? opacity / 100 : undefined,
             color: textColor || undefined,
             ...( borderOpacityCustom ? { '--bs-border-opacity': borderOpacityCustom } : {} ),
             ...parseInlineCSS( customCSS ),
         }
-    });
+    } );
 
+const DIV_TEMPLATE = [
+    [ 
+        'core/paragraph', 
+        { 
+            placeholder: __( "Add your container content here... A div tag is just an invisible, blank box used to group things together on a webpage. Because it doesn’t have a special meaning of its own, it won’t change how your content looks. Instead, it just starts on a new line and takes up all the horizontal space it can. This makes it super useful for adding colors or spacing with CSS, making things interactive with JavaScript, or nesting other items inside it.", 'wm' ),
+            fontSize: 'small',
+            style: {
+                typography: {
+                    fontStyle: 'italic',
+                    fontFamily: 'monospace'
+                }
+            }
+        } 
+    ]
+];
     return (
         <>
             <InspectorControls>
                 <BackgroundControl 
-                bgImageUrl={bgImageUrl} bgImageId={bgImageId} 
-                bgGradient={bgGradient} 
-                bgVideoUrl={bgVideoUrl} bgVideoId={bgVideoId} 
-                setAttributes={setAttributes} 
-            />
+                    bgImageUrl={bgImageUrl} bgImageId={bgImageId} 
+                    bgGradient={bgGradient} 
+                    bgVideoUrl={bgVideoUrl} bgVideoId={bgVideoId} 
+                    setAttributes={setAttributes} 
+                />
                 <PaddingControl value={ padding } onChange={ ( v ) => setAttributes( { padding: v } ) } />
                 <MarginControl value={ margin } onChange={ ( v ) => setAttributes( { margin: v } ) } />
                 <BackgroundColorControl value={ backgroundColor } onChange={ ( v ) => setAttributes( { backgroundColor: v } ) } />
@@ -88,31 +108,32 @@ if ( bgImageUrl ) {
                 <CustomCSSControl value={ customCSS } onChange={ ( v ) => setAttributes( { customCSS: v } ) } />
                 <VisibilityControl
                     hideXs={ hideXs } hideSm={ hideSm } hideMd={ hideMd }
-                    hideLg={ hideLg } hideXl={ hideXl } hideXxl={ hideXxl }
+                    hideLg={ hideLg } hideXl={ hideXxl } hideXxl={ hideXxl }
                     setAttributes={ setAttributes }
                 />
             </InspectorControls>
 
             <div { ...blockProps }>
-        {/* Handle Video Background as an absolutely positioned element */}
-            { bgVideoUrl && (
-                <video 
-                    src={ bgVideoUrl } 
-                    autoPlay muted loop playsInline
-                    style={ {
-                        position: 'absolute',
-                        top: 0, left: 0, width: '100%', height: '100%',
-                        objectFit: 'cover',
-                        zIndex: 0, 
-                        pointerEvents: 'none'
-                    } }
-                />
-            ) }
-
-            {/* We wrap InnerBlocks in a relative container so it sits ON TOP of the video */}
-    <div style={ { position: 'relative', zIndex: 1 } }>
-                <InnerBlocks renderAppender={ InnerBlocks.ButtonBlockAppender } />
-            </div>
+                { hasVideo ? (
+                    <>
+                        <video 
+                            src={ bgVideoUrl } 
+                            autoPlay muted loop playsInline
+                            style={ {
+                                position: 'absolute',
+                                top: 0, left: 0, width: '100%', height: '100%',
+                                objectFit: 'cover',
+                                zIndex: 0, 
+                                pointerEvents: 'none'
+                            } }
+                        />
+                        <div style={ { position: 'relative', zIndex: 1 } }>
+                            <InnerBlocks renderAppender={ InnerBlocks.ButtonBlockAppender } />
+                        </div>
+                    </>
+                ) : (
+                    <InnerBlocks template={ DIV_TEMPLATE } renderAppender={ InnerBlocks.ButtonBlockAppender } />
+                ) }
             </div>
         </>
     );

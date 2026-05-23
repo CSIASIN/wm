@@ -1,0 +1,154 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmblocks/card-title",
+	"version": "0.1.0",
+	"title": "Card Title",
+	"category": "watermelon-blocks",
+	"parent": [
+		"wmblocks/card-body"
+	],
+	"icon": "heading",
+	"description": "Standard Bootstrap card title with heading level 5.",
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {
+		"anchor": {
+			"type": "string",
+			"default": ""
+		},
+		"level": {
+			"type": "number",
+			"default": 5
+		},
+		"content": {
+			"type": "string",
+			"default": "Card Title"
+		},
+		"displayClass": {
+			"type": "string",
+			"default": ""
+		},
+		"textAlign": {
+			"type": "string",
+			"default": ""
+		},
+		"textColor": {
+			"type": "string",
+			"default": ""
+		},
+		"fontWeight": {
+			"type": "string",
+			"default": ""
+		},
+		"customClass": {
+			"type": "string",
+			"default": "card-title"
+		},
+		"padding": {
+			"type": "string",
+			"default": ""
+		},
+		"margin": {
+			"type": "string",
+			"default": ""
+		},
+		"backgroundColor": {
+			"type": "string",
+			"default": ""
+		},
+		"opacity": {
+			"type": "number",
+			"default": 100
+		},
+		"shadow": {
+			"type": "string",
+			"default": ""
+		},
+		"borderSides": {
+			"type": "array",
+			"default": []
+		},
+		"borderRemove": {
+			"type": "array",
+			"default": []
+		},
+		"borderColor": {
+			"type": "string",
+			"default": ""
+		},
+		"borderOpacityClass": {
+			"type": "string",
+			"default": ""
+		},
+		"borderOpacityCustom": {
+			"type": "string",
+			"default": ""
+		},
+		"borderSize": {
+			"type": "string",
+			"default": ""
+		},
+		"borderRadius": {
+			"type": "string",
+			"default": ""
+		},
+		"borderRadiusSize": {
+			"type": "string",
+			"default": ""
+		},
+		"customCSS": {
+			"type": "string",
+			"default": ""
+		},
+		"hideXs": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideSm": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideMd": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideLg": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideXl": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideXxl": {
+			"type": "boolean",
+			"default": false
+		},
+		"bgImageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"bgImageId": {
+			"type": "number",
+			"default": 0
+		},
+		"bgGradient": {
+			"type": "string",
+			"default": ""
+		},
+		"bgVideoUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"bgVideoId": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"textdomain": "wm",
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

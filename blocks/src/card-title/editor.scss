@@ -1,0 +1,8 @@
+.wp-block-wmblocks-card-title {
+    // This overrides the :before content from your heading logic
+    &:before {
+        content: "CARD TITLE" !important;
+        background-color: #ffc107 !important; // yellow bootstrap warning color for card items
+        color: #000 !important;
+    }
+}
