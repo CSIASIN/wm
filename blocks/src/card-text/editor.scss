@@ -1,0 +1,7 @@
+.wp-block-wmblocks-card-text {
+    &:before {
+        content: "CARD TEXT" !important;
+        background-color: #6c757d !important; // Secondary grey theme color to match its structural nature
+        color: #fff !important;
+    }
+}

@@ -1,0 +1,131 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "wmblocks/card-footer",
+    "version": "0.1.0",
+    "title": "Card Footer",
+    "category": "watermelon-blocks",
+    "icon": "button",
+    "description": "Standard Bootstrap card footer with flat text structure and utility controls.",
+    "supports": {
+        "html": false,
+        "anchor": true
+    },
+    "attributes": {
+        "anchor": {
+            "type": "string",
+            "default": ""
+        },
+        "content": {
+            "type": "string",
+            "default": "2 days ago"
+        },
+        "margin": {
+            "type": "string",
+            "default": ""
+        },
+        "padding": {
+            "type": "string",
+            "default": ""
+        },
+        "backgroundColor": {
+            "type": "string",
+            "default": ""
+        },
+        "textColor": {
+            "type": "string",
+            "default": "text-body-secondary"
+        },
+        "opacity": {
+            "type": "number",
+            "default": 100
+        },
+        "shadow": {
+            "type": "string",
+            "default": ""
+        },
+        "borderSides": {
+            "type": "array",
+            "default": []
+        },
+        "borderRemove": {
+            "type": "array",
+            "default": []
+        },
+        "borderColor": {
+            "type": "string",
+            "default": ""
+        },
+        "borderOpacityClass": {
+            "type": "string",
+            "default": ""
+        },
+        "borderOpacityCustom": {
+            "type": "string",
+            "default": ""
+        },
+        "borderSize": {
+            "type": "string",
+            "default": ""
+        },
+        "borderRadius": {
+            "type": "string",
+            "default": ""
+        },
+        "borderRadiusSize": {
+            "type": "string",
+            "default": ""
+        },
+        "customCSS": {
+            "type": "string",
+            "default": ""
+        },
+        "hideXs": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideSm": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideMd": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideLg": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideXl": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideXxl": {
+            "type": "boolean",
+            "default": false
+        },
+        "bgImageUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "bgImageId": {
+            "type": "number",
+            "default": 0
+        },
+        "bgGradient": {
+            "type": "string",
+            "default": ""
+        },
+        "bgVideoUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "bgVideoId": {
+            "type": "number",
+            "default": 0
+        }
+    },
+    "textdomain": "wm",
+    "editorScript": "file:./index.js",
+    "render": "file:./render.php"
+}

@@ -1,4 +1,5 @@
-import { useBlockProps, InspectorControls, InnerBlocks } from '@wordpress/block-editor';
+import { useBlockProps, InspectorControls, RichText } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
 import { PaddingControl, MarginControl } from '../../controls/spacingControls';
 import { BackgroundColorControl, TextColorControl, OpacityControl, ShadowControl, BorderControl, CustomCSSControl } from '../../controls/visualControls';
 import { VisibilityControl } from '../../controls/visibilityControl';
@@ -6,7 +7,7 @@ import { BackgroundControl } from '../../controls/background';
 
 export default function Edit( { attributes, setAttributes } ) {
     const {
-        margin, padding, customCSS, backgroundColor, opacity, shadow,
+        content, margin, padding, customCSS, backgroundColor, opacity, shadow,
         borderSides, borderRemove, borderColor, borderOpacityClass,
         borderOpacityCustom, borderSize, borderRadius, borderRadiusSize, textColor,
         hideXs, hideSm, hideMd, hideLg, hideXl, hideXxl,
@@ -26,8 +27,19 @@ export default function Edit( { attributes, setAttributes } ) {
     };
 
     const dynamicBgStyles = bgImageUrl ? { backgroundImage: `url(${ bgImageUrl })`, backgroundSize: 'cover', backgroundPosition: 'center' } : ( bgGradient ? { background: bgGradient } : {} );
+    const hasVideo = !! bgVideoUrl;
+
+    const borderClasses = [ ...( borderSides || [] ), ...( borderRemove || [] ), borderColor, borderOpacityClass, borderSize, borderRadius, borderRadiusSize ].filter( Boolean ).join( ' ' );
+    const visibilityClasses = [ hideXs ? 'd-none d-sm-block' : '', hideSm ? 'd-sm-none d-md-block' : '', hideMd ? 'd-md-none d-lg-block' : '', hideLg ? 'd-lg-none d-xl-block' : '', hideXl ? 'd-xl-none d-xxl-block' : '', hideXxl ? 'd-xxl-none' : '' ].filter( Boolean ).join( ' ' );
+    
+    const combinedClassName = [ 
+        'card-header', 
+        hasVideo ? 'position-relative overflow-hidden' : '', 
+        padding, margin, backgroundColor, shadow, borderClasses, visibilityClasses 
+    ].filter( Boolean ).map( c => c.trim() ).filter( Boolean ).join( ' ' );
 
     const blockProps = useBlockProps( {
+        className: combinedClassName,
         style: {
             ...dynamicBgStyles,
             opacity: opacity !== 100 ? opacity / 100 : undefined,
@@ -36,10 +48,6 @@ export default function Edit( { attributes, setAttributes } ) {
             ...parseInlineCSS( customCSS ),
         },
     } );
-
-    const borderClasses = [ ...( borderSides || [] ), ...( borderRemove || [] ), borderColor, borderOpacityClass, borderSize, borderRadius, borderRadiusSize ].filter( Boolean ).join( ' ' );
-    const visibilityClasses = [ hideXs ? 'd-none d-sm-block' : '', hideSm ? 'd-sm-none d-md-block' : '', hideMd ? 'd-md-none d-lg-block' : '', hideLg ? 'd-lg-none d-xl-block' : '', hideXl ? 'd-xl-none d-xxl-block' : '', hideXxl ? 'd-xxl-none' : '' ].filter( Boolean ).join( ' ' );
-    const combinedClassName = [ blockProps.className, 'card-header', 'position-relative', 'overflow-hidden', padding, margin, backgroundColor, shadow, borderClasses, visibilityClasses ].filter( Boolean ).map( c => c.trim() ).filter( Boolean ).join( ' ' );
 
     return (
         <>
@@ -53,16 +61,29 @@ export default function Edit( { attributes, setAttributes } ) {
                 <ShadowControl value={ shadow } onChange={ ( v ) => setAttributes( { shadow: v } ) } />
                 <BorderControl borderSides={ borderSides } borderRemove={ borderRemove } borderColor={ borderColor } borderOpacityClass={ borderOpacityClass } borderOpacityCustom={ borderOpacityCustom } borderSize={ borderSize } borderRadius={ borderRadius } borderRadiusSize={ borderRadiusSize } setAttributes={ setAttributes } />
                 <CustomCSSControl value={ customCSS } onChange={ ( v ) => setAttributes( { customCSS: v } ) } />
-                <VisibilityControl hideXs={ hideXs } hideSm={ hideSm } hideMd={ hideMd } hideLg={ hideLg } hideXl={ hideXxl } hideXxl={ hideXxl } setAttributes={ setAttributes } />
+                <VisibilityControl hideXs={ hideXs } hideSm={ hideSm } hideMd={ hideMd } hideLg={ hideLg } hideXl={ hideXl } hideXxl={ hideXxl } setAttributes={ setAttributes } />
             </InspectorControls>
-            <div { ...blockProps } className={ combinedClassName }>
-                { bgVideoUrl && (
+            
+            { hasVideo ? (
+                <div { ...blockProps }>
                     <video src={ bgVideoUrl } autoPlay muted loop playsInline style={ { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0, pointerEvents: 'none' } } />
-                ) }
-                <div style={ { position: 'relative', zIndex: 1, width: '100%' } }>
-                    <InnerBlocks renderAppender={ InnerBlocks.ButtonBlockAppender } />
+                    <RichText
+                        tagName="span"
+                        value={ content }
+                        onChange={ ( val ) => setAttributes( { content: val } ) }
+                        placeholder={ __( 'Featured', 'wmblocks' ) }
+                        style={ { position: 'relative', zIndex: 1, display: 'block', width: '100%' } }
+                    />
                 </div>
-            </div>
+            ) : (
+                <RichText
+                    { ...blockProps }
+                    tagName="div"
+                    value={ content }
+                    onChange={ ( val ) => setAttributes( { content: val } ) }
+                    placeholder={ __( 'Featured', 'wmblocks' ) }
+                />
+            ) }
         </>
     );
 }

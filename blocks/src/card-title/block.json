@@ -5,9 +5,6 @@
 	"version": "0.1.0",
 	"title": "Card Title",
 	"category": "watermelon-blocks",
-	"parent": [
-		"wmblocks/card-body"
-	],
 	"icon": "heading",
 	"description": "Standard Bootstrap card title with heading level 5.",
 	"supports": {

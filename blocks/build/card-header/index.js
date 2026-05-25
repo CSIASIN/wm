@@ -1540,12 +1540,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _controls_spacingControls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../controls/spacingControls */ "./controls/spacingControls.js");
-/* harmony import */ var _controls_visualControls__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../controls/visualControls */ "./controls/visualControls.js");
-/* harmony import */ var _controls_visibilityControl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../controls/visibilityControl */ "./controls/visibilityControl.js");
-/* harmony import */ var _controls_background__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../controls/background */ "./controls/background.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _controls_spacingControls__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../controls/spacingControls */ "./controls/spacingControls.js");
+/* harmony import */ var _controls_visualControls__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../controls/visualControls */ "./controls/visualControls.js");
+/* harmony import */ var _controls_visibilityControl__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../controls/visibilityControl */ "./controls/visibilityControl.js");
+/* harmony import */ var _controls_background__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../controls/background */ "./controls/background.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 
@@ -1557,6 +1560,7 @@ function Edit({
   setAttributes
 }) {
   const {
+    content,
     margin,
     padding,
     customCSS,
@@ -1602,7 +1606,12 @@ function Edit({
   } : bgGradient ? {
     background: bgGradient
   } : {};
+  const hasVideo = !!bgVideoUrl;
+  const borderClasses = [...(borderSides || []), ...(borderRemove || []), borderColor, borderOpacityClass, borderSize, borderRadius, borderRadiusSize].filter(Boolean).join(' ');
+  const visibilityClasses = [hideXs ? 'd-none d-sm-block' : '', hideSm ? 'd-sm-none d-md-block' : '', hideMd ? 'd-md-none d-lg-block' : '', hideLg ? 'd-lg-none d-xl-block' : '', hideXl ? 'd-xl-none d-xxl-block' : '', hideXxl ? 'd-xxl-none' : ''].filter(Boolean).join(' ');
+  const combinedClassName = ['card-header', hasVideo ? 'position-relative overflow-hidden' : '', padding, margin, backgroundColor, shadow, borderClasses, visibilityClasses].filter(Boolean).map(c => c.trim()).filter(Boolean).join(' ');
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps)({
+    className: combinedClassName,
     style: {
       ...dynamicBgStyles,
       opacity: opacity !== 100 ? opacity / 100 : undefined,
@@ -1613,49 +1622,46 @@ function Edit({
       ...parseInlineCSS(customCSS)
     }
   });
-  const borderClasses = [...(borderSides || []), ...(borderRemove || []), borderColor, borderOpacityClass, borderSize, borderRadius, borderRadiusSize].filter(Boolean).join(' ');
-  const visibilityClasses = [hideXs ? 'd-none d-sm-block' : '', hideSm ? 'd-sm-none d-md-block' : '', hideMd ? 'd-md-none d-lg-block' : '', hideLg ? 'd-lg-none d-xl-block' : '', hideXl ? 'd-xl-none d-xxl-block' : '', hideXxl ? 'd-xxl-none' : ''].filter(Boolean).join(' ');
-  const combinedClassName = [blockProps.className, 'card-header', 'position-relative', 'overflow-hidden', padding, margin, backgroundColor, shadow, borderClasses, visibilityClasses].filter(Boolean).map(c => c.trim()).filter(Boolean).join(' ');
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_controls_spacingControls__WEBPACK_IMPORTED_MODULE_1__.PaddingControl, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_controls_spacingControls__WEBPACK_IMPORTED_MODULE_2__.PaddingControl, {
         value: padding,
         onChange: v => setAttributes({
           padding: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_controls_spacingControls__WEBPACK_IMPORTED_MODULE_1__.MarginControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_controls_spacingControls__WEBPACK_IMPORTED_MODULE_2__.MarginControl, {
         value: margin,
         onChange: v => setAttributes({
           margin: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_2__.BackgroundColorControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_3__.BackgroundColorControl, {
         value: backgroundColor,
         onChange: v => setAttributes({
           backgroundColor: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_controls_background__WEBPACK_IMPORTED_MODULE_4__.BackgroundControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_controls_background__WEBPACK_IMPORTED_MODULE_5__.BackgroundControl, {
         bgImageUrl: bgImageUrl,
         bgImageId: bgImageId,
         bgGradient: bgGradient,
         bgVideoUrl: bgVideoUrl,
         bgVideoId: bgVideoId,
         setAttributes: setAttributes
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_2__.OpacityControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_3__.OpacityControl, {
         value: opacity,
         onChange: v => setAttributes({
           opacity: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_2__.TextColorControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_3__.TextColorControl, {
         value: textColor,
         onChange: v => setAttributes({
           textColor: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_2__.ShadowControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_3__.ShadowControl, {
         value: shadow,
         onChange: v => setAttributes({
           shadow: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_2__.BorderControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_3__.BorderControl, {
         borderSides: borderSides,
         borderRemove: borderRemove,
         borderColor: borderColor,
@@ -1665,24 +1671,23 @@ function Edit({
         borderRadius: borderRadius,
         borderRadiusSize: borderRadiusSize,
         setAttributes: setAttributes
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_2__.CustomCSSControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_3__.CustomCSSControl, {
         value: customCSS,
         onChange: v => setAttributes({
           customCSS: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_controls_visibilityControl__WEBPACK_IMPORTED_MODULE_3__.VisibilityControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_controls_visibilityControl__WEBPACK_IMPORTED_MODULE_4__.VisibilityControl, {
         hideXs: hideXs,
         hideSm: hideSm,
         hideMd: hideMd,
         hideLg: hideLg,
-        hideXl: hideXxl,
+        hideXl: hideXl,
         hideXxl: hideXxl,
         setAttributes: setAttributes
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    }), hasVideo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       ...blockProps,
-      className: combinedClassName,
-      children: [bgVideoUrl && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("video", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("video", {
         src: bgVideoUrl,
         autoPlay: true,
         muted: true,
@@ -1698,16 +1703,28 @@ function Edit({
           zIndex: 0,
           pointerEvents: 'none'
         }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
+        tagName: "span",
+        value: content,
+        onChange: val => setAttributes({
+          content: val
+        }),
+        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Featured', 'wmblocks'),
         style: {
           position: 'relative',
           zIndex: 1,
+          display: 'block',
           width: '100%'
-        },
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InnerBlocks, {
-          renderAppender: _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InnerBlocks.ButtonBlockAppender
-        })
+        }
       })]
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.RichText, {
+      ...blockProps,
+      tagName: "div",
+      value: content,
+      onChange: val => setAttributes({
+        content: val
+      }),
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Featured', 'wmblocks')
     })]
   });
 }
@@ -1836,7 +1853,7 @@ module.exports = window["wp"]["i18n"];
   \************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wmblocks/card-header","title":"Card Header","category":"watermelon-blocks","parent":["wmblocks/card"],"supports":{"html":false,"anchor":true},"attributes":{"anchor":{"type":"string","default":""},"padding":{"type":"string","default":""},"margin":{"type":"string","default":""},"backgroundColor":{"type":"string","default":""},"opacity":{"type":"number","default":100},"textColor":{"type":"string","default":""},"shadow":{"type":"string","default":""},"customCSS":{"type":"string","default":""},"borderSides":{"type":"array","default":[]},"borderRemove":{"type":"array","default":[]},"borderColor":{"type":"string","default":""},"borderOpacityClass":{"type":"string","default":""},"borderOpacityCustom":{"type":"string","default":""},"borderSize":{"type":"string","default":""},"borderRadius":{"type":"string","default":""},"borderRadiusSize":{"type":"string","default":""},"hideXs":{"type":"boolean","default":false},"hideSm":{"type":"boolean","default":false},"hideMd":{"type":"boolean","default":false},"hideLg":{"type":"boolean","default":false},"hideXl":{"type":"boolean","default":false},"hideXxl":{"type":"boolean","default":false},"bgImageUrl":{"type":"string","default":""},"bgImageId":{"type":"number","default":0},"bgGradient":{"type":"string","default":""},"bgVideoUrl":{"type":"string","default":""},"bgVideoId":{"type":"number","default":0}},"render":"file:./render.php","textdomain":"wm","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wmblocks/card-header","title":"Card Header","category":"watermelon-blocks","supports":{"html":false,"anchor":true},"attributes":{"content":{"type":"string","default":"Featured"},"anchor":{"type":"string","default":""},"padding":{"type":"string","default":""},"margin":{"type":"string","default":""},"backgroundColor":{"type":"string","default":""},"opacity":{"type":"number","default":100},"textColor":{"type":"string","default":""},"shadow":{"type":"string","default":""},"customCSS":{"type":"string","default":""},"borderSides":{"type":"array","default":[]},"borderRemove":{"type":"array","default":[]},"borderColor":{"type":"string","default":""},"borderOpacityClass":{"type":"string","default":""},"borderOpacityCustom":{"type":"string","default":""},"borderSize":{"type":"string","default":""},"borderRadius":{"type":"string","default":""},"borderRadiusSize":{"type":"string","default":""},"hideXs":{"type":"boolean","default":false},"hideSm":{"type":"boolean","default":false},"hideMd":{"type":"boolean","default":false},"hideLg":{"type":"boolean","default":false},"hideXl":{"type":"boolean","default":false},"hideXxl":{"type":"boolean","default":false},"bgImageUrl":{"type":"string","default":""},"bgImageId":{"type":"number","default":0},"bgGradient":{"type":"string","default":""},"bgVideoUrl":{"type":"string","default":""},"bgVideoId":{"type":"number","default":0}},"render":"file:./render.php","textdomain":"wm","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ }
 

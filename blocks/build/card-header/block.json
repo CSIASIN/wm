@@ -4,14 +4,15 @@
   "name": "wmblocks/card-header",
   "title": "Card Header",
   "category": "watermelon-blocks",
-  "parent": [
-    "wmblocks/card"
-  ],
   "supports": {
     "html": false,
     "anchor": true
   },
   "attributes": {
+    "content": {
+      "type": "string",
+      "default": "Featured"
+    },
     "anchor": {
       "type": "string",
       "default": ""

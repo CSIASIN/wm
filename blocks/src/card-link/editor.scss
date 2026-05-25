@@ -1,0 +1,52 @@
+// editor.scss — wmblocks/card-link
+
+.wp-block-wmblocks-card-link {
+    display: inline-block;
+    text-decoration: none;
+    position: relative;
+    cursor: text !important;
+    padding-top: 12px; // Gives the absolute label a little breathing room on inline tags
+
+    // Absolute Pseudo Label matching your Card Body pattern architecture
+    &:before {
+        content: "CARD LINK";
+        position: absolute;
+        top: -2.5px;
+        left: -2.5px;
+        background-color: rgba(0, 0, 0, .6);
+        padding: 0 5px;
+        color: #fff;
+        font-size: 9px;
+        z-index: 20;
+        font-family: sans-serif;
+        font-weight: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    // Ensure the inner block engine handles typography focuses smoothly
+    .block-editor-rich-text__editable {
+        display: inline-block;
+        min-width: 40px;
+        outline: none;
+        
+        &:focus {
+            box-shadow: 0 0 0 1px rgba(0, 124, 186, 0.3);
+            border-radius: 2px;
+        }
+    }
+
+    // Backend interactive helper states
+    &:hover {
+        background-color: rgba(0, 124, 186, 0.04);
+        border-radius: 4px;
+    }
+
+    // Visual boundary indicator during active configuration focus
+    &.is-selected {
+        outline: 1px dashed #007cba;
+        outline-offset: 4px;
+    }
+}

@@ -1,0 +1,42 @@
+// card-footer/editor.scss
+
+.wp-block-wmblocks-card-footer {
+    position: relative; // Crucial for anchoring the absolute label below
+
+    // Absolute Pseudo Label matching your layout engine pattern
+    &:before {
+        content: "CARD FOOTER";
+        position: absolute;
+        top: -2.5px;
+        left: -2.5px;
+        background-color: rgba(0, 0, 0, .6);
+        padding: 0 5px;
+        color: #fff;
+        font-size: 9px;
+        z-index: 20;
+        font-family: sans-serif;
+        font-weight: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    // Stabilize flat RichText UI adjustments inside the block engine
+    .block-editor-rich-text__editable {
+        outline: none;
+        width: 100%;
+        display: block;
+        
+        &:focus {
+            box-shadow: inset 0 0 0 1px rgba(0, 124, 186, 0.2);
+            border-radius: 2px;
+        }
+    }
+
+    // Boundary selection box fallback indicator for blank block states
+    &.is-selected {
+        outline: 1px dashed #007cba;
+        outline-offset: 2px;
+    }
+}
