@@ -7,6 +7,7 @@ import { PaddingControl, MarginControl } from '../../controls/spacingControls';
 import { BackgroundColorControl, TextColorControl, OpacityControl, ShadowControl, BorderControl, CustomCSSControl } from '../../controls/visualControls';
 import { VisibilityControl } from '../../controls/visibilityControl';
 import { BackgroundControl } from '../../controls/background';
+import { TypographyControl, getTypographyStyles } from '../../controls/TypographyControl';
 
 export default function Edit( { attributes, setAttributes } ) {
     const {
@@ -14,8 +15,11 @@ export default function Edit( { attributes, setAttributes } ) {
         borderSides, borderRemove, borderColor, borderOpacityClass, borderOpacityCustom, borderSize, borderRadius, borderRadiusSize,
         hideXs, hideSm, hideMd, hideLg, hideXl, hideXxl, bgImageUrl, bgImageId, bgGradient, bgVideoUrl, bgVideoId
     } = attributes;
+    
+    // Process typography and inline custom CSS variables safely
+    const typography = getTypographyStyles( attributes );
 
-    // 1. Calculate Background Inline Styles safely
+    // Calculate Background Inline Styles safely
     const dynamicBgStyles = {};
     if ( bgImageUrl ) {
         dynamicBgStyles.backgroundImage = `url(${ bgImageUrl })`;
@@ -43,12 +47,12 @@ export default function Edit( { attributes, setAttributes } ) {
     ].filter( Boolean ).join( ' ' );
 
     const visibilityClasses = [
-        !! hideXs  ? 'd-none d-sm-block'   : '',
-        !! hideSm  ? 'd-sm-none d-md-block' : '',
-        !! hideMd  ? 'd-md-none d-lg-block' : '',
-        !! hideLg  ? 'd-lg-none d-xl-block' : '',
-        !! hideXl  ? 'd-xl-none d-xxl-block': '',
-        !! hideXxl ? 'd-xxl-none'           : '',
+        !! hideXs   ? 'd-none d-sm-block'   : '',
+        !! hideSm   ? 'd-sm-none d-md-block' : '',
+        !! hideMd   ? 'd-md-none d-lg-block' : '',
+        !! hideLg   ? 'd-lg-none d-xl-block' : '',
+        !! hideXl   ? 'd-xl-none d-xxl-block': '',
+        !! hideXxl  ? 'd-xxl-none'           : '',
     ].filter( Boolean ).join( ' ' );
 
     const hasVideo = !! bgVideoUrl;
@@ -56,6 +60,7 @@ export default function Edit( { attributes, setAttributes } ) {
     const blockProps = useBlockProps( {
         className: [
             'wmblocks-div', 
+            'wmblocks-typography-target', // Make sure editor preview targets typography child cascades
             hasVideo ? 'position-relative' : '', 
             hasVideo ? 'overflow-hidden' : '', 
             padding, margin, backgroundColor, borderClasses, visibilityClasses, shadow
@@ -66,24 +71,22 @@ export default function Edit( { attributes, setAttributes } ) {
             color: textColor || undefined,
             ...( borderOpacityCustom ? { '--bs-border-opacity': borderOpacityCustom } : {} ),
             ...parseInlineCSS( customCSS ),
+            
+            // This safely injects ALL base styling + responsive variables (--wm-font-size-xs, etc.)
+            // directly without requiring manual object drilling that causes runtime breaks.
+            ...typography.styles,
         }
     } );
 
-const DIV_TEMPLATE = [
-    [ 
-        'core/paragraph', 
-        { 
-            placeholder: __( "Add your container content here... A div tag is just an invisible, blank box used to group things together on a webpage. Because it doesn’t have a special meaning of its own, it won’t change how your content looks. Instead, it just starts on a new line and takes up all the horizontal space it can. This makes it super useful for adding colors or spacing with CSS, making things interactive with JavaScript, or nesting other items inside it.", 'wm' ),
-            fontSize: 'small',
-            style: {
-                typography: {
-                    fontStyle: 'italic',
-                    fontFamily: 'monospace'
-                }
-            }
-        } 
-    ]
-];
+    const DIV_TEMPLATE = [
+        [ 
+            'core/paragraph', 
+            { 
+                placeholder: __( "Add your container content here... A div tag is just an invisible, blank box used to group things together on a webpage. Because it doesn’t have a special meaning of its own, it won’t change how your content looks. Instead, it just starts on a new line and takes up all the horizontal space it can. This makes it super useful for adding colors or spacing with CSS, making things interactive with JavaScript, or nesting other items inside it.", 'wm' ),
+            } 
+        ]
+    ];
+
     return (
         <>
             <InspectorControls>
@@ -111,6 +114,7 @@ const DIV_TEMPLATE = [
                     hideLg={ hideLg } hideXl={ hideXxl } hideXxl={ hideXxl }
                     setAttributes={ setAttributes }
                 />
+                <TypographyControl attributes={attributes} setAttributes={setAttributes} />
             </InspectorControls>
 
             <div { ...blockProps }>
@@ -118,7 +122,7 @@ const DIV_TEMPLATE = [
                     <>
                         <video 
                             src={ bgVideoUrl } 
-                            autoPlay muted loop playsInline
+                            autoPlay muted loop playsinline
                             style={ {
                                 position: 'absolute',
                                 top: 0, left: 0, width: '100%', height: '100%',

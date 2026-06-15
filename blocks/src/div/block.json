@@ -12,6 +12,154 @@
         "anchor": true
     },
     "attributes": {
+        "fontFamily": {
+            "type": "string",
+            "default": ""
+        },
+        "fontWeight": {
+            "type": "string",
+            "default": ""
+        },
+        "textDecoration": {
+            "type": "string",
+            "default": ""
+        },
+        "textTransform": {
+            "type": "string",
+            "default": ""
+        },
+        "textFillColor": {
+            "type": "string",
+            "default": ""
+        },
+        "textStrokeWidth": {
+            "type": "string",
+            "default": ""
+        },
+        "textStrokeColor": {
+            "type": "string",
+            "default": ""
+        },
+        "textShadowType": {
+            "type": "string",
+            "default": "none"
+        },
+        "textShadowColor": {
+            "type": "string",
+            "default": "#000000"
+        },
+        "textShadowWidth": {
+            "type": "string",
+            "default": ""
+        },
+        "textShadowX": {
+            "type": "string",
+            "default": ""
+        },
+        "textShadowY": {
+            "type": "string",
+            "default": ""
+        },
+        "textShadowBlur": {
+            "type": "string",
+            "default": ""
+        },
+        "fontSizeXs": {
+            "type": "string",
+            "default": ""
+        },
+        "fontSizeSm": {
+            "type": "string",
+            "default": ""
+        },
+        "fontSizeMd": {
+            "type": "string",
+            "default": ""
+        },
+        "fontSizeLg": {
+            "type": "string",
+            "default": ""
+        },
+        "fontSizeXl": {
+            "type": "string",
+            "default": ""
+        },
+        "fontSizeXxl": {
+            "type": "string",
+            "default": ""
+        },
+        "lineHeightXs": {
+            "type": "string",
+            "default": ""
+        },
+        "lineHeightSm": {
+            "type": "string",
+            "default": ""
+        },
+        "lineHeightMd": {
+            "type": "string",
+            "default": ""
+        },
+        "lineHeightLg": {
+            "type": "string",
+            "default": ""
+        },
+        "lineHeightXl": {
+            "type": "string",
+            "default": ""
+        },
+        "lineHeightXxl": {
+            "type": "string",
+            "default": ""
+        },
+        "letterSpacingXs": {
+            "type": "string",
+            "default": ""
+        },
+        "letterSpacingSm": {
+            "type": "string",
+            "default": ""
+        },
+        "letterSpacingMd": {
+            "type": "string",
+            "default": ""
+        },
+        "letterSpacingLg": {
+            "type": "string",
+            "default": ""
+        },
+        "letterSpacingXl": {
+            "type": "string",
+            "default": ""
+        },
+        "letterSpacingXxl": {
+            "type": "string",
+            "default": ""
+        },
+        "textIndentXs": {
+            "type": "string",
+            "default": ""
+        },
+        "textIndentSm": {
+            "type": "string",
+            "default": ""
+        },
+        "textIndentMd": {
+            "type": "string",
+            "default": ""
+        },
+        "textIndentLg": {
+            "type": "string",
+            "default": ""
+        },
+        "textIndentXl": {
+            "type": "string",
+            "default": ""
+        },
+        "textIndentXxl": {
+            "type": "string",
+            "default": ""
+        },
         "anchor": {
             "type": "string",
             "default": ""

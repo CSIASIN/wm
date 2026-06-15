@@ -1,7 +1,22 @@
+
 .wp-block-wmblocks-card-subtitle {
+        position: relative; // 
     &:before {
         content: "CARD SUBTITLE" !important;
+             position: absolute;
+        top: -2.5px;
+        left: -2.5px;
         background-color: #6c757d !important; // Secondary grey theme color to match its structural nature
         color: #fff !important;
+             padding: 0 5px;
+        color: #fff;
+        font-size: 9px;
+        z-index: 20;
+        font-family: sans-serif;
+        font-weight: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        pointer-events: none;
+        user-select: none;
     }
 }

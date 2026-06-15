@@ -48,6 +48,46 @@
       "type": "string",
       "default": "cover"
     },
+    "imageDisplayClass": {
+      "type": "string",
+      "default": "img-fluid"
+    },
+    "imageAlignClass": {
+      "type": "string",
+      "default": ""
+    },
+    "imageBorderSize": {
+      "type": "string",
+      "default": ""
+    },
+    "imageBorderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "imageBorderRadius": {
+      "type": "string",
+      "default": ""
+    },
+    "imageBorderRadiusSize": {
+      "type": "string",
+      "default": ""
+    },
+    "imageBorderOpacityClass": {
+      "type": "string",
+      "default": ""
+    },
+    "imageBorderOpacityCustom": {
+      "type": "string",
+      "default": ""
+    },
+    "imageBorderSides": {
+      "type": "array",
+      "default": []
+    },
+    "imageBorderRemove": {
+      "type": "array",
+      "default": []
+    },
     "title": {
       "type": "string",
       "default": "Card title"

@@ -2013,28 +2013,41 @@ __webpack_require__.r(__webpack_exports__);
 
 // Custom SVG icon representing a column block
 
-const headingIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
-  width: "24",
-  height: "24",
+const cardTitleIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
   viewBox: "0 0 24 24",
-  fill: "none",
   xmlns: "http://www.w3.org/2000/svg",
-  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
-    x: "2",
-    y: "2",
-    width: "20",
-    height: "20",
-    rx: "1",
-    fill: "white"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
-    d: "M6 3V12M6 21V12M6 12H18M18 12V21M18 12V3",
-    stroke: "#007CED",
-    "stroke-width": "1.5",
-    "stroke-linecap": "round"
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("g", {
+    "clip-path": "url(#clip0_1737_2562)",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
+      x: "2",
+      y: "2",
+      width: "20",
+      height: "20",
+      rx: "1",
+      fill: "white"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
+      d: "M4 3V10M4 17V10M4 10H13M13 10V17M13 10V3",
+      stroke: "#007CED",
+      "stroke-width": "1.5",
+      "stroke-linecap": "round"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
+      d: "M17.7202 22.1193C17.1861 22.1193 16.706 22.017 16.2798 21.8125C15.8565 21.6051 15.5185 21.321 15.2656 20.9602C15.0128 20.5994 14.8778 20.1875 14.8608 19.7244H16.1392C16.1705 20.0994 16.3366 20.4077 16.6378 20.6491C16.9389 20.8906 17.2997 21.0114 17.7202 21.0114C18.0554 21.0114 18.3523 20.9347 18.6108 20.7812C18.8722 20.625 19.0767 20.4105 19.2244 20.1378C19.375 19.8651 19.4503 19.554 19.4503 19.2045C19.4503 18.8494 19.3736 18.5327 19.2202 18.2543C19.0668 17.9759 18.8551 17.7571 18.5852 17.598C18.3182 17.4389 18.0114 17.358 17.6648 17.3551C17.4006 17.3551 17.1349 17.4006 16.8679 17.4915C16.6009 17.5824 16.3849 17.7017 16.2202 17.8494L15.0142 17.6705L15.5043 13.2727H20.3026V14.402H16.5994L16.3224 16.8438H16.3736C16.544 16.679 16.7699 16.5412 17.0511 16.4304C17.3352 16.3196 17.6392 16.2642 17.9631 16.2642C18.4943 16.2642 18.9673 16.3906 19.3821 16.6435C19.7997 16.8963 20.1278 17.2415 20.3665 17.679C20.608 18.1136 20.7273 18.6136 20.7244 19.179C20.7273 19.7443 20.5994 20.2486 20.3409 20.6918C20.0852 21.1349 19.7301 21.4844 19.2756 21.7401C18.8239 21.9929 18.3054 22.1193 17.7202 22.1193Z",
+      fill: "#007CED"
+    })]
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("defs", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("clipPath", {
+      id: "clip0_1737_2562",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
+        width: "24",
+        height: "24.0013",
+        rx: "1",
+        fill: "white"
+      })
+    })
   })]
 });
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
-  icon: headingIcon,
+  icon: cardTitleIcon,
   edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
   save: () => null
 });

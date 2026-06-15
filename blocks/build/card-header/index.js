@@ -1755,20 +1755,44 @@ __webpack_require__.r(__webpack_exports__);
 
 // Custom SVG icon representing a container/layout block
 
-const cardIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
+const cardHeaderIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
   viewBox: "0 0 24 24",
-  fill: "none",
   xmlns: "http://www.w3.org/2000/svg",
-  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
-    d: "M2 10H22V17C22 17.5523 21.5523 18 21 18H3C2.44772 18 2 17.5523 2 17V10Z",
-    fill: "#007FFF"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
-    d: "M22 10L2 10L2 7C2 6.44772 2.44772 6 3 6L21 6C21.5523 6 22 6.44771 22 7L22 10Z",
-    fill: "#007FFF"
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("mask", {
+    id: "path-2-inside-1_1737_2502",
+    fill: "white",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
+      y: "4",
+      width: "24",
+      height: "16",
+      rx: "1"
+    })
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
+    y: "4",
+    width: "24",
+    height: "16",
+    rx: "1",
+    fill: "white",
+    stroke: "#007CED",
+    "stroke-width": "3",
+    mask: "url(#path-2-inside-1_1737_2502)"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
+    x: "3",
+    y: "6.33008",
+    width: "8",
+    height: "1",
+    rx: "0.1",
+    fill: "#007CED"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
+    x: "1",
+    y: "8",
+    width: "22",
+    height: "1",
+    fill: "#007CED"
   })]
 });
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
-  icon: cardIcon,
+  icon: cardHeaderIcon,
   edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
   save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
 });

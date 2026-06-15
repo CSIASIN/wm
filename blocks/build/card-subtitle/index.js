@@ -2168,28 +2168,41 @@ __webpack_require__.r(__webpack_exports__);
 
 // Custom SVG icon representing a column block
 
-const headingIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("svg", {
-  width: "24",
-  height: "24",
+const subtitleIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("svg", {
   viewBox: "0 0 24 24",
-  fill: "none",
   xmlns: "http://www.w3.org/2000/svg",
-  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
-    x: "2",
-    y: "2",
-    width: "20",
-    height: "20",
-    rx: "1",
-    fill: "white"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
-    d: "M6 3V12M6 21V12M6 12H18M18 12V21M18 12V3",
-    stroke: "#007CED",
-    "stroke-width": "1.5",
-    "stroke-linecap": "round"
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("g", {
+    "clip-path": "url(#clip0_1737_2571)",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+      x: "2",
+      y: "2",
+      width: "20",
+      height: "20",
+      rx: "1",
+      fill: "white"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
+      d: "M4 3V10M4 17V10M4 10H13M13 10V17M13 10V3",
+      stroke: "#007CED",
+      "stroke-width": "1.5",
+      "stroke-linecap": "round"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
+      d: "M17.8864 22.1193C17.4972 22.1136 17.1136 22.0426 16.7358 21.9062C16.3608 21.7699 16.0199 21.5426 15.7131 21.2244C15.4063 20.9062 15.1605 20.4787 14.9759 19.9418C14.794 19.4048 14.7031 18.7344 14.7031 17.9304C14.7031 17.169 14.7784 16.4929 14.929 15.902C15.0824 15.3111 15.3026 14.8125 15.5895 14.4062C15.8764 13.9972 16.223 13.6861 16.6293 13.473C17.0355 13.2599 17.4915 13.1534 17.9972 13.1534C18.517 13.1534 18.9787 13.2557 19.3821 13.4602C19.7855 13.6648 20.1122 13.9474 20.3622 14.3082C20.6151 14.669 20.7756 15.0795 20.8438 15.5398H19.544C19.456 15.1761 19.2813 14.8793 19.0199 14.6491C18.7585 14.419 18.4176 14.304 17.9972 14.304C17.358 14.304 16.8594 14.5824 16.5014 15.1392C16.1463 15.696 15.9673 16.4702 15.9645 17.4616H16.0284C16.179 17.2145 16.3636 17.0043 16.5824 16.831C16.804 16.6548 17.0511 16.5199 17.3239 16.4261C17.5994 16.3295 17.8892 16.2812 18.1932 16.2812C18.6989 16.2812 19.1563 16.4048 19.5653 16.652C19.9773 16.8963 20.3054 17.2344 20.5497 17.6662C20.794 18.098 20.9162 18.5923 20.9162 19.1491C20.9162 19.706 20.7898 20.2102 20.5369 20.6619C20.2869 21.1136 19.9347 21.4716 19.4801 21.7358C19.0256 21.9972 18.4943 22.125 17.8864 22.1193ZM17.8821 21.0114C18.2173 21.0114 18.517 20.929 18.7812 20.7642C19.0455 20.5994 19.2543 20.3778 19.4077 20.0994C19.5611 19.821 19.6378 19.5099 19.6378 19.1662C19.6378 18.831 19.5625 18.5256 19.4119 18.25C19.2642 17.9744 19.0597 17.7557 18.7983 17.5938C18.5398 17.4318 18.2443 17.3509 17.9119 17.3509C17.6591 17.3509 17.4247 17.3991 17.2088 17.4957C16.9957 17.5923 16.8082 17.7259 16.6463 17.8963C16.4844 18.0668 16.3565 18.2628 16.2628 18.4844C16.1719 18.7031 16.1264 18.9347 16.1264 19.179C16.1264 19.5057 16.2017 19.8082 16.3523 20.0866C16.5057 20.3651 16.7145 20.5895 16.9787 20.7599C17.2457 20.9276 17.5469 21.0114 17.8821 21.0114Z",
+      fill: "#007CED"
+    })]
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("defs", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("clipPath", {
+      id: "clip0_1737_2571",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+        width: "24",
+        height: "24.0013",
+        rx: "1",
+        fill: "white"
+      })
+    })
   })]
 });
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
-  icon: headingIcon,
+  icon: subtitleIcon,
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
   save: () => null
 });

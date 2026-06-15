@@ -1,8 +1,26 @@
 /*!******************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/card-subtitle/editor.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************/
+.wp-block-wmblocks-card-subtitle {
+  position: relative;
+}
 .wp-block-wmblocks-card-subtitle:before {
   content: "CARD SUBTITLE" !important;
+  position: absolute;
+  top: -2.5px;
+  right: -2.5px;
   background-color: #6c757d !important;
   color: #fff !important;
+  padding: 0 5px;
+  color: #fff;
+  font-size: 9px;
+  z-index: 20;
+  font-family: sans-serif;
+  font-weight: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }

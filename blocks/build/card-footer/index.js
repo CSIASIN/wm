@@ -1887,11 +1887,52 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./src/card-footer/edit.js");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/card-footer/block.json");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
+
+// Custom SVG icon representing a container/layout block
+
+const cardFooterIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("svg", {
+  viewBox: "0 0 24 24",
+  xmlns: "http://www.w3.org/2000/svg",
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("mask", {
+    id: "path-2-inside-1_1737_2532",
+    fill: "white",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("rect", {
+      y: "4",
+      width: "24",
+      height: "16",
+      rx: "1"
+    })
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("rect", {
+    y: "4",
+    width: "24",
+    height: "16",
+    rx: "1",
+    fill: "white",
+    stroke: "#007CED",
+    "stroke-width": "3",
+    mask: "url(#path-2-inside-1_1737_2532)"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("rect", {
+    x: "3",
+    y: "16.6602",
+    width: "8",
+    height: "1",
+    rx: "0.1",
+    fill: "#007CED"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("rect", {
+    x: "1",
+    y: "15",
+    width: "22",
+    height: "1",
+    fill: "#007CED"
+  })]
+});
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name, {
-  icon: 'button',
+  icon: cardFooterIcon,
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
   save: () => null // Dynamic Block configuration
 });

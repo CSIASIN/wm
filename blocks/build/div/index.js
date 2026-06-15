@@ -2,6 +2,436 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./controls/TypographyControl.js"
+/*!***************************************!*\
+  !*** ./controls/TypographyControl.js ***!
+  \***************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   TypographyControl: () => (/* binding */ TypographyControl),
+/* harmony export */   getTypographyStyles: () => (/* binding */ getTypographyStyles)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+// Styling utilities for crisp UI grouping
+
+const labelHeading = {
+  fontSize: '11px',
+  color: '#757575',
+  textTransform: 'uppercase',
+  fontWeight: 600,
+  marginBottom: '8px',
+  letterSpacing: '0.5px'
+};
+const subLabel = {
+  fontSize: '12px',
+  display: 'block',
+  marginBottom: '4px',
+  color: '#1e1e1e'
+};
+const gridHalf = {
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  gap: '12px',
+  marginBottom: '12px'
+};
+const FONT_WEIGHTS = [{
+  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Default', 'wm'),
+  value: ''
+}, {
+  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('100 - Thin', 'wm'),
+  value: '100'
+}, {
+  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('300 - Light', 'wm'),
+  value: '300'
+}, {
+  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('400 - Regular', 'wm'),
+  value: '400'
+}, {
+  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('600 - Semi Bold', 'wm'),
+  value: '600'
+}, {
+  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('700 - Bold', 'wm'),
+  value: '700'
+}, {
+  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('900 - Ultra Black', 'wm'),
+  value: '900'
+}];
+function TypographyControl({
+  attributes = {},
+  setAttributes
+}) {
+  // 1. Destructure with default values to block uninitialized reference crashes
+  const {
+    fontFamily = '',
+    fontWeight = '',
+    textDecoration = '',
+    textTransform = '',
+    textFillColor = '',
+    textStrokeWidth = '',
+    textStrokeColor = '',
+    textShadowType = 'none',
+    textShadowColor = '#000000',
+    textShadowWidth = '',
+    textShadowX = '',
+    textShadowY = '',
+    textShadowBlur = ''
+  } = attributes;
+
+  // 2. Define standard screen breakpoint array for the responsive Matrix tab engine
+  const tabs = [{
+    name: 'xs',
+    title: 'XS',
+    className: 'tab-xs'
+  }, {
+    name: 'sm',
+    title: 'SM',
+    className: 'tab-sm'
+  }, {
+    name: 'md',
+    title: 'MD',
+    className: 'tab-md'
+  }, {
+    name: 'lg',
+    title: 'LG',
+    className: 'tab-lg'
+  }, {
+    name: 'xl',
+    title: 'XL',
+    className: 'tab-xl'
+  }, {
+    name: 'xxl',
+    title: 'XXL',
+    className: 'tab-xxl'
+  }];
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Typography Settings', 'wm'),
+    initialOpen: false,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Font Family', 'wm'),
+      value: fontFamily,
+      options: [{
+        label: 'Default Theme Font',
+        value: ''
+      }, {
+        label: 'Merriweather',
+        value: 'Merriweather'
+      }],
+      onChange: val => setAttributes({
+        fontFamily: val
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Weight', 'wm'),
+      value: fontWeight,
+      options: FONT_WEIGHTS,
+      onChange: val => setAttributes({
+        fontWeight: val
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      style: gridHalf,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+          style: subLabel,
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Decoration', 'wm')
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalToggleGroupControl, {
+          value: textDecoration || 'none',
+          isBlock: true,
+          onChange: val => setAttributes({
+            textDecoration: val === 'none' ? '' : val
+          }),
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalToggleGroupControlOption, {
+            value: "none",
+            label: "None"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalToggleGroupControlOption, {
+            value: "underline",
+            label: "U"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalToggleGroupControlOption, {
+            value: "line-through",
+            label: "S"
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+          style: subLabel,
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Case', 'wm')
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalToggleGroupControl, {
+          value: textTransform || 'none',
+          isBlock: true,
+          onChange: val => setAttributes({
+            textTransform: val === 'none' ? '' : val
+          }),
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalToggleGroupControlOption, {
+            value: "none",
+            label: "None"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalToggleGroupControlOption, {
+            value: "uppercase",
+            label: "AB"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalToggleGroupControlOption, {
+            value: "lowercase",
+            label: "ab"
+          })]
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("hr", {
+      style: {
+        margin: '16px 0',
+        border: 'none',
+        borderTop: '1px solid #e0e0e0'
+      }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      style: {
+        marginBottom: '16px'
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        style: labelHeading,
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Text Fill & Outline (Stroke)', 'wm')
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+            style: subLabel,
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Fill Color', 'wm')
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPalette, {
+            value: textFillColor,
+            onChange: val => setAttributes({
+              textFillColor: val
+            }),
+            clearable: true
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+            style: subLabel,
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Stroke Color', 'wm')
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPalette, {
+            value: textStrokeColor,
+            onChange: val => setAttributes({
+              textStrokeColor: val
+            }),
+            clearable: true
+          })]
+        })]
+      }), textStrokeColor && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Stroke Width', 'wm'),
+        value: textStrokeWidth || '1.5px',
+        onChange: val => setAttributes({
+          textStrokeWidth: val
+        }),
+        placeholder: "1.5px"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("hr", {
+      style: {
+        margin: '16px 0',
+        border: 'none',
+        borderTop: '1px solid #e0e0e0'
+      }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      style: {
+        marginBottom: '16px'
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        style: labelHeading,
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Text Shadow Effects', 'wm')
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Shadow Mode', 'wm'),
+        value: textShadowType,
+        options: [{
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('None', 'wm'),
+          value: 'none'
+        }, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Smooth Outline (8-Axis Shadow)', 'wm'),
+          value: 'outline'
+        }, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Standard Drop Shadow', 'wm'),
+          value: 'drop'
+        }],
+        onChange: val => setAttributes({
+          textShadowType: val
+        })
+      }), textShadowType && textShadowType !== 'none' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        style: {
+          marginTop: '12px'
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          style: {
+            marginBottom: '8px'
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+            style: subLabel,
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Effect Color', 'wm')
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPalette, {
+            value: textShadowColor,
+            onChange: val => setAttributes({
+              textShadowColor: val || '#000000'
+            }),
+            disableCustomColors: false,
+            clearable: false
+          })]
+        }), textShadowType === 'outline' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Outline Thickness', 'wm'),
+          value: textShadowWidth || '1px',
+          onChange: val => setAttributes({
+            textShadowWidth: val
+          }),
+          placeholder: "1px"
+        }), textShadowType === 'drop' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          style: {
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr 1fr',
+            gap: '8px'
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+            label: "Offset X",
+            value: textShadowX || '2px',
+            onChange: val => setAttributes({
+              textShadowX: val
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+            label: "Offset Y",
+            value: textShadowY || '2px',
+            onChange: val => setAttributes({
+              textShadowY: val
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+            label: "Blur",
+            value: textShadowBlur || '4px',
+            onChange: val => setAttributes({
+              textShadowBlur: val
+            })
+          })]
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("hr", {
+      style: {
+        margin: '16px 0',
+        border: 'none',
+        borderTop: '1px solid #e0e0e0'
+      }
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      style: {
+        marginBottom: '8px'
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        style: labelHeading,
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Responsive Scaling', 'wm')
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TabPanel, {
+        className: "wm-responsive-typography-tabs",
+        activeClass: "is-active",
+        tabs: tabs,
+        children: activeTab => {
+          // Dynamically format key to camelCase matching block.json entries (e.g. fontSizeXs)
+          const bp = activeTab.name.charAt(0).toUpperCase() + activeTab.name.slice(1);
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            style: {
+              paddingTop: '12px'
+            },
+            className: `responsive-panel-${activeTab.name}`,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+              style: gridHalf,
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Font Size', 'wm'),
+                value: attributes[`fontSize${bp}`] || '',
+                onChange: val => setAttributes({
+                  [`fontSize${bp}`]: val
+                }),
+                placeholder: "e.g. 24px or 2rem"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Line Height', 'wm'),
+                value: attributes[`lineHeight${bp}`] || '',
+                onChange: val => setAttributes({
+                  [`lineHeight${bp}`]: val
+                }),
+                placeholder: "e.g. 1.4"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+              style: gridHalf,
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Letter Spacing', 'wm'),
+                value: attributes[`letterSpacing${bp}`] || '',
+                onChange: val => setAttributes({
+                  [`letterSpacing${bp}`]: val
+                }),
+                placeholder: "e.g. 0.05em"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Text Indent', 'wm'),
+                value: attributes[`textIndent${bp}`] || '',
+                onChange: val => setAttributes({
+                  [`textIndent${bp}`]: val
+                }),
+                placeholder: "e.g. 20px"
+              })]
+            })]
+          });
+        }
+      })]
+    })]
+  });
+}
+
+/**
+ * Sync JavaScript Live Preview Engine with PHP Render Output
+ */
+function getTypographyStyles(attributes = {}) {
+  const {
+    fontFamily = '',
+    fontWeight = '',
+    textDecoration = '',
+    textTransform = '',
+    textFillColor = '',
+    textStrokeWidth = '',
+    textStrokeColor = '',
+    textShadowType = 'none',
+    textShadowColor = '#000000',
+    textShadowWidth = '',
+    textShadowX = '',
+    textShadowY = '',
+    textShadowBlur = ''
+  } = attributes;
+  const styles = {};
+  if (fontFamily) styles['font-family'] = `"${fontFamily}", sans-serif`;
+  if (fontWeight) styles['font-weight'] = fontWeight;
+  if (textDecoration) styles['text-decoration'] = textDecoration;
+  if (textTransform) styles['text-transform'] = textTransform;
+
+  // Inject literal CSS keys to make sure core blocks cascade the style variables safely
+  if (textFillColor) styles['-webkit-text-fill-color'] = textFillColor;
+  if (textStrokeColor) {
+    styles['-webkit-text-stroke-width'] = textStrokeWidth || '1.5px';
+    styles['-webkit-text-stroke-color'] = textStrokeColor;
+  }
+
+  // Shadow Calculations
+  if (textShadowType === 'outline' && textShadowColor) {
+    const w = textShadowWidth || '1px';
+    const c = textShadowColor;
+    styles['text-shadow'] = `-${w} -${w} 0 ${c}, 0 -${w} 0 ${c}, ${w} -${w} 0 ${c}, ${w} 0 0 ${c}, ${w} ${w} 0 ${c}, 0 ${w} 0 ${c}, -${w} ${w} 0 ${c}, -${w} 0 0 ${c}`;
+  } else if (textShadowType === 'drop' && textShadowColor) {
+    styles['text-shadow'] = `${textShadowX || '2px'} ${textShadowY || '2px'} ${textShadowBlur || '4px'} ${textShadowColor}`;
+  }
+
+  // Map dynamic breakpoint parameters
+  const breakpoints = ['Xs', 'Sm', 'Md', 'Lg', 'Xl', 'Xxl'];
+  breakpoints.forEach(bp => {
+    const lowerBp = bp.toLowerCase();
+    if (attributes[`fontSize${bp}`]) styles[`--wm-font-size-${lowerBp}`] = attributes[`fontSize${bp}`];
+    if (attributes[`lineHeight${bp}`]) styles[`--wm-line-height-${lowerBp}`] = attributes[`lineHeight${bp}`];
+    if (attributes[`letterSpacing${bp}`]) styles[`--wm-letter-spacing-${lowerBp}`] = attributes[`letterSpacing${bp}`];
+    if (attributes[`textIndent${bp}`]) styles[`--wm-text-indent-${lowerBp}`] = attributes[`textIndent${bp}`];
+  });
+  return {
+    styles
+  };
+}
+
+/***/ },
+
 /***/ "./controls/background.js"
 /*!********************************!*\
   !*** ./controls/background.js ***!
@@ -1547,13 +1977,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _controls_visualControls__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../controls/visualControls */ "./controls/visualControls.js");
 /* harmony import */ var _controls_visibilityControl__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../controls/visibilityControl */ "./controls/visibilityControl.js");
 /* harmony import */ var _controls_background__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../controls/background */ "./controls/background.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _controls_TypographyControl__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../controls/TypographyControl */ "./controls/TypographyControl.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
 
 
 
 
 // Import Shared Controls
+
 
 
 
@@ -1592,7 +2024,10 @@ function Edit({
     bgVideoId
   } = attributes;
 
-  // 1. Calculate Background Inline Styles safely
+  // Process typography and inline custom CSS variables safely
+  const typography = (0,_controls_TypographyControl__WEBPACK_IMPORTED_MODULE_7__.getTypographyStyles)(attributes);
+
+  // Calculate Background Inline Styles safely
   const dynamicBgStyles = {};
   if (bgImageUrl) {
     dynamicBgStyles.backgroundImage = `url(${bgImageUrl})`;
@@ -1616,7 +2051,9 @@ function Edit({
   const visibilityClasses = [!!hideXs ? 'd-none d-sm-block' : '', !!hideSm ? 'd-sm-none d-md-block' : '', !!hideMd ? 'd-md-none d-lg-block' : '', !!hideLg ? 'd-lg-none d-xl-block' : '', !!hideXl ? 'd-xl-none d-xxl-block' : '', !!hideXxl ? 'd-xxl-none' : ''].filter(Boolean).join(' ');
   const hasVideo = !!bgVideoUrl;
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-    className: ['wmblocks-div', hasVideo ? 'position-relative' : '', hasVideo ? 'overflow-hidden' : '', padding, margin, backgroundColor, borderClasses, visibilityClasses, shadow].filter(Boolean).join(' '),
+    className: ['wmblocks-div', 'wmblocks-typography-target',
+    // Make sure editor preview targets typography child cascades
+    hasVideo ? 'position-relative' : '', hasVideo ? 'overflow-hidden' : '', padding, margin, backgroundColor, borderClasses, visibilityClasses, shadow].filter(Boolean).join(' '),
     style: {
       ...dynamicBgStyles,
       opacity: opacity !== 100 ? opacity / 100 : undefined,
@@ -1624,59 +2061,55 @@ function Edit({
       ...(borderOpacityCustom ? {
         '--bs-border-opacity': borderOpacityCustom
       } : {}),
-      ...parseInlineCSS(customCSS)
+      ...parseInlineCSS(customCSS),
+      // This safely injects ALL base styling + responsive variables (--wm-font-size-xs, etc.)
+      // directly without requiring manual object drilling that causes runtime breaks.
+      ...typography.styles
     }
   });
   const DIV_TEMPLATE = [['core/paragraph', {
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Add your container content here... A div tag is just an invisible, blank box used to group things together on a webpage. Because it doesn’t have a special meaning of its own, it won’t change how your content looks. Instead, it just starts on a new line and takes up all the horizontal space it can. This makes it super useful for adding colors or spacing with CSS, making things interactive with JavaScript, or nesting other items inside it.", 'wm'),
-    fontSize: 'small',
-    style: {
-      typography: {
-        fontStyle: 'italic',
-        fontFamily: 'monospace'
-      }
-    }
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Add your container content here... A div tag is just an invisible, blank box used to group things together on a webpage. Because it doesn’t have a special meaning of its own, it won’t change how your content looks. Instead, it just starts on a new line and takes up all the horizontal space it can. This makes it super useful for adding colors or spacing with CSS, making things interactive with JavaScript, or nesting other items inside it.", 'wm')
   }]];
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_controls_background__WEBPACK_IMPORTED_MODULE_6__.BackgroundControl, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_background__WEBPACK_IMPORTED_MODULE_6__.BackgroundControl, {
         bgImageUrl: bgImageUrl,
         bgImageId: bgImageId,
         bgGradient: bgGradient,
         bgVideoUrl: bgVideoUrl,
         bgVideoId: bgVideoId,
         setAttributes: setAttributes
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_controls_spacingControls__WEBPACK_IMPORTED_MODULE_3__.PaddingControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_spacingControls__WEBPACK_IMPORTED_MODULE_3__.PaddingControl, {
         value: padding,
         onChange: v => setAttributes({
           padding: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_controls_spacingControls__WEBPACK_IMPORTED_MODULE_3__.MarginControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_spacingControls__WEBPACK_IMPORTED_MODULE_3__.MarginControl, {
         value: margin,
         onChange: v => setAttributes({
           margin: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_4__.BackgroundColorControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_4__.BackgroundColorControl, {
         value: backgroundColor,
         onChange: v => setAttributes({
           backgroundColor: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_4__.TextColorControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_4__.TextColorControl, {
         value: textColor,
         onChange: v => setAttributes({
           textColor: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_4__.OpacityControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_4__.OpacityControl, {
         value: opacity,
         onChange: v => setAttributes({
           opacity: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_4__.ShadowControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_4__.ShadowControl, {
         value: shadow,
         onChange: v => setAttributes({
           shadow: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_4__.BorderControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_4__.BorderControl, {
         borderSides: borderSides,
         borderRemove: borderRemove,
         borderColor: borderColor,
@@ -1686,12 +2119,12 @@ function Edit({
         borderRadius: borderRadius,
         borderRadiusSize: borderRadiusSize,
         setAttributes: setAttributes
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_4__.CustomCSSControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_4__.CustomCSSControl, {
         value: customCSS,
         onChange: v => setAttributes({
           customCSS: v
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_controls_visibilityControl__WEBPACK_IMPORTED_MODULE_5__.VisibilityControl, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_visibilityControl__WEBPACK_IMPORTED_MODULE_5__.VisibilityControl, {
         hideXs: hideXs,
         hideSm: hideSm,
         hideMd: hideMd,
@@ -1699,16 +2132,19 @@ function Edit({
         hideXl: hideXxl,
         hideXxl: hideXxl,
         setAttributes: setAttributes
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_controls_TypographyControl__WEBPACK_IMPORTED_MODULE_7__.TypographyControl, {
+        attributes: attributes,
+        setAttributes: setAttributes
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
       ...blockProps,
-      children: hasVideo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("video", {
+      children: hasVideo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("video", {
           src: bgVideoUrl,
           autoPlay: true,
           muted: true,
           loop: true,
-          playsInline: true,
+          playsinline: true,
           style: {
             position: 'absolute',
             top: 0,
@@ -1719,16 +2155,16 @@ function Edit({
             zIndex: 0,
             pointerEvents: 'none'
           }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
           style: {
             position: 'relative',
             zIndex: 1
           },
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
             renderAppender: _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.ButtonBlockAppender
           })
         })]
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
         template: DIV_TEMPLATE,
         renderAppender: _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.ButtonBlockAppender
       })
@@ -1858,7 +2294,7 @@ module.exports = window["wp"]["i18n"];
   \****************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wmblocks/div","version":"0.1.0","title":"Div","category":"watermelon-blocks","icon":"grid-view","description":"A basic building block container to group, pad, and align your content.","supports":{"html":false,"anchor":true},"attributes":{"anchor":{"type":"string","default":""},"padding":{"type":"string","default":""},"margin":{"type":"string","default":""},"backgroundColor":{"type":"string","default":""},"textColor":{"type":"string","default":""},"opacity":{"type":"number","default":100},"shadow":{"type":"string","default":""},"borderSides":{"type":"array","default":[]},"borderRemove":{"type":"array","default":[]},"borderColor":{"type":"string","default":""},"borderOpacityClass":{"type":"string","default":""},"borderOpacityCustom":{"type":"string","default":""},"borderSize":{"type":"string","default":""},"borderRadius":{"type":"string","default":""},"borderRadiusSize":{"type":"string","default":""},"customCSS":{"type":"string","default":""},"hideXs":{"type":"boolean","default":false},"hideSm":{"type":"boolean","default":false},"hideMd":{"type":"boolean","default":false},"hideLg":{"type":"boolean","default":false},"hideXl":{"type":"boolean","default":false},"hideXxl":{"type":"boolean","default":false},"bgImageUrl":{"type":"string","default":""},"bgImageId":{"type":"number","default":0},"bgGradient":{"type":"string","default":""},"bgVideoUrl":{"type":"string","default":""},"bgVideoId":{"type":"number","default":0}},"textdomain":"wm","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wmblocks/div","version":"0.1.0","title":"Div","category":"watermelon-blocks","icon":"grid-view","description":"A basic building block container to group, pad, and align your content.","supports":{"html":false,"anchor":true},"attributes":{"fontFamily":{"type":"string","default":""},"fontWeight":{"type":"string","default":""},"textDecoration":{"type":"string","default":""},"textTransform":{"type":"string","default":""},"textFillColor":{"type":"string","default":""},"textStrokeWidth":{"type":"string","default":""},"textStrokeColor":{"type":"string","default":""},"textShadowType":{"type":"string","default":"none"},"textShadowColor":{"type":"string","default":"#000000"},"textShadowWidth":{"type":"string","default":""},"textShadowX":{"type":"string","default":""},"textShadowY":{"type":"string","default":""},"textShadowBlur":{"type":"string","default":""},"fontSizeXs":{"type":"string","default":""},"fontSizeSm":{"type":"string","default":""},"fontSizeMd":{"type":"string","default":""},"fontSizeLg":{"type":"string","default":""},"fontSizeXl":{"type":"string","default":""},"fontSizeXxl":{"type":"string","default":""},"lineHeightXs":{"type":"string","default":""},"lineHeightSm":{"type":"string","default":""},"lineHeightMd":{"type":"string","default":""},"lineHeightLg":{"type":"string","default":""},"lineHeightXl":{"type":"string","default":""},"lineHeightXxl":{"type":"string","default":""},"letterSpacingXs":{"type":"string","default":""},"letterSpacingSm":{"type":"string","default":""},"letterSpacingMd":{"type":"string","default":""},"letterSpacingLg":{"type":"string","default":""},"letterSpacingXl":{"type":"string","default":""},"letterSpacingXxl":{"type":"string","default":""},"textIndentXs":{"type":"string","default":""},"textIndentSm":{"type":"string","default":""},"textIndentMd":{"type":"string","default":""},"textIndentLg":{"type":"string","default":""},"textIndentXl":{"type":"string","default":""},"textIndentXxl":{"type":"string","default":""},"anchor":{"type":"string","default":""},"padding":{"type":"string","default":""},"margin":{"type":"string","default":""},"backgroundColor":{"type":"string","default":""},"textColor":{"type":"string","default":""},"opacity":{"type":"number","default":100},"shadow":{"type":"string","default":""},"borderSides":{"type":"array","default":[]},"borderRemove":{"type":"array","default":[]},"borderColor":{"type":"string","default":""},"borderOpacityClass":{"type":"string","default":""},"borderOpacityCustom":{"type":"string","default":""},"borderSize":{"type":"string","default":""},"borderRadius":{"type":"string","default":""},"borderRadiusSize":{"type":"string","default":""},"customCSS":{"type":"string","default":""},"hideXs":{"type":"boolean","default":false},"hideSm":{"type":"boolean","default":false},"hideMd":{"type":"boolean","default":false},"hideLg":{"type":"boolean","default":false},"hideXl":{"type":"boolean","default":false},"hideXxl":{"type":"boolean","default":false},"bgImageUrl":{"type":"string","default":""},"bgImageId":{"type":"number","default":0},"bgGradient":{"type":"string","default":""},"bgVideoUrl":{"type":"string","default":""},"bgVideoId":{"type":"number","default":0}},"textdomain":"wm","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }
 

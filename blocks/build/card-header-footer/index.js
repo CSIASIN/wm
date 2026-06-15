@@ -377,16 +377,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const cardHeaderFooterIcon = ({
-  size = 24,
-  color = "currentColor",
-  className = ""
-}) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
-  width: size,
-  height: size,
+const cardHeaderFooterIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
   viewBox: "0 0 24 24",
-  fill: "none",
-  className: className,
   xmlns: "http://www.w3.org/2000/svg",
   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("mask", {
     id: "path-2-inside-1_1623_2735",
@@ -407,32 +399,44 @@ const cardHeaderFooterIcon = ({
     "stroke-width": "3",
     mask: "url(#path-2-inside-1_1623_2735)"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
-    y: "7",
-    width: "24",
-    height: "1.5",
-    fill: "#007CED"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
-    y: "16",
-    width: "24",
-    height: "1.5",
-    fill: "#007CED"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
-    x: "4",
-    y: "9.75",
+    x: "3",
+    y: "6.33008",
     width: "8",
     height: "1",
+    rx: "0.1",
     fill: "#007CED"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
-    x: "4",
-    y: "11.75",
-    width: "12",
+    x: "3",
+    y: "16.6602",
+    width: "8",
+    height: "1",
+    rx: "0.1",
+    fill: "#007CED"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
+    x: "1",
+    y: "8",
+    width: "22",
     height: "1",
     fill: "#007CED"
   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
-    x: "4",
-    y: "13.75",
-    width: "16",
+    x: "1",
+    y: "15",
+    width: "22",
     height: "1",
+    fill: "#007CED"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
+    x: "3",
+    y: "10.5",
+    width: "8",
+    height: "1",
+    rx: "0.1",
+    fill: "#007CED"
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
+    x: "3",
+    y: "12.5",
+    width: "11",
+    height: "1",
+    rx: "0.1",
     fill: "#007CED"
   })]
 });

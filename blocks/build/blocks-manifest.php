@@ -1928,6 +1928,50 @@ return array(
 				'type' => 'string',
 				'default' => 'cover'
 			),
+			'imageDisplayClass' => array(
+				'type' => 'string',
+				'default' => 'img-fluid'
+			),
+			'imageAlignClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageBorderSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageBorderColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageBorderRadius' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageBorderRadiusSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageBorderOpacityClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageBorderOpacityCustom' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'imageBorderSides' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
+			'imageBorderRemove' => array(
+				'type' => 'array',
+				'default' => array(
+					
+				)
+			),
 			'title' => array(
 				'type' => 'string',
 				'default' => 'Card title'
@@ -3150,6 +3194,154 @@ return array(
 			'anchor' => true
 		),
 		'attributes' => array(
+			'fontFamily' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fontWeight' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textDecoration' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textTransform' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textFillColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textStrokeWidth' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textStrokeColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textShadowType' => array(
+				'type' => 'string',
+				'default' => 'none'
+			),
+			'textShadowColor' => array(
+				'type' => 'string',
+				'default' => '#000000'
+			),
+			'textShadowWidth' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textShadowX' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textShadowY' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textShadowBlur' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fontSizeXs' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fontSizeSm' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fontSizeMd' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fontSizeLg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fontSizeXl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fontSizeXxl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'lineHeightXs' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'lineHeightSm' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'lineHeightMd' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'lineHeightLg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'lineHeightXl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'lineHeightXxl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'letterSpacingXs' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'letterSpacingSm' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'letterSpacingMd' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'letterSpacingLg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'letterSpacingXl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'letterSpacingXxl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textIndentXs' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textIndentSm' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textIndentMd' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textIndentLg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textIndentXl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textIndentXxl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
 			'anchor' => array(
 				'type' => 'string',
 				'default' => ''

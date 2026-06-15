@@ -19,6 +19,7 @@ require_once('inc/comments.php');               // Comments
 require_once('inc/pagination.php');             // Pagination
 require_once('inc/enqueue.php');                // Enqueue
 require_once('inc/bs-badge-indicator.php');     // Bootstrap inline badge
+require_once('inc/typography-control.php');     // Block Level Responsive Typography
 require_once('inc/bs-icons-block-ajax.php');    // Bootstrap icons in blocks
 require_once('blocks/src/formats/inline-icon/bs-icons-format.php');    // Bootstrap icons in inline formats
 

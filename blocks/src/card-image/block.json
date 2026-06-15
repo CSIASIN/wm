@@ -7,59 +7,216 @@
     "category": "watermelon-blocks",
     "icon": "format-image",
     "description": "Bootstrap card with image, title, subtitle, body text, and an optional button link. Supports top, bottom, overlay, and horizontal (side-by-side) layouts.",
-    "supports": { "html": false, "anchor": true },
+    "supports": {
+        "html": false,
+        "anchor": true
+    },
     "attributes": {
-		   	"anchor": {
-			"type": "string",
-			"default": ""
-		},
-        "imageUrl":      { "type": "string",  "default": "" },
-        "imageAlt":      { "type": "string",  "default": "" },
-        "imageId":       { "type": "number",  "default": 0 },
-        "imagePosition": { "type": "string",  "default": "top" },
-        "imageCol":      { "type": "string",  "default": "col-md-4" },
-        "imageHeight":   { "type": "string",  "default": "" },
-        "imageWidth":    { "type": "string",  "default": "100%" },
-        "imageObjectFit":{ "type": "string",  "default": "cover" },
-        "title":         { "type": "string",  "default": "Card title" },
-        "subtitle":      { "type": "string",  "default": "" },
-        "bodyText":      { "type": "string",  "default": "Some quick example text to build on the card title and make up the bulk of the card's content." },
-        "showBadge":     { "type": "boolean", "default": false },
-        "badgeText":     { "type": "string",  "default": "New" },
-        "badgeVariant":  { "type": "string",  "default": "bg-primary" },
-        "showLink":      { "type": "boolean", "default": true },
-        "bgColor":       { "type": "string",  "default": "" },
-        "borderColor":   { "type": "string",  "default": "" },
-        "shadow":        { "type": "string",  "default": "" },
-        "textAlign":     { "type": "string",  "default": "" },
-        "noBorder":      { "type": "boolean", "default": false },
-        "padding":       { "type": "string",  "default": "" },
-        "margin":        { "type": "string",  "default": "mb-3" },
-        "textColor":     { "type": "string",  "default": "" },
-			"backgroundColor": {
-			"type": "string",
-			"default": ""
-		},
-        "opacity":       { "type": "number",  "default": 100 },
-        "borderSides":   { "type": "array",   "default": [] },
-        "borderRemove":  { "type": "array",   "default": [] },
-        "borderOpacityClass": { "type": "string", "default": "" },
-        "borderOpacityCustom":{ "type": "string", "default": "" },
-        "borderSize":    { "type": "string",  "default": "" },
-        "borderRadius":  { "type": "string",  "default": "" },
-        "borderRadiusSize":{ "type": "string", "default": "" },
-        "customCSS":     { "type": "string",  "default": "" },
-        "hideXs":        { "type": "boolean", "default": false },
-        "hideSm":        { "type": "boolean", "default": false },
-        "hideMd":        { "type": "boolean", "default": false },
-        "hideLg":        { "type": "boolean", "default": false },
-        "hideXl":        { "type": "boolean", "default": false },
-        "hideXxl":       { "type": "boolean", "default": false }
+        "anchor": {
+            "type": "string",
+            "default": ""
+        },
+        "imageUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "imageAlt": {
+            "type": "string",
+            "default": ""
+        },
+        "imageId": {
+            "type": "number",
+            "default": 0
+        },
+        "imagePosition": {
+            "type": "string",
+            "default": "top"
+        },
+        "imageCol": {
+            "type": "string",
+            "default": "col-md-4"
+        },
+        "imageHeight": {
+            "type": "string",
+            "default": ""
+        },
+        "imageWidth": {
+            "type": "string",
+            "default": "100%"
+        },
+        "imageObjectFit": {
+            "type": "string",
+            "default": "cover"
+        },
+        "imageDisplayClass": {
+            "type": "string",
+            "default": "img-fluid"
+        },
+        "imageAlignClass": {
+            "type": "string",
+            "default": ""
+        },
+        "imageBorderSize": {
+            "type": "string",
+            "default": ""
+        },
+        "imageBorderColor": {
+            "type": "string",
+            "default": ""
+        },
+        "imageBorderRadius": {
+            "type": "string",
+            "default": ""
+        },
+        "imageBorderRadiusSize": {
+            "type": "string",
+            "default": ""
+        },
+        "imageBorderOpacityClass": {
+            "type": "string",
+            "default": ""
+        },
+        "imageBorderOpacityCustom": {
+            "type": "string",
+            "default": ""
+        },
+        "imageBorderSides": {
+    "type": "array",
+    "default": []
+},
+"imageBorderRemove": {
+    "type": "array",
+    "default": []
+},
+        "title": {
+            "type": "string",
+            "default": "Card title"
+        },
+        "subtitle": {
+            "type": "string",
+            "default": ""
+        },
+        "bodyText": {
+            "type": "string",
+            "default": "Some quick example text to build on the card title and make up the bulk of the card's content."
+        },
+        "showBadge": {
+            "type": "boolean",
+            "default": false
+        },
+        "badgeText": {
+            "type": "string",
+            "default": "New"
+        },
+        "badgeVariant": {
+            "type": "string",
+            "default": "bg-primary"
+        },
+        "showLink": {
+            "type": "boolean",
+            "default": true
+        },
+        "bgColor": {
+            "type": "string",
+            "default": ""
+        },
+        "borderColor": {
+            "type": "string",
+            "default": ""
+        },
+        "shadow": {
+            "type": "string",
+            "default": ""
+        },
+        "textAlign": {
+            "type": "string",
+            "default": ""
+        },
+        "noBorder": {
+            "type": "boolean",
+            "default": false
+        },
+        "padding": {
+            "type": "string",
+            "default": ""
+        },
+        "margin": {
+            "type": "string",
+            "default": "mb-3"
+        },
+        "textColor": {
+            "type": "string",
+            "default": ""
+        },
+        "backgroundColor": {
+            "type": "string",
+            "default": ""
+        },
+        "opacity": {
+            "type": "number",
+            "default": 100
+        },
+        "borderSides": {
+            "type": "array",
+            "default": []
+        },
+        "borderRemove": {
+            "type": "array",
+            "default": []
+        },
+        "borderOpacityClass": {
+            "type": "string",
+            "default": ""
+        },
+        "borderOpacityCustom": {
+            "type": "string",
+            "default": ""
+        },
+        "borderSize": {
+            "type": "string",
+            "default": ""
+        },
+        "borderRadius": {
+            "type": "string",
+            "default": ""
+        },
+        "borderRadiusSize": {
+            "type": "string",
+            "default": ""
+        },
+        "customCSS": {
+            "type": "string",
+            "default": ""
+        },
+        "hideXs": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideSm": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideMd": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideLg": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideXl": {
+            "type": "boolean",
+            "default": false
+        },
+        "hideXxl": {
+            "type": "boolean",
+            "default": false
+        }
     },
     "textdomain": "wm",
     "editorScript": "file:./index.js",
-    "editorStyle":  "file:./index.css",
-    "style":        "file:./style-index.css",
-    "render":       "file:./render.php",
-    "viewScript":   "file:./view.js"
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css",
+    "render": "file:./render.php",
+    "viewScript": "file:./view.js"
 }

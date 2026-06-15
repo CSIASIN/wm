@@ -31,9 +31,10 @@ if ( ! empty( $attributes['hideXxl'] ) ) $classes[] = 'd-xxl-none';
 
 $styles = [];
 
-// Apply custom width mapping rule tracking logic attributes properties safely
-$card_width = ! empty( $attributes['cardWidth'] ) ? $attributes['cardWidth'] : '';
-$styles[] = 'width:' . esc_attr( $card_width );
+// FIXED: Only append to inline styles if a custom width value is actively set
+if ( ! empty( $attributes['cardWidth'] ) ) {
+    $styles[] = 'width: ' . esc_attr( $attributes['cardWidth'] );
+}
 
 if ( isset( $attributes['opacity'] ) && (int) $attributes['opacity'] !== 100 ) {
     $styles[] = 'opacity:' . ( floatval( $attributes['opacity'] ) / 100 );
