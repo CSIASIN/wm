@@ -217,23 +217,25 @@ export function getTypographyStyles(attributes = {}) {
     if (textDecoration) styles['text-decoration'] = textDecoration;
     if (textTransform) styles['text-transform'] = textTransform;
     
-    // Inject literal CSS keys to make sure core blocks cascade the style variables safely
     if (textFillColor) styles['-webkit-text-fill-color'] = textFillColor;
     if (textStrokeColor) {
         styles['-webkit-text-stroke-width'] = textStrokeWidth || '1.5px';
         styles['-webkit-text-stroke-color'] = textStrokeColor;
     }
 
-    // Shadow Calculations
+    // --- CORRECTED JAVASCRIPT SHADOW STRINGS ---
     if (textShadowType === 'outline' && textShadowColor) {
         const w = textShadowWidth || '1px';
         const c = textShadowColor;
         styles['text-shadow'] = `-${w} -${w} 0 ${c}, 0 -${w} 0 ${c}, ${w} -${w} 0 ${c}, ${w} 0 0 ${c}, ${w} ${w} 0 ${c}, 0 ${w} 0 ${c}, -${w} ${w} 0 ${c}, -${w} 0 0 ${c}`;
     } else if (textShadowType === 'drop' && textShadowColor) {
-        styles['text-shadow'] = `${textShadowX || '2px'} ${textShadowY || '2px'} ${textShadowBlur || '4px'} ${textShadowColor}`;
+        const x = textShadowX || '2px';
+        const y = textShadowY || '2px';
+        const blur = textShadowBlur || '0px';
+        styles['text-shadow'] = `${x} ${y} ${blur} ${textShadowColor}`;
     }
 
-    // Map dynamic breakpoint parameters
+    // Map dynamic breakpoint variables
     const breakpoints = ['Xs', 'Sm', 'Md', 'Lg', 'Xl', 'Xxl'];
     breakpoints.forEach((bp) => {
         const lowerBp = bp.toLowerCase();
