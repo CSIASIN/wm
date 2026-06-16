@@ -187,3 +187,8 @@
 		justify-content: center;
 	}
 }
+
+
+.components-popover.is-positioned {
+    z-index: 100001 !important;
+}

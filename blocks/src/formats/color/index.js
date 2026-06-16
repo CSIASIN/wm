@@ -1,36 +1,37 @@
 /**
- * WM Text Color & Background Color — Inline Formats
- *
- * Two toolbar buttons appear when text is selected:
- *   𝐀  → wmblocks/wm-text-color   → <span class="wm-tc" style="color:#hex">
- *   ▒  → wmblocks/wm-bg-color     → <span class="wm-bc" style="background-color:#hex">
- *
- * Using unique tagName classes (wm-tc / wm-bc) so they never conflict with:
- *   - WP core highlight       (mark element)
- *   - WP core text color      (has-*-color classes)
- *   - Bootstrap text-* classes (added via text-utils format)
- *
- * Features:
- *   - 28-colour preset swatch grid
- *   - Full custom ColorPicker
- *   - Remove button to strip format from selection
- *   - Colour bar under toolbar icon shows current active colour
+ * WM Text Color, Background Color & Text Gradient — Inline Formats
  */
 import {
-	registerFormatType,
-	applyFormat,
-	removeFormat,
-	getActiveFormats,
+    registerFormatType,
+    applyFormat,
+    removeFormat,
+    getActiveFormats,
 } from '@wordpress/rich-text';
-import { RichTextToolbarButton } from '@wordpress/block-editor';
-import { Modal, Button, ColorPicker, ColorIndicator, TabPanel } from '@wordpress/components';
+
+// Import potential houses for the GradientPicker component
+import * as blockEditor from '@wordpress/block-editor';
+import * as components from '@wordpress/components';
+
 import { useState, useCallback } from '@wordpress/element';
 import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 
+// Extract components we know are safe
+const { RichTextToolbarButton } = blockEditor;
+const { Modal, Button, ColorIndicator, TabPanel, ColorPicker } = components;
+
+// ── FIX: Bulletproof Dynamic GradientPicker Fallback ──────────────────────────
+// Resolves the "type is invalid -- expected a string... but got: undefined" crash.
+const GradientPicker = 
+    components.GradientPicker || 
+    components.__experimentalGradientPicker || 
+    blockEditor.GradientPicker || 
+    blockEditor.__experimentalGradientPicker;
+
 // ── Format identifiers ────────────────────────────────────────────────────────
 const FMT_TEXT = 'wmblocks/wm-text-color';
 const FMT_BG   = 'wmblocks/wm-bg-color';
+const FMT_GRADIENT = 'wmblocks/wm-text-gradient';
 
 // ── Preset palettes ───────────────────────────────────────────────────────────
 const COLORS = [
@@ -68,6 +69,13 @@ const COLORS = [
 	{ label: 'Gray 700',      hex: '#495057' },
 ];
 
+const GRADIENT_PRESETS = [
+    { name: 'Strucial', gradient: 'linear-gradient(90deg,lab(67.7847% -25.7828 -44.2698) 0%,lab(55.1847% -8.24726 -58.1227) 45%,lab(65.237% -56.3259 48.5355) 100%)', slug: 'strucial' },
+    { name: 'Vivid cyan blue to vivid purple', gradient: 'linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)', slug: 'vivid-cyan-blue-to-vivid-purple' },
+    { name: 'Light green cyan to vivid green cyan', gradient: 'linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%)', slug: 'light-green-cyan-to-vivid-green-cyan' },
+    { name: 'Luminous vivid amber to luminous vivid orange', gradient: 'linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%)', slug: 'luminous-vivid-amber-to-luminous-vivid-orange' },
+    { name: 'Luminous vivid orange to vivid red', gradient: 'linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%)', slug: 'luminous-vivid-orange-to-vivid-red' },
+];
 // Luminance check — returns true if colour is light (needs dark tick)
 function isLight( hex ) {
 	const h = hex.replace( '#', '' );
@@ -85,6 +93,72 @@ function getActiveHex( value, fmtName, cssProp ) {
 	const style = active.attributes?.style || '';
 	const m     = style.match( new RegExp( cssProp + '\\s*:\\s*([^;]+)', 'i' ) );
 	return m ? m[1].trim() : null;
+}
+
+// Specialized parser for extracting the linear/radial background gradient string
+function getActiveGradient( value ) {
+    const active = ( getActiveFormats( value ) || [] ).find( f => f.type === FMT_GRADIENT );
+    if ( ! active ) return null;
+    const style = active.attributes?.style || '';
+    const m     = style.match( /background\s*:\s*([^;]+)/i );
+    return m ? m[1].trim() : null;
+}
+
+// ── Gradient Modal (Fixed Popover Z-Index Layering) ───────────────────────────
+function WmGradientModal( { title, activeGradient, onApply, onClear, onClose } ) {
+    const [ gradient, setGradient ] = useState( activeGradient || GRADIENT_PRESETS[0].gradient );
+
+    if ( ! GradientPicker ) {
+        return (
+            <Modal title={ title } onRequestClose={ onClose } size="medium">
+                <p style={{ padding: '20px', color: '#dc3545' }}>
+                    { __( 'Error: Native WordPress GradientPicker component could not be resolved.', 'wmblocks' ) }
+                </p>
+            </Modal>
+        );
+    }
+
+    return (
+        <Modal 
+            title={ title } 
+            onRequestClose={ onClose } 
+            className="wm-color-modal" 
+            size="medium"
+        >
+            <div className="wm-color-modal__body">
+                { activeGradient && (
+                    <div className="wm-color-modal__current" style={{ marginBottom: '15px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <ColorIndicator colorValue={ activeGradient } />
+                        <code className="wm-color-modal__current-code" style={{ fontSize: '11px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1 }}>
+                            { __( 'Gradient Active', 'wmblocks' ) }
+                        </code>
+                        <Button variant="tertiary" isDestructive size="compact" onClick={ onClear }>
+                            { __( '✕ Remove', 'wmblocks' ) }
+                        </Button>
+                    </div>
+                )}
+
+                {/* * FIX: popoverProps={{ inline: true }} forces the custom color sub-menus
+                  * to render inline inside the modal DOM instead of an external root portal,
+                  * bypassing the layout z-index cutoff.
+                  */}
+                <GradientPicker
+                    value={ gradient }
+                    onChange={ setGradient }
+                    gradients={ GRADIENT_PRESETS }
+                    popoverProps={ { inline: true, placement: 'bottom-start' } }
+                />
+
+                <Button
+                    variant="primary"
+                    style={ { width: '100%', marginTop: 20, justifyContent: 'center' } }
+                    onClick={ () => onApply( gradient ) }
+                >
+                    { __( 'Apply Gradient', 'wmblocks' ) }
+                </Button>
+            </div>
+        </Modal>
+    );
 }
 
 // ── Color modal — uses WP Modal + TabPanel components ─────────────────────────
@@ -182,66 +256,119 @@ function WmColorModal( { title, cssProp, activeHex, onApply, onClear, onClose } 
 		</Modal>
 	);
 }
-
 // ── Generic toolbar button factory ────────────────────────────────────────────
 function makeButton( fmtName, cssProp, iconLabel, toolbarLabel, modalTitle ) {
-	return function WmColorButton( { value, onChange, isActive } ) {
-		const [ open, setOpen ] = useState( false );
-		const activeHex = getActiveHex( value, fmtName, cssProp );
+    return function WmColorButton( { value, onChange } ) {
+        const [ open, setOpen ] = useState( false );
+        const activeHex = getActiveHex( value, fmtName, cssProp );
 
-		const handleApply = useCallback( hex => {
-			setOpen( false );
-			// For background colour we add padding + border-radius inline so
-			// no frontend stylesheet is needed — the style attribute carries
-			// everything the span needs to render correctly.
-			const extraStyle = cssProp === 'background-color'
-				? `;padding:0.1em 0.25em;border-radius:0.2em;-webkit-box-decoration-break:clone;box-decoration-break:clone`
-				: '';
-			onChange( applyFormat( value, {
-				type:       fmtName,
-				attributes: { style: `${ cssProp }:${ hex }${ extraStyle }` },
-			} ) );
-		}, [ value, onChange ] );
+        const handleApply = useCallback( hex => {
+            setOpen( false );
+            const extraStyle = cssProp === 'background-color'
+                ? `;padding:0.1em 0.25em;border-radius:0.2em;-webkit-box-decoration-break:clone;box-decoration-break:clone`
+                : '';
+            onChange( applyFormat( value, {
+                type:       fmtName,
+                attributes: { style: `${ cssProp }:${ hex }${ extraStyle }` },
+            } ) );
+        }, [ value, onChange ] );
 
-		const handleClear = useCallback( () => {
-			setOpen( false );
-			onChange( removeFormat( value, fmtName ) );
-		}, [ value, onChange ] );
+        const handleClear = useCallback( () => {
+            setOpen( false );
+            onChange( removeFormat( value, fmtName ) );
+        }, [ value, onChange ] );
 
-		return (
-			<>
-				<RichTextToolbarButton
-					icon={ () => (
-						<span className="wm-color-tool-icon">
-							<span className="wm-color-tool-icon__label">{ iconLabel }</span>
-							<span
-								className="wm-color-tool-icon__bar"
-								style={ {
-									background:  activeHex || 'linear-gradient(90deg,#e63946,#ffc107,#198754,#0d6efd)',
-									opacity:     activeHex ? 1 : 0.5,
-								} }
-							/>
-						</span>
-					) }
-					title={ toolbarLabel }
-					onClick={ () => setOpen( v => ! v ) }
-					isActive={ !! activeHex }
-				/>
+        return (
+            <>
+                <RichTextToolbarButton
+                    icon={ () => (
+                        <span className="wm-color-tool-icon">
+                            <span className="wm-color-tool-icon__label">{ iconLabel }</span>
+                            <span
+                                className="wm-color-tool-icon__bar"
+                                style={ {
+                                    background:  activeHex || 'linear-gradient(90deg,#e63946,#ffc107,#198754,#0d6efd)',
+                                    opacity:     activeHex ? 1 : 0.5,
+                                } }
+                            />
+                        </span>
+                    ) }
+                    title={ toolbarLabel }
+                    onClick={ () => setOpen( v => ! v ) }
+                    isActive={ !! activeHex }
+                />
 
-				{ open && (
-					<WmColorModal
-						title={ modalTitle }
-						cssProp={ cssProp }
-						activeHex={ activeHex }
-						onApply={ handleApply }
-						onClear={ handleClear }
-						onClose={ () => setOpen( false ) }
-					/>
-				) }
-			</>
-		);
-	};
+                { open && (
+                    <WmColorModal
+                        title={ modalTitle }
+                        cssProp={ cssProp }
+                        activeHex={ activeHex }
+                        onApply={ handleApply }
+                        onClear={ handleClear }
+                        // FIX 2: Fixed typo "falseexport"
+                        onClose={ () => setOpen( false ) } 
+                    />
+                ) }
+            </>
+        );
+    };
 }
+
+// ── Specialized Text Gradient Toolbar Button Component ────────────────────────
+function WmGradientButton( { value, onChange } ) {
+    const [ open, setOpen ] = useState( false );
+    const activeGradient = getActiveGradient( value );
+
+    const handleApply = useCallback( grad => {
+        setOpen( false );
+        const inlineStyle = `background:${ grad };-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;`;
+        
+        onChange( applyFormat( value, {
+            type: FMT_GRADIENT,
+            attributes: { style: inlineStyle },
+        } ) );
+    }, [ value, onChange ] );
+
+    const handleClear = useCallback( () => {
+        setOpen( false );
+        onChange( removeFormat( value, FMT_GRADIENT ) );
+    }, [ value, onChange ] );
+
+    return (
+        <>
+            <RichTextToolbarButton
+                icon={ () => (
+                    <span className="wm-color-tool-icon">
+                        <span className="wm-color-tool-icon__label" style={ { fontWeight:900, fontFamily:'sans-serif', fontSize:13, background: activeGradient || 'linear-gradient(90deg,#e63946,#0d6efd)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' } }>GR</span>
+                        <span
+                            className="wm-color-tool-icon__bar"
+                            style={ {
+                                background: activeGradient || 'linear-gradient(90deg,#e63946,#ffc107,#198754,#0d6efd)',
+                                opacity: activeGradient ? 1 : 0.5,
+                            } }
+                        />
+                    </span>
+                ) }
+                title={ __( 'Text Gradient', 'wmblocks' ) }
+                onClick={ () => setOpen( v => ! v ) }
+                isActive={ !! activeGradient }
+            />
+
+            { open && (
+                <WmGradientModal
+                    title={ __( 'Text Gradient', 'wmblocks' ) }
+                    activeGradient={ activeGradient }
+                    onApply={ handleApply }
+                    onClear={ handleClear }
+                    // FIX 3: Fixed typo "falseexport"
+                    onClose={ () => setOpen( false ) } 
+                />
+            )}
+        </>
+    );
+}
+
+
 
 // ── Make formats available in ALL rich-text blocks ───────────────────────────
 // registerFormatType alone is enough for blocks where allowedFormats is
@@ -269,6 +396,7 @@ function injectColorFormats( settings ) {
 				...already,
 				...( already.includes( FMT_TEXT ) ? [] : [ FMT_TEXT ] ),
 				...( already.includes( FMT_BG )   ? [] : [ FMT_BG   ] ),
+				...( already.includes( FMT_GRADIENT ) ? [] : [ FMT_GRADIENT ] ),
 			],
 		};
 	}
@@ -322,4 +450,15 @@ registerFormatType( FMT_BG, {
 	edit( { value, onChange, isActive } ) {
 		return <BgColorBtn value={ value } onChange={ onChange } isActive={ isActive } />;
 	},
+} );
+
+// 3. Text Gradient
+registerFormatType( FMT_GRADIENT, {
+    title: __( 'Text Gradient', 'wmblocks' ),
+    tagName: 'span',
+    className: 'wm-tg', // Unique class wrapper for gradient text
+    attributes: { style: 'style' },
+    edit( { value, onChange, isActive } ) {
+        return <WmGradientButton value={ value } onChange={ onChange } isActive={ isActive } />;
+    },
 } );

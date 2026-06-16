@@ -168,34 +168,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
 /**
- * WM Text Color & Background Color — Inline Formats
- *
- * Two toolbar buttons appear when text is selected:
- *   𝐀  → wmblocks/wm-text-color   → <span class="wm-tc" style="color:#hex">
- *   ▒  → wmblocks/wm-bg-color     → <span class="wm-bc" style="background-color:#hex">
- *
- * Using unique tagName classes (wm-tc / wm-bc) so they never conflict with:
- *   - WP core highlight       (mark element)
- *   - WP core text color      (has-*-color classes)
- *   - Bootstrap text-* classes (added via text-utils format)
- *
- * Features:
- *   - 28-colour preset swatch grid
- *   - Full custom ColorPicker
- *   - Remove button to strip format from selection
- *   - Colour bar under toolbar icon shows current active colour
+ * WM Text Color, Background Color & Text Gradient — Inline Formats
  */
 
 
+// Import potential houses for the GradientPicker component
 
 
 
 
+
+
+// Extract components we know are safe
+
+const {
+  RichTextToolbarButton
+} = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__;
+const {
+  Modal,
+  Button,
+  ColorIndicator,
+  TabPanel,
+  ColorPicker
+} = _wordpress_components__WEBPACK_IMPORTED_MODULE_2__;
+
+// ── FIX: Bulletproof Dynamic GradientPicker Fallback ──────────────────────────
+// Resolves the "type is invalid -- expected a string... but got: undefined" crash.
+const GradientPicker = _wordpress_components__WEBPACK_IMPORTED_MODULE_2__.GradientPicker || _wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalGradientPicker || _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.GradientPicker || _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.__experimentalGradientPicker;
 
 // ── Format identifiers ────────────────────────────────────────────────────────
-
 const FMT_TEXT = 'wmblocks/wm-text-color';
 const FMT_BG = 'wmblocks/wm-bg-color';
+const FMT_GRADIENT = 'wmblocks/wm-text-gradient';
 
 // ── Preset palettes ───────────────────────────────────────────────────────────
 const COLORS = [
@@ -291,7 +295,27 @@ const COLORS = [
   label: 'Gray 700',
   hex: '#495057'
 }];
-
+const GRADIENT_PRESETS = [{
+  name: 'Strucial',
+  gradient: 'linear-gradient(90deg,lab(67.7847% -25.7828 -44.2698) 0%,lab(55.1847% -8.24726 -58.1227) 45%,lab(65.237% -56.3259 48.5355) 100%)',
+  slug: 'strucial'
+}, {
+  name: 'Vivid cyan blue to vivid purple',
+  gradient: 'linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%)',
+  slug: 'vivid-cyan-blue-to-vivid-purple'
+}, {
+  name: 'Light green cyan to vivid green cyan',
+  gradient: 'linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%)',
+  slug: 'light-green-cyan-to-vivid-green-cyan'
+}, {
+  name: 'Luminous vivid amber to luminous vivid orange',
+  gradient: 'linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%)',
+  slug: 'luminous-vivid-amber-to-luminous-vivid-orange'
+}, {
+  name: 'Luminous vivid orange to vivid red',
+  gradient: 'linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%)',
+  slug: 'luminous-vivid-orange-to-vivid-red'
+}];
 // Luminance check — returns true if colour is light (needs dark tick)
 function isLight(hex) {
   const h = hex.replace('#', '');
@@ -311,6 +335,94 @@ function getActiveHex(value, fmtName, cssProp) {
   return m ? m[1].trim() : null;
 }
 
+// Specialized parser for extracting the linear/radial background gradient string
+function getActiveGradient(value) {
+  const active = ((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.getActiveFormats)(value) || []).find(f => f.type === FMT_GRADIENT);
+  if (!active) return null;
+  const style = active.attributes?.style || '';
+  const m = style.match(/background\s*:\s*([^;]+)/i);
+  return m ? m[1].trim() : null;
+}
+
+// ── Gradient Modal (Fixed Popover Z-Index Layering) ───────────────────────────
+function WmGradientModal({
+  title,
+  activeGradient,
+  onApply,
+  onClear,
+  onClose
+}) {
+  const [gradient, setGradient] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(activeGradient || GRADIENT_PRESETS[0].gradient);
+  if (!GradientPicker) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Modal, {
+      title: title,
+      onRequestClose: onClose,
+      size: "medium",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+        style: {
+          padding: '20px',
+          color: '#dc3545'
+        },
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Error: Native WordPress GradientPicker component could not be resolved.', 'wmblocks')
+      })
+    });
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Modal, {
+    title: title,
+    onRequestClose: onClose,
+    className: "wm-color-modal",
+    size: "medium",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      className: "wm-color-modal__body",
+      children: [activeGradient && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "wm-color-modal__current",
+        style: {
+          marginBottom: '15px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px'
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ColorIndicator, {
+          colorValue: activeGradient
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("code", {
+          className: "wm-color-modal__current-code",
+          style: {
+            fontSize: '11px',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            flex: 1
+          },
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Gradient Active', 'wmblocks')
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Button, {
+          variant: "tertiary",
+          isDestructive: true,
+          size: "compact",
+          onClick: onClear,
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('✕ Remove', 'wmblocks')
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(GradientPicker, {
+        value: gradient,
+        onChange: setGradient,
+        gradients: GRADIENT_PRESETS,
+        popoverProps: {
+          inline: true,
+          placement: 'bottom-start'
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Button, {
+        variant: "primary",
+        style: {
+          width: '100%',
+          marginTop: 20,
+          justifyContent: 'center'
+        },
+        onClick: () => onApply(gradient),
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Apply Gradient', 'wmblocks')
+      })]
+    })
+  });
+}
+
 // ── Color modal — uses WP Modal + TabPanel components ─────────────────────────
 function WmColorModal({
   title,
@@ -328,7 +440,7 @@ function WmColorModal({
     name: 'picker',
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Custom', 'wmblocks')
   }];
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Modal, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Modal, {
     title: title,
     onRequestClose: onClose,
     className: "wm-color-modal",
@@ -337,19 +449,19 @@ function WmColorModal({
       className: "wm-color-modal__body",
       children: [activeHex && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "wm-color-modal__current",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorIndicator, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ColorIndicator, {
           colorValue: activeHex
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("code", {
           className: "wm-color-modal__current-code",
           children: activeHex
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Button, {
           variant: "tertiary",
           isDestructive: true,
           size: "compact",
           onClick: onClear,
           children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('✕ Remove', 'wmblocks')
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TabPanel, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(TabPanel, {
         className: "wm-color-modal__tabpanel",
         activeClass: "is-active",
         tabs: tabs,
@@ -383,11 +495,11 @@ function WmColorModal({
             }, hex + label))
           }), tab.name === 'picker' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
             className: "wm-color-modal__picker",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPicker, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ColorPicker, {
               color: custom,
               onChange: setCustom,
               enableAlpha: false
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Button, {
               variant: "primary",
               style: {
                 width: '100%',
@@ -403,21 +515,16 @@ function WmColorModal({
     })
   });
 }
-
 // ── Generic toolbar button factory ────────────────────────────────────────────
 function makeButton(fmtName, cssProp, iconLabel, toolbarLabel, modalTitle) {
   return function WmColorButton({
     value,
-    onChange,
-    isActive
+    onChange
   }) {
     const [open, setOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
     const activeHex = getActiveHex(value, fmtName, cssProp);
     const handleApply = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useCallback)(hex => {
       setOpen(false);
-      // For background colour we add padding + border-radius inline so
-      // no frontend stylesheet is needed — the style attribute carries
-      // everything the span needs to render correctly.
       const extraStyle = cssProp === 'background-color' ? `;padding:0.1em 0.25em;border-radius:0.2em;-webkit-box-decoration-break:clone;box-decoration-break:clone` : '';
       onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.applyFormat)(value, {
         type: fmtName,
@@ -431,7 +538,7 @@ function makeButton(fmtName, cssProp, iconLabel, toolbarLabel, modalTitle) {
       onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.removeFormat)(value, fmtName));
     }, [value, onChange]);
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichTextToolbarButton, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RichTextToolbarButton, {
         icon: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
           className: "wm-color-tool-icon",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
@@ -453,11 +560,72 @@ function makeButton(fmtName, cssProp, iconLabel, toolbarLabel, modalTitle) {
         cssProp: cssProp,
         activeHex: activeHex,
         onApply: handleApply,
-        onClear: handleClear,
+        onClear: handleClear
+        // FIX 2: Fixed typo "falseexport"
+        ,
         onClose: () => setOpen(false)
       })]
     });
   };
+}
+
+// ── Specialized Text Gradient Toolbar Button Component ────────────────────────
+function WmGradientButton({
+  value,
+  onChange
+}) {
+  const [open, setOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+  const activeGradient = getActiveGradient(value);
+  const handleApply = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useCallback)(grad => {
+    setOpen(false);
+    const inlineStyle = `background:${grad};-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;`;
+    onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.applyFormat)(value, {
+      type: FMT_GRADIENT,
+      attributes: {
+        style: inlineStyle
+      }
+    }));
+  }, [value, onChange]);
+  const handleClear = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useCallback)(() => {
+    setOpen(false);
+    onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.removeFormat)(value, FMT_GRADIENT));
+  }, [value, onChange]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RichTextToolbarButton, {
+      icon: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
+        className: "wm-color-tool-icon",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+          className: "wm-color-tool-icon__label",
+          style: {
+            fontWeight: 900,
+            fontFamily: 'sans-serif',
+            fontSize: 13,
+            background: activeGradient || 'linear-gradient(90deg,#e63946,#0d6efd)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent'
+          },
+          children: "GR"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+          className: "wm-color-tool-icon__bar",
+          style: {
+            background: activeGradient || 'linear-gradient(90deg,#e63946,#ffc107,#198754,#0d6efd)',
+            opacity: activeGradient ? 1 : 0.5
+          }
+        })]
+      }),
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Text Gradient', 'wmblocks'),
+      onClick: () => setOpen(v => !v),
+      isActive: !!activeGradient
+    }), open && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(WmGradientModal, {
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Text Gradient', 'wmblocks'),
+      activeGradient: activeGradient,
+      onApply: handleApply,
+      onClear: handleClear
+      // FIX 3: Fixed typo "falseexport"
+      ,
+      onClose: () => setOpen(false)
+    })]
+  });
 }
 
 // ── Make formats available in ALL rich-text blocks ───────────────────────────
@@ -482,7 +650,7 @@ function injectColorFormats(settings) {
     const already = settings.allowedFormats;
     return {
       ...settings,
-      allowedFormats: [...already, ...(already.includes(FMT_TEXT) ? [] : [FMT_TEXT]), ...(already.includes(FMT_BG) ? [] : [FMT_BG])]
+      allowedFormats: [...already, ...(already.includes(FMT_TEXT) ? [] : [FMT_TEXT]), ...(already.includes(FMT_BG) ? [] : [FMT_BG]), ...(already.includes(FMT_GRADIENT) ? [] : [FMT_GRADIENT])]
     };
   }
   return settings;
@@ -547,6 +715,28 @@ const BgColorBtn = makeButton(FMT_BG, 'background-color', /*#__PURE__*/(0,react_
     isActive
   }) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(BgColorBtn, {
+      value: value,
+      onChange: onChange,
+      isActive: isActive
+    });
+  }
+});
+
+// 3. Text Gradient
+(0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.registerFormatType)(FMT_GRADIENT, {
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Text Gradient', 'wmblocks'),
+  tagName: 'span',
+  className: 'wm-tg',
+  // Unique class wrapper for gradient text
+  attributes: {
+    style: 'style'
+  },
+  edit({
+    value,
+    onChange,
+    isActive
+  }) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(WmGradientButton, {
       value: value,
       onChange: onChange,
       isActive: isActive
