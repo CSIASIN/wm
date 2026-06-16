@@ -172,14 +172,12 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-// Import potential houses for the GradientPicker component
 
 
 
 
 
-
-// Extract components we know are safe
+// Pull toolbar elements and native popover drop shells [cite: 3]
 
 const {
   RichTextToolbarButton
@@ -189,11 +187,11 @@ const {
   Button,
   ColorIndicator,
   TabPanel,
+  Dropdown,
   ColorPicker
 } = _wordpress_components__WEBPACK_IMPORTED_MODULE_2__;
 
-// ── FIX: Bulletproof Dynamic GradientPicker Fallback ──────────────────────────
-// Resolves the "type is invalid -- expected a string... but got: undefined" crash.
+// Fallback resolver for the Gutenberg GradientPicker [cite: 91]
 const GradientPicker = _wordpress_components__WEBPACK_IMPORTED_MODULE_2__.GradientPicker || _wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalGradientPicker || _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.GradientPicker || _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.__experimentalGradientPicker;
 
 // ── Format identifiers ────────────────────────────────────────────────────────
@@ -334,8 +332,6 @@ function getActiveHex(value, fmtName, cssProp) {
   const m = style.match(new RegExp(cssProp + '\\s*:\\s*([^;]+)', 'i'));
   return m ? m[1].trim() : null;
 }
-
-// Specialized parser for extracting the linear/radial background gradient string
 function getActiveGradient(value) {
   const active = ((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.getActiveFormats)(value) || []).find(f => f.type === FMT_GRADIENT);
   if (!active) return null;
@@ -343,87 +339,7 @@ function getActiveGradient(value) {
   const m = style.match(/background\s*:\s*([^;]+)/i);
   return m ? m[1].trim() : null;
 }
-
-// ── Gradient Modal (Fixed Popover Z-Index Layering) ───────────────────────────
-function WmGradientModal({
-  title,
-  activeGradient,
-  onApply,
-  onClear,
-  onClose
-}) {
-  const [gradient, setGradient] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(activeGradient || GRADIENT_PRESETS[0].gradient);
-  if (!GradientPicker) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Modal, {
-      title: title,
-      onRequestClose: onClose,
-      size: "medium",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
-        style: {
-          padding: '20px',
-          color: '#dc3545'
-        },
-        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Error: Native WordPress GradientPicker component could not be resolved.', 'wmblocks')
-      })
-    });
-  }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Modal, {
-    title: title,
-    onRequestClose: onClose,
-    className: "wm-color-modal",
-    size: "medium",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-      className: "wm-color-modal__body",
-      children: [activeGradient && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        className: "wm-color-modal__current",
-        style: {
-          marginBottom: '15px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px'
-        },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ColorIndicator, {
-          colorValue: activeGradient
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("code", {
-          className: "wm-color-modal__current-code",
-          style: {
-            fontSize: '11px',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-            flex: 1
-          },
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Gradient Active', 'wmblocks')
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Button, {
-          variant: "tertiary",
-          isDestructive: true,
-          size: "compact",
-          onClick: onClear,
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('✕ Remove', 'wmblocks')
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(GradientPicker, {
-        value: gradient,
-        onChange: setGradient,
-        gradients: GRADIENT_PRESETS,
-        popoverProps: {
-          inline: true,
-          placement: 'bottom-start'
-        }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Button, {
-        variant: "primary",
-        style: {
-          width: '100%',
-          marginTop: 20,
-          justifyContent: 'center'
-        },
-        onClick: () => onApply(gradient),
-        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Apply Gradient', 'wmblocks')
-      })]
-    })
-  });
-}
-
-// ── Color modal — uses WP Modal + TabPanel components ─────────────────────────
+// ── Color modal — uses WP Modal + TabPanel components ───────────────────────── 
 function WmColorModal({
   title,
   cssProp,
@@ -515,7 +431,8 @@ function WmColorModal({
     })
   });
 }
-// ── Generic toolbar button factory ────────────────────────────────────────────
+
+// ── RESTORED: Generic toolbar button factory (For Text & BG Color Formaps) ──
 function makeButton(fmtName, cssProp, iconLabel, toolbarLabel, modalTitle) {
   return function WmColorButton({
     value,
@@ -560,46 +477,49 @@ function makeButton(fmtName, cssProp, iconLabel, toolbarLabel, modalTitle) {
         cssProp: cssProp,
         activeHex: activeHex,
         onApply: handleApply,
-        onClear: handleClear
-        // FIX 2: Fixed typo "falseexport"
-        ,
+        onClear: handleClear,
         onClose: () => setOpen(false)
       })]
     });
   };
 }
 
-// ── Specialized Text Gradient Toolbar Button Component ────────────────────────
+// ── Specialized Text Gradient Native Dropdown Picker (MODAL-FREE) ──────────── 
 function WmGradientButton({
   value,
   onChange
 }) {
-  const [open, setOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
   const activeGradient = getActiveGradient(value);
-  const handleApply = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useCallback)(grad => {
-    setOpen(false);
-    const inlineStyle = `background:${grad};-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;`;
+  const [selectedGradient, setSelectedGradient] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(activeGradient || GRADIENT_PRESETS[0].gradient);
+  const handleApplyGradient = (grad, onClose) => {
+    onClose();
     onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.applyFormat)(value, {
       type: FMT_GRADIENT,
       attributes: {
-        style: inlineStyle
+        style: `background:${grad};-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;`
       }
     }));
-  }, [value, onChange]);
-  const handleClear = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useCallback)(() => {
-    setOpen(false);
+  };
+  const handleClearGradient = onClose => {
+    onClose();
     onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.removeFormat)(value, FMT_GRADIENT));
-  }, [value, onChange]);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RichTextToolbarButton, {
+  };
+  if (!GradientPicker) return null;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Dropdown, {
+    popoverProps: {
+      placement: 'bottom-start',
+      focusOnMount: 'container'
+    },
+    renderToggle: ({
+      isOpen,
+      onToggle
+    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RichTextToolbarButton, {
       icon: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
         className: "wm-color-tool-icon",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
           className: "wm-color-tool-icon__label",
           style: {
             fontWeight: 900,
-            fontFamily: 'sans-serif',
-            fontSize: 13,
             background: activeGradient || 'linear-gradient(90deg,#e63946,#0d6efd)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
@@ -614,17 +534,65 @@ function WmGradientButton({
         })]
       }),
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Text Gradient', 'wmblocks'),
-      onClick: () => setOpen(v => !v),
-      isActive: !!activeGradient
-    }), open && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(WmGradientModal, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Text Gradient', 'wmblocks'),
-      activeGradient: activeGradient,
-      onApply: handleApply,
-      onClear: handleClear
-      // FIX 3: Fixed typo "falseexport"
-      ,
-      onClose: () => setOpen(false)
-    })]
+      onClick: onToggle,
+      isActive: !!activeGradient,
+      "aria-expanded": isOpen
+    }),
+    renderContent: ({
+      onClose
+    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      className: "wm-dropdown-gradient-picker",
+      style: {
+        padding: '12px',
+        width: '260px'
+      },
+      children: [activeGradient && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        style: {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginBottom: '12px',
+          borderBottom: '1px solid #eee',
+          paddingBottom: '8px'
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          style: {
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ColorIndicator, {
+            colorValue: activeGradient
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+            style: {
+              fontSize: '12px',
+              color: '#666'
+            },
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Active', 'wmblocks')
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Button, {
+          variant: "tertiary",
+          isDestructive: true,
+          size: "compact",
+          onClick: () => handleClearGradient(onClose),
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Clear', 'wmblocks')
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(GradientPicker, {
+        value: selectedGradient,
+        onChange: setSelectedGradient,
+        gradients: GRADIENT_PRESETS
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Button, {
+        variant: "primary",
+        size: "compact",
+        onClick: () => handleApplyGradient(selectedGradient, onClose),
+        style: {
+          width: '100%',
+          marginTop: '16px',
+          justifyContent: 'center'
+        },
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Apply Gradient', 'wmblocks')
+      })]
+    })
   });
 }
 

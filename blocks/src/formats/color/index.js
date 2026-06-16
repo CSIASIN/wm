@@ -8,20 +8,17 @@ import {
     getActiveFormats,
 } from '@wordpress/rich-text';
 
-// Import potential houses for the GradientPicker component
 import * as blockEditor from '@wordpress/block-editor';
 import * as components from '@wordpress/components';
-
 import { useState, useCallback } from '@wordpress/element';
 import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 
-// Extract components we know are safe
+// Pull toolbar elements and native popover drop shells [cite: 3]
 const { RichTextToolbarButton } = blockEditor;
-const { Modal, Button, ColorIndicator, TabPanel, ColorPicker } = components;
+const { Modal, Button, ColorIndicator,TabPanel, Dropdown, ColorPicker } = components;
 
-// ── FIX: Bulletproof Dynamic GradientPicker Fallback ──────────────────────────
-// Resolves the "type is invalid -- expected a string... but got: undefined" crash.
+// Fallback resolver for the Gutenberg GradientPicker [cite: 91]
 const GradientPicker = 
     components.GradientPicker || 
     components.__experimentalGradientPicker || 
@@ -95,7 +92,6 @@ function getActiveHex( value, fmtName, cssProp ) {
 	return m ? m[1].trim() : null;
 }
 
-// Specialized parser for extracting the linear/radial background gradient string
 function getActiveGradient( value ) {
     const active = ( getActiveFormats( value ) || [] ).find( f => f.type === FMT_GRADIENT );
     if ( ! active ) return null;
@@ -103,160 +99,103 @@ function getActiveGradient( value ) {
     const m     = style.match( /background\s*:\s*([^;]+)/i );
     return m ? m[1].trim() : null;
 }
+// ── Color modal — uses WP Modal + TabPanel components ───────────────────────── 
+function WmColorModal( { title, cssProp, activeHex, onApply, onClear, onClose } ) {
+const [ custom, setCustom ] = useState( activeHex || '#0d6efd' );
 
-// ── Gradient Modal (Fixed Popover Z-Index Layering) ───────────────────────────
-function WmGradientModal( { title, activeGradient, onApply, onClear, onClose } ) {
-    const [ gradient, setGradient ] = useState( activeGradient || GRADIENT_PRESETS[0].gradient );
+    const tabs = [ 
+        { name: 'presets', title: __( 'Presets', 'wmblocks' ) }, 
+        { name: 'picker',  title: __( 'Custom',  'wmblocks' ) }, 
+    ]; 
 
-    if ( ! GradientPicker ) {
-        return (
-            <Modal title={ title } onRequestClose={ onClose } size="medium">
-                <p style={{ padding: '20px', color: '#dc3545' }}>
-                    { __( 'Error: Native WordPress GradientPicker component could not be resolved.', 'wmblocks' ) }
-                </p>
-            </Modal>
-        );
-    }
-
-    return (
+    return ( 
         <Modal 
             title={ title } 
             onRequestClose={ onClose } 
             className="wm-color-modal" 
-            size="medium"
-        >
-            <div className="wm-color-modal__body">
-                { activeGradient && (
-                    <div className="wm-color-modal__current" style={{ marginBottom: '15px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <ColorIndicator colorValue={ activeGradient } />
-                        <code className="wm-color-modal__current-code" style={{ fontSize: '11px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1 }}>
-                            { __( 'Gradient Active', 'wmblocks' ) }
-                        </code>
-                        <Button variant="tertiary" isDestructive size="compact" onClick={ onClear }>
-                            { __( '✕ Remove', 'wmblocks' ) }
-                        </Button>
-                    </div>
-                )}
+            size="medium" 
+        > 
+            <div className="wm-color-modal__body"> 
 
-                {/* * FIX: popoverProps={{ inline: true }} forces the custom color sub-menus
-                  * to render inline inside the modal DOM instead of an external root portal,
-                  * bypassing the layout z-index cutoff.
-                  */}
-                <GradientPicker
-                    value={ gradient }
-                    onChange={ setGradient }
-                    gradients={ GRADIENT_PRESETS }
-                    popoverProps={ { inline: true, placement: 'bottom-start' } }
-                />
+                { /* Active colour indicator + remove button */ } 
+                { activeHex && ( 
+                    <div className="wm-color-modal__current"> 
+                        <ColorIndicator colorValue={ activeHex } /> 
+                        <code className="wm-color-modal__current-code">{ activeHex }</code> 
+                        <Button 
+                            variant="tertiary" 
+                            isDestructive 
+                            size="compact" 
+                            onClick={ onClear } 
+                        >{ __( '✕ Remove', 'wmblocks' ) }</Button> 
+                    </div> 
+                ) }
 
-                <Button
-                    variant="primary"
-                    style={ { width: '100%', marginTop: 20, justifyContent: 'center' } }
-                    onClick={ () => onApply( gradient ) }
-                >
-                    { __( 'Apply Gradient', 'wmblocks' ) }
-                </Button>
-            </div>
-        </Modal>
+                { /* WP TabPanel — Presets / Custom */ } 
+                <TabPanel 
+                    className="wm-color-modal__tabpanel" 
+                    activeClass="is-active" 
+                    tabs={ tabs }
+                > 
+                    { ( tab ) => ( 
+                        <div className="wm-color-modal__tab-content"> 
+
+                            { /* ── Presets tab ── */ } 
+                            { tab.name === 'presets' && ( 
+                                <div className="wm-color-modal__swatches"> 
+                                    { COLORS.map( ( { label, hex } ) => ( 
+                                        <button 
+                                            key={ hex + label } 
+                                            title={ `${ label } (${ hex })` }
+                                            className={ `wm-color-swatch${ activeHex === hex ? ' is-selected' : '' }` } 
+                                            style={ { 
+                                                width:'50px', 
+                                                height:'25px', 
+                                                margin:'5px 2px', 
+                                                boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px', 
+                                                background:  hex, 
+                                                borderColor: activeHex === hex 
+                                                    ? '#3858e9' 
+                                                    : ( isLight( hex ) ? '#dee2e6' : 'transparent' ), 
+                                            } } 
+                                            onClick={ () => onApply( hex ) } 
+                                        > 
+                                            { activeHex === hex && ( 
+                                                <span style={ { color: isLight( hex ) ? '#000' : '#fff', fontSize: 12, lineHeight: 1 } }>✓</span> 
+                                            ) } 
+                                        </button> 
+                                    ) ) } 
+                                </div> 
+                            ) } 
+
+                            { /* ── Custom picker tab ── */ } 
+                            { tab.name === 'picker' && ( 
+                                <div className="wm-color-modal__picker"> 
+                                    <ColorPicker 
+                                        color={ custom } 
+                                        onChange={ setCustom } 
+                                        enableAlpha={ false } 
+                                    /> 
+                                    <Button 
+                                        variant="primary" 
+                                        style={ { width: '100%', marginTop: 12, justifyContent: 'center' } } 
+                                        onClick={ () => onApply( custom ) } 
+                                    > 
+                                        { __( 'Apply', 'wmblocks' ) } 
+                                    </Button> 
+                                </div> 
+                            ) } 
+
+                        </div> 
+                    ) } 
+                </TabPanel> 
+
+            </div> 
+        </Modal> 
     );
 }
 
-// ── Color modal — uses WP Modal + TabPanel components ─────────────────────────
-function WmColorModal( { title, cssProp, activeHex, onApply, onClear, onClose } ) {
-	const [ custom, setCustom ] = useState( activeHex || '#0d6efd' );
-
-	const tabs = [
-		{ name: 'presets', title: __( 'Presets', 'wmblocks' ) },
-		{ name: 'picker',  title: __( 'Custom',  'wmblocks' ) },
-	];
-
-	return (
-		<Modal
-			title={ title }
-			onRequestClose={ onClose }
-			className="wm-color-modal"
-			size="medium"
-		>
-			<div className="wm-color-modal__body">
-
-				{ /* Active colour indicator + remove button */ }
-				{ activeHex && (
-					<div className="wm-color-modal__current">
-						<ColorIndicator colorValue={ activeHex } />
-						<code className="wm-color-modal__current-code">{ activeHex }</code>
-						<Button
-							variant="tertiary"
-							isDestructive
-							size="compact"
-							onClick={ onClear }
-						>{ __( '✕ Remove', 'wmblocks' ) }</Button>
-					</div>
-				) }
-
-				{ /* WP TabPanel — Presets / Custom */ }
-				<TabPanel
-					className="wm-color-modal__tabpanel"
-					activeClass="is-active"
-					tabs={ tabs }
-				>
-					{ ( tab ) => (
-						<div className="wm-color-modal__tab-content">
-
-							{ /* ── Presets tab ── */ }
-							{ tab.name === 'presets' && (
-								<div className="wm-color-modal__swatches">
-									{ COLORS.map( ( { label, hex } ) => (
-										<button
-											key={ hex + label }
-											title={ `${ label } (${ hex })` }
-											className={ `wm-color-swatch${ activeHex === hex ? ' is-selected' : '' }` }
-											style={ {
-                                                       width:'50px',
-                                    height:'25px',
-                                    margin:'5px 2px',
-                                    boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
-												background:  hex,
-												borderColor: activeHex === hex
-													? '#3858e9'
-													: ( isLight( hex ) ? '#dee2e6' : 'transparent' ),
-											} }
-											onClick={ () => onApply( hex ) }
-										>
-											{ activeHex === hex && (
-												<span style={ { color: isLight( hex ) ? '#000' : '#fff', fontSize: 12, lineHeight: 1 } }>✓</span>
-											) }
-										</button>
-									) ) }
-								</div>
-							) }
-
-							{ /* ── Custom picker tab ── */ }
-							{ tab.name === 'picker' && (
-								<div className="wm-color-modal__picker">
-									<ColorPicker
-										color={ custom }
-										onChange={ setCustom }
-										enableAlpha={ false }
-									/>
-									<Button
-										variant="primary"
-										style={ { width: '100%', marginTop: 12, justifyContent: 'center' } }
-										onClick={ () => onApply( custom ) }
-									>
-										{ __( 'Apply', 'wmblocks' ) }
-									</Button>
-								</div>
-							) }
-
-						</div>
-					) }
-				</TabPanel>
-
-			</div>
-		</Modal>
-	);
-}
-// ── Generic toolbar button factory ────────────────────────────────────────────
+// ── RESTORED: Generic toolbar button factory (For Text & BG Color Formaps) ──
 function makeButton( fmtName, cssProp, iconLabel, toolbarLabel, modalTitle ) {
     return function WmColorButton( { value, onChange } ) {
         const [ open, setOpen ] = useState( false );
@@ -273,102 +212,126 @@ function makeButton( fmtName, cssProp, iconLabel, toolbarLabel, modalTitle ) {
             } ) );
         }, [ value, onChange ] );
 
-        const handleClear = useCallback( () => {
-            setOpen( false );
-            onChange( removeFormat( value, fmtName ) );
-        }, [ value, onChange ] );
+        const handleClear = useCallback( () => { 
+            setOpen( false ); 
+            onChange( removeFormat( value, fmtName ) ); 
+        }, [ value, onChange ] ); 
 
-        return (
-            <>
-                <RichTextToolbarButton
-                    icon={ () => (
-                        <span className="wm-color-tool-icon">
-                            <span className="wm-color-tool-icon__label">{ iconLabel }</span>
-                            <span
-                                className="wm-color-tool-icon__bar"
-                                style={ {
-                                    background:  activeHex || 'linear-gradient(90deg,#e63946,#ffc107,#198754,#0d6efd)',
-                                    opacity:     activeHex ? 1 : 0.5,
-                                } }
-                            />
-                        </span>
-                    ) }
-                    title={ toolbarLabel }
-                    onClick={ () => setOpen( v => ! v ) }
-                    isActive={ !! activeHex }
-                />
+        return ( 
+            <> 
+                <RichTextToolbarButton 
+                    icon={ () => ( 
+                        <span className="wm-color-tool-icon"> 
+                            <span className="wm-color-tool-icon__label">{ iconLabel }</span> 
+                            <span 
+                                className="wm-color-tool-icon__bar" 
+                                style={ { 
+                                    background:  activeHex || 'linear-gradient(90deg,#e63946,#ffc107,#198754,#0d6efd)', 
+                                    opacity:     activeHex ? 1 : 0.5, 
+                                } } 
+                            /> 
+                        </span> 
+                    ) } 
+                    title={ toolbarLabel } 
+                    onClick={ () => setOpen( v => ! v ) } 
+                    isActive={ !! activeHex } 
+                /> 
 
-                { open && (
-                    <WmColorModal
-                        title={ modalTitle }
-                        cssProp={ cssProp }
-                        activeHex={ activeHex }
-                        onApply={ handleApply }
-                        onClear={ handleClear }
-                        // FIX 2: Fixed typo "falseexport"
+                { open && ( 
+                    <WmColorModal 
+                        title={ modalTitle } 
+                        cssProp={ cssProp } 
+                        activeHex={ activeHex } 
+                        onApply={ handleApply } 
+                        onClear={ handleClear } 
                         onClose={ () => setOpen( false ) } 
-                    />
-                ) }
-            </>
+                    /> 
+                ) } 
+            </> 
         );
     };
 }
 
-// ── Specialized Text Gradient Toolbar Button Component ────────────────────────
+// ── Specialized Text Gradient Native Dropdown Picker (MODAL-FREE) ──────────── 
 function WmGradientButton( { value, onChange } ) {
-    const [ open, setOpen ] = useState( false );
     const activeGradient = getActiveGradient( value );
+    const [ selectedGradient, setSelectedGradient ] = useState( activeGradient || GRADIENT_PRESETS[0].gradient );
 
-    const handleApply = useCallback( grad => {
-        setOpen( false );
-        const inlineStyle = `background:${ grad };-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;`;
-        
+    const handleApplyGradient = ( grad, onClose ) => {
+        onClose();
         onChange( applyFormat( value, {
             type: FMT_GRADIENT,
-            attributes: { style: inlineStyle },
+            attributes: { style: `background:${ grad };-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;` },
         } ) );
-    }, [ value, onChange ] );
+    };
 
-    const handleClear = useCallback( () => {
-        setOpen( false );
+    const handleClearGradient = ( onClose ) => {
+        onClose();
         onChange( removeFormat( value, FMT_GRADIENT ) );
-    }, [ value, onChange ] );
+    };
+
+    if ( ! GradientPicker ) return null;
 
     return (
-        <>
-            <RichTextToolbarButton
-                icon={ () => (
-                    <span className="wm-color-tool-icon">
-                        <span className="wm-color-tool-icon__label" style={ { fontWeight:900, fontFamily:'sans-serif', fontSize:13, background: activeGradient || 'linear-gradient(90deg,#e63946,#0d6efd)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' } }>GR</span>
-                        <span
-                            className="wm-color-tool-icon__bar"
-                            style={ {
-                                background: activeGradient || 'linear-gradient(90deg,#e63946,#ffc107,#198754,#0d6efd)',
-                                opacity: activeGradient ? 1 : 0.5,
-                            } }
-                        />
-                    </span>
-                ) }
-                title={ __( 'Text Gradient', 'wmblocks' ) }
-                onClick={ () => setOpen( v => ! v ) }
-                isActive={ !! activeGradient }
-            />
-
-            { open && (
-                <WmGradientModal
+        <Dropdown
+            popoverProps={ { 
+                placement: 'bottom-start',
+                focusOnMount: 'container'
+            } }
+            renderToggle={ ( { isOpen, onToggle } ) => (
+                <RichTextToolbarButton
+                    icon={ () => (
+                        <span className="wm-color-tool-icon">
+                            <span className="wm-color-tool-icon__label" style={ { fontWeight: 900, background: activeGradient || 'linear-gradient(90deg,#e63946,#0d6efd)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' } }>GR</span>
+                            <span
+                                className="wm-color-tool-icon__bar"
+                                style={ {
+                                    background: activeGradient || 'linear-gradient(90deg,#e63946,#ffc107,#198754,#0d6efd)',
+                                    opacity: activeGradient ? 1 : 0.5,
+                                } }
+                            />
+                        </span>
+                    ) }
                     title={ __( 'Text Gradient', 'wmblocks' ) }
-                    activeGradient={ activeGradient }
-                    onApply={ handleApply }
-                    onClear={ handleClear }
-                    // FIX 3: Fixed typo "falseexport"
-                    onClose={ () => setOpen( false ) } 
+                    onClick={ onToggle }
+                    isActive={ !! activeGradient }
+                    aria-expanded={ isOpen }
                 />
-            )}
-        </>
+            ) }
+            renderContent={ ( { onClose } ) => (
+                <div className="wm-dropdown-gradient-picker" style={ { padding: '12px', width: '260px' } }>
+                    
+                    { activeGradient && (
+                        <div style={ { display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', borderBottom: '1px solid #eee', paddingBottom: '8px' } }>
+                            <div style={ { display: 'flex', alignItems: 'center', gap: '6px' } }>
+                                <ColorIndicator colorValue={ activeGradient } />
+                                <span style={ { fontSize: '12px', color: '#666' } }>{ __( 'Active', 'wmblocks' ) }</span>
+                            </div>
+                            <Button variant="tertiary" isDestructive size="compact" onClick={ () => handleClearGradient( onClose ) }>
+                                { __( 'Clear', 'wmblocks' ) }
+                            </Button>
+                        </div>
+                    ) }
+
+                    <GradientPicker
+                        value={ selectedGradient }
+                        onChange={ setSelectedGradient }
+                        gradients={ GRADIENT_PRESETS }
+                    />
+
+                    <Button 
+                        variant="primary" 
+                        size="compact" 
+                        onClick={ () => handleApplyGradient( selectedGradient, onClose ) }
+                        style={ { width: '100%', marginTop: '16px', justifyContent: 'center' } }
+                    >
+                        { __( 'Apply Gradient', 'wmblocks' ) }
+                    </Button>
+                </div>
+            ) }
+        />
     );
 }
-
-
 
 // ── Make formats available in ALL rich-text blocks ───────────────────────────
 // registerFormatType alone is enough for blocks where allowedFormats is

@@ -2,17 +2,38 @@
 /**
  * render.php — wmblocks/div
  */
-
-// 1. Structural tracking variable to avoid duplicate style tag delivery
 static $has_printed_typography_css = false;
+/**
+ * 1. CHECK IF USER HAS ACTUALLY INTERVENED IN TYPOGRAPHY CONTROLS
+ * If everything is completely default/empty, this block leaves global styles untouched.
+ */
+$has_typography_changes = ! empty( $attributes['fontFamily'] ) ||
+                          ! empty( $attributes['fontWeight'] ) ||
+                          ! empty( $attributes['textDecoration'] ) ||
+                          ! empty( $attributes['textTransform'] ) ||
+                          ! empty( $attributes['textFillColor'] ) ||
+                          ! empty( $attributes['textStrokeColor'] ) ||
+                          ( ! empty( $attributes['textShadowType'] ) && $attributes['textShadowType'] !== 'none' ) ||
+                          ! empty( $attributes['fontSizeXs'] ) || ! empty( $attributes['fontSizeSm'] ) ||
+                          ! empty( $attributes['fontSizeMd'] ) || ! empty( $attributes['fontSizeLg'] ) ||
+                          ! empty( $attributes['fontSizeXl'] ) || ! empty( $attributes['fontSizeXxl'] ) ||
+                          ! empty( $attributes['lineHeightXs'] ) || ! empty( $attributes['lineHeightSm'] ) ||
+                          ! empty( $attributes['lineHeightMd'] ) || ! empty( $attributes['lineHeightLg'] ) ||
+                          ! empty( $attributes['lineHeightXl'] ) || ! empty( $attributes['lineHeightXxl'] ) ||
+                          ! empty( $attributes['letterSpacingXs'] ) || ! empty( $attributes['letterSpacingSm'] ) ||
+                          ! empty( $attributes['letterSpacingMd'] ) || ! empty( $attributes['letterSpacingLg'] ) ||
+                          ! empty( $attributes['letterSpacingXl'] ) || ! empty( $attributes['letterSpacingXxl'] ) ||
+                          ! empty( $attributes['textIndentXs'] ) || ! empty( $attributes['textIndentSm'] ) ||
+                          ! empty( $attributes['textIndentMd'] ) || ! empty( $attributes['textIndentLg'] ) ||
+                          ! empty( $attributes['textIndentXl'] ) || ! empty( $attributes['textIndentXxl'] );
 
-// 2. Load the custom Google Font ONLY if a family is explicitly selected
-$has_custom_font = ! empty( $attributes['fontFamily'] );
-if ( $has_custom_font ) {
+// 2. Load Custom Google Font ONLY if family is deliberately set
+if ( ! empty( $attributes['fontFamily'] ) ) {
     $font_name = $attributes['fontFamily'];
     $font_url  = "https://fonts.googleapis.com/css2?family=" . str_replace( ' ', '+', $font_name ) . ":wght@100;300;400;600;700;900&display=swap";
     echo '<link rel="stylesheet" href="' . esc_url( $font_url ) . '" type="text/css" media="all" />';
 }
+
 
 $anchor  = ! empty( $attributes['anchor'] ) ? ' id="' . esc_attr( $attributes['anchor'] ) . '"' : '';
 $classes = ['div'];
@@ -65,90 +86,64 @@ if ( ! empty( $attributes['bgImageUrl'] ) ) {
     $standard_styles[] = 'background-image: ' . esc_attr( $attributes['bgGradient'] );
 }
 
-// Extract Typography Rules completely separate from WordPress core sanitizers
-$typography_styles = get_wm_typography_styles( $attributes );
-$has_drop_cap      = ! empty( $attributes['dropCap'] );
+/**
+ * 3. CONDITIONAL TYPOGRAPHY SYSTEM ENGAGEMENT
+ * We only target classes and print layouts if modifications are explicitly active.
+ */
+if ( $has_typography_changes ) {
+    $classes[] = 'wmblocks-typography-target'; 
+    $typography_styles = get_wm_typography_styles( $attributes );
+    
+    if ( ! empty( $typography_styles ) ) {
+        $standard_styles = array_merge( $standard_styles, $typography_styles );
+    }
 
-$classes[] = 'wmblocks-typography-target'; 
+    // Print the CSS structural stylesheet ONLY once, and ONLY when needed
+    if ( ! $has_printed_typography_css ) {
+        ?>
+        <style id="wmblocks-typography-engine-layout">
+            .wmblocks-typography-target {
+                font-size: var(--wm-font-size-xs);
+                line-height: var(--wm-line-height-xs);
+                letter-spacing: var(--wm-letter-spacing-xs);
+                text-indent: var(--wm-text-indent-xs);
+            }
+            .wmblocks-typography-target p,
+            .wmblocks-typography-target h1,
+            .wmblocks-typography-target h2,
+            .wmblocks-typography-target h3,
+            .wmblocks-typography-target h4,
+            .wmblocks-typography-target h5,
+            .wmblocks-typography-target h6,
+            .wmblocks-typography-target span,
+            .wmblocks-typography-target a {
+                font-size: inherit !important;
+                line-height: inherit !important;
+                letter-spacing: inherit !important;
+                text-indent: inherit !important;
+                font-family: inherit;
+                font-weight: inherit;
+                text-decoration: inherit;
+                text-transform: inherit;
+                -webkit-text-fill-color: inherit;
+                -webkit-text-stroke-width: inherit;
+                -webkit-text-stroke-color: inherit;
+                text-shadow: inherit;
+            }
+            @media (min-width: 576px) { .wmblocks-typography-target { font-size: var(--wm-font-size-sm, var(--wm-font-size-xs)); line-height: var(--wm-line-height-sm, var(--wm-line-height-xs)); letter-spacing: var(--wm-letter-spacing-sm, var(--wm-letter-spacing-xs)); text-indent: var(--wm-text-indent-sm, var(--wm-text-indent-xs)); } }
+            @media (min-width: 768px) { .wmblocks-typography-target { font-size: var(--wm-font-size-md, var(--wm-font-size-sm)); line-height: var(--wm-line-height-md, var(--wm-line-height-xs)); letter-spacing: var(--wm-letter-spacing-md, var(--wm-letter-spacing-xs)); text-indent: var(--wm-text-indent-md, var(--wm-text-indent-xs)); } }
+            @media (min-width: 992px) { .wmblocks-typography-target { font-size: var(--wm-font-size-lg, var(--wm-font-size-md)); line-height: var(--wm-line-height-lg, var(--wm-line-height-xs)); letter-spacing: var(--wm-letter-spacing-lg, var(--wm-letter-spacing-xs)); text-indent: var(--wm-text-indent-lg, var(--wm-text-indent-xs)); } }
+            @media (min-width: 1200px) { .wmblocks-typography-target { font-size: var(--wm-font-size-xl, var(--wm-font-size-lg)); line-height: var(--wm-line-height-xl, var(--wm-line-height-xs)); letter-spacing: var(--wm-letter-spacing-xl, var(--wm-letter-spacing-xs)); text-indent: var(--wm-text-indent-xl, var(--wm-text-indent-xs)); } }
+            @media (min-width: 1400px) { .wmblocks-typography-target { font-size: var(--wm-font-size-xxl, var(--wm-font-size-xl)); line-height: var(--wm-line-height-xxl, var(--wm-line-height-xs)); letter-spacing: var(--wm-letter-spacing-xxl, var(--wm-letter-spacing-xs)); text-indent: var(--wm-text-indent-xxl, var(--wm-text-indent-xs)); } }
+        </style>
+        <?php
+        $has_printed_typography_css = true;
+    }
+}
+
+$has_drop_cap      = ! empty( $attributes['dropCap'] );
 if ( $has_drop_cap ) {
     $classes[] = 'has-drop-cap';
-}
-// Print the responsive rules globally once per page render cycle
-if ( ! $has_printed_typography_css ) {
-    ?>
-    <style id="wmblocks-typography-engine-layout">
-        .wmblocks-typography-target {
-            font-size: var(--wm-font-size-xs);
-            line-height: var(--wm-line-height-xs);
-            letter-spacing: var(--wm-letter-spacing-xs);
-            text-indent: var(--wm-text-indent-xs);
-        }
-        /* Forces inheritance downstream to Gutenberg inner content elements */
-        .wmblocks-typography-target p,
-        .wmblocks-typography-target h1,
-        .wmblocks-typography-target h2,
-        .wmblocks-typography-target h3,
-        .wmblocks-typography-target h4,
-        .wmblocks-typography-target h5,
-        .wmblocks-typography-target h6,
-        .wmblocks-typography-target span,
-        .wmblocks-typography-target a {
-            font-size: inherit !important;
-            line-height: inherit !important;
-            letter-spacing: inherit !important;
-            text-indent: inherit !important;
-            font-family: inherit;
-            font-weight: inherit;
-            text-decoration: inherit;
-            text-transform: inherit;
-            -webkit-text-fill-color: inherit;
-            -webkit-text-stroke-width: inherit;
-            -webkit-text-stroke-color: inherit;
-            text-shadow: inherit;
-        }
-        @media (min-width: 576px) {
-            .wmblocks-typography-target {
-                font-size: var(--wm-font-size-sm, var(--wm-font-size-xs));
-                line-height: var(--wm-line-height-sm, var(--wm-line-height-xs));
-                letter-spacing: var(--wm-letter-spacing-sm, var(--wm-letter-spacing-xs));
-                text-indent: var(--wm-text-indent-sm, var(--wm-text-indent-xs));
-            }
-        }
-        @media (min-width: 768px) {
-            .wmblocks-typography-target {
-                font-size: var(--wm-font-size-md, var(--wm-font-size-sm));
-                line-height: var(--wm-line-height-md, var(--wm-line-height-xs));
-                letter-spacing: var(--wm-letter-spacing-md, var(--wm-letter-spacing-xs));
-                text-indent: var(--wm-text-indent-md, var(--wm-text-indent-xs));
-            }
-        }
-        @media (min-width: 992px) {
-            .wmblocks-typography-target {
-                font-size: var(--wm-font-size-lg, var(--wm-font-size-md));
-                line-height: var(--wm-line-height-lg, var(--wm-line-height-xs));
-                letter-spacing: var(--wm-letter-spacing-lg, var(--wm-letter-spacing-xs));
-                text-indent: var(--wm-text-indent-lg, var(--wm-text-indent-xs));
-            }
-        }
-        @media (min-width: 1200px) {
-            .wmblocks-typography-target {
-                font-size: var(--wm-font-size-xl, var(--wm-font-size-lg));
-                line-height: var(--wm-line-height-xl, var(--wm-line-height-xs));
-                letter-spacing: var(--wm-letter-spacing-xl, var(--wm-letter-spacing-xs));
-                text-indent: var(--wm-text-indent-xl, var(--wm-text-indent-xs));
-            }
-        }
-        @media (min-width: 1400px) {
-            .wmblocks-typography-target {
-                font-size: var(--wm-font-size-xxl, var(--wm-font-size-xl));
-                line-height: var(--wm-line-height-xxl, var(--wm-line-height-xs));
-                letter-spacing: var(--wm-letter-spacing-xxl, var(--wm-letter-spacing-xs));
-                text-indent: var(--wm-text-indent-xxl, var(--wm-text-indent-xs));
-            }
-        }
-    </style>
-    <?php
-    $has_printed_typography_css = true;
 }
 
 $has_video = ! empty( $attributes['bgVideoUrl'] );
