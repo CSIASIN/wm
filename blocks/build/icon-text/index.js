@@ -2,9 +2,9 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/icon-link/edit.js"
+/***/ "./src/icon-text/edit.js"
 /*!*******************************!*\
-  !*** ./src/icon-link/edit.js ***!
+  !*** ./src/icon-text/edit.js ***!
   \*******************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -18,16 +18,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/icon-link/editor.scss");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/icon-text/editor.scss");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
 
-
-// Bootstrap built-in SVG icons — the most commonly used ones from Bootstrap Icons
-// that work well as inline SVGs with currentColor
 
 const PRESET_ICONS = [{
   label: 'Arrow Right',
@@ -53,105 +50,85 @@ const PRESET_ICONS = [{
 }, {
   label: 'Info Circle',
   value: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>'
-}, {
-  label: 'Check Circle',
-  value: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>'
-}, {
-  label: 'Plus Circle',
-  value: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/></svg>'
-}, {
-  label: 'Github',
-  value: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>'
-}, {
-  label: 'Twitter / X',
-  value: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/></svg>'
 }];
-const LINK_COLORS = [{
+const WRAPPER_TAGS = [{
+  label: 'Paragraph (<p>)',
+  value: 'p'
+}, {
+  label: 'Span (<span>)',
+  value: 'span'
+}, {
+  label: 'Heading 1 (<h1>)',
+  value: 'h1'
+}, {
+  label: 'Heading 2 (<h2>)',
+  value: 'h2'
+}, {
+  label: 'Heading 3 (<h3>)',
+  value: 'h3'
+}, {
+  label: 'Heading 4 (<h4>)',
+  value: 'h4'
+}, {
+  label: 'Heading 5 (<h5>)',
+  value: 'h5'
+}, {
+  label: 'Heading 6 (<h6>)',
+  value: 'h6'
+}];
+const TEXT_COLORS = [{
   label: '— Default —',
   value: ''
 }, {
-  label: 'link-primary',
-  value: 'link-primary'
+  label: 'text-primary',
+  value: 'text-primary'
 }, {
-  label: 'link-secondary',
-  value: 'link-secondary'
+  label: 'text-secondary',
+  value: 'text-secondary'
 }, {
-  label: 'link-success',
-  value: 'link-success'
+  label: 'text-success',
+  value: 'text-success'
 }, {
-  label: 'link-danger',
-  value: 'link-danger'
+  label: 'text-danger',
+  value: 'text-danger'
 }, {
-  label: 'link-warning',
-  value: 'link-warning'
+  label: 'text-warning',
+  value: 'text-warning'
 }, {
-  label: 'link-info',
-  value: 'link-info'
+  label: 'text-info',
+  value: 'text-info'
 }, {
-  label: 'link-light',
-  value: 'link-light'
+  label: 'text-light',
+  value: 'text-light'
 }, {
-  label: 'link-dark',
-  value: 'link-dark'
-}, {
-  label: 'link-body-emphasis',
-  value: 'link-body-emphasis'
+  label: 'text-dark',
+  value: 'text-dark'
 }];
-const LINK_UNDERLINE = [{
+const UNDERLINE_OPTS = [{
   label: '— Default —',
   value: ''
 }, {
-  label: 'link-underline-primary',
-  value: 'link-underline-primary'
+  label: 'text-decoration-underline',
+  value: 'text-decoration-underline'
 }, {
-  label: 'link-underline-secondary',
-  value: 'link-underline-secondary'
-}, {
-  label: 'link-underline-success',
-  value: 'link-underline-success'
-}, {
-  label: 'link-underline-danger',
-  value: 'link-underline-danger'
-}, {
-  label: 'link-underline-warning',
-  value: 'link-underline-warning'
-}, {
-  label: 'link-underline-info',
-  value: 'link-underline-info'
-}, {
-  label: 'link-underline-opacity-0',
-  value: 'link-underline-opacity-0'
-}, {
-  label: 'link-underline-opacity-10',
-  value: 'link-underline-opacity-10'
-}, {
-  label: 'link-underline-opacity-25',
-  value: 'link-underline-opacity-25'
-}, {
-  label: 'link-underline-opacity-75',
-  value: 'link-underline-opacity-75'
-}, {
-  label: 'link-underline-opacity-100',
-  'value': 'link-underline-opacity-100'
+  label: 'text-decoration-none',
+  value: 'text-decoration-none'
 }];
-const LINK_OPACITY = [{
+const OPACITY_OPTS = [{
   label: '— Default —',
   value: ''
 }, {
-  label: 'link-opacity-10',
-  value: 'link-opacity-10'
+  label: 'text-opacity-25',
+  value: 'text-opacity-25'
 }, {
-  label: 'link-opacity-25',
-  value: 'link-opacity-25'
+  label: 'text-opacity-50',
+  value: 'text-opacity-50'
 }, {
-  label: 'link-opacity-50',
-  value: 'link-opacity-50'
+  label: 'text-opacity-75',
+  value: 'text-opacity-75'
 }, {
-  label: 'link-opacity-75',
-  value: 'link-opacity-75'
-}, {
-  label: 'link-opacity-100',
-  value: 'link-opacity-100'
+  label: 'text-opacity-100',
+  value: 'text-opacity-100'
 }];
 const FONT_SIZE_OPTS = [{
   label: '— Inherit —',
@@ -193,70 +170,45 @@ function Edit({
   setAttributes
 }) {
   const {
-    url,
-    newTab,
-    linkText,
+    wrapperTag,
+    text,
     iconSvg,
     iconPosition,
     hoverAnim,
-    linkColor,
-    linkUnderline,
-    linkOpacity,
+    textColor,
+    underlineClass,
+    textOpacity,
     fontSize,
     gap,
     customClass
   } = attributes;
-
-  // Build link class
-  const linkClass = ['icon-link', hoverAnim ? 'icon-link-hover' : '', linkColor || '', linkUnderline || '', linkOpacity || '', fontSize || '', gap || '', customClass || ''].filter(Boolean).join(' ');
+  const Tag = wrapperTag || 'p';
+  const textClass = ['d-inline-flex align-items-center',
+  // Base Bootstrap Layout styles
+  hoverAnim ? 'icon-link-hover' : '',
+  // Retains dynamic hover architecture shifts
+  textColor || '', underlineClass || '', textOpacity || '', fontSize || '', gap || '', customClass || ''].filter(Boolean).join(' ');
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-    className: 'wmblocks-icon-link-wrapper'
+    className: 'wmblocks-icon-text-wrapper'
   });
-
-  // Render icon safely
-  const IconPreview = ({
-    svg,
-    size = '1em'
-  }) => {
-    if (!svg) return null;
-    // Clone SVG and set width/height for preview
-    const sized = svg.replace(/width="[^"]*"/, `width="${size}"`).replace(/height="[^"]*"/, `height="${size}"`);
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-      dangerouslySetInnerHTML: {
-        __html: sized
-      },
-      style: {
-        display: 'inline-flex',
-        alignItems: 'center'
-      }
-    });
-  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Link', 'wmblocks'),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Structure', 'wmblocks'),
         initialOpen: true,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('URL', 'wmblocks'),
-          value: url,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('HTML Element Wrapper', 'wmblocks'),
+          value: wrapperTag,
+          options: WRAPPER_TAGS,
           onChange: v => setAttributes({
-            url: v
-          }),
-          type: "url",
-          placeholder: "https://"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Open in new tab', 'wmblocks'),
-          checked: !!newTab,
-          onChange: v => setAttributes({
-            newTab: v
+            wrapperTag: v
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Hover animation (icon-link-hover)', 'wmblocks'),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Hover Animation Nudge', 'wmblocks'),
           checked: !!hoverAnim,
           onChange: v => setAttributes({
             hoverAnim: v
-          }),
-          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Nudges the icon on hover.', 'wmblocks')
+          })
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Icon', 'wmblocks'),
@@ -357,41 +309,41 @@ function Edit({
             iconSvg: v
           }),
           rows: 3,
-          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Paste any <svg> markup. Use fill="currentColor" to inherit link color.', 'wmblocks')
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Paste raw <svg> markup. Use fill="currentColor" inside paths to map color modifications.', 'wmblocks')
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Style', 'wmblocks'),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Style Opts', 'wmblocks'),
         initialOpen: false,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Link Color', 'wmblocks'),
-          value: linkColor,
-          options: LINK_COLORS,
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Color Style', 'wmblocks'),
+          value: textColor,
+          options: TEXT_COLORS,
           onChange: v => setAttributes({
-            linkColor: v
+            textColor: v
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Underline', 'wmblocks'),
-          value: linkUnderline,
-          options: LINK_UNDERLINE,
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Decorations', 'wmblocks'),
+          value: underlineClass,
+          options: UNDERLINE_OPTS,
           onChange: v => setAttributes({
-            linkUnderline: v
+            underlineClass: v
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Link Opacity', 'wmblocks'),
-          value: linkOpacity,
-          options: LINK_OPACITY,
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Opacity Layer', 'wmblocks'),
+          value: textOpacity,
+          options: OPACITY_OPTS,
           onChange: v => setAttributes({
-            linkOpacity: v
+            textOpacity: v
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Font Size', 'wmblocks'),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Font Scale', 'wmblocks'),
           value: fontSize,
           options: FONT_SIZE_OPTS,
           onChange: v => setAttributes({
             fontSize: v
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Icon Gap', 'wmblocks'),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Icon Gap Spacing', 'wmblocks'),
           value: gap,
           options: GAP_OPTS,
           onChange: v => setAttributes({
@@ -407,14 +359,11 @@ function Edit({
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       ...blockProps,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
-        href: "#",
-        className: linkClass,
-        onClick: e => e.preventDefault(),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Tag, {
+        className: textClass,
         style: {
           display: 'inline-flex',
-          alignItems: 'center',
-          textDecoration: 'none'
+          alignItems: 'center'
         },
         children: [iconPosition === 'start' && iconSvg && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
           style: {
@@ -429,7 +378,7 @@ function Edit({
           contentEditable: true,
           suppressContentEditableWarning: true,
           onInput: e => setAttributes({
-            linkText: e.currentTarget.textContent
+            text: e.currentTarget.textContent
           }),
           onKeyDown: e => e.key === 'Enter' && (e.preventDefault(), e.currentTarget.blur()),
           style: {
@@ -437,7 +386,7 @@ function Edit({
             cursor: 'text',
             minWidth: '40px'
           },
-          children: linkText
+          children: text
         }), iconPosition === 'end' && iconSvg && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
           style: {
             display: 'inline-flex',
@@ -448,30 +397,24 @@ function Edit({
             __html: iconSvg
           }
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         style: {
           display: 'flex',
           gap: '8px',
           marginTop: '6px',
           flexWrap: 'wrap'
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
           style: {
             fontSize: '10px',
             fontFamily: 'monospace',
-            color: '#007cba',
-            background: '#f0f6fc',
+            color: '#6610f2',
+            background: '#f3ebff',
             padding: '2px 6px',
             borderRadius: '3px'
           },
-          children: linkClass
-        }), url && url !== '#' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
-          style: {
-            fontSize: '10px',
-            color: '#6c757d'
-          },
-          children: ["\u2192 ", url]
-        })]
+          children: `<${Tag} class="${textClass}">`
+        })
       })]
     })]
   });
@@ -479,53 +422,10 @@ function Edit({
 
 /***/ },
 
-/***/ "./src/icon-link/index.js"
-/*!********************************!*\
-  !*** ./src/icon-link/index.js ***!
-  \********************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/icon-link/style.scss");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit */ "./src/icon-link/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/icon-link/block.json");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
-
-
-
-
-
-
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
-  edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
-  save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
-  })
-});
-
-/***/ },
-
-/***/ "./src/icon-link/editor.scss"
+/***/ "./src/icon-text/editor.scss"
 /*!***********************************!*\
-  !*** ./src/icon-link/editor.scss ***!
+  !*** ./src/icon-text/editor.scss ***!
   \***********************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ },
-
-/***/ "./src/icon-link/style.scss"
-/*!**********************************!*\
-  !*** ./src/icon-link/style.scss ***!
-  \**********************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -584,13 +484,13 @@ module.exports = window["wp"]["i18n"];
 
 /***/ },
 
-/***/ "./src/icon-link/block.json"
+/***/ "./src/icon-text/block.json"
 /*!**********************************!*\
-  !*** ./src/icon-link/block.json ***!
+  !*** ./src/icon-text/block.json ***!
   \**********************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wmblocks/icon-link","version":"0.1.0","title":"Icon Link","category":"watermelon-blocks","icon":"admin-links","description":"Bootstrap icon-link helper — an anchor with an inline SVG icon and text, with optional hover animation.","example":{},"supports":{"html":false,"anchor":true},"attributes":{"anchor":{"type":"string","default":""},"url":{"type":"string","default":"#"},"newTab":{"type":"boolean","default":false},"linkText":{"type":"string","default":"Icon link"},"iconSvg":{"type":"string","default":""},"iconPosition":{"type":"string","default":"start"},"hoverAnim":{"type":"boolean","default":false},"linkColor":{"type":"string","default":""},"linkUnderline":{"type":"string","default":""},"linkOpacity":{"type":"string","default":""},"fontSize":{"type":"string","default":""},"gap":{"type":"string","default":""},"customClass":{"type":"string","default":""}},"textdomain":"wm","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wmblocks/icon-text","version":"0.1.0","title":"Icon Text","category":"watermelon-blocks","icon":"editor-textcolor","description":"An inline icon accompanied by customizable text, rendered inside your choice of a structural HTML wrapper.","example":{},"supports":{"html":false,"anchor":true},"attributes":{"anchor":{"type":"string","default":""},"wrapperTag":{"type":"string","default":"p"},"text":{"type":"string","default":"Icon text element"},"iconSvg":{"type":"string","default":""},"iconPosition":{"type":"string","default":"start"},"hoverAnim":{"type":"boolean","default":false},"textColor":{"type":"string","default":""},"underlineClass":{"type":"string","default":""},"textOpacity":{"type":"string","default":""},"fontSize":{"type":"string","default":""},"gap":{"type":"string","default":""},"customClass":{"type":"string","default":""}},"textdomain":"wm","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
 
 /***/ }
 
@@ -626,42 +526,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/tru
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/chunk loaded */
-/******/ 	(() => {
-/******/ 		var deferred = [];
-/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
-/******/ 			if(chunkIds) {
-/******/ 				priority = priority || 0;
-/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
-/******/ 				deferred[i] = [chunkIds, fn, priority];
-/******/ 				return;
-/******/ 			}
-/******/ 			var notFulfilled = Infinity;
-/******/ 			for (var i = 0; i < deferred.length; i++) {
-/******/ 				var [chunkIds, fn, priority] = deferred[i];
-/******/ 				var fulfilled = true;
-/******/ 				for (var j = 0; j < chunkIds.length; j++) {
-/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
-/******/ 						chunkIds.splice(j--, 1);
-/******/ 					} else {
-/******/ 						fulfilled = false;
-/******/ 						if(priority < notFulfilled) notFulfilled = priority;
-/******/ 					}
-/******/ 				}
-/******/ 				if(fulfilled) {
-/******/ 					deferred.splice(i--, 1)
-/******/ 					var r = fn();
-/******/ 					if (r !== undefined) result = r;
-/******/ 				}
-/******/ 			}
-/******/ 			return result;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -702,68 +567,37 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/tru
 /******/ 		};
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/jsonp chunk loading */
-/******/ 	(() => {
-/******/ 		// no baseURI
-/******/ 		
-/******/ 		// object to store loaded and loading chunks
-/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
-/******/ 		var installedChunks = {
-/******/ 			"icon-link/index": 0,
-/******/ 			"icon-link/style-index": 0
-/******/ 		};
-/******/ 		
-/******/ 		// no chunk on demand loading
-/******/ 		
-/******/ 		// no prefetching
-/******/ 		
-/******/ 		// no preloaded
-/******/ 		
-/******/ 		// no HMR
-/******/ 		
-/******/ 		// no HMR manifest
-/******/ 		
-/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
-/******/ 		
-/******/ 		// install a JSONP callback for chunk loading
-/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
-/******/ 			var [chunkIds, moreModules, runtime] = data;
-/******/ 			// add "moreModules" to the modules object,
-/******/ 			// then flag all "chunkIds" as loaded and fire callback
-/******/ 			var moduleId, chunkId, i = 0;
-/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
-/******/ 				for(moduleId in moreModules) {
-/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
-/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
-/******/ 					}
-/******/ 				}
-/******/ 				if(runtime) var result = runtime(__webpack_require__);
-/******/ 			}
-/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
-/******/ 			for(;i < chunkIds.length; i++) {
-/******/ 				chunkId = chunkIds[i];
-/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
-/******/ 					installedChunks[chunkId][0]();
-/******/ 				}
-/******/ 				installedChunks[chunkId] = 0;
-/******/ 			}
-/******/ 			return __webpack_require__.O(result);
-/******/ 		}
-/******/ 		
-/******/ 		var chunkLoadingGlobal = globalThis["webpackChunkwmblocks"] = globalThis["webpackChunkwmblocks"] || [];
-/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
-/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
-/******/ 	})();
-/******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["icon-link/style-index"], () => (__webpack_require__("./src/icon-link/index.js")))
-/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
-/******/ 	
+var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+(() => {
+/*!********************************!*\
+  !*** ./src/icon-text/index.js ***!
+  \********************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/icon-text/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./src/icon-text/block.json");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+
+
+//import './style.scss';
+
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  // Keep standard dynamic PHP processing setup active
+  save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
+  })
+});
+})();
+
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map

@@ -26,10 +26,15 @@ $link_class = implode( ' ', array_filter( [
 
 $target = $new_tab ? ' target="_blank" rel="noopener noreferrer"' : '';
 
-$wrapper_attributes = get_block_wrapper_attributes();
+
+
+$anchor  = ! empty( $attributes['anchor'] ) ? ' id="' . esc_attr( $attributes['anchor'] ) . '"' : '';
+
+$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => $link_class ] );
+
 ?>
-<div <?php echo $wrapper_attributes; ?>>
-	<a href="<?php echo $url; ?>" class="<?php echo $link_class; ?>"<?php echo $target; ?>>
+
+	<a href="<?php echo $url; ?>" <?php echo $anchor; ?> <?php echo $wrapper_attributes; ?> <?php echo $target; ?>>
 		<?php if ( $icon_svg && $icon_position === 'start' ) : ?>
 			<?php echo $icon_svg; ?>
 		<?php endif; ?>
@@ -38,4 +43,4 @@ $wrapper_attributes = get_block_wrapper_attributes();
 			<?php echo $icon_svg; ?>
 		<?php endif; ?>
 	</a>
-</div>
+

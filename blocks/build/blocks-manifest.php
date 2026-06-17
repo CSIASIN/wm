@@ -5674,6 +5674,10 @@ return array(
 			'anchor' => true
 		),
 		'attributes' => array(
+			'anchor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
 			'url' => array(
 				'type' => 'string',
 				'default' => '#'
@@ -5729,6 +5733,78 @@ return array(
 		'style' => 'file:./style-index.css',
 		'render' => 'file:./render.php'
 	),
+	'icon-text' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/icon-text',
+		'version' => '0.1.0',
+		'title' => 'Icon Text',
+		'category' => 'watermelon-blocks',
+		'icon' => 'editor-textcolor',
+		'description' => 'An inline icon accompanied by customizable text, rendered inside your choice of a structural HTML wrapper.',
+		'example' => array(
+			
+		),
+		'supports' => array(
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'anchor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'wrapperTag' => array(
+				'type' => 'string',
+				'default' => 'p'
+			),
+			'text' => array(
+				'type' => 'string',
+				'default' => 'Icon text element'
+			),
+			'iconSvg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'iconPosition' => array(
+				'type' => 'string',
+				'default' => 'start'
+			),
+			'hoverAnim' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'textColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'underlineClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textOpacity' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fontSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'gap' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'customClass' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php'
+	),
 	'image-link' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -5746,6 +5822,10 @@ return array(
 			'anchor' => true
 		),
 		'attributes' => array(
+			'anchor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
 			'layoutMode' => array(
 				'type' => 'string',
 				'default' => 'media'

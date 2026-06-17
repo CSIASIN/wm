@@ -1,12 +1,12 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "wmblocks/icon-link",
+  "name": "wmblocks/icon-text",
   "version": "0.1.0",
-  "title": "Icon Link",
+  "title": "Icon Text",
   "category": "watermelon-blocks",
-  "icon": "admin-links",
-  "description": "Bootstrap icon-link helper — an anchor with an inline SVG icon and text, with optional hover animation.",
+  "icon": "editor-textcolor",
+  "description": "An inline icon accompanied by customizable text, rendered inside your choice of a structural HTML wrapper.",
   "example": {},
   "supports": {
     "html": false,
@@ -17,17 +17,13 @@
       "type": "string",
       "default": ""
     },
-    "url": {
+    "wrapperTag": {
       "type": "string",
-      "default": "#"
+      "default": "p"
     },
-    "newTab": {
-      "type": "boolean",
-      "default": false
-    },
-    "linkText": {
+    "text": {
       "type": "string",
-      "default": "Icon link"
+      "default": "Icon text element"
     },
     "iconSvg": {
       "type": "string",
@@ -41,15 +37,15 @@
       "type": "boolean",
       "default": false
     },
-    "linkColor": {
+    "textColor": {
       "type": "string",
       "default": ""
     },
-    "linkUnderline": {
+    "underlineClass": {
       "type": "string",
       "default": ""
     },
-    "linkOpacity": {
+    "textOpacity": {
       "type": "string",
       "default": ""
     },

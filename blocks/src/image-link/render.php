@@ -26,9 +26,13 @@ $gap_class   = $image_pos === 'end' ? str_replace( 'me-', 'ms-', $image_gap ) : 
 $img_style   = 'width:' . $image_width . ';' . ( $object_height ? 'height:' . $object_height . ';' : '' ) . ( $object_fit ? 'object-fit:' . str_replace( 'object-fit-', '', $object_fit ) . ';' : '' );
 $full_img_class = implode( ' ', array_filter( [ $img_class, $object_fit ], 'strlen' ) );
 
+
+$anchor  = ! empty( $attributes['anchor'] ) ? ' id="' . esc_attr( $attributes['anchor'] ) . '"' : '';
+
+//$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => $text_class ] );
 $wrapper_attributes = get_block_wrapper_attributes();
 ?>
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo $wrapper_attributes; ?> <?php echo $anchor; ?>>
 
 <?php if ( $layout === 'image' ) : ?>
 	<?php /* ── Plain Image Link ── */ ?>
