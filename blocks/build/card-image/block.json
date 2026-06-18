@@ -211,6 +211,18 @@
     "hideXxl": {
       "type": "boolean",
       "default": false
+    },
+    "mediaType": {
+      "type": "string",
+      "default": "image"
+    },
+    "iconSvg": {
+      "type": "string",
+      "default": ""
+    },
+    "iconColor": {
+      "type": "string",
+      "default": ""
     }
   },
   "textdomain": "wm",

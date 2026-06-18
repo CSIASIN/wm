@@ -81,13 +81,13 @@
             "default": ""
         },
         "imageBorderSides": {
-    "type": "array",
-    "default": []
-},
-"imageBorderRemove": {
-    "type": "array",
-    "default": []
-},
+            "type": "array",
+            "default": []
+        },
+        "imageBorderRemove": {
+            "type": "array",
+            "default": []
+        },
         "title": {
             "type": "string",
             "default": "Card title"
@@ -211,6 +211,18 @@
         "hideXxl": {
             "type": "boolean",
             "default": false
+        },
+        "mediaType": {
+            "type": "string",
+            "default": "image"
+        },
+        "iconSvg": {
+            "type": "string",
+            "default": ""
+        },
+        "iconColor": {
+            "type": "string",
+            "default": ""
         }
     },
     "textdomain": "wm",

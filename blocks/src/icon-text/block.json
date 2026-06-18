@@ -17,13 +17,21 @@
             "type": "string",
             "default": ""
         },
-        "wrapperTag": {
+     "wrapperTag": {
             "type": "string",
             "default": "p"
+        },
+        "contentType": {
+            "type": "string",
+            "default": "text"
         },
         "text": {
             "type": "string",
             "default": "Icon text element"
+        },
+        "imageUrl": {
+            "type": "string",
+            "default": ""
         },
         "iconSvg": {
             "type": "string",
@@ -36,6 +44,14 @@
         "hoverAnim": {
             "type": "boolean",
             "default": false
+        },
+        "isInlineFlex": {
+            "type": "boolean",
+            "default": true
+        },
+        "isAlignedCenter": {
+            "type": "boolean",
+            "default": true
         },
         "textColor": {
             "type": "string",

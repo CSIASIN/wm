@@ -32,7 +32,7 @@ const ALIGN_SELF_OPTS = [
 
 // Wide allowed blocks — col accepts everything so authors can nest rows inside
 const ALLOWED = [
-	'wmblocks/bs-heading','core/shortcode','contact-form-7/contact-form-selector','wmblocks/grid-row', 'wmblocks/grid-container', 'wmblocks/card-basic',
+	'wmblocks/div','wmblocks/icon-text','wmblocks/bs-heading','core/shortcode','contact-form-7/contact-form-selector','wmblocks/grid-row', 'wmblocks/grid-container', 'wmblocks/card-basic',
 	'wmblocks/container', 'wmblocks/flex-container',
 	'wmblocks/vstack', 'wmblocks/hstack',
 	'core/paragraph', 'core/heading', 'core/image', 'core/list',

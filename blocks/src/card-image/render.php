@@ -54,59 +54,81 @@ if (! empty($styles)) {
 $anchor = ! empty($attributes['anchor']) ? ' id="' . esc_attr($attributes['anchor']) . '"' : '';
 $wrapper_attr = get_block_wrapper_attributes($wrapper_args);
 
-// --- IMAGE RENDER HOOK PROCESSING ---
-$image_url   = ! empty($attributes['imageUrl']) ? esc_url($attributes['imageUrl']) : '';
-$image_alt   = isset($attributes['imageAlt']) ? esc_attr($attributes['imageAlt']) : '';
-$image_pos   = $attributes['imagePosition'] ?? 'top';
-$image_col   = esc_attr($attributes['imageCol'] ?? 'col-md-4');
+// --- DYNAMIC ASSET COMPILATION ---
+$media_type    = $attributes['mediaType'] ?? 'image';
+$image_url     = ! empty($attributes['imageUrl']) ? esc_url($attributes['imageUrl']) : '';
+$image_alt     = isset($attributes['imageAlt']) ? esc_attr($attributes['imageAlt']) : '';
+$image_pos     = $attributes['imagePosition'] ?? 'top';
+$image_col     = esc_attr($attributes['imageCol'] ?? 'col-md-4');
 $is_horizontal = in_array($image_pos, ['left', 'right'], true);
 $is_overlay    = $image_pos === 'overlay';
 
-$img_html = '';
+$asset_html = '';
 
-if ($image_url) {
-    // Collect Contextual Class Rules Natively
-    $img_classes = [];
-    if ($is_horizontal) {
-        $img_classes[] = 'rounded-start';
-    } elseif ($image_pos === 'bottom') {
-        $img_classes[] = 'card-img-bottom';
-    } elseif ($is_overlay) {
-        $img_classes[] = 'card-img';
-    } else {
-        $img_classes[] = 'card-img-top';
+$asset_classes = [];
+if ($is_horizontal) {
+    $asset_classes[] = 'rounded-start';
+} elseif ($image_pos === 'bottom') {
+    $asset_classes[] = 'card-img-bottom';
+} elseif ($is_overlay) {
+    $asset_classes[] = 'card-img';
+} else {
+    $asset_classes[] = 'card-img-top';
+}
+
+if (! empty($attributes['imageBorderSides']))    $asset_classes = array_merge($asset_classes, $attributes['imageBorderSides']);
+if (! empty($attributes['imageBorderRemove']))   $asset_classes = array_merge($asset_classes, $attributes['imageBorderRemove']);
+if (! empty($attributes['imageDisplayClass']))   $asset_classes[] = esc_attr($attributes['imageDisplayClass']);
+if (! empty($attributes['imageAlignClass']))     $asset_classes[] = esc_attr($attributes['imageAlignClass']);
+if (! empty($attributes['imageBorderColor']))    $asset_classes[] = esc_attr($attributes['imageBorderColor']);
+if (! empty($attributes['imageBorderOpacityClass'])) $asset_classes[] = esc_attr($attributes['imageBorderOpacityClass']);
+if (! empty($attributes['imageBorderSize']))     $asset_classes[] = esc_attr($attributes['imageBorderSize']);
+if (! empty($attributes['imageBorderRadius']))   $asset_classes[] = esc_attr($attributes['imageBorderRadius']);
+if (! empty($attributes['imageBorderRadiusSize'])) $asset_classes[] = esc_attr($attributes['imageBorderRadiusSize']);
+
+$asset_styles = [];
+$asset_styles[] = 'width: ' . (! empty($attributes['imageWidth']) ? esc_attr($attributes['imageWidth']) : '100%');
+
+$fallback_h    = $is_horizontal ? '100%' : '200px';
+$asset_styles[] = 'height: ' . (! empty($attributes['imageHeight']) ? esc_attr($attributes['imageHeight']) : $fallback_h);
+$asset_styles[] = 'object-fit: ' . (! empty($attributes['imageObjectFit']) ? esc_attr($attributes['imageObjectFit']) : 'cover');
+
+if (! empty($attributes['imageAlignClass']) && strpos($attributes['imageAlignClass'], 'd-block') !== false) {
+    $asset_styles[] = 'display: block';
+} else {
+    $asset_styles[] = 'display: inline-block';
+}
+
+if (! empty($attributes['imageBorderOpacityCustom'])) {
+    $asset_styles[] = '--bs-border-opacity: ' . esc_attr($attributes['imageBorderOpacityCustom']);
+}
+
+if ($media_type === 'icon') {
+    $icon_svg = ! empty($attributes['iconSvg']) ? $attributes['iconSvg'] : '';
+    if ($icon_svg) {
+        $sanitized_svg = wp_kses($icon_svg, [
+            'svg'      => [ 'xmlns' => [], 'width' => [], 'height' => [], 'fill' => [], 'viewbox' => [], 'viewBox' => [], 'class' => [], 'aria-hidden' => [], 'role' => [], 'style' => [], 'stroke' => [], 'stroke-width' => [] ],
+            'path'     => [ 'd' => [], 'fill-rule' => [], 'clip-rule' => [], 'fill' => [], 'stroke' => [], 'stroke-width' => [], 'style' => [], 'stroke-linecap' => [], 'stroke-linejoin' => [] ],
+            'g'        => [ 'fill' => [], 'stroke' => [], 'stroke-width' => [], 'style' => [] ],
+            'rect'     => [ 'x' => [], 'y' => [], 'width' => [], 'height' => [], 'rx' => [], 'ry' => [], 'fill' => [], 'stroke' => [], 'stroke-width' => [], 'style' => [] ],
+            'circle'   => [ 'cx' => [], 'cy' => [], 'r' => [], 'fill' => [], 'stroke' => [], 'stroke-width' => [], 'style' => [] ],
+            'polyline' => [ 'points' => [], 'fill' => [], 'stroke' => [], 'stroke-width' => [], 'style' => [] ],
+            'line'     => [ 'x1' => [], 'y1' => [], 'x2' => [], 'y2' => [], 'stroke' => [], 'stroke-width' => [], 'style' => [] ]
+        ]);
+
+        if (! empty($attributes['iconColor'])) {
+            $asset_styles[] = 'color: ' . esc_attr($attributes['iconColor']);
+        }
+        $asset_styles[] = 'display: flex';
+        $asset_styles[] = 'align-items: center';
+        $asset_styles[] = 'justify-content: center';
+
+        $asset_html = '<div class="wmblocks-div-container wmblocks-card-icon-box ' . implode(' ', array_filter($asset_classes)) . '" style="' . implode('; ', $asset_styles) . '">' . $sanitized_svg . '</div>';
     }
-
-    // Append dynamic presentation choices
-    if ( ! empty( $attributes['imageBorderSides'] ) )  $img_classes = array_merge( $img_classes, $attributes['imageBorderSides'] );
-    if ( ! empty( $attributes['imageBorderRemove'] ) ) $img_classes = array_merge( $img_classes, $attributes['imageBorderRemove'] );
-    if (! empty($attributes['imageDisplayClass']))   $img_classes[] = esc_attr($attributes['imageDisplayClass']);
-    if (! empty($attributes['imageAlignClass']))     $img_classes[] = esc_attr($attributes['imageAlignClass']);
-    if (! empty($attributes['imageBorderColor']))    $img_classes[] = esc_attr($attributes['imageBorderColor']);
-    if (! empty($attributes['imageBorderOpacityClass'])) $img_classes[] = esc_attr($attributes['imageBorderOpacityClass']);
-    if (! empty($attributes['imageBorderSize']))     $img_classes[] = esc_attr($attributes['imageBorderSize']);
-    if (! empty($attributes['imageBorderRadius']))   $img_classes[] = esc_attr($attributes['imageBorderRadius']);
-    if (! empty($attributes['imageBorderRadiusSize'])) $img_classes[] = esc_attr($attributes['imageBorderRadiusSize']);
-
-    // Inline Style Processing Fallbacks
-    $img_styles = [];
-    $img_styles[] = 'width: ' . (! empty($attributes['imageWidth']) ? esc_attr($attributes['imageWidth']) : '100%');
-
-    $fallback_h  = $is_horizontal ? '100%' : '200px';
-    $img_styles[] = 'height: ' . (! empty($attributes['imageHeight']) ? esc_attr($attributes['imageHeight']) : $fallback_h);
-    $img_styles[] = 'object-fit: ' . (! empty($attributes['imageObjectFit']) ? esc_attr($attributes['imageObjectFit']) : 'cover');
-
-    if (! empty($attributes['imageAlignClass']) && strpos($attributes['imageAlignClass'], 'd-block') !== false) {
-        $img_styles[] = 'display: block';
-    } else {
-        $img_styles[] = 'display: inline-block';
+} else {
+    if ($image_url) {
+        $asset_html = '<img src="' . $image_url . '" class="' . implode(' ', array_filter($asset_classes)) . '" style="' . implode('; ', $asset_styles) . '" alt="' . $image_alt . '">';
     }
-
-    if (! empty($attributes['imageBorderOpacityCustom'])) {
-        $img_styles[] = '--bs-border-opacity: ' . esc_attr($attributes['imageBorderOpacityCustom']);
-    }
-
-    $img_html = '<img src="' . $image_url . '" class="' . implode(' ', array_filter($img_classes)) . '" style="' . implode('; ', $img_styles) . '" alt="' . $image_alt . '">';
 }
 
 // Body Assembly
@@ -137,21 +159,21 @@ $body_html .= '</div>';
     <?php if ($is_horizontal) : ?>
         <div class="row g-0">
             <?php if ($image_pos === 'left') : ?>
-                <div class="<?php echo $image_col; ?>"><?php echo $img_html; ?></div>
+                <div class="<?php echo $image_col; ?>"><?php echo $asset_html; ?></div>
                 <div class="col"><?php echo $body_html; ?></div>
             <?php else : ?>
                 <div class="col"><?php echo $body_html; ?></div>
-                <div class="<?php echo $image_col; ?>"><?php echo $img_html; ?></div>
+                <div class="<?php echo $image_col; ?>"><?php echo $asset_html; ?></div>
             <?php endif; ?>
         </div>
     <?php elseif ($is_overlay) : ?>
-        <?php echo $img_html; ?>
+        <?php echo $asset_html; ?>
         <div class="card-img-overlay"><?php echo $body_html; ?></div>
     <?php elseif ($image_pos === 'bottom') : ?>
         <?php echo $body_html; ?>
-        <?php echo $img_html; ?>
+        <?php echo $asset_html; ?>
     <?php else : ?>
-        <?php echo $img_html; ?>
+        <?php echo $asset_html; ?>
         <?php echo $body_html; ?>
     <?php endif; ?>
 </div>

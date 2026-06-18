@@ -1,7 +1,12 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import { useBlockProps, InspectorControls, RichText } from '@wordpress/block-editor';
 import { PanelBody, TextControl, ToggleControl, SelectControl, TextareaControl, ButtonGroup, Button } from '@wordpress/components';
 import './editor.scss';
+
+const CONTENT_TYPES = [
+    { label: 'Text Processing Element', value: 'text' },
+    { label: 'Media Image Element', value: 'image' },
+];
 
 const PRESET_ICONS = [
     {
@@ -60,19 +65,24 @@ const TEXT_COLORS = [
     { label: 'text-light',         value: 'text-light' },
     { label: 'text-dark',          value: 'text-dark' },
 ];
-
-const UNDERLINE_OPTS = [
-    { label: '— Default —',            value: '' },
-    { label: 'text-decoration-underline', value: 'text-decoration-underline' },
-    { label: 'text-decoration-none',      value: 'text-decoration-none' },
+// Restored Option Arrays
+const LINK_UNDERLINE = [
+    { label: '— Default —',              value: '' },
+    { label: 'link-underline-primary',   value: 'link-underline-primary' },
+    { label: 'link-underline-secondary', value: 'link-underline-secondary' },
+    { label: 'link-underline-success',   value: 'link-underline-success' },
+    { label: 'link-underline-danger',    value: 'link-underline-danger' },
+    { label: 'link-underline-opacity-0',  value: 'link-underline-opacity-0' },
+    { label: 'link-underline-opacity-100', value: 'link-underline-opacity-100' },
 ];
 
-const OPACITY_OPTS = [
+const LINK_OPACITY = [
     { label: '— Default —',      value: '' },
-    { label: 'text-opacity-25',  value: 'text-opacity-25' },
-    { label: 'text-opacity-50',  value: 'text-opacity-50' },
-    { label: 'text-opacity-75',  value: 'text-opacity-75' },
-    { label: 'text-opacity-100', value: 'text-opacity-100' },
+    { label: 'link-opacity-10',   value: 'link-opacity-10' },
+    { label: 'link-opacity-25',   value: 'link-opacity-25' },
+    { label: 'link-opacity-50',   value: 'link-opacity-50' },
+    { label: 'link-opacity-75',   value: 'link-opacity-75' },
+    { label: 'link-opacity-100',  value: 'link-opacity-100' },
 ];
 
 const FONT_SIZE_OPTS = [
@@ -94,16 +104,16 @@ const GAP_OPTS = [
 
 export default function Edit( { attributes, setAttributes } ) {
     const {
-        wrapperTag, text, iconSvg, iconPosition,
-        hoverAnim, textColor, underlineClass, textOpacity,
-        fontSize, gap, customClass,
+        wrapperTag, contentType, text, imageUrl, iconSvg, iconPosition,
+        hoverAnim, isInlineFlex, isAlignedCenter, textColor, underlineClass, textOpacity, fontSize, gap, customClass,
     } = attributes;
 
     const Tag = wrapperTag || 'p';
 
-    const textClass = [
-        'd-inline-flex align-items-center', // Base Bootstrap Layout styles
-        hoverAnim ? 'icon-link-hover' : '', // Retains dynamic hover architecture shifts
+    const structuralClass = [
+        isInlineFlex ? 'd-inline-flex' : '',
+        isAlignedCenter ? 'align-items-center' : '',
+        hoverAnim ? 'icon-link-hover' : '',
         textColor      || '',
         underlineClass || '',
         textOpacity    || '',
@@ -117,13 +127,28 @@ export default function Edit( { attributes, setAttributes } ) {
     return (
         <>
             <InspectorControls>
-                { /* Layout & Structural Wrapper Settings */ }
-                <PanelBody title={ __( 'Structure', 'wmblocks' ) } initialOpen={ true }>
+                <PanelBody title={ __( 'Structure & Layout', 'wmblocks' ) } initialOpen={ true }>
                     <SelectControl
                         label={ __( 'HTML Element Wrapper', 'wmblocks' ) }
                         value={ wrapperTag }
-                        options={ WRAPPER_TAGS}
+                        options={ WRAPPER_TAGS }
                         onChange={ ( v ) => setAttributes( { wrapperTag: v } ) }
+                    />
+                    <SelectControl
+                        label={ __( 'Content Source Type', 'wmblocks' ) }
+                        value={ contentType }
+                        options={ CONTENT_TYPES }
+                        onChange={ ( v ) => setAttributes( { contentType: v } ) }
+                    />
+                    <ToggleControl
+                        label={ __( 'Enable Inline-Flex Display (d-inline-flex)', 'wmblocks' ) }
+                        checked={ !! isInlineFlex }
+                        onChange={ ( v ) => setAttributes( { isInlineFlex: v } ) }
+                    />
+                    <ToggleControl
+                        label={ __( 'Enable Vertical Alignment (align-items-center)', 'wmblocks' ) }
+                        checked={ !! isAlignedCenter }
+                        onChange={ ( v ) => setAttributes( { isAlignedCenter: v } ) }
                     />
                     <ToggleControl
                         label={ __( 'Hover Animation Nudge', 'wmblocks' ) }
@@ -132,21 +157,19 @@ export default function Edit( { attributes, setAttributes } ) {
                     />
                 </PanelBody>
 
-                { /* Icon Picker Configuration */ }
-                <PanelBody title={ __( 'Icon', 'wmblocks' ) } initialOpen={ true }>
+                <PanelBody title={ __( 'Icon Configuration', 'wmblocks' ) } initialOpen={ true }>
                     <div style={ { marginBottom: '10px' } }>
                         <div style={ { fontSize: '11px', fontWeight: 600, color: '#1e1e1e', marginBottom: '6px' } }>{ __( 'Icon Position', 'wmblocks' ) }</div>
                         <ButtonGroup>
                             <Button variant={ iconPosition === 'start' ? 'primary' : 'secondary' } onClick={ () => setAttributes( { iconPosition: 'start' } ) }>
-                                { __( '← Before text', 'wmblocks' ) }
+                                { __( '← Before Content', 'wmblocks' ) }
                             </Button>
                             <Button variant={ iconPosition === 'end' ? 'primary' : 'secondary' } onClick={ () => setAttributes( { iconPosition: 'end' } ) }>
-                                { __( 'After text →', 'wmblocks' ) }
+                                { __( 'After Content →', 'wmblocks' ) }
                             </Button>
                         </ButtonGroup>
                     </div>
 
-                    { /* Preset icons grid */ }
                     <div style={ { marginBottom: '10px' } }>
                         <div style={ { fontSize: '11px', fontWeight: 600, color: '#1e1e1e', marginBottom: '6px' } }>{ __( 'Preset Icons', 'wmblocks' ) }</div>
                         <div style={ { display: 'flex', flexWrap: 'wrap', gap: '4px' } }>
@@ -159,7 +182,6 @@ export default function Edit( { attributes, setAttributes } ) {
                                         width: '36px', height: '36px', border: iconSvg === icon.value ? '2px solid #007cba' : '1px solid #ddd',
                                         borderRadius: '4px', background: iconSvg === icon.value ? '#e8f4fd' : '#f8f9fa',
                                         cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                        color: '#333',
                                     } }
                                     dangerouslySetInnerHTML={ { __html: icon.value } }
                                 />
@@ -167,11 +189,7 @@ export default function Edit( { attributes, setAttributes } ) {
                             <button
                                 title={ __( 'No icon', 'wmblocks' ) }
                                 onMouseDown={ ( e ) => { e.preventDefault(); setAttributes( { iconSvg: '' } ); } }
-                                style={ {
-                                    width: '36px', height: '36px', border: ! iconSvg ? '2px solid #007cba' : '1px solid #ddd',
-                                    borderRadius: '4px', background: ! iconSvg ? '#e8f4fd' : '#f8f9fa',
-                                    cursor: 'pointer', fontSize: '10px', color: '#777',
-                                } }
+                                style={ { width: '36px', height: '36px', border: ! iconSvg ? '2px solid #007cba' : '1px solid #ddd', borderRadius: '4px', cursor: 'pointer' } }
                             >✕</button>
                         </div>
                     </div>
@@ -181,15 +199,13 @@ export default function Edit( { attributes, setAttributes } ) {
                         value={ iconSvg }
                         onChange={ ( v ) => setAttributes( { iconSvg: v } ) }
                         rows={ 3 }
-                        help={ __( 'Paste raw <svg> markup. Use fill="currentColor" inside paths to map color modifications.', 'wmblocks' ) }
                     />
                 </PanelBody>
 
-                { /* Typography and Color Adjustments */ }
-                <PanelBody title={ __( 'Style Opts', 'wmblocks' ) } initialOpen={ false }>
-                    <SelectControl label={ __( 'Color Style', 'wmblocks' ) } value={ textColor } options={ TEXT_COLORS } onChange={ ( v ) => setAttributes( { textColor: v } ) } />
-                    <SelectControl label={ __( 'Decorations', 'wmblocks' ) } value={ underlineClass } options={ UNDERLINE_OPTS } onChange={ ( v ) => setAttributes( { underlineClass: v } ) } />
-                    <SelectControl label={ __( 'Opacity Layer', 'wmblocks' ) } value={ textOpacity } options={ OPACITY_OPTS } onChange={ ( v ) => setAttributes( { textOpacity: v } ) } />
+                <PanelBody title={ __( 'Styles & Classes', 'wmblocks' ) } initialOpen={ false }>
+                    <SelectControl label={ __( 'Color Styling', 'wmblocks' ) } value={ textColor } options={ TEXT_COLORS } onChange={ ( v ) => setAttributes( { textColor: v } ) } />
+                    <SelectControl label={ __( 'Underline Style', 'wmblocks' ) } value={ underlineClass } options={ LINK_UNDERLINE } onChange={ ( v ) => setAttributes( { underlineClass: v } ) } />
+                    <SelectControl label={ __( 'Opacity Layer', 'wmblocks' ) } value={ textOpacity } options={ LINK_OPACITY } onChange={ ( v ) => setAttributes( { textOpacity: v } ) } />
                     <SelectControl label={ __( 'Font Scale', 'wmblocks' ) } value={ fontSize } options={ FONT_SIZE_OPTS } onChange={ ( v ) => setAttributes( { fontSize: v } ) } />
                     <SelectControl label={ __( 'Icon Gap Spacing', 'wmblocks' ) } value={ gap } options={ GAP_OPTS } onChange={ ( v ) => setAttributes( { gap: v } ) } />
                     <TextControl   label={ __( 'Extra Classes', 'wmblocks' ) } value={ customClass } onChange={ ( v ) => setAttributes( { customClass: v } ) } />
@@ -197,41 +213,49 @@ export default function Edit( { attributes, setAttributes } ) {
             </InspectorControls>
 
             <div { ...blockProps }>
-                { /* Dynamic Structural Layout Preview Node */ }
-                <Tag 
-                    className={ textClass } 
-                    style={ { display: 'inline-flex', alignItems: 'center' } }
-                >
+                { /* Enforcing stable rendering wrapper nodes prevents custom props from leaking down to raw elements */ }
+                <Tag className={ structuralClass } style={ { display: (isInlineFlex ? 'inline-flex' : 'block'), alignItems: (isAlignedCenter ? 'center' : 'stretch') } }>
                     { iconPosition === 'start' && iconSvg && (
-                        <span
-                            style={ { display: 'inline-flex', alignItems: 'center', marginRight: '4px' } }
-                            dangerouslySetInnerHTML={ { __html: iconSvg } }
-                        />
+                        <span style={ { display: 'inline-flex', alignItems: 'center', marginRight: '6px' } } dangerouslySetInnerHTML={ { __html: iconSvg } } />
                     ) }
 
-                    <span
-                        contentEditable
-                        suppressContentEditableWarning
-                        onInput={ ( e ) => setAttributes( { text: e.currentTarget.textContent } ) }
-                        onKeyDown={ ( e ) => e.key === 'Enter' && ( e.preventDefault(), e.currentTarget.blur() ) }
-                        style={ { outline: 'none', cursor: 'text', minWidth: '40px' } }
-                    >
-                        { text }
-                    </span>
+                    { contentType === 'text' ? (
+                        <RichText
+                            tagName="span"
+                            value={ text }
+                            onChange={ ( newText ) => setAttributes( { text: newText } ) }
+                            placeholder={ __( 'Enter text...', 'wmblocks' ) }
+                            __unstableFormatControls={ [ 'wmblocks/wm-text-gradient' ] }
+                        />
+                    ) : (
+                        <span style={ { display: 'inline-flex', alignItems: 'center' } }>
+                            <MediaUpload
+                                onSelect={ ( media ) => setAttributes( { imageUrl: media.url } ) }
+                                allowedTypes={ [ 'image' ] }
+                                value={ imageUrl }
+                                render={ ( { open } ) => (
+                                    imageUrl ? (
+                                        <span style={ { position: 'relative', display: 'inline-block' } }>
+                                            <img src={ imageUrl } alt={ __( 'Preview', 'wmblocks' ) } style={ { maxHeight: '2.5em', width: 'auto', borderRadius: '4px' } } />
+                                            <Button 
+                                                variant="secondary" 
+                                                size="small" 
+                                                onClick={ () => setAttributes( { imageUrl: '' } ) }
+                                                style={ { position: 'absolute', top: '-10px', right: '-10px', background: '#fff', borderRadius: '50%', minWidth: '20px', padding: '0' } }
+                                            >✕</Button>
+                                        </span>
+                                    ) : (
+                                        <Button variant="secondary" icon="upload" onClick={ open }>{ __( 'Select Image', 'wmblocks' ) }</Button>
+                                    )
+                                ) }
+                            />
+                        </span>
+                    ) }
 
                     { iconPosition === 'end' && iconSvg && (
-                        <span
-                            style={ { display: 'inline-flex', alignItems: 'center', marginLeft: '4px' } }
-                            dangerouslySetInnerHTML={ { __html: iconSvg } }
-                        />
+                        <span style={ { display: 'inline-flex', alignItems: 'center', marginLeft: '6px' } } dangerouslySetInnerHTML={ { __html: iconSvg } } />
                     ) }
                 </Tag>
-
-                <div style={ { display: 'flex', gap: '8px', marginTop: '6px', flexWrap: 'wrap' } }>
-                    <span style={ { fontSize: '10px', fontFamily: 'monospace', color: '#6610f2', background: '#f3ebff', padding: '2px 6px', borderRadius: '3px' } }>
-                        { `<${Tag} class="${textClass}">` }
-                    </span>
-                </div>
             </div>
         </>
     );

@@ -2099,6 +2099,18 @@ return array(
 			'hideXxl' => array(
 				'type' => 'boolean',
 				'default' => false
+			),
+			'mediaType' => array(
+				'type' => 'string',
+				'default' => 'image'
+			),
+			'iconSvg' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'iconColor' => array(
+				'type' => 'string',
+				'default' => ''
 			)
 		),
 		'textdomain' => 'wm',
@@ -5758,9 +5770,17 @@ return array(
 				'type' => 'string',
 				'default' => 'p'
 			),
+			'contentType' => array(
+				'type' => 'string',
+				'default' => 'text'
+			),
 			'text' => array(
 				'type' => 'string',
 				'default' => 'Icon text element'
+			),
+			'imageUrl' => array(
+				'type' => 'string',
+				'default' => ''
 			),
 			'iconSvg' => array(
 				'type' => 'string',
@@ -5773,6 +5793,14 @@ return array(
 			'hoverAnim' => array(
 				'type' => 'boolean',
 				'default' => false
+			),
+			'isInlineFlex' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'isAlignedCenter' => array(
+				'type' => 'boolean',
+				'default' => true
 			),
 			'textColor' => array(
 				'type' => 'string',

@@ -26,6 +26,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const CONTENT_TYPES = [{
+  label: 'Text Processing Element',
+  value: 'text'
+}, {
+  label: 'Media Image Element',
+  value: 'image'
+}];
 const PRESET_ICONS = [{
   label: 'Arrow Right',
   value: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>'
@@ -104,31 +111,47 @@ const TEXT_COLORS = [{
   label: 'text-dark',
   value: 'text-dark'
 }];
-const UNDERLINE_OPTS = [{
+// Restored Option Arrays
+const LINK_UNDERLINE = [{
   label: '— Default —',
   value: ''
 }, {
-  label: 'text-decoration-underline',
-  value: 'text-decoration-underline'
+  label: 'link-underline-primary',
+  value: 'link-underline-primary'
 }, {
-  label: 'text-decoration-none',
-  value: 'text-decoration-none'
+  label: 'link-underline-secondary',
+  value: 'link-underline-secondary'
+}, {
+  label: 'link-underline-success',
+  value: 'link-underline-success'
+}, {
+  label: 'link-underline-danger',
+  value: 'link-underline-danger'
+}, {
+  label: 'link-underline-opacity-0',
+  value: 'link-underline-opacity-0'
+}, {
+  label: 'link-underline-opacity-100',
+  value: 'link-underline-opacity-100'
 }];
-const OPACITY_OPTS = [{
+const LINK_OPACITY = [{
   label: '— Default —',
   value: ''
 }, {
-  label: 'text-opacity-25',
-  value: 'text-opacity-25'
+  label: 'link-opacity-10',
+  value: 'link-opacity-10'
 }, {
-  label: 'text-opacity-50',
-  value: 'text-opacity-50'
+  label: 'link-opacity-25',
+  value: 'link-opacity-25'
 }, {
-  label: 'text-opacity-75',
-  value: 'text-opacity-75'
+  label: 'link-opacity-50',
+  value: 'link-opacity-50'
 }, {
-  label: 'text-opacity-100',
-  value: 'text-opacity-100'
+  label: 'link-opacity-75',
+  value: 'link-opacity-75'
+}, {
+  label: 'link-opacity-100',
+  value: 'link-opacity-100'
 }];
 const FONT_SIZE_OPTS = [{
   label: '— Inherit —',
@@ -171,10 +194,14 @@ function Edit({
 }) {
   const {
     wrapperTag,
+    contentType,
     text,
+    imageUrl,
     iconSvg,
     iconPosition,
     hoverAnim,
+    isInlineFlex,
+    isAlignedCenter,
     textColor,
     underlineClass,
     textOpacity,
@@ -183,18 +210,14 @@ function Edit({
     customClass
   } = attributes;
   const Tag = wrapperTag || 'p';
-  const textClass = ['d-inline-flex align-items-center',
-  // Base Bootstrap Layout styles
-  hoverAnim ? 'icon-link-hover' : '',
-  // Retains dynamic hover architecture shifts
-  textColor || '', underlineClass || '', textOpacity || '', fontSize || '', gap || '', customClass || ''].filter(Boolean).join(' ');
+  const structuralClass = [isInlineFlex ? 'd-inline-flex' : '', isAlignedCenter ? 'align-items-center' : '', hoverAnim ? 'icon-link-hover' : '', textColor || '', underlineClass || '', textOpacity || '', fontSize || '', gap || '', customClass || ''].filter(Boolean).join(' ');
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
     className: 'wmblocks-icon-text-wrapper'
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Structure', 'wmblocks'),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Structure & Layout', 'wmblocks'),
         initialOpen: true,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('HTML Element Wrapper', 'wmblocks'),
@@ -202,6 +225,25 @@ function Edit({
           options: WRAPPER_TAGS,
           onChange: v => setAttributes({
             wrapperTag: v
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Content Source Type', 'wmblocks'),
+          value: contentType,
+          options: CONTENT_TYPES,
+          onChange: v => setAttributes({
+            contentType: v
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enable Inline-Flex Display (d-inline-flex)', 'wmblocks'),
+          checked: !!isInlineFlex,
+          onChange: v => setAttributes({
+            isInlineFlex: v
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enable Vertical Alignment (align-items-center)', 'wmblocks'),
+          checked: !!isAlignedCenter,
+          onChange: v => setAttributes({
+            isAlignedCenter: v
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Hover Animation Nudge', 'wmblocks'),
@@ -211,7 +253,7 @@ function Edit({
           })
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Icon', 'wmblocks'),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Icon Configuration', 'wmblocks'),
         initialOpen: true,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           style: {
@@ -231,13 +273,13 @@ function Edit({
               onClick: () => setAttributes({
                 iconPosition: 'start'
               }),
-              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('← Before text', 'wmblocks')
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('← Before Content', 'wmblocks')
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
               variant: iconPosition === 'end' ? 'primary' : 'secondary',
               onClick: () => setAttributes({
                 iconPosition: 'end'
               }),
-              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('After text →', 'wmblocks')
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('After Content →', 'wmblocks')
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -275,8 +317,7 @@ function Edit({
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                color: '#333'
+                justifyContent: 'center'
               },
               dangerouslySetInnerHTML: {
                 __html: icon.value
@@ -294,10 +335,7 @@ function Edit({
                 height: '36px',
                 border: !iconSvg ? '2px solid #007cba' : '1px solid #ddd',
                 borderRadius: '4px',
-                background: !iconSvg ? '#e8f4fd' : '#f8f9fa',
-                cursor: 'pointer',
-                fontSize: '10px',
-                color: '#777'
+                cursor: 'pointer'
               },
               children: "\u2715"
             })]
@@ -308,30 +346,29 @@ function Edit({
           onChange: v => setAttributes({
             iconSvg: v
           }),
-          rows: 3,
-          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Paste raw <svg> markup. Use fill="currentColor" inside paths to map color modifications.', 'wmblocks')
+          rows: 3
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Style Opts', 'wmblocks'),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Styles & Classes', 'wmblocks'),
         initialOpen: false,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Color Style', 'wmblocks'),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Color Styling', 'wmblocks'),
           value: textColor,
           options: TEXT_COLORS,
           onChange: v => setAttributes({
             textColor: v
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Decorations', 'wmblocks'),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Underline Style', 'wmblocks'),
           value: underlineClass,
-          options: UNDERLINE_OPTS,
+          options: LINK_UNDERLINE,
           onChange: v => setAttributes({
             underlineClass: v
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Opacity Layer', 'wmblocks'),
           value: textOpacity,
-          options: OPACITY_OPTS,
+          options: LINK_OPACITY,
           onChange: v => setAttributes({
             textOpacity: v
           })
@@ -357,65 +394,92 @@ function Edit({
           })
         })]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       ...blockProps,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Tag, {
-        className: textClass,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(Tag, {
+        className: structuralClass,
         style: {
-          display: 'inline-flex',
-          alignItems: 'center'
+          display: isInlineFlex ? 'inline-flex' : 'block',
+          alignItems: isAlignedCenter ? 'center' : 'stretch'
         },
         children: [iconPosition === 'start' && iconSvg && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
           style: {
             display: 'inline-flex',
             alignItems: 'center',
-            marginRight: '4px'
+            marginRight: '6px'
           },
           dangerouslySetInnerHTML: {
             __html: iconSvg
           }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-          contentEditable: true,
-          suppressContentEditableWarning: true,
-          onInput: e => setAttributes({
-            text: e.currentTarget.textContent
+        }), contentType === 'text' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+          tagName: "span",
+          value: text,
+          onChange: newText => setAttributes({
+            text: newText
           }),
-          onKeyDown: e => e.key === 'Enter' && (e.preventDefault(), e.currentTarget.blur()),
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enter text...', 'wmblocks'),
+          __unstableFormatControls: ['wmblocks/wm-text-gradient']
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
           style: {
-            outline: 'none',
-            cursor: 'text',
-            minWidth: '40px'
+            display: 'inline-flex',
+            alignItems: 'center'
           },
-          children: text
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(MediaUpload, {
+            onSelect: media => setAttributes({
+              imageUrl: media.url
+            }),
+            allowedTypes: ['image'],
+            value: imageUrl,
+            render: ({
+              open
+            }) => imageUrl ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+              style: {
+                position: 'relative',
+                display: 'inline-block'
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+                src: imageUrl,
+                alt: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Preview', 'wmblocks'),
+                style: {
+                  maxHeight: '2.5em',
+                  width: 'auto',
+                  borderRadius: '4px'
+                }
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                variant: "secondary",
+                size: "small",
+                onClick: () => setAttributes({
+                  imageUrl: ''
+                }),
+                style: {
+                  position: 'absolute',
+                  top: '-10px',
+                  right: '-10px',
+                  background: '#fff',
+                  borderRadius: '50%',
+                  minWidth: '20px',
+                  padding: '0'
+                },
+                children: "\u2715"
+              })]
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+              variant: "secondary",
+              icon: "upload",
+              onClick: open,
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Select Image', 'wmblocks')
+            })
+          })
         }), iconPosition === 'end' && iconSvg && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
           style: {
             display: 'inline-flex',
             alignItems: 'center',
-            marginLeft: '4px'
+            marginLeft: '6px'
           },
           dangerouslySetInnerHTML: {
             __html: iconSvg
           }
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        style: {
-          display: 'flex',
-          gap: '8px',
-          marginTop: '6px',
-          flexWrap: 'wrap'
-        },
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-          style: {
-            fontSize: '10px',
-            fontFamily: 'monospace',
-            color: '#6610f2',
-            background: '#f3ebff',
-            padding: '2px 6px',
-            borderRadius: '3px'
-          },
-          children: `<${Tag} class="${textClass}">`
-        })
-      })]
+      })
     })]
   });
 }
@@ -490,7 +554,7 @@ module.exports = window["wp"]["i18n"];
   \**********************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wmblocks/icon-text","version":"0.1.0","title":"Icon Text","category":"watermelon-blocks","icon":"editor-textcolor","description":"An inline icon accompanied by customizable text, rendered inside your choice of a structural HTML wrapper.","example":{},"supports":{"html":false,"anchor":true},"attributes":{"anchor":{"type":"string","default":""},"wrapperTag":{"type":"string","default":"p"},"text":{"type":"string","default":"Icon text element"},"iconSvg":{"type":"string","default":""},"iconPosition":{"type":"string","default":"start"},"hoverAnim":{"type":"boolean","default":false},"textColor":{"type":"string","default":""},"underlineClass":{"type":"string","default":""},"textOpacity":{"type":"string","default":""},"fontSize":{"type":"string","default":""},"gap":{"type":"string","default":""},"customClass":{"type":"string","default":""}},"textdomain":"wm","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wmblocks/icon-text","version":"0.1.0","title":"Icon Text","category":"watermelon-blocks","icon":"editor-textcolor","description":"An inline icon accompanied by customizable text, rendered inside your choice of a structural HTML wrapper.","example":{},"supports":{"html":false,"anchor":true},"attributes":{"anchor":{"type":"string","default":""},"wrapperTag":{"type":"string","default":"p"},"contentType":{"type":"string","default":"text"},"text":{"type":"string","default":"Icon text element"},"imageUrl":{"type":"string","default":""},"iconSvg":{"type":"string","default":""},"iconPosition":{"type":"string","default":"start"},"hoverAnim":{"type":"boolean","default":false},"isInlineFlex":{"type":"boolean","default":true},"isAlignedCenter":{"type":"boolean","default":true},"textColor":{"type":"string","default":""},"underlineClass":{"type":"string","default":""},"textOpacity":{"type":"string","default":""},"fontSize":{"type":"string","default":""},"gap":{"type":"string","default":""},"customClass":{"type":"string","default":""}},"textdomain":"wm","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
 
 /***/ }
 
