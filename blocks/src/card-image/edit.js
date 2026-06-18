@@ -49,7 +49,6 @@ const IMG_COL_OPTIONS = [
 ];
 
 const OBJECT_FIT_OPTIONS = [
-    { label: "--None--", value: "" },
     { label: "Cover (Fill & Crop)", value: "cover" },
     { label: "Contain (Fit Inside)", value: "contain" },
     { label: "Fill (Stretch)", value: "fill" },
@@ -66,6 +65,14 @@ const IMG_ALIGN_OPTIONS = [
     { label: "Float Left (float-start)", value: "float-start" },
     { label: "Float Right (float-end)", value: "float-end" },
     { label: "Center Block (mx-auto d-block)", value: "mx-auto d-block" },
+];
+
+const SHADOW_OPTIONS = [
+    { label: "None", value: "" },
+    { label: "No Shadow (shadow-none)", value: "shadow-none" },
+    { label: "Small Shadow (shadow-sm)", value: "shadow-sm" },
+    { label: "Regular Shadow (shadow)", value: "shadow" },
+    { label: "Large Shadow (shadow-lg)", value: "shadow-lg" },
 ];
 
 const BADGE_VARIANTS = [
@@ -91,6 +98,7 @@ export default function Edit({ attributes, setAttributes }) {
         imageObjectFit,
         imageDisplayClass,
         imageAlignClass,
+        imageShadow,
         imageBorderSides,
         imageBorderRemove,
         imageBorderColor,
@@ -131,6 +139,8 @@ export default function Edit({ attributes, setAttributes }) {
         mediaType,
         iconSvg,
         iconColor,
+        iconBgColor,
+        iconMargin,
     } = attributes;
 
     const isHorizontal = imagePosition === "left" || imagePosition === "right";
@@ -257,13 +267,13 @@ export default function Edit({ attributes, setAttributes }) {
                                 onClick={() => setAttributes({ mediaType: "icon" })}
                                 style={{ flexGrow: 1, justifyContent: "center" }}
                             >
-                                {__("SVG Icon Block", "wmblocks")}
+                                {__("SVG Icon Box", "wmblocks")}
                             </Button>
                         </ButtonGroup>
                     </div>
 
                     <SelectControl
-                        label={__("Image Position", "wmblocks")}
+                        label={__("Asset Position", "wmblocks")}
                         value={imagePosition}
                         options={IMG_POSITION_OPTIONS}
                         onChange={(v) => setAttributes({ imagePosition: v })}
@@ -287,10 +297,22 @@ export default function Edit({ attributes, setAttributes }) {
                                 rows={5}
                             />
                             <TextControl
-                                label={__("Icon Color Map Override", "wmblocks")}
+                                label={__("Icon Color (SVG Text/Fill)", "wmblocks")}
                                 value={iconColor}
-                                placeholder="e.g. #0056b3 or var(--bs-warning)"
+                                placeholder="e.g. #ff4000 or var(--bs-warning)"
                                 onChange={(v) => setAttributes({ iconColor: v })}
+                            />
+                            <TextControl
+                                label={__("Icon Box Background", "wmblocks")}
+                                value={iconBgColor}
+                                placeholder="e.g. yellow or #000"
+                                onChange={(v) => setAttributes({ iconBgColor: v })}
+                            />
+                            <TextControl
+                                label={__("Icon Box Margin", "wmblocks")}
+                                value={iconMargin}
+                                placeholder="e.g. 20px"
+                                onChange={(v) => setAttributes({ iconMargin: v })}
                             />
                         </>
                     ) : (
@@ -303,20 +325,38 @@ export default function Edit({ attributes, setAttributes }) {
                 </PanelBody>
 
                 <PanelBody
-                    title={__("Image Presentation & Borders", "wmblocks")}
+                    title={__("Asset Presentation & Borders", "wmblocks")}
                     initialOpen={true}
                 >
-                    <SelectControl
-                        label={__("Image Class Type", "wmblocks")}
-                        value={imageDisplayClass}
-                        options={IMG_DISPLAY_OPTIONS}
-                        onChange={(v) => setAttributes({ imageDisplayClass: v })}
-                    />
+                    {mediaType !== "icon" && (
+                        <>
+                            <SelectControl
+                                label={__("Image Class Type", "wmblocks")}
+                                value={imageDisplayClass}
+                                options={IMG_DISPLAY_OPTIONS}
+                                onChange={(v) => setAttributes({ imageDisplayClass: v })}
+                            />
+                            <SelectControl
+                                label={__("Image Crop Rule (Object Fit)", "wmblocks")}
+                                value={imageObjectFit}
+                                options={OBJECT_FIT_OPTIONS}
+                                onChange={(v) => setAttributes({ imageObjectFit: v })}
+                            />
+                        </>
+                    )}
+
                     <SelectControl
                         label={__("Alignment / Float Controls", "wmblocks")}
                         value={imageAlignClass}
                         options={IMG_ALIGN_OPTIONS}
                         onChange={(v) => setAttributes({ imageAlignClass: v })}
+                    />
+                    
+                    <SelectControl
+                        label={__("Asset Shadow", "wmblocks")}
+                        value={imageShadow}
+                        options={SHADOW_OPTIONS}
+                        onChange={(v) => setAttributes({ imageShadow: v })}
                     />
 
                     <div
@@ -329,23 +369,16 @@ export default function Edit({ attributes, setAttributes }) {
                         <TextControl
                             label={__("Height Limits", "wmblocks")}
                             value={imageHeight}
-                            placeholder={isHorizontal ? "100%" : "200px"}
+                            placeholder={mediaType === "icon" ? "70px" : isHorizontal ? "100%" : "200px"}
                             onChange={(v) => setAttributes({ imageHeight: v })}
                         />
                         <TextControl
                             label={__("Width Limits", "wmblocks")}
                             value={imageWidth}
-                            placeholder="100%"
+                            placeholder={mediaType === "icon" ? "70px" : "100%"}
                             onChange={(v) => setAttributes({ imageWidth: v })}
                         />
                     </div>
-
-                    <SelectControl
-                        label={__("Image Crop Rule (Object Fit)", "wmblocks")}
-                        value={imageObjectFit}
-                        options={OBJECT_FIT_OPTIONS}
-                        onChange={(v) => setAttributes({ imageObjectFit: v })}
-                    />
 
                     <hr />
                     <BorderControl
@@ -359,24 +392,14 @@ export default function Edit({ attributes, setAttributes }) {
                         borderOpacityCustom={imageBorderOpacityCustom}
                         setAttributes={(updated) => {
                             const transformed = {};
-                            if ("borderSides" in updated)
-                                transformed.imageBorderSides = updated.borderSides;
-                            if ("borderRemove" in updated)
-                                transformed.imageBorderRemove = updated.borderRemove;
-                            if ("borderColor" in updated)
-                                transformed.imageBorderColor = updated.borderColor;
-                            if ("borderSize" in updated)
-                                transformed.imageBorderSize = updated.borderSize;
-                            if ("borderRadius" in updated)
-                                transformed.imageBorderRadius = updated.borderRadius;
-                            if ("borderRadiusSize" in updated)
-                                transformed.imageBorderRadiusSize = updated.borderRadiusSize;
-                            if ("borderOpacityClass" in updated)
-                                transformed.imageBorderOpacityClass =
-                                    updated.borderOpacityClass;
-                            if ("borderOpacityCustom" in updated)
-                                transformed.imageBorderOpacityCustom =
-                                    updated.borderOpacityCustom;
+                            if ("borderSides" in updated) transformed.imageBorderSides = updated.borderSides;
+                            if ("borderRemove" in updated) transformed.imageBorderRemove = updated.borderRemove;
+                            if ("borderColor" in updated) transformed.imageBorderColor = updated.borderColor;
+                            if ("borderSize" in updated) transformed.imageBorderSize = updated.borderSize;
+                            if ("borderRadius" in updated) transformed.imageBorderRadius = updated.borderRadius;
+                            if ("borderRadiusSize" in updated) transformed.imageBorderRadiusSize = updated.borderRadiusSize;
+                            if ("borderOpacityClass" in updated) transformed.imageBorderOpacityClass = updated.borderOpacityClass;
+                            if ("borderOpacityCustom" in updated) transformed.imageBorderOpacityCustom = updated.borderOpacityCustom;
                             setAttributes(transformed);
                         }}
                     />
@@ -413,30 +436,12 @@ export default function Edit({ attributes, setAttributes }) {
                     />
                 </PanelBody>
 
-                <PaddingControl
-                    value={padding}
-                    onChange={(v) => setAttributes({ padding: v })}
-                />
-                <MarginControl
-                    value={margin}
-                    onChange={(v) => setAttributes({ margin: v })}
-                />
-                <BackgroundColorControl
-                    value={backgroundColor}
-                    onChange={(v) => setAttributes({ backgroundColor: v })}
-                />
-                <TextColorControl
-                    value={textColor}
-                    onChange={(v) => setAttributes({ textColor: v })}
-                />
-                <OpacityControl
-                    value={opacity}
-                    onChange={(v) => setAttributes({ opacity: v })}
-                />
-                <ShadowControl
-                    value={shadow}
-                    onChange={(v) => setAttributes({ shadow: v })}
-                />
+                <PaddingControl value={padding} onChange={(v) => setAttributes({ padding: v })} />
+                <MarginControl value={margin} onChange={(v) => setAttributes({ margin: v })} />
+                <BackgroundColorControl value={backgroundColor} onChange={(v) => setAttributes({ backgroundColor: v })} />
+                <TextColorControl value={textColor} onChange={(v) => setAttributes({ textColor: v })} />
+                <OpacityControl value={opacity} onChange={(v) => setAttributes({ opacity: v })} />
+                <ShadowControl value={shadow} onChange={(v) => setAttributes({ shadow: v })} />
                 <BorderControl
                     borderSides={borderSides}
                     borderRemove={borderRemove}
@@ -448,19 +453,8 @@ export default function Edit({ attributes, setAttributes }) {
                     borderRadiusSize={borderRadiusSize}
                     setAttributes={setAttributes}
                 />
-                <CustomCSSControl
-                    value={customCSS}
-                    onChange={(v) => setAttributes({ customCSS: v })}
-                />
-                <VisibilityControl
-                    hideXs={hideXs}
-                    hideSm={hideSm}
-                    hideMd={hideMd}
-                    hideLg={hideLg}
-                    hideXl={hideXl}
-                    hideXxl={hideXxl}
-                    setAttributes={setAttributes}
-                />
+                <CustomCSSControl value={customCSS} onChange={(v) => setAttributes({ customCSS: v })} />
+                <VisibilityControl hideXs={hideXs} hideSm={hideSm} hideMd={hideMd} hideLg={hideLg} hideXl={hideXl} hideXxl={hideXxl} setAttributes={setAttributes} />
             </InspectorControls>
 
             <div {...blockProps}>
@@ -473,16 +467,7 @@ export default function Edit({ attributes, setAttributes }) {
                                 </div>
                             )}
                             <div className="col">
-                                <CardBody
-                                    title={title}
-                                    subtitle={subtitle}
-                                    bodyText={bodyText}
-                                    showBadge={showBadge}
-                                    badgeText={badgeText}
-                                    badgeVariant={badgeVariant}
-                                    showLink={showLink}
-                                    setAttributes={setAttributes}
-                                />
+                                <CardBody title={title} subtitle={subtitle} bodyText={bodyText} showBadge={showBadge} badgeText={badgeText} badgeVariant={badgeVariant} showLink={showLink} setAttributes={setAttributes} />
                             </div>
                             {imagePosition === "right" && (
                                 <div className={imageCol}>
@@ -494,34 +479,14 @@ export default function Edit({ attributes, setAttributes }) {
                         <>
                             {renderCardAsset(attributes, setAttributes, false, "")}
                             <div className="card-img-overlay">
-                                <CardBody
-                                    title={title}
-                                    subtitle={subtitle}
-                                    bodyText={bodyText}
-                                    showBadge={showBadge}
-                                    badgeText={badgeText}
-                                    badgeVariant={badgeVariant}
-                                    showLink={showLink}
-                                    setAttributes={setAttributes}
-                                />
+                                <CardBody title={title} subtitle={subtitle} bodyText={bodyText} showBadge={showBadge} badgeText={badgeText} badgeVariant={badgeVariant} showLink={showLink} setAttributes={setAttributes} />
                             </div>
                         </>
                     ) : (
                         <>
-                            {imagePosition === "top" &&
-                                renderCardAsset(attributes, setAttributes, false, "top")}
-                            <CardBody
-                                title={title}
-                                subtitle={subtitle}
-                                bodyText={bodyText}
-                                showBadge={showBadge}
-                                badgeText={badgeText}
-                                badgeVariant={badgeVariant}
-                                showLink={showLink}
-                                setAttributes={setAttributes}
-                            />
-                            {imagePosition === "bottom" &&
-                                renderCardAsset(attributes, setAttributes, false, "bottom")}
+                            {imagePosition === "top" && renderCardAsset(attributes, setAttributes, false, "top")}
+                            <CardBody title={title} subtitle={subtitle} bodyText={bodyText} showBadge={showBadge} badgeText={badgeText} badgeVariant={badgeVariant} showLink={showLink} setAttributes={setAttributes} />
+                            {imagePosition === "bottom" && renderCardAsset(attributes, setAttributes, false, "bottom")}
                         </>
                     )}
                 </div>
@@ -540,6 +505,7 @@ function renderCardAsset(attributes, setAttributes, isHorizontal, position = "")
         imageObjectFit,
         imageDisplayClass,
         imageAlignClass,
+        imageShadow,
         imageBorderSize,
         imageBorderColor,
         imageBorderRadius,
@@ -551,6 +517,8 @@ function renderCardAsset(attributes, setAttributes, isHorizontal, position = "")
         mediaType,
         iconSvg,
         iconColor,
+        iconBgColor,
+        iconMargin,
     } = attributes;
 
     const baseClass = isHorizontal
@@ -559,44 +527,37 @@ function renderCardAsset(attributes, setAttributes, isHorizontal, position = "")
         ? "card-img-bottom"
         : "card-img-top";
 
-    const assetClasses = [
-        baseClass,
-        imageDisplayClass,
-        imageAlignClass,
-        ...(imageBorderSides || []),
-        ...(imageBorderRemove || []),
-        imageBorderColor,
-        imageBorderOpacityClass,
-        imageBorderSize,
-        imageBorderRadius,
-        imageBorderRadiusSize,
-    ]
-        .filter(Boolean)
-        .join(" ");
-
-    const assetStyles = {
-        display: imageAlignClass.includes("d-block") ? "block" : "inline-block",
-        width: imageWidth || undefined,
-        height: imageHeight || (isHorizontal ? "100%" : "200px"),
-        objectFit: imageObjectFit || "cover",
-        color: mediaType === "icon" && iconColor ? iconColor : undefined,
-        ...(imageBorderOpacityCustom
-            ? { "--bs-border-opacity": imageBorderOpacityCustom }
-            : {}),
-    };
-
     if (mediaType === "icon") {
+        // SVG Icon Layout - Completely isolated from image properties
+        const iconClasses = [
+            baseClass,
+            imageAlignClass,
+            imageShadow,
+            ...(imageBorderSides || []),
+            ...(imageBorderRemove || []),
+            imageBorderColor,
+            imageBorderOpacityClass,
+            imageBorderSize,
+            imageBorderRadius,
+            imageBorderRadiusSize,
+        ].filter(Boolean).join(" ");
+
+        const iconStyles = {
+            display: "flex", 
+            alignItems: "center",
+            justifyContent: "center",
+            width: imageWidth || undefined,
+            height: imageHeight || undefined,
+            color: iconColor || undefined,
+            background: iconBgColor || undefined,
+            margin: iconMargin || undefined,
+            ...(imageBorderOpacityCustom ? { "--bs-border-opacity": imageBorderOpacityCustom } : {}),
+        };
+
         return (
             <div 
-                className={`wmblocks-div-container wmblocks-card-icon-box ${assetClasses}`} 
-                style={{ 
-                    ...assetStyles, 
-                    display: "flex", 
-                    alignItems: "center", 
-                    justifyContent: "center", 
-                    background: "#f8f9fa", 
-                    minHeight: "150px" 
-                }}
+                className={`wmblocks-div-container wmblocks-card-icon-box ${iconClasses}`} 
+                style={iconStyles}
             >
                 {iconSvg ? (
                     <div 
@@ -605,13 +566,36 @@ function renderCardAsset(attributes, setAttributes, isHorizontal, position = "")
                         dangerouslySetInnerHTML={{ __html: iconSvg }} 
                     />
                 ) : (
-                    <div style={{ padding: "20px", textAlign: "center", border: "1px dashed #ccc", fontSize: "12px", color: "#888" }}>
+                    <div style={{ padding: "20px", textAlign: "center", border: "1px dashed #ccc", fontSize: "12px", color: "#888", width: "100%" }}>
                         <span>✕ Click to configure Custom SVG code</span>
                     </div>
                 )}
             </div>
         );
     }
+
+    // Standard Image Layout - Maintains object-fit, img-fluid, etc.
+    const imgClasses = [
+        baseClass,
+        imageDisplayClass,
+        imageAlignClass,
+        imageShadow,
+        ...(imageBorderSides || []),
+        ...(imageBorderRemove || []),
+        imageBorderColor,
+        imageBorderOpacityClass,
+        imageBorderSize,
+        imageBorderRadius,
+        imageBorderRadiusSize,
+    ].filter(Boolean).join(" ");
+
+    const imgStyles = {
+        display: imageAlignClass.includes("d-block") ? "block" : "inline-block",
+        width: imageWidth || undefined,
+        height: imageHeight || (isHorizontal ? "100%" : "200px"),
+        objectFit: imageObjectFit || "cover",
+        ...(imageBorderOpacityCustom ? { "--bs-border-opacity": imageBorderOpacityCustom } : {}),
+    };
 
     return (
         <MediaUploadCheck>
@@ -635,8 +619,8 @@ function renderCardAsset(attributes, setAttributes, isHorizontal, position = "")
                             <img
                                 src={imageUrl}
                                 alt={imageAlt}
-                                className={assetClasses}
-                                style={assetStyles}
+                                className={imgClasses}
+                                style={imgStyles}
                             />
                         ) : (
                             <div
@@ -671,49 +655,16 @@ function CardBody({
     return (
         <div className="card-body">
             {showBadge && (
-                <RichText
-                    tagName="span"
-                    className={"badge mb-2 " + badgeVariant}
-                    value={badgeText}
-                    onChange={(v) => setAttributes({ badgeText: v })}
-                    allowedFormats={[]}
-                    placeholder={__("Badge…", "wmblocks")}
-                />
+                <RichText tagName="span" className={"badge mb-2 " + badgeVariant} value={badgeText} onChange={(v) => setAttributes({ badgeText: v })} allowedFormats={[]} placeholder={__("Badge…", "wmblocks")} />
             )}
-            <RichText
-                tagName="h5"
-                className="card-title"
-                value={title}
-                onChange={(v) => setAttributes({ title: v })}
-                allowedFormats={["core/bold", "core/italic"]}
-                placeholder={__("Card title…", "wmblocks")}
-            />
+            <RichText tagName="h5" className="card-title" value={title} onChange={(v) => setAttributes({ title: v })} allowedFormats={["core/bold", "core/italic"]} placeholder={__("Card title…", "wmblocks")} />
             {subtitle && (
-                <RichText
-                    tagName="h6"
-                    className="card-subtitle mb-2 text-muted"
-                    value={subtitle}
-                    onChange={(v) => setAttributes({ subtitle: v })}
-                    allowedFormats={["core/bold", "core/italic"]}
-                    placeholder={__("Subtitle…", "wmblocks")}
-                />
+                <RichText tagName="h6" className="card-subtitle mb-2 text-muted" value={subtitle} onChange={(v) => setAttributes({ subtitle: v })} allowedFormats={["core/bold", "core/italic"]} placeholder={__("Subtitle…", "wmblocks")} />
             )}
-            <RichText
-                tagName="p"
-                className="card-text"
-                value={bodyText}
-                onChange={(v) => setAttributes({ bodyText: v })}
-                allowedFormats={["core/bold", "core/italic", "core/link"]}
-                placeholder={__("Card body text…", "wmblocks")}
-            />
+            <RichText tagName="p" className="card-text" value={bodyText} onChange={(v) => setAttributes({ bodyText: v })} allowedFormats={["core/bold", "core/italic", "core/link"]} placeholder={__("Card body text…", "wmblocks")} />
             {showLink && (
                 <div className="wmblocks-button-wrapper mt-3">
-                    <InnerBlocks
-                        allowedBlocks={["wmblocks/buttons","wmblocks/div","wmblocks/icon-text"]}
-                        template={[["wmblocks/buttons"]]}
-                        templateLock={false}
-                        renderAppender={InnerBlocks.ButtonBlockAppender}
-                    />
+                    <InnerBlocks allowedBlocks={["wmblocks/buttons"]} template={[["wmblocks/buttons"]]} templateLock={false} renderAppender={InnerBlocks.ButtonBlockAppender} />
                 </div>
             )}
         </div>

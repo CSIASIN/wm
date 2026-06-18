@@ -1936,6 +1936,10 @@ return array(
 				'type' => 'string',
 				'default' => ''
 			),
+			'imageShadow' => array(
+				'type' => 'string',
+				'default' => ''
+			),
 			'imageBorderSize' => array(
 				'type' => 'string',
 				'default' => ''
@@ -2109,6 +2113,14 @@ return array(
 				'default' => ''
 			),
 			'iconColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'iconBgColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'iconMargin' => array(
 				'type' => 'string',
 				'default' => ''
 			)

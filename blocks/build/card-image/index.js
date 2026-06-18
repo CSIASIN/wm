@@ -1354,9 +1354,6 @@ const IMG_COL_OPTIONS = [{
   value: "col-md-5"
 }];
 const OBJECT_FIT_OPTIONS = [{
-  label: "--None--",
-  value: ""
-}, {
   label: "Cover (Fill & Crop)",
   value: "cover"
 }, {
@@ -1388,6 +1385,22 @@ const IMG_ALIGN_OPTIONS = [{
 }, {
   label: "Center Block (mx-auto d-block)",
   value: "mx-auto d-block"
+}];
+const SHADOW_OPTIONS = [{
+  label: "None",
+  value: ""
+}, {
+  label: "No Shadow (shadow-none)",
+  value: "shadow-none"
+}, {
+  label: "Small Shadow (shadow-sm)",
+  value: "shadow-sm"
+}, {
+  label: "Regular Shadow (shadow)",
+  value: "shadow"
+}, {
+  label: "Large Shadow (shadow-lg)",
+  value: "shadow-lg"
 }];
 const BADGE_VARIANTS = [{
   label: "Primary",
@@ -1429,6 +1442,7 @@ function Edit({
     imageObjectFit,
     imageDisplayClass,
     imageAlignClass,
+    imageShadow,
     imageBorderSides,
     imageBorderRemove,
     imageBorderColor,
@@ -1468,7 +1482,9 @@ function Edit({
     hideXxl,
     mediaType,
     iconSvg,
-    iconColor
+    iconColor,
+    iconBgColor,
+    iconMargin
   } = attributes;
   const isHorizontal = imagePosition === "left" || imagePosition === "right";
   const isOverlay = imagePosition === "overlay";
@@ -1565,11 +1581,11 @@ function Edit({
                 flexGrow: 1,
                 justifyContent: "center"
               },
-              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("SVG Icon Block", "wmblocks")
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("SVG Icon Box", "wmblocks")
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Image Position", "wmblocks"),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Asset Position", "wmblocks"),
           value: imagePosition,
           options: IMG_POSITION_OPTIONS,
           onChange: v => setAttributes({
@@ -1592,11 +1608,25 @@ function Edit({
             help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Paste inline code starting with <svg>. Existing path settings like stroke, width, and height are completely preserved.", "wmblocks"),
             rows: 5
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Icon Color Map Override", "wmblocks"),
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Icon Color (SVG Text/Fill)", "wmblocks"),
             value: iconColor,
-            placeholder: "e.g. #0056b3 or var(--bs-warning)",
+            placeholder: "e.g. #ff4000 or var(--bs-warning)",
             onChange: v => setAttributes({
               iconColor: v
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Icon Box Background", "wmblocks"),
+            value: iconBgColor,
+            placeholder: "e.g. yellow or #000",
+            onChange: v => setAttributes({
+              iconBgColor: v
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Icon Box Margin", "wmblocks"),
+            value: iconMargin,
+            placeholder: "e.g. 20px",
+            onChange: v => setAttributes({
+              iconMargin: v
             })
           })]
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
@@ -1607,21 +1637,37 @@ function Edit({
           })
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Image Presentation & Borders", "wmblocks"),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Asset Presentation & Borders", "wmblocks"),
         initialOpen: true,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Image Class Type", "wmblocks"),
-          value: imageDisplayClass,
-          options: IMG_DISPLAY_OPTIONS,
-          onChange: v => setAttributes({
-            imageDisplayClass: v
-          })
+        children: [mediaType !== "icon" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Image Class Type", "wmblocks"),
+            value: imageDisplayClass,
+            options: IMG_DISPLAY_OPTIONS,
+            onChange: v => setAttributes({
+              imageDisplayClass: v
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Image Crop Rule (Object Fit)", "wmblocks"),
+            value: imageObjectFit,
+            options: OBJECT_FIT_OPTIONS,
+            onChange: v => setAttributes({
+              imageObjectFit: v
+            })
+          })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Alignment / Float Controls", "wmblocks"),
           value: imageAlignClass,
           options: IMG_ALIGN_OPTIONS,
           onChange: v => setAttributes({
             imageAlignClass: v
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Asset Shadow", "wmblocks"),
+          value: imageShadow,
+          options: SHADOW_OPTIONS,
+          onChange: v => setAttributes({
+            imageShadow: v
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           style: {
@@ -1632,25 +1678,18 @@ function Edit({
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Height Limits", "wmblocks"),
             value: imageHeight,
-            placeholder: isHorizontal ? "100%" : "200px",
+            placeholder: mediaType === "icon" ? "70px" : isHorizontal ? "100%" : "200px",
             onChange: v => setAttributes({
               imageHeight: v
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Width Limits", "wmblocks"),
             value: imageWidth,
-            placeholder: "100%",
+            placeholder: mediaType === "icon" ? "70px" : "100%",
             onChange: v => setAttributes({
               imageWidth: v
             })
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Image Crop Rule (Object Fit)", "wmblocks"),
-          value: imageObjectFit,
-          options: OBJECT_FIT_OPTIONS,
-          onChange: v => setAttributes({
-            imageObjectFit: v
-          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_controls_visualControls__WEBPACK_IMPORTED_MODULE_5__.BorderControl, {
           borderSides: imageBorderSides || [],
           borderRemove: imageBorderRemove || [],
@@ -1831,6 +1870,7 @@ function renderCardAsset(attributes, setAttributes, isHorizontal, position = "")
     imageObjectFit,
     imageDisplayClass,
     imageAlignClass,
+    imageShadow,
     imageBorderSize,
     imageBorderColor,
     imageBorderRadius,
@@ -1841,31 +1881,30 @@ function renderCardAsset(attributes, setAttributes, isHorizontal, position = "")
     imageBorderRemove,
     mediaType,
     iconSvg,
-    iconColor
+    iconColor,
+    iconBgColor,
+    iconMargin
   } = attributes;
   const baseClass = isHorizontal ? "rounded-start" : position === "bottom" ? "card-img-bottom" : "card-img-top";
-  const assetClasses = [baseClass, imageDisplayClass, imageAlignClass, ...(imageBorderSides || []), ...(imageBorderRemove || []), imageBorderColor, imageBorderOpacityClass, imageBorderSize, imageBorderRadius, imageBorderRadiusSize].filter(Boolean).join(" ");
-  const assetStyles = {
-    display: imageAlignClass.includes("d-block") ? "block" : "inline-block",
-    width: imageWidth || undefined,
-    height: imageHeight || (isHorizontal ? "100%" : "200px"),
-    objectFit: imageObjectFit || "cover",
-    color: mediaType === "icon" && iconColor ? iconColor : undefined,
-    ...(imageBorderOpacityCustom ? {
-      "--bs-border-opacity": imageBorderOpacityCustom
-    } : {})
-  };
   if (mediaType === "icon") {
+    // SVG Icon Layout - Completely isolated from image properties
+    const iconClasses = [baseClass, imageAlignClass, imageShadow, ...(imageBorderSides || []), ...(imageBorderRemove || []), imageBorderColor, imageBorderOpacityClass, imageBorderSize, imageBorderRadius, imageBorderRadiusSize].filter(Boolean).join(" ");
+    const iconStyles = {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: imageWidth || undefined,
+      height: imageHeight || undefined,
+      color: iconColor || undefined,
+      background: iconBgColor || undefined,
+      margin: iconMargin || undefined,
+      ...(imageBorderOpacityCustom ? {
+        "--bs-border-opacity": imageBorderOpacityCustom
+      } : {})
+    };
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-      className: `wmblocks-div-container wmblocks-card-icon-box ${assetClasses}`,
-      style: {
-        ...assetStyles,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "#f8f9fa",
-        minHeight: "150px"
-      },
+      className: `wmblocks-div-container wmblocks-card-icon-box ${iconClasses}`,
+      style: iconStyles,
       children: iconSvg ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
         className: "wmblocks-svg-render-view",
         style: {
@@ -1880,7 +1919,8 @@ function renderCardAsset(attributes, setAttributes, isHorizontal, position = "")
           textAlign: "center",
           border: "1px dashed #ccc",
           fontSize: "12px",
-          color: "#888"
+          color: "#888",
+          width: "100%"
         },
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
           children: "\u2715 Click to configure Custom SVG code"
@@ -1888,6 +1928,18 @@ function renderCardAsset(attributes, setAttributes, isHorizontal, position = "")
       })
     });
   }
+
+  // Standard Image Layout - Maintains object-fit, img-fluid, etc.
+  const imgClasses = [baseClass, imageDisplayClass, imageAlignClass, imageShadow, ...(imageBorderSides || []), ...(imageBorderRemove || []), imageBorderColor, imageBorderOpacityClass, imageBorderSize, imageBorderRadius, imageBorderRadiusSize].filter(Boolean).join(" ");
+  const imgStyles = {
+    display: imageAlignClass.includes("d-block") ? "block" : "inline-block",
+    width: imageWidth || undefined,
+    height: imageHeight || (isHorizontal ? "100%" : "200px"),
+    objectFit: imageObjectFit || "cover",
+    ...(imageBorderOpacityCustom ? {
+      "--bs-border-opacity": imageBorderOpacityCustom
+    } : {})
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
       onSelect: media => setAttributes({
@@ -1910,8 +1962,8 @@ function renderCardAsset(attributes, setAttributes, isHorizontal, position = "")
         children: imageUrl ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
           src: imageUrl,
           alt: imageAlt,
-          className: assetClasses,
-          style: assetStyles
+          className: imgClasses,
+          style: imgStyles
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
           className: "wmblocks-card-img-placeholder",
           style: {
@@ -1979,7 +2031,7 @@ function CardBody({
     }), showLink && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
       className: "wmblocks-button-wrapper mt-3",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
-        allowedBlocks: ["wmblocks/buttons", "wmblocks/div", "wmblocks/icon-text"],
+        allowedBlocks: ["wmblocks/buttons"],
         template: [["wmblocks/buttons"]],
         templateLock: false,
         renderAppender: _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.ButtonBlockAppender
@@ -2140,7 +2192,7 @@ module.exports = window["wp"]["i18n"];
   \***********************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wmblocks/card-image","version":"0.1.0","title":"Card with Image","category":"watermelon-blocks","icon":"format-image","description":"Bootstrap card with image, title, subtitle, body text, and an optional button link. Supports top, bottom, overlay, and horizontal (side-by-side) layouts.","supports":{"html":false,"anchor":true},"attributes":{"anchor":{"type":"string","default":""},"imageUrl":{"type":"string","default":""},"imageAlt":{"type":"string","default":""},"imageId":{"type":"number","default":0},"imagePosition":{"type":"string","default":"top"},"imageCol":{"type":"string","default":"col-md-4"},"imageHeight":{"type":"string","default":""},"imageWidth":{"type":"string","default":"100%"},"imageObjectFit":{"type":"string","default":"cover"},"imageDisplayClass":{"type":"string","default":"img-fluid"},"imageAlignClass":{"type":"string","default":""},"imageBorderSize":{"type":"string","default":""},"imageBorderColor":{"type":"string","default":""},"imageBorderRadius":{"type":"string","default":""},"imageBorderRadiusSize":{"type":"string","default":""},"imageBorderOpacityClass":{"type":"string","default":""},"imageBorderOpacityCustom":{"type":"string","default":""},"imageBorderSides":{"type":"array","default":[]},"imageBorderRemove":{"type":"array","default":[]},"title":{"type":"string","default":"Card title"},"subtitle":{"type":"string","default":""},"bodyText":{"type":"string","default":"Some quick example text to build on the card title and make up the bulk of the card\'s content."},"showBadge":{"type":"boolean","default":false},"badgeText":{"type":"string","default":"New"},"badgeVariant":{"type":"string","default":"bg-primary"},"showLink":{"type":"boolean","default":true},"bgColor":{"type":"string","default":""},"borderColor":{"type":"string","default":""},"shadow":{"type":"string","default":""},"textAlign":{"type":"string","default":""},"noBorder":{"type":"boolean","default":false},"padding":{"type":"string","default":""},"margin":{"type":"string","default":"mb-3"},"textColor":{"type":"string","default":""},"backgroundColor":{"type":"string","default":""},"opacity":{"type":"number","default":100},"borderSides":{"type":"array","default":[]},"borderRemove":{"type":"array","default":[]},"borderOpacityClass":{"type":"string","default":""},"borderOpacityCustom":{"type":"string","default":""},"borderSize":{"type":"string","default":""},"borderRadius":{"type":"string","default":""},"borderRadiusSize":{"type":"string","default":""},"customCSS":{"type":"string","default":""},"hideXs":{"type":"boolean","default":false},"hideSm":{"type":"boolean","default":false},"hideMd":{"type":"boolean","default":false},"hideLg":{"type":"boolean","default":false},"hideXl":{"type":"boolean","default":false},"hideXxl":{"type":"boolean","default":false},"mediaType":{"type":"string","default":"image"},"iconSvg":{"type":"string","default":""},"iconColor":{"type":"string","default":""}},"textdomain":"wm","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wmblocks/card-image","version":"0.1.0","title":"Card with Image","category":"watermelon-blocks","icon":"format-image","description":"Bootstrap card with image, title, subtitle, body text, and an optional button link. Supports top, bottom, overlay, and horizontal (side-by-side) layouts.","supports":{"html":false,"anchor":true},"attributes":{"anchor":{"type":"string","default":""},"imageUrl":{"type":"string","default":""},"imageAlt":{"type":"string","default":""},"imageId":{"type":"number","default":0},"imagePosition":{"type":"string","default":"top"},"imageCol":{"type":"string","default":"col-md-4"},"imageHeight":{"type":"string","default":""},"imageWidth":{"type":"string","default":"100%"},"imageObjectFit":{"type":"string","default":"cover"},"imageDisplayClass":{"type":"string","default":"img-fluid"},"imageAlignClass":{"type":"string","default":""},"imageShadow":{"type":"string","default":""},"imageBorderSize":{"type":"string","default":""},"imageBorderColor":{"type":"string","default":""},"imageBorderRadius":{"type":"string","default":""},"imageBorderRadiusSize":{"type":"string","default":""},"imageBorderOpacityClass":{"type":"string","default":""},"imageBorderOpacityCustom":{"type":"string","default":""},"imageBorderSides":{"type":"array","default":[]},"imageBorderRemove":{"type":"array","default":[]},"title":{"type":"string","default":"Card title"},"subtitle":{"type":"string","default":""},"bodyText":{"type":"string","default":"Some quick example text to build on the card title and make up the bulk of the card\'s content."},"showBadge":{"type":"boolean","default":false},"badgeText":{"type":"string","default":"New"},"badgeVariant":{"type":"string","default":"bg-primary"},"showLink":{"type":"boolean","default":true},"bgColor":{"type":"string","default":""},"borderColor":{"type":"string","default":""},"shadow":{"type":"string","default":""},"textAlign":{"type":"string","default":""},"noBorder":{"type":"boolean","default":false},"padding":{"type":"string","default":""},"margin":{"type":"string","default":"mb-3"},"textColor":{"type":"string","default":""},"backgroundColor":{"type":"string","default":""},"opacity":{"type":"number","default":100},"borderSides":{"type":"array","default":[]},"borderRemove":{"type":"array","default":[]},"borderOpacityClass":{"type":"string","default":""},"borderOpacityCustom":{"type":"string","default":""},"borderSize":{"type":"string","default":""},"borderRadius":{"type":"string","default":""},"borderRadiusSize":{"type":"string","default":""},"customCSS":{"type":"string","default":""},"hideXs":{"type":"boolean","default":false},"hideSm":{"type":"boolean","default":false},"hideMd":{"type":"boolean","default":false},"hideLg":{"type":"boolean","default":false},"hideXl":{"type":"boolean","default":false},"hideXxl":{"type":"boolean","default":false},"mediaType":{"type":"string","default":"image"},"iconSvg":{"type":"string","default":""},"iconColor":{"type":"string","default":""},"iconBgColor":{"type":"string","default":""},"iconMargin":{"type":"string","default":""}},"textdomain":"wm","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }
 

@@ -56,54 +56,56 @@ $wrapper_attr = get_block_wrapper_attributes($wrapper_args);
 
 // --- DYNAMIC ASSET COMPILATION ---
 $media_type    = $attributes['mediaType'] ?? 'image';
-$image_url     = ! empty($attributes['imageUrl']) ? esc_url($attributes['imageUrl']) : '';
-$image_alt     = isset($attributes['imageAlt']) ? esc_attr($attributes['imageAlt']) : '';
 $image_pos     = $attributes['imagePosition'] ?? 'top';
 $image_col     = esc_attr($attributes['imageCol'] ?? 'col-md-4');
 $is_horizontal = in_array($image_pos, ['left', 'right'], true);
 $is_overlay    = $image_pos === 'overlay';
+$image_shadow  = $attributes['imageShadow'] ?? '';
+
+$base_class = '';
+if ($is_horizontal) {
+    $base_class = 'rounded-start';
+} elseif ($image_pos === 'bottom') {
+    $base_class = 'card-img-bottom';
+} elseif ($is_overlay) {
+    $base_class = 'card-img';
+} else {
+    $base_class = 'card-img-top';
+}
 
 $asset_html = '';
 
-$asset_classes = [];
-if ($is_horizontal) {
-    $asset_classes[] = 'rounded-start';
-} elseif ($image_pos === 'bottom') {
-    $asset_classes[] = 'card-img-bottom';
-} elseif ($is_overlay) {
-    $asset_classes[] = 'card-img';
-} else {
-    $asset_classes[] = 'card-img-top';
-}
-
-if (! empty($attributes['imageBorderSides']))    $asset_classes = array_merge($asset_classes, $attributes['imageBorderSides']);
-if (! empty($attributes['imageBorderRemove']))   $asset_classes = array_merge($asset_classes, $attributes['imageBorderRemove']);
-if (! empty($attributes['imageDisplayClass']))   $asset_classes[] = esc_attr($attributes['imageDisplayClass']);
-if (! empty($attributes['imageAlignClass']))     $asset_classes[] = esc_attr($attributes['imageAlignClass']);
-if (! empty($attributes['imageBorderColor']))    $asset_classes[] = esc_attr($attributes['imageBorderColor']);
-if (! empty($attributes['imageBorderOpacityClass'])) $asset_classes[] = esc_attr($attributes['imageBorderOpacityClass']);
-if (! empty($attributes['imageBorderSize']))     $asset_classes[] = esc_attr($attributes['imageBorderSize']);
-if (! empty($attributes['imageBorderRadius']))   $asset_classes[] = esc_attr($attributes['imageBorderRadius']);
-if (! empty($attributes['imageBorderRadiusSize'])) $asset_classes[] = esc_attr($attributes['imageBorderRadiusSize']);
-
-$asset_styles = [];
-$asset_styles[] = 'width: ' . (! empty($attributes['imageWidth']) ? esc_attr($attributes['imageWidth']) : '100%');
-
-$fallback_h    = $is_horizontal ? '100%' : '200px';
-$asset_styles[] = 'height: ' . (! empty($attributes['imageHeight']) ? esc_attr($attributes['imageHeight']) : $fallback_h);
-$asset_styles[] = 'object-fit: ' . (! empty($attributes['imageObjectFit']) ? esc_attr($attributes['imageObjectFit']) : 'cover');
-
-if (! empty($attributes['imageAlignClass']) && strpos($attributes['imageAlignClass'], 'd-block') !== false) {
-    $asset_styles[] = 'display: block';
-} else {
-    $asset_styles[] = 'display: inline-block';
-}
-
-if (! empty($attributes['imageBorderOpacityCustom'])) {
-    $asset_styles[] = '--bs-border-opacity: ' . esc_attr($attributes['imageBorderOpacityCustom']);
-}
-
 if ($media_type === 'icon') {
+    // ----------------------------------------------------
+    // ICON SPECIFIC LOGIC
+    // ----------------------------------------------------
+    $icon_classes = [
+        $base_class,
+        $attributes['imageAlignClass'] ?? '',
+        $image_shadow,
+        $attributes['imageBorderColor'] ?? '',
+        $attributes['imageBorderOpacityClass'] ?? '',
+        $attributes['imageBorderSize'] ?? '',
+        $attributes['imageBorderRadius'] ?? '',
+        $attributes['imageBorderRadiusSize'] ?? ''
+    ];
+    if (! empty($attributes['imageBorderSides']))  $icon_classes = array_merge($icon_classes, $attributes['imageBorderSides']);
+    if (! empty($attributes['imageBorderRemove'])) $icon_classes = array_merge($icon_classes, $attributes['imageBorderRemove']);
+
+    $icon_styles = [];
+    $icon_styles[] = 'display: flex';
+    $icon_styles[] = 'align-items: center';
+    $icon_styles[] = 'justify-content: center';
+    
+    if (! empty($attributes['imageWidth']))  $icon_styles[] = 'width: ' . esc_attr($attributes['imageWidth']);
+    if (! empty($attributes['imageHeight'])) $icon_styles[] = 'height: ' . esc_attr($attributes['imageHeight']);
+    if (! empty($attributes['iconColor']))   $icon_styles[] = 'color: ' . esc_attr($attributes['iconColor']);
+    if (! empty($attributes['iconBgColor'])) $icon_styles[] = 'background: ' . esc_attr($attributes['iconBgColor']);
+    if (! empty($attributes['iconMargin']))  $icon_styles[] = 'margin: ' . esc_attr($attributes['iconMargin']);
+    if (! empty($attributes['imageBorderOpacityCustom'])) {
+        $icon_styles[] = '--bs-border-opacity: ' . esc_attr($attributes['imageBorderOpacityCustom']);
+    }
+
     $icon_svg = ! empty($attributes['iconSvg']) ? $attributes['iconSvg'] : '';
     if ($icon_svg) {
         $sanitized_svg = wp_kses($icon_svg, [
@@ -116,18 +118,49 @@ if ($media_type === 'icon') {
             'line'     => [ 'x1' => [], 'y1' => [], 'x2' => [], 'y2' => [], 'stroke' => [], 'stroke-width' => [], 'style' => [] ]
         ]);
 
-        if (! empty($attributes['iconColor'])) {
-            $asset_styles[] = 'color: ' . esc_attr($attributes['iconColor']);
-        }
-        $asset_styles[] = 'display: flex';
-        $asset_styles[] = 'align-items: center';
-        $asset_styles[] = 'justify-content: center';
-
-        $asset_html = '<div class="wmblocks-div-container wmblocks-card-icon-box ' . implode(' ', array_filter($asset_classes)) . '" style="' . implode('; ', $asset_styles) . '">' . $sanitized_svg . '</div>';
+        $asset_html = '<div class="wmblocks-div-container wmblocks-card-icon-box ' . implode(' ', array_filter($icon_classes)) . '" style="' . implode('; ', $icon_styles) . '">' . $sanitized_svg . '</div>';
     }
+
 } else {
+    // ----------------------------------------------------
+    // IMAGE SPECIFIC LOGIC
+    // ----------------------------------------------------
+    $img_classes = [
+        $base_class,
+        $attributes['imageDisplayClass'] ?? '',
+        $attributes['imageAlignClass'] ?? '',
+        $image_shadow,
+        $attributes['imageBorderColor'] ?? '',
+        $attributes['imageBorderOpacityClass'] ?? '',
+        $attributes['imageBorderSize'] ?? '',
+        $attributes['imageBorderRadius'] ?? '',
+        $attributes['imageBorderRadiusSize'] ?? ''
+    ];
+    if (! empty($attributes['imageBorderSides']))  $img_classes = array_merge($img_classes, $attributes['imageBorderSides']);
+    if (! empty($attributes['imageBorderRemove'])) $img_classes = array_merge($img_classes, $attributes['imageBorderRemove']);
+
+    $img_styles = [];
+    $img_styles[] = 'width: ' . (! empty($attributes['imageWidth']) ? esc_attr($attributes['imageWidth']) : '100%');
+
+    $fallback_h    = $is_horizontal ? '100%' : '200px';
+    $img_styles[] = 'height: ' . (! empty($attributes['imageHeight']) ? esc_attr($attributes['imageHeight']) : $fallback_h);
+    $img_styles[] = 'object-fit: ' . (! empty($attributes['imageObjectFit']) ? esc_attr($attributes['imageObjectFit']) : 'cover');
+
+    if (! empty($attributes['imageAlignClass']) && strpos($attributes['imageAlignClass'], 'd-block') !== false) {
+        $img_styles[] = 'display: block';
+    } else {
+        $img_styles[] = 'display: inline-block';
+    }
+
+    if (! empty($attributes['imageBorderOpacityCustom'])) {
+        $img_styles[] = '--bs-border-opacity: ' . esc_attr($attributes['imageBorderOpacityCustom']);
+    }
+
+    $image_url = ! empty($attributes['imageUrl']) ? esc_url($attributes['imageUrl']) : '';
+    $image_alt = isset($attributes['imageAlt']) ? esc_attr($attributes['imageAlt']) : '';
+
     if ($image_url) {
-        $asset_html = '<img src="' . $image_url . '" class="' . implode(' ', array_filter($asset_classes)) . '" style="' . implode('; ', $asset_styles) . '" alt="' . $image_alt . '">';
+        $asset_html = '<img src="' . $image_url . '" class="' . implode(' ', array_filter($img_classes)) . '" style="' . implode('; ', $img_styles) . '" alt="' . $image_alt . '">';
     }
 }
 

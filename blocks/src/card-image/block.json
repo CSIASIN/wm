@@ -56,6 +56,10 @@
             "type": "string",
             "default": ""
         },
+        "imageShadow": {
+            "type": "string",
+            "default": ""
+        },
         "imageBorderSize": {
             "type": "string",
             "default": ""
@@ -221,6 +225,14 @@
             "default": ""
         },
         "iconColor": {
+            "type": "string",
+            "default": ""
+        },
+        "iconBgColor": {
+            "type": "string",
+            "default": ""
+        },
+        "iconMargin": {
             "type": "string",
             "default": ""
         }
