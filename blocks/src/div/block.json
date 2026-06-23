@@ -176,6 +176,18 @@
             "type": "string",
             "default": ""
         },
+        "customBackgroundColor": {
+            "type": "string",
+            "default": ""
+        },
+        "backdropBlur": {
+            "type": "string",
+            "default": ""
+        },
+        "elementFilter": {
+            "type": "string",
+            "default": ""
+        },
         "textColor": {
             "type": "string",
             "default": ""

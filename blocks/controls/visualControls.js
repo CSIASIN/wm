@@ -1,6 +1,7 @@
 import { __ } from '@wordpress/i18n';
-import { PanelBody, SelectControl, RangeControl, Button, Flex, FlexItem, CheckboxControl, TextareaControl, ColorPicker, __experimentalNumberControl as NumberControl } from '@wordpress/components';
-
+import { useState } from '@wordpress/element';
+import { PanelBody, SelectControl, RangeControl, Button, Flex, FlexItem, CheckboxControl, 
+	TextareaControl, ColorPicker, TextControl, DropdownMenu, MenuGroup, MenuItem, __experimentalNumberControl as NumberControl } from '@wordpress/components';
 // ─── Background Color ────────────────────────────────────────────────────────
 
 const BG_COLORS = [
@@ -28,38 +29,162 @@ const BG_COLORS = [
 	{ label: 'Transparent',      value: 'bg-transparent',      color: 'transparent' },
 ];
 
-export function BackgroundColorControl( { value, onChange } ) {
-	return (
-		<PanelBody title={ __( 'Background Color', 'wm' ) } initialOpen={ false }>
-			<div style={ { marginBottom: '8px', fontSize: '11px', color: '#757575', textTransform: 'uppercase', fontWeight: 600 } }>{ __( 'Select Background', 'wm' ) }</div>
-			{ value && (
-				<div style={ { marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '8px' } }>
-					<span style={ { fontSize: '12px', color: '#555' } }>{ __( 'Selected:', 'wm' ) }</span>
-					<code style={ { fontSize: '11px', background: '#f0f0f0', padding: '2px 6px', borderRadius: '3px' } }>{ value }</code>
-					<button onClick={ () => onChange( '' ) } style={ { marginLeft: 'auto', fontSize: '11px', color: '#cc1818', background: 'none', border: 'none', cursor: 'pointer', padding: 0 } }>{ __( '✕ Clear', 'wm' ) }</button>
-				</div>
-			) }
-			<div style={ { display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' } }>
-				{ BG_COLORS.map( ( { label, value: val, color } ) => (
-					<button
-						key={ val }
-						title={ label + ' (' + val + ')' }
-						onClick={ () => onChange( val === value ? '' : val ) }
-						style={ {
-							width: '100%', aspectRatio: '1',
-							background: color === 'transparent' ? 'repeating-conic-gradient(#ccc 0% 25%, #fff 0% 50%) 0 0 / 10px 10px' : color,
-							border: val === value ? '3px solid #007cba' : '2px solid #ddd',
-							borderRadius: '4px', cursor: 'pointer', boxSizing: 'border-box',
-							outline: val === value ? '2px solid #007cba' : 'none', outlineOffset: '1px',
-						} }
-					/>
-				) ) }
-			</div>
-			<div style={ { marginTop: '8px', fontSize: '11px', color: '#757575' } }>{ __( 'Hover to see class name. Click to select, click again to deselect.', 'wm' ) }</div>
-		</PanelBody>
-	);
+export function BackgroundColorControl( { value, onChange, customValue, onCustomChange } ) {
+    return (
+        <PanelBody title={ __( 'Background Color', 'wm' ) } initialOpen={ false }>
+            <div style={ { marginBottom: '8px', fontSize: '11px', color: '#757575', textTransform: 'uppercase', fontWeight: 600 } }>{ __( 'Preset Classes', 'wm' ) }</div>
+            { value && (
+                <div style={ { marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '8px' } }>
+                    <span style={ { fontSize: '12px', color: '#555' } }>{ __( 'Selected:', 'wm' ) }</span>
+                    <code style={ { fontSize: '11px', background: '#f0f0f0', padding: '2px 6px', borderRadius: '3px' } }>{ value }</code>
+                    <button onClick={ () => onChange( '' ) } style={ { marginLeft: 'auto', fontSize: '11px', color: '#cc1818', background: 'none', border: 'none', cursor: 'pointer', padding: 0 } }>{ __( '✕ Clear', 'wm' ) }</button>
+                </div>
+            ) }
+            <div style={ { display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' } }>
+                { BG_COLORS.map( ( { label, value: val, color } ) => (
+                    <button
+                        key={ val }
+                        title={ label + ' (' + val + ')' }
+                        onClick={ () => onChange( val === value ? '' : val ) }
+                        style={ {
+                            width: '100%', aspectRatio: '1',
+                            background: color === 'transparent' ? 'repeating-conic-gradient(#ccc 0% 25%, #fff 0% 50%) 0 0 / 10px 10px' : color,
+                            border: val === value ? '3px solid #007cba' : '2px solid #ddd',
+                            borderRadius: '4px', cursor: 'pointer', boxSizing: 'border-box',
+                            outline: val === value ? '2px solid #007cba' : 'none', outlineOffset: '1px',
+                        } }
+                    />
+                ) ) }
+            </div>
+
+            <hr style={ { margin: '16px 0', border: 'none', borderTop: '1px solid #e0e0e0' } } />
+            
+            <div style={ { marginBottom: '8px', fontSize: '11px', color: '#757575', textTransform: 'uppercase', fontWeight: 600 } }>{ __( 'Custom Override Color', 'wm' ) }</div>
+            { customValue && (
+                <div style={ { marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '8px' } }>
+                    <div style={ { width: '24px', height: '24px', borderRadius: '4px', background: customValue, border: '1px solid #ddd', flexShrink: 0 } } />
+                    <code style={ { fontSize: '11px', background: '#f0f0f0', padding: '2px 6px', borderRadius: '3px', flex: 1, wordBreak: 'break-all' } }>{ customValue }</code>
+                    <button onClick={ () => onCustomChange( '' ) } style={ { fontSize: '11px', color: '#cc1818', background: 'none', border: 'none', cursor: 'pointer', padding: 0 } }>{ __( '✕ Clear', 'wm' ) }</button>
+                </div>
+            ) }
+            <ColorPicker
+                color={ customValue || '' }
+                onChange={ onCustomChange }
+                enableAlpha
+                defaultValue=""
+            />
+        </PanelBody>
+    );
 }
 
+const moreVerticalIcon = (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+        <path d="M13 19h-2v-2h2v2zm0-6h-2v-2h2v2zm0-6h-2V5h2v2z"></path>
+    </svg>
+);
+
+export function AdvancedFiltersControl( { backdropBlur, onBackdropChange, elementFilter, onFilterChange } ) {
+    // Determine initial visibility based on whether they currently have saved data
+    const [ showBackdrop, setShowBackdrop ] = useState( !!backdropBlur );
+    const [ showFilter, setShowFilter ] = useState( !!elementFilter );
+
+    const toggleBackdrop = () => {
+        if ( showBackdrop ) onBackdropChange( '' ); // Clear value if disabling
+        setShowBackdrop( ! showBackdrop );
+    };
+
+    const toggleFilter = () => {
+        if ( showFilter ) onFilterChange( '' ); // Clear value if disabling
+        setShowFilter( ! showFilter );
+    };
+
+    return (
+        <PanelBody title={ __( 'Advanced Filters', 'wm' ) } initialOpen={ false }>
+            
+            {/* Header Area with Ellipsis Toggle */}
+            <div style={ { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' } }>
+                <div style={ { fontSize: '12px', color: '#666' } }>
+                    { ( ! showBackdrop && ! showFilter ) ? __( 'Filters are hidden by default.', 'wm' ) : __( 'Manage active filters.', 'wm' ) }
+                </div>
+                
+                <DropdownMenu
+                    icon={ moreVerticalIcon }
+                    label={ __( 'Filter Options', 'wm' ) }
+                    popoverProps={ { position: 'bottom left' } }
+                    toggleProps={ { size: 'small', variant: 'tertiary' } }
+                >
+                    { () => (
+                        <MenuGroup>
+                            <MenuItem 
+                                isSelected={ showBackdrop } 
+                                onClick={ toggleBackdrop }
+                            >
+                                { __( 'Backdrop Filter (Glass)', 'wm' ) }
+                            </MenuItem>
+                            <MenuItem 
+                                isSelected={ showFilter } 
+                                onClick={ toggleFilter }
+                            >
+                                { __( 'Element Filter', 'wm' ) }
+                            </MenuItem>
+                        </MenuGroup>
+                    ) }
+                </DropdownMenu>
+            </div>
+
+            {/* Render Backdrop Filter UI conditionally */}
+            { showBackdrop && (
+                <div style={ { marginBottom: showFilter ? '16px' : '0', padding: '12px', background: '#f8f9fa', border: '1px solid #ddd', borderRadius: '4px' } }>
+                    <div style={ { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' } }>
+                        <div style={ { fontSize: '11px', color: '#1e1e1e', textTransform: 'uppercase', fontWeight: 600 } }>{ __( 'Backdrop Filter', 'wm' ) }</div>
+                    </div>
+                    <TextControl
+                        value={ backdropBlur }
+                        onChange={ onBackdropChange }
+                        placeholder="e.g., blur(10px)"
+                        help={
+                            <div style={ { marginTop: '8px', fontSize: '11px', color: '#666' } }>
+                                <p style={ { marginBottom: '6px' } }>{ __( 'Effect behind the element (requires transparent BG).', 'wm' ) }</p>
+                                <p style={ { fontWeight: 600, marginBottom: '2px', color: '#1e1e1e' } }>{ __( 'Examples:', 'wm' ) }</p>
+                                <ul style={ { margin: '0 0 0 16px', padding: 0, listStyleType: 'disc' } }>
+                                    <li><code>blur(10px)</code></li>
+                                    <li><code>brightness(60%)</code></li>
+                                    <li><code>blur(5px) saturate(150%)</code></li>
+                                </ul>
+                            </div>
+                        }
+                    />
+                </div>
+            ) }
+
+            {/* Render Element Filter UI conditionally */}
+            { showFilter && (
+                <div style={ { padding: '12px', background: '#f8f9fa', border: '1px solid #ddd', borderRadius: '4px' } }>
+                    <div style={ { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' } }>
+                        <div style={ { fontSize: '11px', color: '#1e1e1e', textTransform: 'uppercase', fontWeight: 600 } }>{ __( 'Element Filter', 'wm' ) }</div>
+                    </div>
+                    <TextControl
+                        value={ elementFilter }
+                        onChange={ onFilterChange }
+                        placeholder="e.g., blur(5px) or grayscale(100%)"
+                        help={
+                            <div style={ { marginTop: '8px', fontSize: '11px', color: '#666' } }>
+                                <p style={ { marginBottom: '6px' } }>{ __( 'Effect applied to the element and all its contents.', 'wm' ) }</p>
+                                <p style={ { fontWeight: 600, marginBottom: '2px', color: '#1e1e1e' } }>{ __( 'Examples:', 'wm' ) }</p>
+                                <ul style={ { margin: '0 0 0 16px', padding: 0, listStyleType: 'disc' } }>
+                                    <li><code>blur(5px)</code></li>
+                                    <li><code>drop-shadow(4px 4px 10px blue)</code></li>
+                                    <li><code>grayscale(100%)</code></li>
+                                </ul>
+                            </div>
+                        }
+                    />
+                </div>
+            ) }
+
+        </PanelBody>
+    );
+}
 // ─── Text Color ───────────────────────────────────────────────────────────────
 
 export function TextColorControl( { value, onChange } ) {

@@ -4,14 +4,16 @@ import './editor.scss';
 
 // Import Shared Controls
 import { PaddingControl, MarginControl } from '../../controls/spacingControls';
-import { BackgroundColorControl, TextColorControl, OpacityControl, ShadowControl, BorderControl, CustomCSSControl } from '../../controls/visualControls';
+import { BackgroundColorControl, TextColorControl, OpacityControl, ShadowControl, BorderControl, 
+    CustomCSSControl, AdvancedFiltersControl } from '../../controls/visualControls';     
 import { VisibilityControl } from '../../controls/visibilityControl';
 import { BackgroundControl } from '../../controls/background';
 import { TypographyControl, getTypographyStyles } from '../../controls/TypographyControl';
 
+
 export default function Edit( { attributes, setAttributes } ) {
     const {
-        padding, margin, backgroundColor, textColor, opacity, shadow, customCSS,
+        padding, margin, backgroundColor, customBackgroundColor, backdropBlur, elementFilter, textColor, opacity, shadow, customCSS,
         borderSides, borderRemove, borderColor, borderOpacityClass, borderOpacityCustom, borderSize, borderRadius, borderRadiusSize,
         hideXs, hideSm, hideMd, hideLg, hideXl, hideXxl, bgImageUrl, bgImageId, bgGradient, bgVideoUrl, bgVideoId
     } = attributes;
@@ -57,6 +59,11 @@ export default function Edit( { attributes, setAttributes } ) {
 
     const hasVideo = !! bgVideoUrl;
 
+// Smart formatter: allows advanced CSS functions but safely catches legacy simple blur values (e.g., "10px")
+    const formatFilter = ( val ) => {
+        if ( ! val ) return undefined;
+        return val.includes( '(' ) || val === 'none' ? val : `blur(${ val })`;
+    };
     const blockProps = useBlockProps( {
         className: [
             'wmblocks-div', 
@@ -67,6 +74,11 @@ export default function Edit( { attributes, setAttributes } ) {
         ].filter( Boolean ).join( ' ' ),
         style: {
             ...dynamicBgStyles,
+            backgroundColor: customBackgroundColor || undefined,
+            backdropFilter: formatFilter( backdropBlur ),
+            WebkitBackdropFilter: formatFilter( backdropBlur ),
+            filter: formatFilter( elementFilter ),
+            WebkitFilter: formatFilter( elementFilter ),
             opacity: opacity !== 100 ? opacity / 100 : undefined,
             color: textColor || undefined,
             ...( borderOpacityCustom ? { '--bs-border-opacity': borderOpacityCustom } : {} ),
@@ -82,7 +94,7 @@ export default function Edit( { attributes, setAttributes } ) {
         [ 
             'core/paragraph', 
             { 
-                placeholder: __( "Add your container content here... A div tag is just an invisible, blank box used to group things together on a webpage. Because it doesn’t have a special meaning of its own, it won’t change how your content looks. Instead, it just starts on a new line and takes up all the horizontal space it can. This makes it super useful for adding colors or spacing with CSS, making things interactive with JavaScript, or nesting other items inside it.", 'wm' ),
+                placeholder: __( "Add your container content here...", 'wm' ),
             } 
         ]
     ];
@@ -98,7 +110,18 @@ export default function Edit( { attributes, setAttributes } ) {
                 />
                 <PaddingControl value={ padding } onChange={ ( v ) => setAttributes( { padding: v } ) } />
                 <MarginControl value={ margin } onChange={ ( v ) => setAttributes( { margin: v } ) } />
-                <BackgroundColorControl value={ backgroundColor } onChange={ ( v ) => setAttributes( { backgroundColor: v } ) } />
+              <BackgroundColorControl 
+                    value={ backgroundColor } 
+                    onChange={ ( v ) => setAttributes( { backgroundColor: v } ) } 
+                    customValue={ customBackgroundColor }
+                    onCustomChange={ ( v ) => setAttributes( { customBackgroundColor: v } ) }
+                />
+               <AdvancedFiltersControl 
+                    backdropBlur={ backdropBlur } 
+                    onBackdropChange={ ( v ) => setAttributes( { backdropBlur: v } ) }
+                    elementFilter={ elementFilter } 
+                    onFilterChange={ ( v ) => setAttributes( { elementFilter: v } ) } 
+                />
                 <TextColorControl value={ textColor } onChange={ ( v ) => setAttributes( { textColor: v } ) } />
                 <OpacityControl value={ opacity } onChange={ ( v ) => setAttributes( { opacity: v } ) } />
                 <ShadowControl value={ shadow } onChange={ ( v ) => setAttributes( { shadow: v } ) } />

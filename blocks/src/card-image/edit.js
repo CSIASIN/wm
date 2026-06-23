@@ -664,7 +664,7 @@ function CardBody({
             <RichText tagName="p" className="card-text" value={bodyText} onChange={(v) => setAttributes({ bodyText: v })} allowedFormats={["core/bold", "core/italic", "core/link"]} placeholder={__("Card body text…", "wmblocks")} />
             {showLink && (
                 <div className="wmblocks-button-wrapper mt-3">
-                    <InnerBlocks allowedBlocks={["wmblocks/buttons"]} template={[["wmblocks/buttons"]]} templateLock={false} renderAppender={InnerBlocks.ButtonBlockAppender} />
+                    <InnerBlocks allowedBlocks={["wmblocks/buttons","wmblocks/div","wmblocks/bs-heading","wmblocks/icon-link","wmblocks/icon-text"]} template={[["wmblocks/buttons"]]} templateLock={false} renderAppender={InnerBlocks.ButtonBlockAppender} />
                 </div>
             )}
         </div>

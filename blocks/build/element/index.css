@@ -1,0 +1,89 @@
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/element/editor.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-wmblocks-element {
+  min-height: 60px;
+  outline: 1px solid rgba(0, 0, 0, 0.8);
+  outline-offset: -1px;
+  transition: outline-color 0.2s ease;
+  position: relative;
+}
+.wp-block-wmblocks-element.is-selected {
+  outline-color: #007cba;
+}
+.block-editor-block-list__block .block-list-appender {
+  margin-top: 2px;
+}
+.wp-block-wmblocks-element:before {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 0 5px;
+  color: #fff;
+  font-size: 9px;
+  z-index: 20;
+  content: attr(data-element-tag); /* Dynamically reads the HTML tag selection! */
+  top: -2.5px;
+  left: -2.5px;
+  position: absolute;
+}
+.wmblocks-typography-target {
+  font-family: inherit;
+  font-size: var(--wm-font-size-xs, inherit);
+  line-height: var(--wm-line-height-xs, inherit);
+  letter-spacing: var(--wm-letter-spacing-xs, normal);
+  text-indent: var(--wm-text-indent-xs, 0);
+}
+.wmblocks-typography-target.has-drop-cap::first-letter {
+  float: left;
+  font-size: 3.4em;
+  line-height: 0.85;
+  margin: 0.08em 0.1em 0 0;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+@media (min-width: 576px) {
+  .wmblocks-typography-target {
+    font-size: var(--wm-font-size-sm, var(--wm-font-size-xs));
+    line-height: var(--wm-line-height-sm, var(--wm-line-height-xs));
+    letter-spacing: var(--wm-letter-spacing-sm, var(--wm-letter-spacing-xs));
+    text-indent: var(--wm-text-indent-sm, var(--wm-text-indent-xs));
+  }
+}
+@media (min-width: 768px) {
+  .wmblocks-typography-target {
+    font-size: var(--wm-font-size-md, var(--wm-font-size-sm));
+    line-height: var(--wm-line-height-md, var(--wm-line-height-sm));
+    letter-spacing: var(--wm-letter-spacing-md, var(--wm-letter-spacing-sm));
+    text-indent: var(--wm-text-indent-md, var(--wm-text-indent-sm));
+  }
+}
+@media (min-width: 992px) {
+  .wmblocks-typography-target {
+    font-size: var(--wm-font-size-lg, var(--wm-font-size-md));
+    line-height: var(--wm-line-height-lg, var(--wm-line-height-md));
+    letter-spacing: var(--wm-letter-spacing-lg, var(--wm-letter-spacing-md));
+    text-indent: var(--wm-text-indent-lg, var(--wm-text-indent-md));
+  }
+}
+@media (min-width: 1200px) {
+  .wmblocks-typography-target {
+    font-size: var(--wm-font-size-xl, var(--wm-font-size-lg));
+    line-height: var(--wm-line-height-xl, var(--wm-line-height-lg));
+    letter-spacing: var(--wm-letter-spacing-xl, var(--wm-letter-spacing-lg));
+    text-indent: var(--wm-text-indent-xl, var(--wm-text-indent-lg));
+  }
+}
+@media (min-width: 1400px) {
+  .wmblocks-typography-target {
+    font-size: var(--wm-font-size-xxl, var(--wm-font-size-xl));
+    line-height: var(--wm-line-height-xxl, var(--wm-line-height-xl));
+    letter-spacing: var(--wm-letter-spacing-xxl, var(--wm-letter-spacing-xl));
+    text-indent: var(--wm-text-indent-xxl, var(--wm-text-indent-xl));
+  }
+}
+
+/*# sourceMappingURL=index.css.map*/

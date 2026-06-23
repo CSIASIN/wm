@@ -77,7 +77,31 @@ if ( ! empty( $attributes['borderOpacityCustom'] ) ) {
 if ( ! empty( $attributes['customCSS'] ) ) {
     $standard_styles[] = rtrim( esc_attr( $attributes['customCSS'] ), ';' );
 }
-
+if ( ! empty( $attributes['customBackgroundColor'] ) ) {
+    $standard_styles[] = 'background-color:' . esc_attr( $attributes['customBackgroundColor'] );
+}
+if ( ! empty( $attributes['backdropBlur'] ) ) {
+    $filter_val = trim( $attributes['backdropBlur'] );
+    
+    // Smart fallback: If no parenthesis is found and it isn't "none", wrap it in blur()
+    if ( strpos( $filter_val, '(' ) === false && strtolower( $filter_val ) !== 'none' ) {
+        $filter_val = 'blur(' . $filter_val . ')';
+    }
+    
+    $standard_styles[] = 'backdrop-filter: ' . esc_attr( $filter_val );
+    $standard_styles[] = '-webkit-backdrop-filter: ' . esc_attr( $filter_val );
+}
+if ( ! empty( $attributes['elementFilter'] ) ) {
+    $e_filter_val = trim( $attributes['elementFilter'] );
+    
+    // Smart fallback: If no parenthesis is found and it isn't "none", wrap it in blur()
+    if ( strpos( $e_filter_val, '(' ) === false && strtolower( $e_filter_val ) !== 'none' ) {
+        $e_filter_val = 'blur(' . $e_filter_val . ')';
+    }
+    
+    $standard_styles[] = 'filter: ' . esc_attr( $e_filter_val );
+    $standard_styles[] = '-webkit-filter: ' . esc_attr( $e_filter_val );
+}
 if ( ! empty( $attributes['bgImageUrl'] ) ) {
     $standard_styles[] = 'background-image: url(' . esc_url( $attributes['bgImageUrl'] ) . ')';
     $standard_styles[] = 'background-size: cover';

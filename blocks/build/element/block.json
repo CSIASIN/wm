@@ -1,0 +1,282 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wmblocks/element",
+  "version": "0.1.0",
+  "title": "Element",
+  "category": "watermelon-blocks",
+  "icon": "layout",
+  "description": "A dynamic building block container to group, pad, and align your content using custom HTML tags (div, section, header, etc.).",
+  "supports": {
+    "html": false,
+    "anchor": true
+  },
+  "attributes": {
+    "tagName": {
+      "type": "string",
+      "default": "div"
+    },
+    "fontFamily": {
+      "type": "string",
+      "default": ""
+    },
+    "fontWeight": {
+      "type": "string",
+      "default": ""
+    },
+    "textDecoration": {
+      "type": "string",
+      "default": ""
+    },
+    "textTransform": {
+      "type": "string",
+      "default": ""
+    },
+    "textFillColor": {
+      "type": "string",
+      "default": ""
+    },
+    "textStrokeWidth": {
+      "type": "string",
+      "default": ""
+    },
+    "textStrokeColor": {
+      "type": "string",
+      "default": ""
+    },
+    "textShadowType": {
+      "type": "string",
+      "default": "none"
+    },
+    "textShadowColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "textShadowWidth": {
+      "type": "string",
+      "default": ""
+    },
+    "textShadowX": {
+      "type": "string",
+      "default": ""
+    },
+    "textShadowY": {
+      "type": "string",
+      "default": ""
+    },
+    "textShadowBlur": {
+      "type": "string",
+      "default": ""
+    },
+    "fontSizeXs": {
+      "type": "string",
+      "default": ""
+    },
+    "fontSizeSm": {
+      "type": "string",
+      "default": ""
+    },
+    "fontSizeMd": {
+      "type": "string",
+      "default": ""
+    },
+    "fontSizeLg": {
+      "type": "string",
+      "default": ""
+    },
+    "fontSizeXl": {
+      "type": "string",
+      "default": ""
+    },
+    "fontSizeXxl": {
+      "type": "string",
+      "default": ""
+    },
+    "lineHeightXs": {
+      "type": "string",
+      "default": ""
+    },
+    "lineHeightSm": {
+      "type": "string",
+      "default": ""
+    },
+    "lineHeightMd": {
+      "type": "string",
+      "default": ""
+    },
+    "lineHeightLg": {
+      "type": "string",
+      "default": ""
+    },
+    "lineHeightXl": {
+      "type": "string",
+      "default": ""
+    },
+    "lineHeightXxl": {
+      "type": "string",
+      "default": ""
+    },
+    "letterSpacingXs": {
+      "type": "string",
+      "default": ""
+    },
+    "letterSpacingSm": {
+      "type": "string",
+      "default": ""
+    },
+    "letterSpacingMd": {
+      "type": "string",
+      "default": ""
+    },
+    "letterSpacingLg": {
+      "type": "string",
+      "default": ""
+    },
+    "letterSpacingXl": {
+      "type": "string",
+      "default": ""
+    },
+    "letterSpacingXxl": {
+      "type": "string",
+      "default": ""
+    },
+    "textIndentXs": {
+      "type": "string",
+      "default": ""
+    },
+    "textIndentSm": {
+      "type": "string",
+      "default": ""
+    },
+    "textIndentMd": {
+      "type": "string",
+      "default": ""
+    },
+    "textIndentLg": {
+      "type": "string",
+      "default": ""
+    },
+    "textIndentXl": {
+      "type": "string",
+      "default": ""
+    },
+    "textIndentXxl": {
+      "type": "string",
+      "default": ""
+    },
+    "anchor": {
+      "type": "string",
+      "default": ""
+    },
+    "padding": {
+      "type": "string",
+      "default": ""
+    },
+    "margin": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": ""
+    },
+    "textColor": {
+      "type": "string",
+      "default": ""
+    },
+    "opacity": {
+      "type": "number",
+      "default": 100
+    },
+    "shadow": {
+      "type": "string",
+      "default": ""
+    },
+    "borderSides": {
+      "type": "array",
+      "default": []
+    },
+    "borderRemove": {
+      "type": "array",
+      "default": []
+    },
+    "borderColor": {
+      "type": "string",
+      "default": ""
+    },
+    "borderOpacityClass": {
+      "type": "string",
+      "default": ""
+    },
+    "borderOpacityCustom": {
+      "type": "string",
+      "default": ""
+    },
+    "borderSize": {
+      "type": "string",
+      "default": ""
+    },
+    "borderRadius": {
+      "type": "string",
+      "default": ""
+    },
+    "borderRadiusSize": {
+      "type": "string",
+      "default": ""
+    },
+    "customCSS": {
+      "type": "string",
+      "default": ""
+    },
+    "hideXs": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideSm": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideMd": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideLg": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideXl": {
+      "type": "boolean",
+      "default": false
+    },
+    "hideXxl": {
+      "type": "boolean",
+      "default": false
+    },
+    "bgImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "bgImageId": {
+      "type": "number",
+      "default": 0
+    },
+    "bgGradient": {
+      "type": "string",
+      "default": ""
+    },
+    "bgVideoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "bgVideoId": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "textdomain": "wm",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}
