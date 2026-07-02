@@ -7240,6 +7240,160 @@ return array(
 		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),
+	'paragraph' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'wmblocks/paragraph',
+		'version' => '1.0.0',
+		'title' => 'Paragraph',
+		'category' => 'watermelon-blocks',
+		'icon' => 'editor-paragraph',
+		'description' => 'Paragraph block.',
+		'supports' => array(
+			'align' => false,
+			'color' => false,
+			'typography' => false,
+			'spacing' => false,
+			'html' => false,
+			'anchor' => true
+		),
+		'attributes' => array(
+			'wmAnim' => array(
+				'type' => 'string',
+				'default' => 'none'
+			),
+			'wmDelay' => array(
+				'type' => 'string',
+				'default' => '0'
+			),
+			'wmDuration' => array(
+				'type' => 'string',
+				'default' => '400'
+			),
+			'wmEasing' => array(
+				'type' => 'string',
+				'default' => 'ease'
+			),
+			'wmMirror' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'wmOnce' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'bgGradient' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'backgroundColorClass' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'margin' => array(
+				'type' => 'object',
+				'default' => array(
+					
+				)
+			),
+			'padding' => array(
+				'type' => 'object',
+				'default' => array(
+					
+				)
+			),
+			'content' => array(
+				'type' => 'string',
+				'source' => 'html',
+				'selector' => '.wmblocks-paragraph-text',
+				'default' => ''
+			),
+			'dropCap' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'dropCapColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'dropCapSize' => array(
+				'type' => 'number',
+				'default' => 4
+			),
+			'dropCapWeight' => array(
+				'type' => 'string',
+				'default' => '700'
+			),
+			'linkColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'linkHoverColor' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textStyle' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textDecoration' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textWrap' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'textTransform' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fontSize' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fontWeight' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fontStyle' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'lineHeight' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'fontMonospace' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'textReset' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'wrapStrong' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'wrapEm' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'wrapDel' => array(
+				'type' => 'boolean',
+				'default' => false
+			),
+			'wrapIns' => array(
+				'type' => 'boolean',
+				'default' => false
+			)
+		),
+		'textdomain' => 'wm',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css'
+	),
 	'placeholder' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,

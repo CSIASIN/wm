@@ -1,0 +1,987 @@
+/* Target the paragraph block directly instead of the inner span */
+.wmblocks-paragraph {
+  /* Apply styles only when variables are set */
+}
+.wmblocks-paragraph a {
+  color: var(--wm-link-color, rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1))) !important;
+  text-decoration: underline;
+}
+.wmblocks-paragraph a:hover {
+  color: var(--wm-link-hover-color, rgba(var(--bs-link-hover-color-rgb), var(--bs-link-hover-opacity, 1))) !important;
+}
+
+.wmblocks-paragraph.has-drop-cap:not(:focus)::first-letter {
+  float: left;
+  font-size: var(--wm-dropcap-size, 4em);
+  color: var(--wm-dropcap-color, inherit);
+  font-weight: var(--wm-dropcap-weight, 700);
+  line-height: 0.8;
+  margin: 0.1em 0.1em 0 0;
+  text-transform: uppercase;
+}
+@supports (initial-letter: 3) or (-webkit-initial-letter: 3) {
+  .wmblocks-paragraph.has-drop-cap:not(:focus)::first-letter {
+    -webkit-initial-letter: var(--wm-dropcap-lines, 3);
+    initial-letter: var(--wm-dropcap-lines, 3);
+    float: none;
+    font-size: inherit;
+    line-height: inherit;
+    margin-right: 0.1em;
+    margin-top: 0;
+  }
+}
+
+
+/* Editor-specific preview styles */
+.wmblocks-paragraph {
+    &.bg-gradient-blue { background: linear-gradient(45deg, #0d6efd, #0dcaf0); }
+    &.bg-gradient-purple { background: linear-gradient(45deg, #6f42c1, #d63384); }
+    &.bg-gradient-ocean { background: linear-gradient(to right, #20c997, #0dcaf0); }
+    &.bg-gradient-warm { background: linear-gradient(to right, #fd7e14, #ffc107); }
+    &.bg-visual-blue{background: linear-gradient(to right, rgb(0, 61, 77), rgb(0, 201, 150));}
+    &.bg-dusty-grass{background: linear-gradient(to right, rgb(212, 252, 121), rgb(150, 230, 161));}
+&.bg-neon-green{background: linear-gradient(to right, rgb(129, 255, 138), rgb(100, 150, 94));}
+&.bg-after-the-rain{background: linear-gradient(to right, rgb(255, 117, 195), rgb(255, 166, 71), rgb(255, 232, 63), rgb(159, 255, 91), rgb(112, 226, 255), rgb(205, 147, 255));}
+&.bg-racker{background: linear-gradient(to right, rgb(235, 0, 0), rgb(149, 0, 138), rgb(51, 0, 252));}
+&.bg-hyper-blue{background: linear-gradient(to right, rgb(89, 205, 233), rgb(10, 42, 136));}
+&.bg-whinehouse{background: linear-gradient(to right, rgb(247, 247, 247), rgb(185, 160, 160), rgb(121, 71, 71), rgb(78, 32, 32), rgb(17, 17, 17));}
+&.bg-moonwalker{background: linear-gradient(to right, rgb(21, 35, 49), rgb(0, 0, 0));}
+&.bg-andreuzza{background: linear-gradient(to right, rgb(215, 6, 82), rgb(255, 2, 94));}
+&.bg-compass{background: linear-gradient(to right, rgb(81, 107, 139), rgb(5, 107, 59));}
+&.bg-coffee-gold{background: linear-gradient(to right, rgb(85, 64, 35), rgb(201, 152, 70));}
+&.bg-bleem{background: linear-gradient(to right, rgb(66, 132, 219), rgb(41, 234, 196));}
+&.bg-emerald-sea{background: linear-gradient(to right, rgb(5, 56, 107), rgb(92, 219, 149));}
+&.bg-ameena{background: linear-gradient(to right, rgb(12, 12, 109), rgb(222, 81, 43), rgb(152, 208, 193), rgb(91, 178, 38), rgb(2, 60, 13));}
+&.bg-winter-woods{background: linear-gradient(to right, rgb(51, 51, 51), rgb(162, 171, 88), rgb(164, 57, 49));}
+&.bg-abbas{background: linear-gradient(to right, rgb(0, 255, 240), rgb(0, 131, 254));}
+&.bg-peach-sea{background: linear-gradient(to right, rgb(230, 174, 140), rgb(168, 206, 207));}
+
+&.bg-elate-the-euge{background: linear-gradient(to right, rgb(139, 222, 218), rgb(67, 173, 208), rgb(153, 142, 224), rgb(225, 125, 194), rgb(239, 147, 147));}
+&.bg-flower{background: linear-gradient(to right, rgb(220, 255, 189), rgb(204, 134, 209));}
+&.bg-space-light-green{background: linear-gradient(to right, rgb(159, 160, 168), rgb(92, 120, 82));}
+&.bg-blue-slate{background: linear-gradient(to right, rgb(181, 185, 255), rgb(43, 44, 73));}
+&.bg-blooze{background: linear-gradient(to right, rgb(109, 166, 190), rgb(75, 133, 158), rgb(109, 166, 190));}
+&.bg-twitter{background: linear-gradient(to right, rgb(29, 161, 242), rgb(0, 159, 252));}
+&.bg-blue-red{background: linear-gradient(to right, rgb(54, 177, 199), rgb(150, 11, 51));}
+&.bg-flame{background: linear-gradient(to right, rgb(255, 0, 0), rgb(253, 207, 88));}
+&.bg-unicorn-rainbow{background: linear-gradient(to right, rgb(247, 240, 172), rgb(172, 247, 240), rgb(240, 172, 247));}
+&.bg-mango-papaya{background: linear-gradient(to right, rgb(222, 138, 65), rgb(42, 218, 83));}
+&.bg-beleko{background: linear-gradient(to right, rgb(255, 30, 86), rgb(249, 201, 66), rgb(30, 144, 255));}
+&.bg-lemon-lime{background: linear-gradient(to right, rgb(126, 198, 188), rgb(235, 231, 23));}
+&.bg-dark-blu-two{background: linear-gradient(to right, rgb(0, 70, 128), rgb(68, 132, 186));}
+&.bg-dark-blue-gradient{background: linear-gradient(to right, rgb(39, 116, 174), rgb(0, 46, 93), rgb(0, 46, 93));}
+&.bg-newspaper{background: linear-gradient(to right, rgb(138, 43, 226), rgb(255, 165, 0), rgb(248, 248, 255));}
+&.bg-lensod{background: linear-gradient(to right, rgb(96, 37, 245), rgb(255, 85, 85));}
+&.bg-under-blue-green{background: linear-gradient(to right, rgb(5, 25, 55), rgb(0, 77, 122), rgb(0, 135, 147), rgb(0, 191, 114), rgb(168, 235, 18));}
+&.bg-electric-peacock{background: linear-gradient(to right, rgb(138, 43, 226), rgb(0, 0, 205), rgb(34, 139, 34), rgb(204, 255, 0));}
+&.bg-zenta{background: linear-gradient(to right, rgb(42, 45, 62), rgb(254, 203, 110));}
+&.bg-telko{background: linear-gradient(to right, rgb(243, 98, 34), rgb(92, 182, 68), rgb(0, 127, 195));}
+&.bg-grade-grey{background: linear-gradient(to right, rgb(189, 195, 199), rgb(44, 62, 80));}
+&.bg-piggy-pink{background: linear-gradient(to right, rgb(238, 156, 167), rgb(255, 221, 225));}
+&.bg-cool-blues{background: linear-gradient(to right, rgb(33, 147, 176), rgb(109, 213, 237));}
+&.bg-megatron{background: linear-gradient(to right, rgb(198, 255, 221), rgb(251, 215, 134), rgb(247, 121, 125));}
+&.bg-moonlit-asteroid{background: linear-gradient(to right, rgb(15, 32, 39), rgb(32, 58, 67), rgb(44, 83, 100));}
+&.bg-jshine{background: linear-gradient(to right, rgb(18, 194, 233), rgb(196, 113, 237), rgb(246, 79, 89));}
+&.bg-evening-sunshine{background: linear-gradient(to right, rgb(185, 43, 39), rgb(21, 101, 192));}
+&.bg-dark-ocean{background: linear-gradient(to right, rgb(55, 59, 68), rgb(66, 134, 244));}
+&.bg-cool-sky{background: linear-gradient(to right, rgb(41, 128, 185), rgb(109, 213, 250), rgb(255, 255, 255));}
+&.bg-yoda{background: linear-gradient(to right, rgb(255, 0, 153), rgb(73, 50, 64));}
+&.bg-memariani{background: linear-gradient(to right, rgb(170, 75, 107), rgb(107, 107, 131), rgb(59, 141, 153));}
+&.bg-amin{background: linear-gradient(to right, rgb(142, 45, 226), rgb(74, 0, 224));}
+&.bg-harvey{background: linear-gradient(to right, rgb(31, 64, 55), rgb(153, 242, 200));}
+&.bg-neuromancer{background: linear-gradient(to right, rgb(249, 83, 198), rgb(185, 29, 115));}
+&.bg-azur-lane{background: linear-gradient(to right, rgb(127, 127, 213), rgb(134, 168, 231), rgb(145, 234, 228));}
+&.bg-witching-hour{background: linear-gradient(to right, rgb(195, 20, 50), rgb(36, 11, 54));}
+&.bg-flare{background: linear-gradient(to right, rgb(241, 39, 17), rgb(245, 175, 25));}
+&.bg-metapolis{background: linear-gradient(to right, rgb(101, 153, 153), rgb(244, 121, 31));}
+&.bg-kyoo-pal{background: linear-gradient(to right, rgb(221, 62, 84), rgb(107, 229, 133));}
+&.bg-kye-meh{background: linear-gradient(to right, rgb(131, 96, 195), rgb(46, 191, 145));}
+&.bg-kyoo-tah{background: linear-gradient(to right, rgb(84, 74, 125), rgb(255, 212, 82));}
+&.bg-by-design{background: linear-gradient(to right, rgb(0, 159, 255), rgb(236, 47, 75));}
+&.bg-ultra-voilet{background: linear-gradient(to right, rgb(101, 78, 163), rgb(234, 175, 200));}
+&.bg-burning-orange{background: linear-gradient(to right, rgb(255, 65, 108), rgb(255, 75, 43));}
+&.bg-wiretap{background: linear-gradient(to right, rgb(138, 35, 135), rgb(233, 64, 87), rgb(242, 113, 33));}
+&.bg-summer-dog{background: linear-gradient(to right, rgb(168, 255, 120), rgb(120, 255, 214));}
+&.bg-rastafari{background: linear-gradient(to right, rgb(30, 150, 0), rgb(255, 242, 0), rgb(255, 0, 0));}
+&.bg-sin-city-red{background: linear-gradient(to right, rgb(237, 33, 58), rgb(147, 41, 30));}
+&.bg-citrus-peel{background: linear-gradient(to right, rgb(253, 200, 48), rgb(243, 115, 53));}
+&.bg-blue-raspberry{background: linear-gradient(to right, rgb(0, 180, 219), rgb(0, 131, 176));}
+&.bg-margo{background: linear-gradient(to right, rgb(255, 239, 186), rgb(255, 255, 255));}
+&.bg-magic{background: linear-gradient(to right, rgb(89, 193, 115), rgb(161, 127, 224), rgb(93, 38, 193));}
+&.bg-evening-night{background: linear-gradient(to right, rgb(0, 90, 167), rgb(255, 253, 228));}
+&.bg-vanusa{background: linear-gradient(to right, rgb(218, 68, 83), rgb(137, 33, 107));}
+&.bg-shifty{background: linear-gradient(to right, rgb(99, 99, 99), rgb(162, 171, 88));}
+&.bg-expresso{background: linear-gradient(to right, rgb(173, 83, 137), rgb(60, 16, 83));}
+&.bg-slight-ocean-view{background: linear-gradient(to right, rgb(168, 192, 255), rgb(63, 43, 150));}
+&.bg-pure-lust{background: linear-gradient(to right, rgb(51, 51, 51), rgb(221, 24, 24));}
+&.bg-moon-purple{background: linear-gradient(to right, rgb(78, 84, 200), rgb(143, 148, 251));}
+&.bg-red-sunset{background: linear-gradient(to right, rgb(53, 92, 125), rgb(108, 91, 123), rgb(192, 108, 132));}
+&.bg-shifter{background: linear-gradient(to right, rgb(188, 78, 156), rgb(248, 7, 89));}
+&.bg-wedding-day-blues{background: linear-gradient(to right, rgb(64, 224, 208), rgb(255, 140, 0), rgb(255, 0, 128));}
+&.bg-sand-to-blue{background: linear-gradient(to right, rgb(62, 81, 81), rgb(222, 203, 164));}
+&.bg-quepal{background: linear-gradient(to right, rgb(17, 153, 142), rgb(56, 239, 125));}
+&.bg-pun-yeta{background: linear-gradient(to right, rgb(16, 141, 199), rgb(239, 142, 56));}
+&.bg-sublime-light{background: linear-gradient(to right, rgb(252, 92, 125), rgb(106, 130, 251));}
+&.bg-sublime-vivid{background: linear-gradient(to right, rgb(252, 70, 107), rgb(63, 94, 251));}
+&.bg-bighead{background: linear-gradient(to right, rgb(201, 75, 75), rgb(75, 19, 79));}
+&.bg-taran-tado{background: linear-gradient(to right, rgb(35, 7, 77), rgb(204, 83, 51));}
+&.bg-relaxing-red{background: linear-gradient(to right, rgb(255, 251, 213), rgb(178, 10, 44));}
+&.bg-lawrencium{background: linear-gradient(to right, rgb(15, 12, 41), rgb(48, 43, 99), rgb(36, 36, 62));}
+&.bg-ohhappiness{background: linear-gradient(to right, rgb(0, 176, 155), rgb(150, 201, 61));}
+&.bg-delicate{background: linear-gradient(to right, rgb(211, 204, 227), rgb(233, 228, 240));}
+&.bg-selenium{background: linear-gradient(to right, rgb(60, 59, 63), rgb(96, 92, 60));}
+&.bg-sulphur{background: linear-gradient(to right, rgb(202, 197, 49), rgb(243, 249, 167));}
+&.bg-pink-flavour{background: linear-gradient(to right, rgb(128, 0, 128), rgb(255, 192, 203));}
+&.bg-rainbow-blue{background: linear-gradient(to right, rgb(0, 242, 96), rgb(5, 117, 230));}
+&.bg-orange-fun{background: linear-gradient(to right, rgb(252, 74, 26), rgb(247, 183, 51));}
+&.bg-digital-water{background: linear-gradient(to right, rgb(116, 235, 213), rgb(172, 182, 229));}
+&.bg-lithium{background: linear-gradient(to right, rgb(109, 96, 39), rgb(211, 203, 184));}
+&.bg-argon{background: linear-gradient(to right, rgb(3, 0, 30), rgb(115, 3, 192), rgb(236, 56, 188), rgb(253, 239, 249));}
+&.bg-hydrogen{background: linear-gradient(to right, rgb(102, 125, 182), rgb(0, 130, 200), rgb(0, 130, 200), rgb(102, 125, 182));}
+&.bg-zinc{background: linear-gradient(to right, rgb(173, 169, 150), rgb(242, 242, 242), rgb(219, 219, 219), rgb(234, 234, 234));}
+&.bg-velvet-sun{background: linear-gradient(to right, rgb(225, 238, 195), rgb(240, 80, 83));}
+&.bg-king-yna{background: linear-gradient(to right, rgb(26, 42, 108), rgb(178, 31, 31), rgb(253, 187, 45));}
+&.bg-summer{background: linear-gradient(to right, rgb(34, 193, 195), rgb(253, 187, 45));}
+&.bg-orange-coral{background: linear-gradient(to right, rgb(255, 153, 102), rgb(255, 94, 98));}
+&.bg-purpink{background: linear-gradient(to right, rgb(127, 0, 255), rgb(225, 0, 255));}
+&.bg-dull{background: linear-gradient(to right, rgb(201, 214, 255), rgb(226, 226, 226));}
+&.bg-kimoby-is-the-new-blue{background: linear-gradient(to right, rgb(57, 106, 252), rgb(41, 72, 255));}
+&.bg-broken-hearts{background: linear-gradient(to right, rgb(217, 167, 199), rgb(255, 252, 220));}
+&.bg-subu{background: linear-gradient(to right, rgb(12, 235, 235), rgb(32, 227, 178), rgb(41, 255, 198));}
+&.bg-socialive{background: linear-gradient(to right, rgb(6, 190, 182), rgb(72, 177, 191));}
+&.bg-crimson-tide{background: linear-gradient(to right, rgb(100, 43, 115), rgb(198, 66, 110));}
+&.bg-telegram{background: linear-gradient(to right, rgb(28, 146, 210), rgb(242, 252, 254));}
+&.bg-terminal{background: linear-gradient(to right, rgb(0, 0, 0), rgb(15, 155, 15));}
+&.bg-scooter{background: linear-gradient(to right, rgb(54, 209, 220), rgb(91, 134, 229));}
+&.bg-alive{background: linear-gradient(to right, rgb(203, 53, 107), rgb(189, 63, 50));}
+&.bg-relay{background: linear-gradient(to right, rgb(58, 28, 113), rgb(215, 109, 119), rgb(255, 175, 123));}
+&.bg-meridian{background: linear-gradient(to right, rgb(40, 60, 134), rgb(69, 162, 71));}
+&.bg-compare-now{background: linear-gradient(to right, rgb(239, 59, 54), rgb(255, 255, 255));}
+&.bg-mello{background: linear-gradient(to right, rgb(192, 57, 43), rgb(142, 68, 173));}
+&.bg-crystal-clear{background: linear-gradient(to right, rgb(21, 153, 87), rgb(21, 87, 153));}
+&.bg-visions-of-grandeur{background: linear-gradient(to right, rgb(0, 0, 70), rgb(28, 181, 224));}
+&.bg-chitty-chitty-bang-bang{background: linear-gradient(to right, rgb(0, 121, 145), rgb(120, 255, 214));}
+&.bg-blue-skies{background: linear-gradient(to right, rgb(86, 204, 242), rgb(47, 128, 237));}
+&.bg-sunkist{background: linear-gradient(to right, rgb(242, 153, 74), rgb(242, 201, 76));}
+&.bg-coal{background: linear-gradient(to right, rgb(235, 87, 87), rgb(0, 0, 0));}
+&.bg-html{background: linear-gradient(to right, rgb(228, 77, 38), rgb(241, 101, 41));}
+&.bg-cinnamint{background: linear-gradient(to right, rgb(74, 194, 154), rgb(189, 255, 243));}
+&.bg-maldives{background: linear-gradient(to right, rgb(178, 254, 250), rgb(14, 210, 247));}
+&.bg-mini{background: linear-gradient(to right, rgb(48, 232, 191), rgb(255, 130, 53));}
+&.bg-sha-la-la{background: linear-gradient(to right, rgb(214, 109, 117), rgb(226, 149, 135));}
+&.bg-purplepine{background: linear-gradient(to right, rgb(32, 0, 44), rgb(203, 180, 212));}
+&.bg-celestial{background: linear-gradient(to right, rgb(195, 55, 100), rgb(29, 38, 113));}
+&.bg-learning-and-leading{background: linear-gradient(to right, rgb(247, 151, 30), rgb(255, 210, 0));}
+&.bg-pacific-dream{background: linear-gradient(to right, rgb(52, 232, 158), rgb(15, 52, 67));}
+&.bg-venice{background: linear-gradient(to right, rgb(97, 144, 232), rgb(167, 191, 232));}
+&.bg-orca{background: linear-gradient(to right, rgb(68, 160, 141), rgb(9, 54, 55));}
+&.bg-love-and-liberty{background: linear-gradient(to right, rgb(32, 1, 34), rgb(111, 0, 0));}
+&.bg-very-blue{background: linear-gradient(to right, rgb(5, 117, 230), rgb(2, 27, 121));}
+&.bg-can-you-feel-the-love-tonight{background: linear-gradient(to right, rgb(69, 104, 220), rgb(176, 106, 179));}
+&.bg-the-blue-lagoon{background: linear-gradient(to right, rgb(67, 198, 172), rgb(25, 22, 84));}
+&.bg-under-the-lake{background: linear-gradient(to right, rgb(9, 48, 40), rgb(35, 122, 87));}
+&.bg-honey-dew{background: linear-gradient(to right, rgb(67, 198, 172), rgb(248, 255, 174));}
+&.bg-roseanna{background: linear-gradient(to right, rgb(255, 175, 189), rgb(255, 195, 160));}
+&.bg-what-lies-beyond{background: linear-gradient(to right, rgb(240, 242, 240), rgb(0, 12, 64));}
+&.bg-rose-colored-lenses{background: linear-gradient(to right, rgb(232, 203, 192), rgb(99, 111, 164));}
+&.bg-easymed{background: linear-gradient(to right, rgb(220, 227, 91), rgb(69, 182, 73));}
+&.bg-cocoaa-ice{background: linear-gradient(to right, rgb(192, 192, 170), rgb(28, 239, 255));}
+&.bg-jodhpur{background: linear-gradient(to right, rgb(156, 236, 251), rgb(101, 199, 247), rgb(0, 82, 212));}
+&.bg-jaipur{background: linear-gradient(to right, rgb(219, 230, 246), rgb(197, 121, 109));}
+&.bg-vice-city{background: linear-gradient(to right, rgb(52, 148, 230), rgb(236, 110, 173));}
+&.bg-mild{background: linear-gradient(to right, rgb(103, 178, 111), rgb(76, 162, 205));}
+&.bg-dawn{background: linear-gradient(to right, rgb(243, 144, 79), rgb(59, 67, 113));}
+&.bg-ibiza-sunset{background: linear-gradient(to right, rgb(238, 9, 121), rgb(255, 106, 0));}
+&.bg-radar{background: linear-gradient(to right, rgb(167, 112, 239), rgb(207, 139, 243), rgb(253, 185, 155));}
+&.bg-80-s-Purple{background: linear-gradient(to right, rgb(65, 41, 90), rgb(47, 7, 67));}
+&.bg-black-rose{background: linear-gradient(to right, rgb(244, 196, 243), rgb(252, 103, 250));}
+&.bg-brady-brady-fun-fun{background: linear-gradient(to right, rgb(0, 195, 255), rgb(255, 255, 28));}
+&.bg-ed-s-sunset-gradient{background: linear-gradient(to right, rgb(255, 126, 95), rgb(254, 180, 123));}
+&.bg-snapchat{background: linear-gradient(to right, rgb(255, 252, 0), rgb(255, 255, 255));}
+&.bg-cosmic-fusion{background: linear-gradient(to right, rgb(255, 0, 204), rgb(51, 51, 153));}
+&.bg-nepal{background: linear-gradient(to right, rgb(222, 97, 97), rgb(38, 87, 235));}
+&.bg-azure-pop{background: linear-gradient(to right, rgb(239, 50, 217), rgb(137, 255, 253));}
+&.bg-love-couple{background: linear-gradient(to right, rgb(58, 97, 134), rgb(137, 37, 62));}
+&.bg-disco{background: linear-gradient(to right, rgb(78, 205, 196), rgb(85, 98, 112));}
+&.bg-limeade{background: linear-gradient(to right, rgb(161, 255, 206), rgb(250, 255, 209));}
+&.bg-dania{background: linear-gradient(to right, rgb(190, 147, 197), rgb(123, 198, 204));}
+&.bg-50-shades-of-grey{background: linear-gradient(to right, rgb(189, 195, 199), rgb(44, 62, 80));}
+&.bg-jupiter{background: linear-gradient(to right, rgb(255, 216, 155), rgb(25, 84, 123));}
+&.bg-iiit-delhi{background: linear-gradient(to right, rgb(128, 128, 128), rgb(63, 173, 168));}
+&.bg-sun-on-the-horizon{background: linear-gradient(to right, rgb(252, 234, 187), rgb(248, 181, 0));}
+&.bg-blood-red{background: linear-gradient(to right, rgb(248, 80, 50), rgb(231, 56, 39));}
+&.bg-sherbert{background: linear-gradient(to right, rgb(247, 157, 0), rgb(100, 243, 140));}
+&.bg-firewatch{background: linear-gradient(to right, rgb(203, 45, 62), rgb(239, 71, 58));}
+&.bg-lush{background: linear-gradient(to right, rgb(86, 171, 47), rgb(168, 224, 99));}
+&.bg-frost{background: linear-gradient(to right, rgb(0, 4, 40), rgb(0, 78, 146));}
+&.bg-mauve{background: linear-gradient(to right, rgb(66, 39, 90), rgb(115, 75, 109));}
+&.bg-royal{background: linear-gradient(to right, rgb(20, 30, 48), rgb(36, 59, 85));}
+&.bg-minimal-red{background: linear-gradient(to right, rgb(240, 0, 0), rgb(220, 40, 30));}
+&.bg-dusk{background: linear-gradient(to right, rgb(44, 62, 80), rgb(253, 116, 108));}
+&.bg-deep-sea-space{background: linear-gradient(to right, rgb(44, 62, 80), rgb(76, 161, 175));}
+&.bg-grapefruit-sunset{background: linear-gradient(to right, rgb(233, 100, 67), rgb(144, 78, 149));}
+&.bg-sunset{background: linear-gradient(to right, rgb(11, 72, 107), rgb(245, 98, 23));}
+&.bg-solid-vault{background: linear-gradient(to right, rgb(58, 123, 213), rgb(58, 96, 115));}
+&.bg-bright-vault{background: linear-gradient(to right, rgb(0, 210, 255), rgb(146, 141, 171));}
+&.bg-politics{background: linear-gradient(to right, rgb(33, 150, 243), rgb(244, 67, 54));}
+&.bg-sweet-morning{background: linear-gradient(to right, rgb(255, 95, 109), rgb(255, 195, 113));}
+&.bg-sylvia{background: linear-gradient(to right, rgb(255, 75, 31), rgb(255, 144, 104));}
+&.bg-transfile{background: linear-gradient(to right, rgb(22, 191, 253), rgb(203, 48, 102));}
+&.bg-tranquil{background: linear-gradient(to right, rgb(238, 205, 163), rgb(239, 98, 159));}
+&.bg-red-ocean{background: linear-gradient(to right, rgb(29, 67, 80), rgb(164, 57, 49));}
+&.bg-shahabi{background: linear-gradient(to right, rgb(168, 0, 119), rgb(102, 255, 0));}
+&.bg-alihossein{background: linear-gradient(to right, rgb(247, 255, 0), rgb(219, 54, 164));}
+&.bg-ali{background: linear-gradient(to right, rgb(255, 75, 31), rgb(31, 221, 255));}
+&.bg-purple-white{background: linear-gradient(to right, rgb(186, 83, 112), rgb(244, 226, 216));}
+&.bg-colors-of-sky{background: linear-gradient(to right, rgb(224, 234, 252), rgb(207, 222, 243));}
+&.bg-decent{background: linear-gradient(to right, rgb(76, 161, 175), rgb(196, 224, 229));}
+&.bg-deep-space{background: linear-gradient(to right, rgb(0, 0, 0), rgb(67, 67, 67));}
+&.bg-dark-skies{background: linear-gradient(to right, rgb(75, 121, 161), rgb(40, 62, 81));}
+&.bg-suzy{background: linear-gradient(to right, rgb(131, 77, 155), rgb(208, 78, 214));}
+&.bg-superman{background: linear-gradient(to right, rgb(0, 153, 247), rgb(241, 23, 18));}
+&.bg-nighthawk{background: linear-gradient(to right, rgb(41, 128, 185), rgb(44, 62, 80));}
+&.bg-forest{background: linear-gradient(to right, rgb(90, 63, 55), rgb(44, 119, 68));}
+&.bg-miami-dolphins{background: linear-gradient(to right, rgb(77, 160, 176), rgb(211, 157, 56));}
+&.bg-minnesota-vikings{background: linear-gradient(to right, rgb(86, 20, 176), rgb(219, 214, 92));}
+&.bg-christmas{background: linear-gradient(to right, rgb(47, 115, 54), rgb(170, 58, 56));}
+&.bg-joomla{background: linear-gradient(to right, rgb(30, 60, 114), rgb(42, 82, 152));}
+&.bg-pizelex{background: linear-gradient(to right, rgb(17, 67, 87), rgb(242, 148, 146));}
+&.bg-haikus{background: linear-gradient(to right, rgb(253, 116, 108), rgb(255, 144, 104));}
+&.bg-pale-wood{background: linear-gradient(to right, rgb(234, 205, 163), rgb(214, 174, 123));}
+&.bg-purplin{background: linear-gradient(to right, rgb(106, 48, 147), rgb(160, 68, 255));}
+&.bg-inbox{background: linear-gradient(to right, rgb(69, 127, 202), rgb(86, 145, 200));}
+&.bg-blush{background: linear-gradient(to right, rgb(178, 69, 146), rgb(241, 95, 121));}
+&.bg-back-to-the-future{background: linear-gradient(to right, rgb(192, 36, 37), rgb(240, 203, 53));}
+&.bg-poncho{background: linear-gradient(to right, rgb(64, 58, 62), rgb(190, 88, 105));}
+&.bg-green-and-blue{background: linear-gradient(to right, rgb(194, 229, 156), rgb(100, 179, 244));}
+&.bg-light-orange{background: linear-gradient(to right, rgb(255, 183, 94), rgb(237, 143, 3));}
+&.bg-netflix{background: linear-gradient(to right, rgb(142, 14, 0), rgb(31, 28, 24));}
+&.bg-little-leaf{background: linear-gradient(to right, rgb(118, 184, 82), rgb(141, 194, 111));}
+&.bg-deep-purple{background: linear-gradient(to right, rgb(103, 58, 183), rgb(81, 45, 168));}
+&.bg-back-to-earth{background: linear-gradient(to right, rgb(0, 201, 255), rgb(146, 254, 157));}
+&.bg-master-card{background: linear-gradient(to right, rgb(244, 107, 69), rgb(238, 168, 73));}
+&.bg-clear-sky{background: linear-gradient(to right, rgb(0, 92, 151), rgb(54, 55, 149));}
+&.bg-passion{background: linear-gradient(to right, rgb(229, 57, 53), rgb(227, 93, 91));}
+&.bg-timber{background: linear-gradient(to right, rgb(252, 0, 255), rgb(0, 219, 222));}
+&.bg-between-night-and-day{background: linear-gradient(to right, rgb(44, 62, 80), rgb(52, 152, 219));}
+&.bg-sage-persuasion{background: linear-gradient(to right, rgb(204, 204, 178), rgb(117, 117, 25));}
+&.bg-lizard{background: linear-gradient(to right, rgb(48, 67, 82), rgb(215, 210, 204));}
+&.bg-piglet{background: linear-gradient(to right, rgb(238, 156, 167), rgb(255, 221, 225));}
+&.bg-dark-knight{background: linear-gradient(to right, rgb(186, 139, 2), rgb(24, 24, 24));}
+&.bg-curiosity-blue{background: linear-gradient(to right, rgb(82, 82, 82), rgb(61, 114, 180));}
+&.bg-ukraine{background: linear-gradient(to right, rgb(0, 79, 249), rgb(255, 249, 76));}
+&.bg-green-to-dark{background: linear-gradient(to right, rgb(106, 145, 19), rgb(20, 21, 23));}
+&.bg-fresh-turboscent{background: linear-gradient(to right, rgb(241, 242, 181), rgb(19, 80, 88));}
+&.bg-koko-caramel{background: linear-gradient(to right, rgb(209, 145, 60), rgb(255, 209, 148));}
+&.bg-virgin-america{background: linear-gradient(to right, rgb(123, 67, 151), rgb(220, 36, 48));}
+&.bg-portrait{background: linear-gradient(to right, rgb(142, 158, 171), rgb(238, 242, 243));}
+&.bg-turquoise-flow{background: linear-gradient(to right, rgb(19, 106, 138), rgb(38, 120, 113));}
+&.bg-vine{background: linear-gradient(to right, rgb(0, 191, 143), rgb(0, 21, 16));}
+&.bg-flickr{background: linear-gradient(to right, rgb(255, 0, 132), rgb(51, 0, 27));}
+&.bg-instagram{background: linear-gradient(to right, rgb(131, 58, 180), rgb(253, 29, 29), rgb(252, 176, 69));}
+&.bg-atlas{background: linear-gradient(to right, rgb(254, 172, 94), rgb(199, 121, 208), rgb(75, 192, 200));}
+&.bg-twitch{background: linear-gradient(to right, rgb(100, 65, 165), rgb(42, 8, 69));}
+&.bg-pastel-orange-at-the-sun{background: linear-gradient(to right, rgb(255, 179, 71), rgb(255, 204, 51));}
+&.bg-endless-river{background: linear-gradient(to right, rgb(67, 206, 162), rgb(24, 90, 157));}
+&.bg-predawn{background: linear-gradient(to right, rgb(255, 161, 127), rgb(0, 34, 62));}
+&.bg-purple-bliss{background: linear-gradient(to right, rgb(54, 0, 51), rgb(11, 135, 147));}
+&.bg-talking-to-mice-elf{background: linear-gradient(to right, rgb(148, 142, 153), rgb(46, 20, 55));}
+&.bg-hersheys{background: linear-gradient(to right, rgb(30, 19, 12), rgb(154, 132, 120));}
+&.bg-crazy-orange-i{background: linear-gradient(to right, rgb(211, 131, 18), rgb(168, 50, 121));}
+&.bg-between-the-clouds{background: linear-gradient(to right, rgb(115, 200, 169), rgb(55, 59, 68));}
+&.bg-metallic-toad{background: linear-gradient(to right, rgb(171, 186, 171), rgb(255, 255, 255));}
+&.bg-martini{background: linear-gradient(to right, rgb(253, 252, 71), rgb(36, 254, 65));}
+&.bg-friday{background: linear-gradient(to right, rgb(131, 164, 212), rgb(182, 251, 255));}
+&.bg-servquick{background: linear-gradient(to right, rgb(72, 85, 99), rgb(41, 50, 60));}
+&.bg-behongo{background: linear-gradient(to right, rgb(82, 194, 52), rgb(6, 23, 0));}
+&.bg-soundcloud{background: linear-gradient(to right, rgb(254, 140, 0), rgb(248, 54, 0));}
+&.bg-facebook-messenger{background: linear-gradient(to right, rgb(0, 198, 255), rgb(0, 114, 255));}
+&.bg-shore{background: linear-gradient(to right, rgb(112, 225, 245), rgb(255, 209, 148));}
+&.bg-cheer-up-emo-kid{background: linear-gradient(to right, rgb(85, 98, 112), rgb(255, 107, 107));}
+&.bg-amethyst{background: linear-gradient(to right, rgb(157, 80, 187), rgb(110, 72, 170));}
+&.bg-man-of-steel{background: linear-gradient(to right, rgb(120, 2, 6), rgb(6, 17, 97));}
+&.bg-neon-life{background: linear-gradient(to right, rgb(179, 255, 171), rgb(18, 255, 247));}
+&.bg-teal-love{background: linear-gradient(to right, rgb(170, 255, 169), rgb(17, 255, 189));}
+&.bg-red-mist{background: linear-gradient(to right, rgb(0, 0, 0), rgb(231, 76, 60));}
+&.bg-starfall{background: linear-gradient(to right, rgb(240, 194, 123), rgb(75, 18, 72));}
+&.bg-dance-to-forget{background: linear-gradient(to right, rgb(255, 78, 80), rgb(249, 212, 35));}
+&.bg-parklife{background: linear-gradient(to right, rgb(173, 209, 0), rgb(123, 146, 10));}
+&.bg-cherryblossoms{background: linear-gradient(to right, rgb(251, 211, 233), rgb(187, 55, 125));}
+&.bg-ash{background: linear-gradient(to right, rgb(96, 108, 136), rgb(63, 76, 107));}
+&.bg-virgin{background: linear-gradient(to right, rgb(201, 255, 191), rgb(255, 175, 189));}
+&.bg-earthly{background: linear-gradient(to right, rgb(100, 145, 115), rgb(219, 213, 164));}
+&.bg-dirty-fog{background: linear-gradient(to right, rgb(185, 147, 214), rgb(140, 166, 219));}
+&.bg-the-strain{background: linear-gradient(to right, rgb(135, 0, 0), rgb(25, 10, 5));}
+&.bg-reef{background: linear-gradient(to right, rgb(0, 210, 255), rgb(58, 123, 213));}
+&.bg-candy{background: linear-gradient(to right, rgb(211, 149, 155), rgb(191, 230, 186));}
+&.bg-autumn{background: linear-gradient(to right, rgb(218, 210, 153), rgb(176, 218, 185));}
+&.bg-nelson{background: linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114));}
+&.bg-winter{background: linear-gradient(to right, rgb(230, 218, 218), rgb(39, 64, 70));}
+&.bg-forever-lost{background: linear-gradient(to right, rgb(93, 65, 87), rgb(168, 202, 186));}
+&.bg-almost{background: linear-gradient(to right, rgb(221, 214, 243), rgb(250, 172, 168));}
+&.bg-moor{background: linear-gradient(to right, rgb(97, 97, 97), rgb(155, 197, 195));}
+&.bg-aqualicious{background: linear-gradient(to right, rgb(80, 201, 195), rgb(150, 222, 218));}
+&.bg-misty-meadow{background: linear-gradient(to right, rgb(33, 95, 0), rgb(228, 228, 217));}
+&.bg-kyoto{background: linear-gradient(to right, rgb(194, 21, 0), rgb(255, 197, 0));}
+&.bg-sirius-tamed{background: linear-gradient(to right, rgb(239, 239, 187), rgb(212, 211, 221));}
+&.bg-jonquil{background: linear-gradient(to right, rgb(255, 238, 238), rgb(221, 239, 187));}
+&.bg-petrichor{background: linear-gradient(to right, rgb(102, 102, 0), rgb(153, 153, 102));}
+&.bg-a-lost-memory{background: linear-gradient(to right, rgb(222, 98, 98), rgb(255, 184, 140));}
+&.bg-vasily{background: linear-gradient(to right, rgb(233, 211, 98), rgb(51, 51, 51));}
+&.bg-blurry-beach{background: linear-gradient(to right, rgb(213, 51, 105), rgb(203, 173, 109));}
+&.bg-namn{background: linear-gradient(to right, rgb(167, 55, 55), rgb(122, 40, 40));}
+&.bg-day-tripper{background: linear-gradient(to right, rgb(248, 87, 166), rgb(255, 88, 88));}
+&.bg-pinot-noir{background: linear-gradient(to right, rgb(75, 108, 183), rgb(24, 40, 72));}
+&.bg-miaka{background: linear-gradient(to right, rgb(252, 53, 76), rgb(10, 191, 188));}
+&.bg-army{background: linear-gradient(to right, rgb(65, 77, 11), rgb(114, 122, 23));}
+&.bg-shrimpy{background: linear-gradient(to right, rgb(228, 58, 21), rgb(230, 82, 69));}
+&.bg-influenza{background: linear-gradient(to right, rgb(192, 72, 72), rgb(72, 0, 72));}
+&.bg-calm-darya{background: linear-gradient(to right, rgb(95, 44, 130), rgb(73, 160, 157));}
+&.bg-bourbon{background: linear-gradient(to right, rgb(236, 111, 102), rgb(243, 161, 131));}
+&.bg-stellar{background: linear-gradient(to right, rgb(116, 116, 191), rgb(52, 138, 199));}
+&.bg-clouds{background: linear-gradient(to right, rgb(236, 233, 230), rgb(255, 255, 255));}
+&.bg-moonrise{background: linear-gradient(to right, rgb(218, 226, 248), rgb(214, 164, 164));}
+&.bg-peach{background: linear-gradient(to right, rgb(237, 66, 100), rgb(255, 237, 188));}
+&.bg-dracula{background: linear-gradient(to right, rgb(220, 36, 36), rgb(74, 86, 157));}
+&.bg-mantle{background: linear-gradient(to right, rgb(36, 198, 220), rgb(81, 74, 157));}
+&.bg-titanium{background: linear-gradient(to right, rgb(40, 48, 72), rgb(133, 147, 152));}
+&.bg-opa{background: linear-gradient(to right, rgb(61, 126, 170), rgb(255, 228, 122));}
+&.bg-sea-blizz{background: linear-gradient(to right, rgb(28, 216, 210), rgb(147, 237, 199));}
+&.bg-midnight-city{background: linear-gradient(to right, rgb(35, 37, 38), rgb(65, 67, 69));}
+&.bg-mystic{background: linear-gradient(to right, rgb(117, 127, 154), rgb(215, 221, 232));}
+&.bg-shroom-haze{background: linear-gradient(to right, rgb(92, 37, 141), rgb(67, 137, 162));}
+&.bg-moss{background: linear-gradient(to right, rgb(19, 78, 94), rgb(113, 178, 128));}
+&.bg-bora-bora{background: linear-gradient(to right, rgb(43, 192, 228), rgb(234, 236, 198));}
+&.bg-venice-blue{background: linear-gradient(to right, rgb(8, 80, 120), rgb(133, 216, 206));}
+&.bg-electric-violet{background: linear-gradient(to right, rgb(71, 118, 230), rgb(142, 84, 233));}
+&.bg-kashmir{background: linear-gradient(to right, rgb(97, 67, 133), rgb(81, 99, 149));}
+&.bg-steel-gray{background: linear-gradient(to right, rgb(31, 28, 44), rgb(146, 141, 171));}
+&.bg-mirage{background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115));}
+&.bg-juicy-orange{background: linear-gradient(to right, rgb(255, 128, 8), rgb(255, 200, 55));}
+&.bg-mojito{background: linear-gradient(to right, rgb(29, 151, 108), rgb(147, 249, 185));}
+&.bg-cherry{background: linear-gradient(to right, rgb(235, 51, 73), rgb(244, 92, 67));}
+&.bg-pinky{background: linear-gradient(to right, rgb(221, 94, 137), rgb(247, 187, 151));}
+&.bg-sea-weed{background: linear-gradient(to right, rgb(76, 184, 196), rgb(60, 211, 173));}
+&.bg-stripe{background: linear-gradient(to right, rgb(31, 162, 255), rgb(18, 216, 250), rgb(166, 255, 203));}
+&.bg-purple-paradise{background: linear-gradient(to right, rgb(29, 43, 100), rgb(248, 205, 218));}
+&.bg-sunrise{background: linear-gradient(to right, rgb(255, 81, 47), rgb(240, 152, 25));}
+&.bg-aqua-marine{background: linear-gradient(to right, rgb(26, 41, 128), rgb(38, 208, 206));}
+&.bg-aubergine{background: linear-gradient(to right, rgb(170, 7, 107), rgb(97, 4, 95));}
+&.bg-bloody-mary{background: linear-gradient(to right, rgb(255, 81, 47), rgb(221, 36, 118));}
+&.bg-mango-pulp{background: linear-gradient(to right, rgb(240, 152, 25), rgb(237, 222, 93));}
+&.bg-frozen{background: linear-gradient(to right, rgb(64, 59, 74), rgb(231, 233, 187));}
+&.bg-rose-water{background: linear-gradient(to right, rgb(229, 93, 135), rgb(95, 195, 228));}
+&.bg-horizon{background: linear-gradient(to right, rgb(0, 57, 115), rgb(229, 229, 190));}
+&.bg-monte-carlo{background: linear-gradient(to right, rgb(204, 149, 192), rgb(219, 212, 180), rgb(122, 161, 210));}
+&.bg-lemon-twist{background: linear-gradient(to right, rgb(60, 165, 92), rgb(181, 172, 73));}
+&.bg-emerald-water{background: linear-gradient(to right, rgb(52, 143, 80), rgb(86, 180, 211));}
+&.bg-intuitive-purple{background: linear-gradient(to right, rgb(218, 34, 255), rgb(151, 51, 238));}
+&.bg-green-beach{background: linear-gradient(to right, rgb(2, 170, 176), rgb(0, 205, 172));}
+&.bg-sunny-days{background: linear-gradient(to right, rgb(237, 229, 116), rgb(225, 245, 196));}
+&.bg-playing-with-reds{background: linear-gradient(to right, rgb(211, 16, 39), rgb(234, 56, 77));}
+&.bg-harmonic-energy{background: linear-gradient(to right, rgb(22, 160, 133), rgb(244, 208, 63));}
+&.bg-cool-brown{background: linear-gradient(to right, rgb(96, 56, 19), rgb(178, 159, 148));}
+&.bg-youtube{background: linear-gradient(to right, rgb(229, 45, 39), rgb(179, 18, 23));}
+&.bg-noon-to-dusk{background: linear-gradient(to right, rgb(255, 110, 127), rgb(191, 233, 255));}
+&.bg-hazel{background: linear-gradient(to right, rgb(119, 161, 211), rgb(121, 203, 202), rgb(230, 132, 174));}
+&.bg-nimvelo{background: linear-gradient(to right, rgb(49, 71, 85), rgb(38, 160, 218));}
+&.bg-sea-blue{background: linear-gradient(to right, rgb(43, 88, 118), rgb(78, 67, 118));}
+&.bg-blooker20{background: linear-gradient(to right, rgb(230, 92, 0), rgb(249, 212, 35));}
+&.bg-sexy-blue{background: linear-gradient(to right, rgb(33, 147, 176), rgb(109, 213, 237));}
+&.bg-purple-love{background: linear-gradient(to right, rgb(204, 43, 94), rgb(117, 58, 136));}
+&.bg-dimigo{background: linear-gradient(to right, rgb(236, 0, 140), rgb(252, 103, 103));}
+&.bg-skyline{background: linear-gradient(to right, rgb(20, 136, 204), rgb(43, 50, 178));}
+&.bg-afternoon{background: linear-gradient(to right, rgb(0, 12, 64), rgb(96, 125, 139));}
+&.bg-sel{background: linear-gradient(to right, rgb(0, 70, 127), rgb(165, 204, 130));}
+&.bg-sky{background: linear-gradient(to right, rgb(7, 101, 133), rgb(255, 255, 255));}
+&.bg-petrol{background: linear-gradient(to right, rgb(187, 210, 197), rgb(83, 105, 118));}
+&.bg-anamnisar{background: linear-gradient(to right, rgb(151, 150, 240), rgb(251, 199, 212));}
+&.bg-copper{background: linear-gradient(to right, rgb(183, 152, 145), rgb(148, 113, 107));}
+&.bg-royal-blue-petrol{background: linear-gradient(to right, rgb(187, 210, 197), rgb(83, 105, 118), rgb(41, 46, 73));}
+&.bg-royal-blue{background: linear-gradient(to right, rgb(83, 105, 118), rgb(41, 46, 73));}
+&.bg-windy{background: linear-gradient(to right, rgb(172, 182, 229), rgb(134, 253, 232));}
+&.bg-rea{background: linear-gradient(to right, rgb(255, 224, 0), rgb(121, 159, 12));}
+&.bg-bupe{background: linear-gradient(to right, rgb(0, 65, 106), rgb(228, 229, 230));}
+&.bg-mango{background: linear-gradient(to right, rgb(255, 226, 89), rgb(255, 167, 81));}
+&.bg-reaqua{background: linear-gradient(to right, rgb(121, 159, 12), rgb(172, 187, 120));}
+&.bg-lunada{background: linear-gradient(to right, rgb(84, 51, 255), rgb(32, 189, 255), rgb(165, 254, 203));}
+&.bg-bluelagoo{background: linear-gradient(to right, rgb(0, 82, 212), rgb(67, 100, 247), rgb(111, 177, 252));}
+&.bg-anwar{background: linear-gradient(to right, rgb(51, 77, 80), rgb(203, 202, 165));}
+&.bg-combi{background: linear-gradient(to right, rgb(0, 65, 106), rgb(121, 159, 12), rgb(255, 224, 0));}
+&.bg-ver-black{background: linear-gradient(to right, rgb(247, 248, 248), rgb(172, 187, 120));}
+&.bg-ver{background: linear-gradient(to right, rgb(255, 224, 0), rgb(121, 159, 12));}
+&.bg-summer-breeze{background: linear-gradient(to right, rgb(251, 237, 150), rgb(171, 236, 214));}
+&.bg-blu{background: linear-gradient(to right, rgb(0, 65, 106), rgb(228, 229, 230));}
+&.bg-purple-dream{background: linear-gradient(to right, rgb(191, 90, 224), rgb(168, 17, 218));}
+&.bg-blue-and-orange{background: linear-gradient(to right, rgb(253, 129, 18), rgb(0, 133, 202));}
+&.bg-from-ice-to-fire{background: linear-gradient(to right, rgb(114, 198, 239), rgb(0, 78, 143));}
+&.bg-the-sky-and-the-sea{background: linear-gradient(to right, rgb(247, 148, 30), rgb(0, 78, 143));}
+&.bg-radioactive-heat{background: linear-gradient(to right, rgb(247, 148, 30), rgb(114, 198, 239), rgb(0, 166, 81));}
+&.bg-ibtesam{background: linear-gradient(to right, rgb(0, 245, 160), rgb(0, 217, 245));}
+&.bg-purple{background: linear-gradient(to right, rgb(200, 78, 137), rgb(241, 95, 121));}
+&.bg-farhan{background: linear-gradient(to right, rgb(148, 0, 211), rgb(75, 0, 130));}
+&.bg-omolon{background: linear-gradient(to right, rgb(9, 30, 58), rgb(47, 128, 237), rgb(45, 158, 224));}
+
+&.bg-star-gradient-background-image{background: linear-gradient(30deg, #fe1a00, transparent 40%), linear-gradient(90deg,  #fd8f00, transparent 40%), linear-gradient(150deg, #23b550, transparent 40%), linear-gradient(210deg, #1061ff, transparent 40%), linear-gradient(270deg, #7b24a0, transparent 40%), linear-gradient(330deg, #ab31a9, transparent 40%);}
+&.bg-multicolor-light-gradient-background-photo{background: linear-gradient(45deg, #0000ff, transparent 50%), linear-gradient(135deg, #ff0080, transparent 50%), linear-gradient(225deg, #80ff00, transparent 50%), linear-gradient(315deg, #7b24a0, transparent 50%);}
+&.bg-multicolor-radial-gradient-background-png{background-image: radial-gradient(at 50% 10%, #fe1a00 -20%, transparent 30%), radial-gradient(at 30% 20%, #fd8f00 -20%, transparent 30%), radial-gradient(at 20% 50%, #fdcc00 -20%, transparent 30%), radial-gradient(at 30% 80%, #89e23b -20%, transparent 30%), radial-gradient(at 50% 90%, #23b550 -20%, transparent 30%), radial-gradient(at 70% 80%, #1061ff -20%, transparent 30%), radial-gradient(at 80% 50%, #ab31a9 -20%, transparent 30%), radial-gradient(at 70% 20%, #fff100 -20%, transparent 30%); background-blend-mode: screen;}
+
+}
+
+
+.base-blue {
+    color: #fff;
+    background-color: #0d6efd
+}
+
+.blue-100 {
+    color: #000;
+    background-color: #cfe2ff
+}
+
+.blue-200 {
+    color: #000;
+    background-color: #9ec5fe
+}
+
+.blue-300 {
+    color: #000;
+    background-color: #6ea8fe
+}
+
+.blue-400 {
+    color: #000;
+    background-color: #3d8bfd
+}
+
+.blue-500 {
+    color: #fff;
+    background-color: #0d6efd
+}
+
+.blue-600 {
+    color: #fff;
+    background-color: #0a58ca
+}
+
+.blue-700 {
+    color: #fff;
+    background-color: #084298
+}
+
+.blue-800 {
+    color: #fff;
+    background-color: #052c65
+}
+
+.blue-900 {
+    color: #fff;
+    background-color: #031633
+}
+
+.base-indigo {
+    color: #fff;
+    background-color: #6610f2
+}
+.indigo-100 {
+    color: #000;
+    background-color: #e0cffc
+}
+
+.indigo-200 {
+    color: #000;
+    background-color: #c29ffa
+}
+
+.indigo-300 {
+    color: #000;
+    background-color: #a370f7
+}
+
+.indigo-400 {
+    color: #fff;
+    background-color: #8540f5
+}
+
+.indigo-500 {
+    color: #fff;
+    background-color: #6610f2
+}
+
+.indigo-600 {
+    color: #fff;
+    background-color: #520dc2
+}
+
+.indigo-700 {
+    color: #fff;
+    background-color: #3d0a91
+}
+
+.indigo-800 {
+    color: #fff;
+    background-color: #290661
+}
+
+.indigo-900 {
+    color: #fff;
+    background-color: #140330
+}
+
+
+.base-purple {
+    color: #fff;
+    background-color: #6f42c1
+}
+
+.purple-100 {
+    color: #000;
+    background-color: #e2d9f3
+}
+
+.purple-200 {
+    color: #000;
+    background-color: #c5b3e6
+}
+
+.purple-300 {
+    color: #000;
+    background-color: #a98eda
+}
+
+.purple-400 {
+    color: #000;
+    background-color: #8c68cd
+}
+
+.purple-500 {
+    color: #fff;
+    background-color: #6f42c1
+}
+
+.purple-600 {
+    color: #fff;
+    background-color: #59359a
+}
+
+.purple-700 {
+    color: #fff;
+    background-color: #432874
+}
+
+.purple-800 {
+    color: #fff;
+    background-color: #2c1a4d
+}
+
+.purple-900 {
+    color: #fff;
+    background-color: #160d27
+}
+
+
+.base-pink {
+    color: #fff;
+    background-color: #d63384
+}
+
+.pink-100 {
+    color: #000;
+    background-color: #f7d6e6
+}
+
+.pink-200 {
+    color: #000;
+    background-color: #efadce
+}
+
+.pink-300 {
+    color: #000;
+    background-color: #e685b5
+}
+
+.pink-400 {
+    color: #000;
+    background-color: #de5c9d
+}
+
+.pink-500 {
+    color: #fff;
+    background-color: #d63384
+}
+
+.pink-600 {
+    color: #fff;
+    background-color: #ab296a
+}
+
+.pink-700 {
+    color: #fff;
+    background-color: #801f4f
+}
+
+.pink-800 {
+    color: #fff;
+    background-color: #561435
+}
+
+.pink-900 {
+    color: #fff;
+    background-color: #2b0a1a
+}
+
+.base-red {
+    color: #fff;
+    background-color: #dc3545
+}
+.red-100 {
+    color: #000;
+    background-color: #f8d7da
+}
+
+.red-200 {
+    color: #000;
+    background-color: #f1aeb5
+}
+
+.red-300 {
+    color: #000;
+    background-color: #ea868f
+}
+
+.red-400 {
+    color: #000;
+    background-color: #e35d6a
+}
+
+.red-500 {
+    color: #fff;
+    background-color: #dc3545
+}
+
+.red-600 {
+    color: #fff;
+    background-color: #b02a37
+}
+
+.red-700 {
+    color: #fff;
+    background-color: #842029
+}
+
+.red-800 {
+    color: #fff;
+    background-color: #58151c
+}
+
+.red-900 {
+    color: #fff;
+    background-color: #2c0b0e
+}
+
+.base-orange {
+    color: #000;
+    background-color: #fd7e14
+}
+
+.orange-100 {
+    color: #000;
+    background-color: #ffe5d0
+}
+
+.orange-200 {
+    color: #000;
+    background-color: #fecba1
+}
+
+.orange-300 {
+    color: #000;
+    background-color: #feb272
+}
+
+.orange-400 {
+    color: #000;
+    background-color: #fd9843
+}
+
+.orange-500 {
+    color: #000;
+    background-color: #fd7e14
+}
+
+.orange-600 {
+    color: #000;
+    background-color: #ca6510
+}
+
+.orange-700 {
+    color: #fff;
+    background-color: #984c0c
+}
+
+.orange-800 {
+    color: #fff;
+    background-color: #653208
+}
+
+.orange-900 {
+    color: #fff;
+    background-color: #331904
+}
+
+.base-yellow {
+    color: #000;
+    background-color: #ffc107
+}
+
+.yellow-100 {
+    color: #000;
+    background-color: #fff3cd
+}
+
+.yellow-200 {
+    color: #000;
+    background-color: #ffe69c
+}
+
+.yellow-300 {
+    color: #000;
+    background-color: #ffda6a
+}
+
+.yellow-400 {
+    color: #000;
+    background-color: #ffcd39
+}
+
+.yellow-500 {
+    color: #000;
+    background-color: #ffc107
+}
+
+.yellow-600 {
+    color: #000;
+    background-color: #cc9a06
+}
+
+.yellow-700 {
+    color: #000;
+    background-color: #997404
+}
+
+.yellow-800 {
+    color: #fff;
+    background-color: #664d03
+}
+
+.yellow-900 {
+    color: #fff;
+    background-color: #332701
+}
+
+
+.base-green {
+    color: #fff;
+    background-color: #198754
+}
+.green-100 {
+    color: #000;
+    background-color: #d1e7dd
+}
+
+.green-200 {
+    color: #000;
+    background-color: #a3cfbb
+}
+
+.green-300 {
+    color: #000;
+    background-color: #75b798
+}
+
+.green-400 {
+    color: #000;
+    background-color: #479f76
+}
+
+.green-500 {
+    color: #fff;
+    background-color: #198754
+}
+
+.green-600 {
+    color: #fff;
+    background-color: #146c43
+}
+
+.green-700 {
+    color: #fff;
+    background-color: #0f5132
+}
+
+.green-800 {
+    color: #fff;
+    background-color: #0a3622
+}
+
+.green-900 {
+    color: #fff;
+    background-color: #051b11
+}
+
+
+.base-teal {
+    color: #000;
+    background-color: #20c997
+}
+.teal-100 {
+    color: #000;
+    background-color: #d2f4ea
+}
+
+.teal-200 {
+    color: #000;
+    background-color: #a6e9d5
+}
+
+.teal-300 {
+    color: #000;
+    background-color: #79dfc1
+}
+
+.teal-400 {
+    color: #000;
+    background-color: #4dd4ac
+}
+
+.teal-500 {
+    color: #000;
+    background-color: #20c997
+}
+
+.teal-600 {
+    color: #000;
+    background-color: #1aa179
+}
+
+.teal-700 {
+    color: #fff;
+    background-color: #13795b
+}
+
+.teal-800 {
+    color: #fff;
+    background-color: #0d503c
+}
+
+.teal-900 {
+    color: #fff;
+    background-color: #06281e
+}
+
+.base-cyan {
+    color: #000;
+    background-color: #0dcaf0
+}
+.cyan-100 {
+    color: #000;
+    background-color: #cff4fc
+}
+
+.cyan-200 {
+    color: #000;
+    background-color: #9eeaf9
+}
+
+.cyan-300 {
+    color: #000;
+    background-color: #6edff6
+}
+
+.cyan-400 {
+    color: #000;
+    background-color: #3dd5f3
+}
+
+.cyan-500 {
+    color: #000;
+    background-color: #0dcaf0
+}
+
+.cyan-600 {
+    color: #000;
+    background-color: #0aa2c0
+}
+
+.cyan-700 {
+    color: #fff;
+    background-color: #087990
+}
+
+.cyan-800 {
+    color: #fff;
+    background-color: #055160
+}
+
+.cyan-900 {
+    color: #fff;
+    background-color: #032830
+}
+
+
+.base-black {
+    color: #fff;
+    background-color: #000
+}
+.base-white {
+    color: #000;
+    background-color: #fff
+}
+.base-gray {
+    color: #fff;
+    background-color: #6c757d
+}
+.gray-100 {
+    color: #000;
+    background-color: #f8f9fa
+}
+
+.gray-200 {
+    color: #000;
+    background-color: #e9ecef
+}
+
+.gray-300 {
+    color: #000;
+    background-color: #dee2e6
+}
+
+.gray-400 {
+    color: #000;
+    background-color: #ced4da
+}
+
+.gray-500 {
+    color: #000;
+    background-color: #adb5bd
+}
+
+.gray-600 {
+    color: #fff;
+    background-color: #6c757d
+}
+
+.gray-700 {
+    color: #fff;
+    background-color: #495057
+}
+
+.gray-800 {
+    color: #fff;
+    background-color: #343a40
+}
+
+.gray-900 {
+    color: #fff;
+    background-color: #212529
+}

@@ -16,7 +16,7 @@ import { __ } from '@wordpress/i18n';
 
 // Pull toolbar elements and native popover drop shells [cite: 3]
 const { RichTextToolbarButton } = blockEditor;
-const { Modal, Button, ColorIndicator,TabPanel, Dropdown, ColorPicker } = components;
+const { Modal, Button, ColorIndicator,TabPanel, Popover, ColorPicker } = components;
 
 // Fallback resolver for the Gutenberg GradientPicker [cite: 91]
 const GradientPicker = 
@@ -252,87 +252,93 @@ function makeButton( fmtName, cssProp, iconLabel, toolbarLabel, modalTitle ) {
     };
 }
 
-// ── Specialized Text Gradient Native Dropdown Picker (MODAL-FREE) ──────────── 
+// ── Specialized Text Gradient Native Picker (MODAL-FREE / PORTAL SAFE) ─────── 
 function WmGradientButton( { value, onChange } ) {
     const activeGradient = getActiveGradient( value );
     const [ selectedGradient, setSelectedGradient ] = useState( activeGradient || GRADIENT_PRESETS[0].gradient );
+    
+    // We manage our own open state now instead of relying on Dropdown
+    const [ isOpen, setIsOpen ] = useState( false );
 
-    const handleApplyGradient = ( grad, onClose ) => {
-        onClose();
+    const handleApplyGradient = ( grad ) => {
+        setIsOpen( false );
         onChange( applyFormat( value, {
             type: FMT_GRADIENT,
             attributes: { style: `background:${ grad };-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;` },
         } ) );
     };
 
-    const handleClearGradient = ( onClose ) => {
-        onClose();
+    const handleClearGradient = () => {
+        setIsOpen( false );
         onChange( removeFormat( value, FMT_GRADIENT ) );
     };
 
     if ( ! GradientPicker ) return null;
 
     return (
-        <Dropdown
-            popoverProps={ { 
-                placement: 'bottom-start',
-                focusOnMount: 'container'
-            } }
-            renderToggle={ ( { isOpen, onToggle } ) => (
-                <RichTextToolbarButton
-                    icon={ () => (
-                        <span className="wm-color-tool-icon">
-                            <span className="wm-color-tool-icon__label" style={ { fontWeight: 900, background: activeGradient || 'linear-gradient(90deg,#e63946,#0d6efd)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' } }>GR</span>
-                            <span
-                                className="wm-color-tool-icon__bar"
-                                style={ {
-                                    background: activeGradient || 'linear-gradient(90deg,#e63946,#ffc107,#198754,#0d6efd)',
-                                    opacity: activeGradient ? 1 : 0.5,
-                                } }
-                            />
-                        </span>
-                    ) }
-                    title={ __( 'Text Gradient', 'wmblocks' ) }
-                    onClick={ onToggle }
-                    isActive={ !! activeGradient }
-                    aria-expanded={ isOpen }
-                />
-            ) }
-            renderContent={ ( { onClose } ) => (
-                <div className="wm-dropdown-gradient-picker" style={ { padding: '12px', width: '260px' } }>
-                    
-                    { activeGradient && (
-                        <div style={ { display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', borderBottom: '1px solid #eee', paddingBottom: '8px' } }>
-                            <div style={ { display: 'flex', alignItems: 'center', gap: '6px' } }>
-                                <ColorIndicator colorValue={ activeGradient } />
-                                <span style={ { fontSize: '12px', color: '#666' } }>{ __( 'Active', 'wmblocks' ) }</span>
+        <>
+            {/* The Toggle Button (Portals to the Toolbar) */}
+            <RichTextToolbarButton
+                icon={ () => (
+                    <span className="wm-color-tool-icon">
+                        <span className="wm-color-tool-icon__label" style={ { fontWeight: 900, background: activeGradient || 'linear-gradient(90deg,#e63946,#0d6efd)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' } }>GR</span>
+                        <span
+                            className="wm-color-tool-icon__bar"
+                            style={ {
+                                background: activeGradient || 'linear-gradient(90deg,#e63946,#ffc107,#198754,#0d6efd)',
+                                opacity: activeGradient ? 1 : 0.5,
+                            } }
+                        />
+                    </span>
+                ) }
+                title={ __( 'Text Gradient', 'wmblocks' ) }
+                onClick={ () => setIsOpen( ! isOpen ) }
+                isActive={ !! activeGradient }
+                aria-expanded={ isOpen }
+            />
+
+            {/* The Popover Content (Portals to the Body) */}
+            { isOpen && (
+                <Popover
+                    placement="bottom"
+                    focusOnMount="container"
+                    onClose={ () => setIsOpen( false ) }
+                    className="wm-dropdown-gradient-picker-popover"
+                >
+                    <div className="wm-dropdown-gradient-picker" style={ { padding: '12px', width: '260px' } }>
+                        
+                        { activeGradient && (
+                            <div style={ { display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', borderBottom: '1px solid #eee', paddingBottom: '8px' } }>
+                                <div style={ { display: 'flex', alignItems: 'center', gap: '6px' } }>
+                                    <ColorIndicator colorValue={ activeGradient } />
+                                    <span style={ { fontSize: '12px', color: '#666' } }>{ __( 'Active', 'wmblocks' ) }</span>
+                                </div>
+                                <Button variant="tertiary" isDestructive size="compact" onClick={ handleClearGradient }>
+                                    { __( 'Clear', 'wmblocks' ) }
+                                </Button>
                             </div>
-                            <Button variant="tertiary" isDestructive size="compact" onClick={ () => handleClearGradient( onClose ) }>
-                                { __( 'Clear', 'wmblocks' ) }
-                            </Button>
-                        </div>
-                    ) }
+                        ) }
 
-                    <GradientPicker
-                        value={ selectedGradient }
-                        onChange={ setSelectedGradient }
-                        gradients={ GRADIENT_PRESETS }
-                    />
+                        <GradientPicker
+                            value={ selectedGradient }
+                            onChange={ setSelectedGradient }
+                            gradients={ GRADIENT_PRESETS }
+                        />
 
-                    <Button 
-                        variant="primary" 
-                        size="compact" 
-                        onClick={ () => handleApplyGradient( selectedGradient, onClose ) }
-                        style={ { width: '100%', marginTop: '16px', justifyContent: 'center' } }
-                    >
-                        { __( 'Apply Gradient', 'wmblocks' ) }
-                    </Button>
-                </div>
+                        <Button 
+                            variant="primary" 
+                            size="compact" 
+                            onClick={ () => handleApplyGradient( selectedGradient ) }
+                            style={ { width: '100%', marginTop: '16px', justifyContent: 'center' } }
+                        >
+                            { __( 'Apply Gradient', 'wmblocks' ) }
+                        </Button>
+                    </div>
+                </Popover>
             ) }
-        />
+        </>
     );
 }
-
 // ── Make formats available in ALL rich-text blocks ───────────────────────────
 // registerFormatType alone is enough for blocks where allowedFormats is
 // undefined (= allow everything). But some blocks — core/heading, core/button,

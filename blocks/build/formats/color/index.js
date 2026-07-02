@@ -187,7 +187,7 @@ const {
   Button,
   ColorIndicator,
   TabPanel,
-  Dropdown,
+  Popover,
   ColorPicker
 } = _wordpress_components__WEBPACK_IMPORTED_MODULE_2__;
 
@@ -484,15 +484,18 @@ function makeButton(fmtName, cssProp, iconLabel, toolbarLabel, modalTitle) {
   };
 }
 
-// ── Specialized Text Gradient Native Dropdown Picker (MODAL-FREE) ──────────── 
+// ── Specialized Text Gradient Native Picker (MODAL-FREE / PORTAL SAFE) ─────── 
 function WmGradientButton({
   value,
   onChange
 }) {
   const activeGradient = getActiveGradient(value);
   const [selectedGradient, setSelectedGradient] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(activeGradient || GRADIENT_PRESETS[0].gradient);
-  const handleApplyGradient = (grad, onClose) => {
-    onClose();
+
+  // We manage our own open state now instead of relying on Dropdown
+  const [isOpen, setIsOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+  const handleApplyGradient = grad => {
+    setIsOpen(false);
     onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.applyFormat)(value, {
       type: FMT_GRADIENT,
       attributes: {
@@ -500,20 +503,13 @@ function WmGradientButton({
       }
     }));
   };
-  const handleClearGradient = onClose => {
-    onClose();
+  const handleClearGradient = () => {
+    setIsOpen(false);
     onChange((0,_wordpress_rich_text__WEBPACK_IMPORTED_MODULE_0__.removeFormat)(value, FMT_GRADIENT));
   };
   if (!GradientPicker) return null;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Dropdown, {
-    popoverProps: {
-      placement: 'bottom-start',
-      focusOnMount: 'container'
-    },
-    renderToggle: ({
-      isOpen,
-      onToggle
-    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RichTextToolbarButton, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RichTextToolbarButton, {
       icon: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
         className: "wm-color-tool-icon",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
@@ -534,68 +530,70 @@ function WmGradientButton({
         })]
       }),
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Text Gradient', 'wmblocks'),
-      onClick: onToggle,
+      onClick: () => setIsOpen(!isOpen),
       isActive: !!activeGradient,
       "aria-expanded": isOpen
-    }),
-    renderContent: ({
-      onClose
-    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-      className: "wm-dropdown-gradient-picker",
-      style: {
-        padding: '12px',
-        width: '260px'
-      },
-      children: [activeGradient && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    }), isOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Popover, {
+      placement: "bottom",
+      focusOnMount: "container",
+      onClose: () => setIsOpen(false),
+      className: "wm-dropdown-gradient-picker-popover",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "wm-dropdown-gradient-picker",
         style: {
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: '12px',
-          borderBottom: '1px solid #eee',
-          paddingBottom: '8px'
+          padding: '12px',
+          width: '260px'
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        children: [activeGradient && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           style: {
             display: 'flex',
             alignItems: 'center',
-            gap: '6px'
+            justifyContent: 'space-between',
+            marginBottom: '12px',
+            borderBottom: '1px solid #eee',
+            paddingBottom: '8px'
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ColorIndicator, {
-            colorValue: activeGradient
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
             style: {
-              fontSize: '12px',
-              color: '#666'
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
             },
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Active', 'wmblocks')
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ColorIndicator, {
+              colorValue: activeGradient
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+              style: {
+                fontSize: '12px',
+                color: '#666'
+              },
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Active', 'wmblocks')
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Button, {
+            variant: "tertiary",
+            isDestructive: true,
+            size: "compact",
+            onClick: handleClearGradient,
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Clear', 'wmblocks')
           })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(GradientPicker, {
+          value: selectedGradient,
+          onChange: setSelectedGradient,
+          gradients: GRADIENT_PRESETS
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Button, {
-          variant: "tertiary",
-          isDestructive: true,
+          variant: "primary",
           size: "compact",
-          onClick: () => handleClearGradient(onClose),
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Clear', 'wmblocks')
+          onClick: () => handleApplyGradient(selectedGradient),
+          style: {
+            width: '100%',
+            marginTop: '16px',
+            justifyContent: 'center'
+          },
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Apply Gradient', 'wmblocks')
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(GradientPicker, {
-        value: selectedGradient,
-        onChange: setSelectedGradient,
-        gradients: GRADIENT_PRESETS
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Button, {
-        variant: "primary",
-        size: "compact",
-        onClick: () => handleApplyGradient(selectedGradient, onClose),
-        style: {
-          width: '100%',
-          marginTop: '16px',
-          justifyContent: 'center'
-        },
-        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Apply Gradient', 'wmblocks')
-      })]
-    })
+      })
+    })]
   });
 }
-
 // ── Make formats available in ALL rich-text blocks ───────────────────────────
 // registerFormatType alone is enough for blocks where allowedFormats is
 // undefined (= allow everything). But some blocks — core/heading, core/button,

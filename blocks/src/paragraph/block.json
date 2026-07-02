@@ -1,0 +1,150 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "wmblocks/paragraph",
+    "version": "1.0.0",
+    "title": "Paragraph",
+    "category": "watermelon-blocks",
+    "icon": "editor-paragraph",
+    "description": "Paragraph block.",
+    "supports": {
+        "align": false,
+        "color": false,
+        "typography": false,
+        "spacing": false,
+        "html": false,
+        "anchor": true
+    },
+    "attributes": {
+        "wmAnim": {
+            "type": "string",
+            "default": "none"
+        },
+        "wmDelay": {
+            "type": "string",
+            "default": "0"
+        },
+        "wmDuration": {
+            "type": "string",
+            "default": "400"
+        },
+        "wmEasing": {
+            "type": "string",
+            "default": "ease"
+        },
+        "wmMirror": {
+            "type": "boolean",
+            "default": false
+        },
+        "wmOnce": {
+            "type": "boolean",
+            "default": true
+        },
+        "bgGradient": {
+            "type": "string",
+            "default": ""
+        },
+        "backgroundColorClass": {
+            "type": "string",
+            "default": ""
+        },
+        "margin": {
+            "type": "object",
+            "default": {}
+        },
+        "padding": {
+            "type": "object",
+            "default": {}
+        },
+        "content": {
+            "type": "string",
+            "source": "html",
+            "selector": ".wmblocks-paragraph-text",
+            "default": ""
+        },
+        "dropCap": {
+            "type": "boolean",
+            "default": false
+        },
+        "dropCapColor": {
+            "type": "string",
+            "default": ""
+        },
+        "dropCapSize": {
+            "type": "number",
+            "default": 4
+        },
+        "dropCapWeight": {
+            "type": "string",
+            "default": "700"
+        },
+        "linkColor": {
+            "type": "string",
+            "default": ""
+        },
+        "linkHoverColor": {
+            "type": "string",
+            "default": ""
+        },
+        "textStyle": {
+            "type": "string",
+            "default": ""
+        },
+        "textDecoration": {
+            "type": "string",
+            "default": ""
+        },
+        "textWrap": {
+            "type": "string",
+            "default": ""
+        },
+        "textTransform": {
+            "type": "string",
+            "default": ""
+        },
+        "fontSize": {
+            "type": "string",
+            "default": ""
+        },
+        "fontWeight": {
+            "type": "string",
+            "default": ""
+        },
+        "fontStyle": {
+            "type": "string",
+            "default": ""
+        },
+        "lineHeight": {
+            "type": "string",
+            "default": ""
+        },
+        "fontMonospace": {
+            "type": "boolean",
+            "default": false
+        },
+        "textReset": {
+            "type": "boolean",
+            "default": false
+        },
+        "wrapStrong": {
+            "type": "boolean",
+            "default": false
+        },
+        "wrapEm": {
+            "type": "boolean",
+            "default": false
+        },
+        "wrapDel": {
+            "type": "boolean",
+            "default": false
+        },
+        "wrapIns": {
+            "type": "boolean",
+            "default": false
+        }
+    },
+    "textdomain": "wm",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css"
+}

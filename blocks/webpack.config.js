@@ -12,5 +12,7 @@ module.exports = {
 		'formats/color/index': path.resolve( process.cwd(), 'src/formats/color/index.js' ),
 		'formats/badge/index': path.resolve( process.cwd(), 'src/formats/badge/index.js' ),
 		'formats/ask-ai/index': path.resolve( process.cwd(), 'src/formats/ask-ai/index.js' ),
+		// ADD YOUR NEW GLOBAL ANIMATION CONTROLLER HERE
+        'controlanimate': path.resolve( process.cwd(), 'controls/controlanimate.js' ),
 	},
 };
