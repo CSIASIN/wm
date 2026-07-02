@@ -54,13 +54,22 @@ function get_wm_typography_styles( $attributes ) {
         $styles[] = "-webkit-text-stroke-color: {$text_stroke_c}";
     }
 
-    // Shadow Rendering Matrix
-if ( $text_shadow_t === 'outline' && $text_shadow_c ) {
-    // Exact 8-axis calculations map explicitly down to text elements
-    $styles[] = "text-shadow: -{$text_shadow_w} -{$text_shadow_w} 0 {$text_shadow_c}, 0 -{$text_shadow_w} 0 {$text_shadow_c}, {$text_shadow_w} -{$text_shadow_w} 0 {$text_shadow_c}, {$text_shadow_w} 0 0 {$text_shadow_c}, {$text_shadow_w} {$text_shadow_w} 0 {$text_shadow_c}, 0 {$text_shadow_w} 0 {$text_shadow_c}, -{$text_shadow_w} {$text_shadow_w} 0 {$text_shadow_c}, -{$text_shadow_w} 0 0 {$text_shadow_c}";
-} elseif ( $text_shadow_t === 'drop' && $text_shadow_c ) {
-    $styles[] = "text-shadow: {$text_shadow_x} {$text_shadow_y} {$text_shadow_b} {$text_shadow_c}";
-}
+// --- TEXT SHADOW CORRECTION ENGINE ---
+    if ( $text_shadow_t === 'outline' && $text_shadow_c ) {
+        // Fallback to 1px if textShadowWidth is not yet configured or is empty
+        $w = ! empty( $attributes['textShadowWidth'] ) ? $attributes['textShadowWidth'] : '1px';
+        $c = $text_shadow_c;
+        
+        $styles[] = "text-shadow: -{$w} -{$w} 0 {$c}, 0 -{$w} 0 {$c}, {$w} -{$w} 0 {$c}, {$w} 0 0 {$c}, {$w} {$w} 0 {$c}, 0 {$w} 0 {$c}, -{$w} {$w} 0 {$c}, -{$w} 0 0 {$c}";
+    } elseif ( $text_shadow_t === 'drop' && $text_shadow_c ) {
+        // Fallback to crisp offset-x offset-y blur-radius color formatting
+        $x    = ! empty( $attributes['textShadowX'] ) ? $attributes['textShadowX'] : '2px';
+        $y    = ! empty( $attributes['textShadowY'] ) ? $attributes['textShadowY'] : '2px';
+        $blur = ! empty( $attributes['textShadowBlur'] ) ? $attributes['textShadowBlur'] : '0px'; // Set to 0px if you want a clean flat shadow drop
+        $c    = $text_shadow_c;
+        
+        $styles[] = "text-shadow: {$x} {$y} {$blur} {$c}";
+    }
 
     // Process Responsive Custom Properties Layout Variables
     $breakpoints = ['Xs', 'Sm', 'Md', 'Lg', 'Xl', 'Xxl'];

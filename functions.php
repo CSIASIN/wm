@@ -332,3 +332,24 @@ function wm_footer_js()
 	}
 }
 add_action('wp_footer', 'wm_footer_js');
+
+
+/**
+ * Proper way to enqueue styles
+ */
+function watermelon_styles() {
+	wp_enqueue_style( 'watermelon', get_stylesheet_directory_uri().'/css/wm.css' , array(), '0.1.0', 'all');
+//	wp_enqueue_script( 'script-name', get_template_directory_uri() . '/js/example.js', array(), '1.0.0', true );
+}
+add_action( 'wp_enqueue_scripts', 'watermelon_styles' );
+
+function wm_register_animation_assets() {
+    wp_enqueue_script('wm-animations', get_template_directory_uri() . '/js/scroll-animations.js', [], '1.0',array('in_footer' => true,'strategy'  => 'defer',));
+}
+add_action('wp_enqueue_scripts', 'wm_register_animation_assets');
+/**
+ * Force add animation attributes to all wmblocks/ blocks via PHP.
+ */
+/**
+ * Force add animation attributes to all wmblocks/ blocks via PHP.
+ */
