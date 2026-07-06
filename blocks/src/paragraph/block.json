@@ -16,30 +16,7 @@
         "anchor": true
     },
     "attributes": {
-        "wmAnim": {
-            "type": "string",
-            "default": "none"
-        },
-        "wmDelay": {
-            "type": "string",
-            "default": "0"
-        },
-        "wmDuration": {
-            "type": "string",
-            "default": "400"
-        },
-        "wmEasing": {
-            "type": "string",
-            "default": "ease"
-        },
-        "wmMirror": {
-            "type": "boolean",
-            "default": false
-        },
-        "wmOnce": {
-            "type": "boolean",
-            "default": true
-        },
+       
         "bgGradient": {
             "type": "string",
             "default": ""

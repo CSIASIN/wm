@@ -2,164 +2,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./controls/controlanimate.js"
-/*!************************************!*\
-  !*** ./controls/controlanimate.js ***!
-  \************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ AnimationControls)
-/* harmony export */ });
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
-
-
-
-
-function AnimationControls({
-  attributes,
-  setAttributes
-}) {
-  const {
-    wmAnim,
-    wmDelay,
-    wmDuration,
-    wmEasing,
-    wmMirror,
-    wmOnce
-  } = attributes;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InspectorControls, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Animations', 'wmblocks'),
-      initialOpen: false,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('On Scroll Animation', 'wmblocks'),
-        value: wmAnim || 'none',
-        options: [{
-          label: 'None',
-          value: 'none'
-        }, {
-          label: '-- FADE --',
-          value: 'none',
-          disabled: true
-        }, {
-          label: 'Fade',
-          value: 'fade'
-        }, {
-          label: 'Fade Up',
-          value: 'fade-up'
-        }, {
-          label: 'Fade Down',
-          value: 'fade-down'
-        }, {
-          label: 'Fade Left',
-          value: 'fade-left'
-        }, {
-          label: 'Fade Right',
-          value: 'fade-right'
-        }, {
-          label: '-- FLIP --',
-          value: 'none',
-          disabled: true
-        }, {
-          label: 'Flip Up',
-          value: 'flip-up'
-        }, {
-          label: 'Flip Down',
-          value: 'flip-down'
-        }, {
-          label: '-- SLIDE --',
-          value: 'none',
-          disabled: true
-        }, {
-          label: 'Slide Up',
-          value: 'slide-up'
-        }, {
-          label: 'Slide Down',
-          value: 'slide-down'
-        }, {
-          label: '-- ZOOM --',
-          value: 'none',
-          disabled: true
-        }, {
-          label: 'Zoom In',
-          value: 'zoom-in'
-        }, {
-          label: 'Zoom Out',
-          value: 'zoom-out'
-        }],
-        onChange: val => setAttributes({
-          wmAnim: val
-        })
-      }), wmAnim && wmAnim !== 'none' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        style: {
-          marginBottom: '24px',
-          paddingLeft: '12px',
-          borderLeft: '2px solid #ccc'
-        },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Easing', 'wmblocks'),
-          value: wmEasing || 'ease',
-          options: [{
-            label: 'Ease',
-            value: 'ease'
-          }, {
-            label: 'Linear',
-            value: 'linear'
-          }, {
-            label: 'Ease-in-out',
-            value: 'ease-in-out'
-          }, {
-            label: 'Ease-out-back',
-            value: 'ease-out-back'
-          }],
-          onChange: val => setAttributes({
-            wmEasing: val
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Duration (ms)', 'wmblocks'),
-          value: wmDuration || '400',
-          onChange: val => setAttributes({
-            wmDuration: val
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Delay (ms)', 'wmblocks'),
-          value: wmDelay || '0',
-          onChange: val => setAttributes({
-            wmDelay: val
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelRow, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Animate Once', 'wmblocks'),
-            checked: wmOnce !== false,
-            onChange: val => setAttributes({
-              wmOnce: val
-            })
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelRow, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Mirror (Animate Out)', 'wmblocks'),
-            checked: !!wmMirror,
-            onChange: val => setAttributes({
-              wmMirror: val
-            })
-          })
-        })]
-      })]
-    })
-  });
-}
-
-/***/ },
-
 /***/ "./src/paragraph/edit.js"
 /*!*******************************!*\
   !*** ./src/paragraph/edit.js ***!
@@ -177,14 +19,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/paragraph/editor.scss");
-/* harmony import */ var _controls_controlanimate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../controls/controlanimate */ "./controls/controlanimate.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
 
-
+//import AnimationControls from '../../controls/controlanimate';
 
 function Edit({
   attributes,
@@ -2269,7 +2110,7 @@ function Edit({
     className: ['wmblocks-paragraph', dropCap ? 'overflow-hidden has-drop-cap' : '', backgroundColorClass, bgGradient, textStyle, textDecoration, textWrap, textTransform, fontSize, fontWeight, fontStyle, lineHeight, fontMonospace ? 'font-monospace' : '', textReset ? 'text-reset' : ''].filter(Boolean).join(' '),
     style: blockStyle
   });
-  let innerContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+  let innerContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
     className: "wmblocks-paragraph-text",
     tagName: "span",
     value: content,
@@ -2278,38 +2119,35 @@ function Edit({
     }),
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Start typing...', 'wm')
   });
-  if (wrapStrong) innerContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("strong", {
+  if (wrapStrong) innerContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
     children: innerContent
   });
-  if (wrapEm) innerContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("em", {
+  if (wrapEm) innerContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("em", {
     children: innerContent
   });
-  if (wrapDel) innerContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("del", {
+  if (wrapDel) innerContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("del", {
     children: innerContent
   });
-  if (wrapIns) innerContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ins", {
+  if (wrapIns) innerContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ins", {
     children: innerContent
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_controls_controlanimate__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        attributes: attributes,
-        setAttributes: setAttributes
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Link Colors', 'wm'),
         initialOpen: false,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Link Color', 'wm'),
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPicker, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPicker, {
             color: linkColor,
             onChangeComplete: v => setAttributes({
               linkColor: v.hex
             }),
             disableAlpha: true
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Link Hover Color', 'wm'),
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPicker, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPicker, {
             color: linkHoverColor,
             onChangeComplete: v => setAttributes({
               linkHoverColor: v.hex
@@ -2317,9 +2155,9 @@ function Edit({
             disableAlpha: true
           })
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Typography & Format', 'wm'),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Font Size', 'wm'),
           value: fontSize,
           options: [{
@@ -2347,7 +2185,7 @@ function Edit({
           onChange: v => setAttributes({
             fontSize: v
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Font Weight', 'wm'),
           value: fontWeight,
           options: [{
@@ -2378,7 +2216,7 @@ function Edit({
           onChange: v => setAttributes({
             fontWeight: v
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Line Height', 'wm'),
           value: lineHeight,
           options: [{
@@ -2400,7 +2238,7 @@ function Edit({
           onChange: v => setAttributes({
             lineHeight: v
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Text Style', 'wm'),
           value: textStyle,
           options: [{
@@ -2420,61 +2258,61 @@ function Edit({
             textStyle: v
           })
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Structural Tags & Toggles', 'wm'),
         initialOpen: false,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: "Drop Cap",
           checked: dropCap,
           onChange: v => setAttributes({
             dropCap: v
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: "Strong (Bold Wrap)",
           checked: wrapStrong,
           onChange: v => setAttributes({
             wrapStrong: v
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: "Italic (Em Wrap)",
           checked: wrapEm,
           onChange: v => setAttributes({
             wrapEm: v
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: "Deleted (Del Wrap)",
           checked: wrapDel,
           onChange: v => setAttributes({
             wrapDel: v
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: "Insertion (Ins Wrap)",
           checked: wrapIns,
           onChange: v => setAttributes({
             wrapIns: v
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: "Monospace Font",
           checked: fontMonospace,
           onChange: v => setAttributes({
             fontMonospace: v
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
           label: "Text Reset",
           checked: textReset,
           onChange: v => setAttributes({
             textReset: v
           })
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Background Color', 'wm'),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
           style: {
             fontSize: '12px',
             marginBottom: '8px'
           },
           children: "Select a predefined Bootstrap shade. This updates both background and text color automatically."
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
           colors: backgroundColors,
           value: backgroundColors.find(c => c.slug === backgroundColorClass)?.color,
           onChange: value => {
@@ -2486,19 +2324,19 @@ function Edit({
           disableCustomColors: true,
           clearable: true
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Background Gradient', 'wm'),
         initialOpen: false,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Choose a Gradient', 'wm'),
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             style: {
               display: 'grid',
               gridTemplateColumns: 'repeat(4, 1fr)',
               gap: '8px',
               marginTop: '10px'
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
               onClick: () => setAttributes({
                 bgGradient: ''
               }),
@@ -2510,7 +2348,7 @@ function Edit({
                 cursor: 'pointer'
               },
               children: "\u2715"
-            }), gradientPresets.map(g => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+            }), gradientPresets.map(g => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
               onClick: () => setAttributes({
                 bgGradient: g.class
               }),
@@ -2525,18 +2363,18 @@ function Edit({
             }, g.class))]
           })
         })
-      }), dropCap && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+      }), dropCap && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Drop Cap Styles', 'wm'),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Drop Cap Color', 'wm'),
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPicker, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPicker, {
             color: dropCapColor,
             onChangeComplete: v => setAttributes({
               dropCapColor: v.hex
             }),
             disableAlpha: true
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Drop Cap Size (em)', 'wm'),
           value: dropCapSize,
           onChange: v => setAttributes({
@@ -2545,7 +2383,7 @@ function Edit({
           min: 2,
           max: 8,
           step: 0.5
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Font Weight', 'wm'),
           value: dropCapWeight,
           options: [{
@@ -2565,16 +2403,16 @@ function Edit({
             dropCapWeight: v
           })
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Spacing (Inline)', 'wm'),
         initialOpen: false,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BoxControl, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BoxControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Margin', 'wm'),
           values: margin,
           onChange: nextValues => setAttributes({
             margin: nextValues
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BoxControl, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BoxControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Padding', 'wm'),
           values: padding,
           onChange: nextValues => setAttributes({
@@ -2582,7 +2420,7 @@ function Edit({
           })
         })]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
       ...blockProps,
       children: innerContent
     })]
@@ -2636,14 +2474,7 @@ function save({
     wrapStrong,
     wrapEm,
     wrapDel,
-    wrapIns,
-    // --- ADDED: Animation Attributes ---
-    wmAnim,
-    wmDelay,
-    wmDuration,
-    wmEasing,
-    wmMirror,
-    wmOnce
+    wrapIns
   } = attributes;
   const blockStyle = {
     '--wm-link-color': linkColor || undefined,
@@ -2667,17 +2498,6 @@ function save({
     className: ['wmblocks-paragraph', dropCap ? 'overflow-hidden has-drop-cap' : '', backgroundColorClass, bgGradient, textStyle, textDecoration, textWrap, textTransform, fontSize, fontWeight, fontStyle, lineHeight, fontMonospace ? 'font-monospace' : '', textReset ? 'text-reset' : ''].filter(Boolean).join(' '),
     style: blockStyle
   };
-
-  // 2. --- ADDED: Conditionally inject animation data attributes ---
-  if (wmAnim && wmAnim !== 'none') {
-    wrapperArgs.className += ' wm-animate'; // Append base observer class
-    wrapperArgs['data-wm'] = wmAnim;
-    wrapperArgs['data-wm-duration'] = wmDuration || '400';
-    wrapperArgs['data-wm-delay'] = wmDelay || '0';
-    wrapperArgs['data-wm-easing'] = wmEasing || 'ease';
-    wrapperArgs['data-wm-once'] = wmOnce === false ? 'false' : 'true';
-    wrapperArgs['data-wm-mirror'] = wmMirror ? 'true' : 'false';
-  }
 
   // 3. Pass the dynamic arguments into useBlockProps
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save(wrapperArgs);
@@ -2774,7 +2594,7 @@ module.exports = window["wp"]["i18n"];
   \**********************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wmblocks/paragraph","version":"1.0.0","title":"Paragraph","category":"watermelon-blocks","icon":"editor-paragraph","description":"Paragraph block.","supports":{"align":false,"color":false,"typography":false,"spacing":false,"html":false,"anchor":true},"attributes":{"wmAnim":{"type":"string","default":"none"},"wmDelay":{"type":"string","default":"0"},"wmDuration":{"type":"string","default":"400"},"wmEasing":{"type":"string","default":"ease"},"wmMirror":{"type":"boolean","default":false},"wmOnce":{"type":"boolean","default":true},"bgGradient":{"type":"string","default":""},"backgroundColorClass":{"type":"string","default":""},"margin":{"type":"object","default":{}},"padding":{"type":"object","default":{}},"content":{"type":"string","source":"html","selector":".wmblocks-paragraph-text","default":""},"dropCap":{"type":"boolean","default":false},"dropCapColor":{"type":"string","default":""},"dropCapSize":{"type":"number","default":4},"dropCapWeight":{"type":"string","default":"700"},"linkColor":{"type":"string","default":""},"linkHoverColor":{"type":"string","default":""},"textStyle":{"type":"string","default":""},"textDecoration":{"type":"string","default":""},"textWrap":{"type":"string","default":""},"textTransform":{"type":"string","default":""},"fontSize":{"type":"string","default":""},"fontWeight":{"type":"string","default":""},"fontStyle":{"type":"string","default":""},"lineHeight":{"type":"string","default":""},"fontMonospace":{"type":"boolean","default":false},"textReset":{"type":"boolean","default":false},"wrapStrong":{"type":"boolean","default":false},"wrapEm":{"type":"boolean","default":false},"wrapDel":{"type":"boolean","default":false},"wrapIns":{"type":"boolean","default":false}},"textdomain":"wm","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"wmblocks/paragraph","version":"1.0.0","title":"Paragraph","category":"watermelon-blocks","icon":"editor-paragraph","description":"Paragraph block.","supports":{"align":false,"color":false,"typography":false,"spacing":false,"html":false,"anchor":true},"attributes":{"bgGradient":{"type":"string","default":""},"backgroundColorClass":{"type":"string","default":""},"margin":{"type":"object","default":{}},"padding":{"type":"object","default":{}},"content":{"type":"string","source":"html","selector":".wmblocks-paragraph-text","default":""},"dropCap":{"type":"boolean","default":false},"dropCapColor":{"type":"string","default":""},"dropCapSize":{"type":"number","default":4},"dropCapWeight":{"type":"string","default":"700"},"linkColor":{"type":"string","default":""},"linkHoverColor":{"type":"string","default":""},"textStyle":{"type":"string","default":""},"textDecoration":{"type":"string","default":""},"textWrap":{"type":"string","default":""},"textTransform":{"type":"string","default":""},"fontSize":{"type":"string","default":""},"fontWeight":{"type":"string","default":""},"fontStyle":{"type":"string","default":""},"lineHeight":{"type":"string","default":""},"fontMonospace":{"type":"boolean","default":false},"textReset":{"type":"boolean","default":false},"wrapStrong":{"type":"boolean","default":false},"wrapEm":{"type":"boolean","default":false},"wrapDel":{"type":"boolean","default":false},"wrapIns":{"type":"boolean","default":false}},"textdomain":"wm","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ }
 

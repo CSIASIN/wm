@@ -7,10 +7,7 @@ export default function save( { attributes } ) {
         margin, padding,
         textStyle, textDecoration, textWrap, textTransform, fontSize,
         fontWeight, fontStyle, lineHeight, fontMonospace, textReset,
-        wrapStrong, wrapEm, wrapDel, wrapIns, 
-        
-        // --- ADDED: Animation Attributes ---
-        wmAnim, wmDelay, wmDuration, wmEasing, wmMirror, wmOnce
+        wrapStrong, wrapEm, wrapDel, wrapIns
     } = attributes;
 
     const blockStyle = {
@@ -43,16 +40,7 @@ export default function save( { attributes } ) {
         style: blockStyle
     };
 
-    // 2. --- ADDED: Conditionally inject animation data attributes ---
-    if ( wmAnim && wmAnim !== 'none' ) {
-        wrapperArgs.className += ' wm-animate'; // Append base observer class
-        wrapperArgs['data-wm'] = wmAnim;
-        wrapperArgs['data-wm-duration'] = wmDuration || '400';
-        wrapperArgs['data-wm-delay'] = wmDelay || '0';
-        wrapperArgs['data-wm-easing'] = wmEasing || 'ease';
-        wrapperArgs['data-wm-once'] = wmOnce === false ? 'false' : 'true';
-        wrapperArgs['data-wm-mirror'] = wmMirror ? 'true' : 'false';
-    }
+
 
     // 3. Pass the dynamic arguments into useBlockProps
     const blockProps = useBlockProps.save( wrapperArgs );

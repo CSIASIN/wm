@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls, RichText } from '@wordpress/block-editor';
 import { PanelBody, SelectControl, ToggleControl, ColorPicker, BaseControl, ColorPalette, BoxControl, RangeControl } from '@wordpress/components';
 import './editor.scss';
-import AnimationControls from '../../controls/controlanimate';
+//import AnimationControls from '../../controls/controlanimate';
 
 
 export default function Edit( { attributes, setAttributes } ) {
@@ -584,10 +584,7 @@ const gradientPresets = [
     return (
         <>
             <InspectorControls>
-                <AnimationControls 
-                attributes={attributes} 
-                setAttributes={setAttributes} 
-            />
+       
                 <PanelBody title={ __( 'Link Colors', 'wm' ) } initialOpen={ false }>
                     <BaseControl label={ __( 'Link Color', 'wm' ) }>
                         <ColorPicker color={ linkColor } onChangeComplete={ ( v ) => setAttributes( { linkColor: v.hex } ) } disableAlpha />

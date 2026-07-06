@@ -7258,30 +7258,6 @@ return array(
 			'anchor' => true
 		),
 		'attributes' => array(
-			'wmAnim' => array(
-				'type' => 'string',
-				'default' => 'none'
-			),
-			'wmDelay' => array(
-				'type' => 'string',
-				'default' => '0'
-			),
-			'wmDuration' => array(
-				'type' => 'string',
-				'default' => '400'
-			),
-			'wmEasing' => array(
-				'type' => 'string',
-				'default' => 'ease'
-			),
-			'wmMirror' => array(
-				'type' => 'boolean',
-				'default' => false
-			),
-			'wmOnce' => array(
-				'type' => 'boolean',
-				'default' => true
-			),
 			'bgGradient' => array(
 				'type' => 'string',
 				'default' => ''

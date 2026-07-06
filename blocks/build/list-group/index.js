@@ -105,7 +105,7 @@ const HORIZONTAL_OPTIONS = [{
   value: 'list-group-horizontal-xxl'
 }];
 
-// ── Popover rendered as a sibling to the list, not inside the item ──────────
+// ── Popover rendered as a sibling to the list ──────────
 function ItemPopover({
   item,
   index,
@@ -123,7 +123,6 @@ function ItemPopover({
     const handler = e => {
       if (ref.current && !ref.current.contains(e.target)) onClose();
     };
-    // Delay so the same click that opens doesn't immediately close
     const timer = setTimeout(() => document.addEventListener('mousedown', handler), 100);
     return () => {
       clearTimeout(timer);
@@ -171,9 +170,10 @@ function ItemPopover({
       padding: '12px',
       minWidth: '300px',
       boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
-      marginTop: '2px'
+      marginTop: '2px',
+      zIndex: 10
     },
-    children: [itemType === 'a' && field('🔗 URL', item.url, v => onUpdate('url', v), 'https://', 'url'), field((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Subtext', 'wmblocks'), item.subtext, v => onUpdate('subtext', v), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Optional subtitle…', 'wmblocks')), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    children: [itemType === 'a' && field('🔗 URL', item.url, v => onUpdate('url', v), 'https://', 'url'), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       style: {
         display: 'flex',
         alignItems: 'center',
@@ -455,8 +455,7 @@ function Edit({
               outlineOffset: '-2px'
             },
             onMouseDown: e => {
-              // Only toggle selection if clicking the item itself, not a contentEditable child
-              if (e.target.contentEditable === 'true') return;
+              // Make sure clicking the text box directly doesn't toggle the selection unnecesarily
               e.preventDefault();
               setSelectedItem(selectedItem === i ? null : i);
             },
@@ -464,31 +463,32 @@ function Edit({
               className: "d-flex justify-content-between align-items-start",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                 className: "ms-2 me-auto",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                onMouseDown: e => e.stopPropagation(),
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+                  tagName: "div",
                   className: "fw-bold",
-                  contentEditable: true,
-                  suppressContentEditableWarning: true,
-                  onMouseDown: e => e.stopPropagation(),
-                  onInput: e => updateItem(i, 'text', e.currentTarget.textContent),
-                  onKeyDown: e => e.key === 'Enter' && (e.preventDefault(), e.currentTarget.blur()),
+                  value: item.text,
+                  onChange: v => updateItem(i, 'text', v),
+                  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Item text...', 'wmblocks'),
+                  allowedFormats: ['core/bold', 'core/italic', 'core/link'] // Or set to [] to allow no inline formatting
+                  ,
                   style: {
                     outline: 'none',
                     cursor: 'text',
                     minWidth: '40px'
-                  },
-                  children: item.text
-                }), hasSub && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                  contentEditable: true,
-                  suppressContentEditableWarning: true,
-                  onMouseDown: e => e.stopPropagation(),
-                  onInput: e => updateItem(i, 'subtext', e.currentTarget.textContent),
+                  }
+                }), hasSub && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+                  tagName: "span",
+                  value: item.subtext,
+                  onChange: v => updateItem(i, 'subtext', v),
+                  placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Optional subtitle...', 'wmblocks'),
+                  allowedFormats: [],
                   style: {
                     outline: 'none',
                     cursor: 'text',
                     fontSize: '13px',
                     display: 'block'
-                  },
-                  children: item.subtext
+                  }
                 })]
               }), hasBadge && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
                 className: 'badge rounded-pill ' + item.badgeVariant,
@@ -496,19 +496,19 @@ function Edit({
               })]
             }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
               className: "d-flex justify-content-between align-items-center",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                contentEditable: true,
-                suppressContentEditableWarning: true,
-                onMouseDown: e => e.stopPropagation(),
-                onInput: e => updateItem(i, 'text', e.currentTarget.textContent),
-                onKeyDown: e => e.key === 'Enter' && (e.preventDefault(), e.currentTarget.blur()),
+              onMouseDown: e => e.stopPropagation(),
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+                tagName: "span",
+                value: item.text,
+                onChange: v => updateItem(i, 'text', v),
+                placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Item text...', 'wmblocks'),
+                allowedFormats: ['core/bold', 'core/italic', 'core/link'],
                 style: {
                   outline: 'none',
                   cursor: 'text',
                   flex: 1,
                   minWidth: '40px'
-                },
-                children: item.text
+                }
               }), hasBadge && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
                 className: 'badge rounded-pill ' + item.badgeVariant,
                 children: item.badge
