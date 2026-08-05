@@ -4,6 +4,9 @@ import { PanelBody, SelectControl, ToggleControl, TextControl, PanelRow } from '
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 
+// 🛑 THE FIX: Check if we have already registered these filters!
+if ( ! window.wmAnimationFiltersAdded ) {
+	
 /**
  * 1. Globally Register Attributes in JavaScript
  * This ensures the Editor knows these attributes exist for ALL wmblocks.
@@ -93,3 +96,7 @@ const withGlobalControls = createHigherOrderComponent((BlockEdit) => {
 }, 'withGlobalControls');
 
 addFilter('editor.BlockEdit', 'wmblocks/add-global-controls', withGlobalControls, 100);
+
+// 🛑 Lock it down so it never registers again
+    window.wmAnimationFiltersAdded = true;
+}
