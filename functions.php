@@ -353,3 +353,73 @@ add_action('wp_enqueue_scripts', 'wm_register_animation_assets');
 /**
  * Force add animation attributes to all wmblocks/ blocks via PHP.
  */
+/**
+ * 1. Globally register animation attributes for all wmblocks
+ */
+function wmblocks_global_animation_attributes( $settings, $metadata ) {
+    // Safely get the block name (handles different WP loading contexts)
+    $name = isset( $metadata['name'] ) ? $metadata['name'] : ( isset( $settings['name'] ) ? $settings['name'] : '' );
+
+    // Safety check: Only target your specific block namespace
+    if ( ! is_string( $name ) || strpos( $name, 'wmblocks/' ) !== 0 ) {
+        return $settings;
+    }
+
+    if ( ! isset( $settings['attributes'] ) ) {
+        $settings['attributes'] = array();
+    }
+
+    // Inject attributes globally
+    $settings['attributes'] = array_merge( $settings['attributes'], array(
+        'wmAnim'     => array( 'type' => 'string', 'default' => 'none' ),
+        'wmDelay'    => array( 'type' => 'string', 'default' => '0' ),
+        'wmDuration' => array( 'type' => 'string', 'default' => '400' ),
+        'wmEasing'   => array( 'type' => 'string', 'default' => 'ease' ),
+        'wmMirror'   => array( 'type' => 'boolean', 'default' => false ),
+        'wmOnce'     => array( 'type' => 'boolean', 'default' => true ),
+    ) );
+
+    return $settings;
+}
+add_filter( 'block_type_metadata_settings', 'wmblocks_global_animation_attributes', 10, 2 );
+
+/**
+ * 2. Globally inject data attributes into the frontend HTML
+ */
+function wmblocks_global_animation_frontend( $block_content, $block ) {
+    // Only target your blocks
+    if ( strpos( $block['blockName'], 'wmblocks/' ) !== 0 ) {
+        return $block_content;
+    }
+
+    $attrs = $block['attrs'];
+
+    // If no animation is selected, return normal HTML
+    if ( empty( $attrs['wmAnim'] ) || $attrs['wmAnim'] === 'none' ) {
+        return $block_content;
+    }
+
+    // Use WordPress's native HTML Processor to safely inject attributes into the first <div>/<p>/etc
+    $tags = new WP_HTML_Tag_Processor( $block_content );
+    
+    if ( $tags->next_tag() ) {
+        $tags->add_class( 'wm-animate' );
+        $tags->set_attribute( 'data-wm', $attrs['wmAnim'] );
+        
+        if ( ! empty( $attrs['wmDuration'] ) ) $tags->set_attribute( 'data-wm-duration', $attrs['wmDuration'] );
+        if ( ! empty( $attrs['wmDelay'] ) ) $tags->set_attribute( 'data-wm-delay', $attrs['wmDelay'] );
+        if ( ! empty( $attrs['wmEasing'] ) ) $tags->set_attribute( 'data-wm-easing', $attrs['wmEasing'] );
+        
+        $once = isset( $attrs['wmOnce'] ) && $attrs['wmOnce'] === false ? 'false' : 'true';
+        $tags->set_attribute( 'data-wm-once', $once );
+        
+        $mirror = ! empty( $attrs['wmMirror'] ) ? 'true' : 'false';
+        $tags->set_attribute( 'data-wm-mirror', $mirror );
+        
+        return $tags->get_updated_html();
+    }
+
+    return $block_content;
+}
+// Runs on the frontend when rendering blocks
+add_filter( 'render_block', 'wmblocks_global_animation_frontend', 10, 2 );

@@ -3,6 +3,8 @@ import { registerBlockType } from "@wordpress/blocks";
 import Edit from "./edit";
 import save from "./save";
 import metadata from "./block.json";
+// Add this to the top of index.js
+import '../../controls/controlanimate.js'; // Adjust the path if it's in a different folder
 
 // Custom SVG icon representing a paragraph block
 const paragraphIcon = (

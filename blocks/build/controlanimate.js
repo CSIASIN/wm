@@ -161,6 +161,52 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+/**
+ * 1. Globally Register Attributes in JavaScript
+ * This ensures the Editor knows these attributes exist for ALL wmblocks.
+ */
+
+function addAnimationAttributes(settings, name) {
+  // Only apply to wmblocks
+  if (!name.startsWith('wmblocks/')) {
+    return settings;
+  }
+  return {
+    ...settings,
+    attributes: {
+      ...settings.attributes,
+      wmAnim: {
+        type: 'string',
+        default: 'none'
+      },
+      wmDelay: {
+        type: 'string',
+        default: '0'
+      },
+      wmDuration: {
+        type: 'string',
+        default: '400'
+      },
+      wmEasing: {
+        type: 'string',
+        default: 'ease'
+      },
+      wmMirror: {
+        type: 'boolean',
+        default: false
+      },
+      wmOnce: {
+        type: 'boolean',
+        default: true
+      }
+    }
+  };
+}
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__.addFilter)('blocks.registerBlockType', 'wmblocks/add-animation-attributes', addAnimationAttributes);
+
+/**
+ * 2. Globally inject the InspectorControls (Sidebar UI)
+ */
 const withGlobalControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__.createHigherOrderComponent)(BlockEdit => {
   return props => {
     // Only target your specific namespace
@@ -214,26 +260,6 @@ const withGlobalControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__.cr
               label: 'Fade Right',
               value: 'fade-right'
             }, {
-              label: '-- FLIP --',
-              value: 'none',
-              disabled: true
-            }, {
-              label: 'Flip Up',
-              value: 'flip-up'
-            }, {
-              label: 'Flip Down',
-              value: 'flip-down'
-            }, {
-              label: '-- SLIDE --',
-              value: 'none',
-              disabled: true
-            }, {
-              label: 'Slide Up',
-              value: 'slide-up'
-            }, {
-              label: 'Slide Down',
-              value: 'slide-down'
-            }, {
               label: '-- ZOOM --',
               value: 'none',
               disabled: true
@@ -241,18 +267,17 @@ const withGlobalControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__.cr
               label: 'Zoom In',
               value: 'zoom-in'
             }, {
-              label: 'Zoom Out',
-              value: 'zoom-out'
+              label: 'Zoom In Up',
+              value: 'zoom-in-up'
+            }, {
+              label: 'Zoom In Down',
+              value: 'zoom-in-down'
             }],
             onChange: val => setAttributes({
               wmAnim: val
             })
-          }), wmAnim && wmAnim !== 'none' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-            style: {
-              marginBottom: '24px',
-              paddingLeft: '12px',
-              borderLeft: '2px solid #ccc'
-            },
+          }), wmAnim !== 'none' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "wmblocks-animation-advanced",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Easing', 'wmblocks'),
               value: wmEasing || 'ease',
@@ -307,8 +332,6 @@ const withGlobalControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__.cr
     });
   };
 }, 'withGlobalControls');
-
-// Add the filter to the editor UI
 (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__.addFilter)('editor.BlockEdit', 'wmblocks/add-global-controls', withGlobalControls, 100);
 })();
 
