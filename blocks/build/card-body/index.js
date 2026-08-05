@@ -238,6 +238,206 @@ const BackgroundControl = ({
 
 /***/ },
 
+/***/ "./controls/controlanimate.js"
+/*!************************************!*\
+  !*** ./controls/controlanimate.js ***!
+  \************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
+
+
+/**
+ * 1. Globally Register Attributes in JavaScript
+ * This ensures the Editor knows these attributes exist for ALL wmblocks.
+ */
+
+function addAnimationAttributes(settings, name) {
+  // Only apply to wmblocks
+  if (!name.startsWith('wmblocks/')) {
+    return settings;
+  }
+  return {
+    ...settings,
+    attributes: {
+      ...settings.attributes,
+      wmAnim: {
+        type: 'string',
+        default: 'none'
+      },
+      wmDelay: {
+        type: 'string',
+        default: '0'
+      },
+      wmDuration: {
+        type: 'string',
+        default: '400'
+      },
+      wmEasing: {
+        type: 'string',
+        default: 'ease'
+      },
+      wmMirror: {
+        type: 'boolean',
+        default: false
+      },
+      wmOnce: {
+        type: 'boolean',
+        default: true
+      }
+    }
+  };
+}
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__.addFilter)('blocks.registerBlockType', 'wmblocks/add-animation-attributes', addAnimationAttributes);
+
+/**
+ * 2. Globally inject the InspectorControls (Sidebar UI)
+ */
+const withGlobalControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__.createHigherOrderComponent)(BlockEdit => {
+  return props => {
+    // Only target your specific namespace
+    if (!props.name || !props.name.startsWith('wmblocks/')) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(BlockEdit, {
+        ...props
+      });
+    }
+    const {
+      attributes,
+      setAttributes
+    } = props;
+    const {
+      wmAnim,
+      wmDelay,
+      wmDuration,
+      wmEasing,
+      wmMirror,
+      wmOnce
+    } = attributes;
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(BlockEdit, {
+        ...props
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+          title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Animations', 'wmblocks'),
+          initialOpen: false,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('On Scroll Animation', 'wmblocks'),
+            value: wmAnim || 'none',
+            options: [{
+              label: 'None',
+              value: 'none'
+            }, {
+              label: '-- FADE --',
+              value: 'none',
+              disabled: true
+            }, {
+              label: 'Fade',
+              value: 'fade'
+            }, {
+              label: 'Fade Up',
+              value: 'fade-up'
+            }, {
+              label: 'Fade Down',
+              value: 'fade-down'
+            }, {
+              label: 'Fade Left',
+              value: 'fade-left'
+            }, {
+              label: 'Fade Right',
+              value: 'fade-right'
+            }, {
+              label: '-- ZOOM --',
+              value: 'none',
+              disabled: true
+            }, {
+              label: 'Zoom In',
+              value: 'zoom-in'
+            }, {
+              label: 'Zoom In Up',
+              value: 'zoom-in-up'
+            }, {
+              label: 'Zoom In Down',
+              value: 'zoom-in-down'
+            }],
+            onChange: val => setAttributes({
+              wmAnim: val
+            })
+          }), wmAnim !== 'none' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "wmblocks-animation-advanced",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Easing', 'wmblocks'),
+              value: wmEasing || 'ease',
+              options: [{
+                label: 'Ease',
+                value: 'ease'
+              }, {
+                label: 'Linear',
+                value: 'linear'
+              }, {
+                label: 'Ease-in-out',
+                value: 'ease-in-out'
+              }, {
+                label: 'Ease-out-back',
+                value: 'ease-out-back'
+              }],
+              onChange: val => setAttributes({
+                wmEasing: val
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Duration (ms)', 'wmblocks'),
+              value: wmDuration || '400',
+              onChange: val => setAttributes({
+                wmDuration: val
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Delay (ms)', 'wmblocks'),
+              value: wmDelay || '0',
+              onChange: val => setAttributes({
+                wmDelay: val
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Animate Once', 'wmblocks'),
+                checked: wmOnce !== false,
+                onChange: val => setAttributes({
+                  wmOnce: val
+                })
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Mirror (Animate Out)', 'wmblocks'),
+                checked: !!wmMirror,
+                onChange: val => setAttributes({
+                  wmMirror: val
+                })
+              })
+            })]
+          })]
+        })
+      })]
+    });
+  };
+}, 'withGlobalControls');
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__.addFilter)('editor.BlockEdit', 'wmblocks/add-global-controls', withGlobalControls, 100);
+
+/***/ },
+
 /***/ "./controls/spacingControls.js"
 /*!*************************************!*\
   !*** ./controls/spacingControls.js ***!
@@ -2004,8 +2204,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/card-body/style.scss");
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit */ "./src/card-body/edit.js");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/card-body/block.json");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _controls_controlanimate_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../controls/controlanimate.js */ "./controls/controlanimate.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
 
 
 
@@ -2014,14 +2215,14 @@ __webpack_require__.r(__webpack_exports__);
 
 // Custom SVG icon representing a container/layout block
 
-const cardIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
+const cardIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("svg", {
   viewBox: "0 0 24 24",
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg",
-  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("path", {
     d: "M2 10H22V17C22 17.5523 21.5523 18 21 18H3C2.44772 18 2 17.5523 2 17V10Z",
     fill: "#007FFF"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("path", {
     d: "M22 10L2 10L2 7C2 6.44772 2.44772 6 3 6L21 6C21.5523 6 22 6.44771 22 7L22 10Z",
     fill: "#007FFF"
   })]
@@ -2029,7 +2230,7 @@ const cardIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
   icon: cardIcon,
   edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
-  save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
+  save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
 });
 
 /***/ },
@@ -2098,6 +2299,16 @@ module.exports = window["wp"]["components"];
 
 /***/ },
 
+/***/ "@wordpress/compose"
+/*!*********************************!*\
+  !*** external ["wp","compose"] ***!
+  \*********************************/
+(module) {
+
+module.exports = window["wp"]["compose"];
+
+/***/ },
+
 /***/ "@wordpress/element"
 /*!*********************************!*\
   !*** external ["wp","element"] ***!
@@ -2105,6 +2316,16 @@ module.exports = window["wp"]["components"];
 (module) {
 
 module.exports = window["wp"]["element"];
+
+/***/ },
+
+/***/ "@wordpress/hooks"
+/*!*******************************!*\
+  !*** external ["wp","hooks"] ***!
+  \*******************************/
+(module) {
+
+module.exports = window["wp"]["hooks"];
 
 /***/ },
 

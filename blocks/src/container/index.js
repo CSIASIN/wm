@@ -21,7 +21,7 @@ import './style.scss';
 import Edit from './edit';
 import metadata from './block.json';
 import blockPreview from './block-preview.png';
-
+import '../../controls/controlanimate.js'; 
 /**
  * Every block starts by registering a new block type definition.
  *

@@ -2,6 +2,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import Edit from './edit';
 import metadata from './block.json';
+import '../../controls/controlanimate.js'; 
 
 // Custom SVG icon representing a column block
 const columnIcon = (

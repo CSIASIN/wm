@@ -3,7 +3,7 @@ import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import './style.scss';
 import Edit from './edit';
 import metadata from './block.json';
-
+import '../../controls/controlanimate.js'; 
 // Custom SVG icon representing a container/layout block
 const cardHeaderIcon = (
 	<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

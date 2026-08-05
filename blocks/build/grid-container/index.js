@@ -2,6 +2,206 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./controls/controlanimate.js"
+/*!************************************!*\
+  !*** ./controls/controlanimate.js ***!
+  \************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/compose */ "@wordpress/compose");
+/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
+
+
+/**
+ * 1. Globally Register Attributes in JavaScript
+ * This ensures the Editor knows these attributes exist for ALL wmblocks.
+ */
+
+function addAnimationAttributes(settings, name) {
+  // Only apply to wmblocks
+  if (!name.startsWith('wmblocks/')) {
+    return settings;
+  }
+  return {
+    ...settings,
+    attributes: {
+      ...settings.attributes,
+      wmAnim: {
+        type: 'string',
+        default: 'none'
+      },
+      wmDelay: {
+        type: 'string',
+        default: '0'
+      },
+      wmDuration: {
+        type: 'string',
+        default: '400'
+      },
+      wmEasing: {
+        type: 'string',
+        default: 'ease'
+      },
+      wmMirror: {
+        type: 'boolean',
+        default: false
+      },
+      wmOnce: {
+        type: 'boolean',
+        default: true
+      }
+    }
+  };
+}
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__.addFilter)('blocks.registerBlockType', 'wmblocks/add-animation-attributes', addAnimationAttributes);
+
+/**
+ * 2. Globally inject the InspectorControls (Sidebar UI)
+ */
+const withGlobalControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_3__.createHigherOrderComponent)(BlockEdit => {
+  return props => {
+    // Only target your specific namespace
+    if (!props.name || !props.name.startsWith('wmblocks/')) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(BlockEdit, {
+        ...props
+      });
+    }
+    const {
+      attributes,
+      setAttributes
+    } = props;
+    const {
+      wmAnim,
+      wmDelay,
+      wmDuration,
+      wmEasing,
+      wmMirror,
+      wmOnce
+    } = attributes;
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(BlockEdit, {
+        ...props
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+          title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Animations', 'wmblocks'),
+          initialOpen: false,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('On Scroll Animation', 'wmblocks'),
+            value: wmAnim || 'none',
+            options: [{
+              label: 'None',
+              value: 'none'
+            }, {
+              label: '-- FADE --',
+              value: 'none',
+              disabled: true
+            }, {
+              label: 'Fade',
+              value: 'fade'
+            }, {
+              label: 'Fade Up',
+              value: 'fade-up'
+            }, {
+              label: 'Fade Down',
+              value: 'fade-down'
+            }, {
+              label: 'Fade Left',
+              value: 'fade-left'
+            }, {
+              label: 'Fade Right',
+              value: 'fade-right'
+            }, {
+              label: '-- ZOOM --',
+              value: 'none',
+              disabled: true
+            }, {
+              label: 'Zoom In',
+              value: 'zoom-in'
+            }, {
+              label: 'Zoom In Up',
+              value: 'zoom-in-up'
+            }, {
+              label: 'Zoom In Down',
+              value: 'zoom-in-down'
+            }],
+            onChange: val => setAttributes({
+              wmAnim: val
+            })
+          }), wmAnim !== 'none' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: "wmblocks-animation-advanced",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Easing', 'wmblocks'),
+              value: wmEasing || 'ease',
+              options: [{
+                label: 'Ease',
+                value: 'ease'
+              }, {
+                label: 'Linear',
+                value: 'linear'
+              }, {
+                label: 'Ease-in-out',
+                value: 'ease-in-out'
+              }, {
+                label: 'Ease-out-back',
+                value: 'ease-out-back'
+              }],
+              onChange: val => setAttributes({
+                wmEasing: val
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Duration (ms)', 'wmblocks'),
+              value: wmDuration || '400',
+              onChange: val => setAttributes({
+                wmDuration: val
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Delay (ms)', 'wmblocks'),
+              value: wmDelay || '0',
+              onChange: val => setAttributes({
+                wmDelay: val
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Animate Once', 'wmblocks'),
+                checked: wmOnce !== false,
+                onChange: val => setAttributes({
+                  wmOnce: val
+                })
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Mirror (Animate Out)', 'wmblocks'),
+                checked: !!wmMirror,
+                onChange: val => setAttributes({
+                  wmMirror: val
+                })
+              })
+            })]
+          })]
+        })
+      })]
+    });
+  };
+}, 'withGlobalControls');
+(0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_0__.addFilter)('editor.BlockEdit', 'wmblocks/add-global-controls', withGlobalControls, 100);
+
+/***/ },
+
 /***/ "./src/grid-container/edit.js"
 /*!************************************!*\
   !*** ./src/grid-container/edit.js ***!
@@ -620,6 +820,16 @@ module.exports = window["wp"]["components"];
 
 /***/ },
 
+/***/ "@wordpress/compose"
+/*!*********************************!*\
+  !*** external ["wp","compose"] ***!
+  \*********************************/
+(module) {
+
+module.exports = window["wp"]["compose"];
+
+/***/ },
+
 /***/ "@wordpress/data"
 /*!******************************!*\
   !*** external ["wp","data"] ***!
@@ -627,6 +837,16 @@ module.exports = window["wp"]["components"];
 (module) {
 
 module.exports = window["wp"]["data"];
+
+/***/ },
+
+/***/ "@wordpress/hooks"
+/*!*******************************!*\
+  !*** external ["wp","hooks"] ***!
+  \*******************************/
+(module) {
+
+module.exports = window["wp"]["hooks"];
 
 /***/ },
 
@@ -737,8 +957,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/grid-container/edit.js");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./src/grid-container/block.json");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _controls_controlanimate_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../controls/controlanimate.js */ "./controls/controlanimate.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
@@ -746,114 +967,114 @@ __webpack_require__.r(__webpack_exports__);
 
 // Custom SVG icon representing a Grid container/layout block
 
-const gridContainerIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("svg", {
+const gridContainerIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("svg", {
   viewBox: "0 0 24 24",
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg",
-  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("mask", {
+  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("mask", {
     id: "path-2-inside-1_1343_3133",
     fill: "white",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
       d: "M2 3C2 2.44772 2.44772 2 3 2H21C21.5523 2 22 2.44772 22 3V8H2V3Z"
     })
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
     d: "M2 3C2 2.44772 2.44772 2 3 2H21C21.5523 2 22 2.44772 22 3V8H2V3Z",
     fill: "white",
     stroke: "#007CED",
     "stroke-width": "3",
     mask: "url(#path-2-inside-1_1343_3133)"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("mask", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("mask", {
     id: "path-3-inside-2_1343_3133",
     fill: "white",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
       d: "M2 6.5H22V21C22 21.5523 21.5523 22 21 22H3C2.44772 22 2 21.5523 2 21V6.5Z"
     })
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
     d: "M2 6.5H22V21C22 21.5523 21.5523 22 21 22H3C2.44772 22 2 21.5523 2 21V6.5Z",
     fill: "white",
     stroke: "#007CED",
     "stroke-width": "3",
     mask: "url(#path-3-inside-2_1343_3133)"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("circle", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("circle", {
     cx: "5.25",
     cy: "5",
     r: "0.75",
     fill: "#007CED"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("circle", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("circle", {
     cx: "7.75",
     cy: "5",
     r: "0.75",
     fill: "#007CED"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("circle", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("circle", {
     cx: "10.25",
     cy: "5",
     r: "0.75",
     fill: "#007CED"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
     d: "M6 9H18C18.2761 9 18.5 9.22386 18.5 9.5V13H5.5V9.5C5.5 9.22386 5.72386 9 6 9Z",
     fill: "white",
     stroke: "#007CED"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("path", {
     d: "M6 19.5H18C18.2761 19.5 18.5 19.2761 18.5 19V13H5.5V19C5.5 19.2761 5.72386 19.5 6 19.5Z",
     fill: "white",
     stroke: "#007CED"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
     x: "7.5",
     y: "10",
     width: "2",
     height: "2",
     rx: "0.5",
     fill: "#007CED"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
     x: "11",
     y: "10",
     width: "2",
     height: "2",
     rx: "0.5",
     fill: "#007CED"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
     x: "14.5",
     y: "10",
     width: "2",
     height: "2",
     rx: "0.5",
     fill: "#007CED"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
     x: "7.5",
     y: "14",
     width: "2",
     height: "2",
     rx: "0.5",
     fill: "#007CED"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
     x: "11",
     y: "14",
     width: "2",
     height: "2",
     rx: "0.5",
     fill: "#007CED"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
     x: "14.5",
     y: "14",
     width: "2",
     height: "2",
     rx: "0.5",
     fill: "#007CED"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
     x: "7.5",
     y: "16.5",
     width: "2",
     height: "2",
     rx: "0.5",
     fill: "#007CED"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
     x: "11",
     y: "16.5",
     width: "2",
     height: "2",
     rx: "0.5",
     fill: "#007CED"
-  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("rect", {
     x: "14.5",
     y: "16.5",
     width: "2",
@@ -865,7 +1086,7 @@ const gridContainerIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MO
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
   icon: gridContainerIcon,
   edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
-  save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
+  save: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {})
 });
 })();
 

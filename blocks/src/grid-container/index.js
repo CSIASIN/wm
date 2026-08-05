@@ -2,7 +2,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import Edit from './edit';
 import metadata from './block.json';
-
+import '../../controls/controlanimate.js'; 
 // Custom SVG icon representing a Grid container/layout block
 const gridContainerIcon = (
 	<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
