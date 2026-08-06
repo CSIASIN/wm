@@ -377,6 +377,12 @@ function wmblocks_global_animation_attributes( $settings, $metadata ) {
         'wmEasing'   => array( 'type' => 'string', 'default' => 'ease' ),
         'wmMirror'   => array( 'type' => 'boolean', 'default' => false ),
         'wmOnce'     => array( 'type' => 'boolean', 'default' => true ),
+		// Hover Attributes
+        'wmHoverAnim'     => array( 'type' => 'string', 'default' => 'none' ),
+        'wmHoverDuration' => array( 'type' => 'string', 'default' => '300' ),
+        'wmHoverEasing'   => array( 'type' => 'string', 'default' => 'ease' ),
+        'wmHoverTrigger'  => array( 'type' => 'string', 'default' => 'self' ),
+        'wmIsHoverParent' => array( 'type' => 'boolean', 'default' => false ),
     ) );
 
     return $settings;
@@ -393,9 +399,11 @@ function wmblocks_global_animation_frontend( $block_content, $block ) {
     }
 
     $attrs = $block['attrs'];
-
-    // If no animation is selected, return normal HTML
-    if ( empty( $attrs['wmAnim'] ) || $attrs['wmAnim'] === 'none' ) {
+	$has_scroll = ! empty( $attrs['wmAnim'] ) && $attrs['wmAnim'] !== 'none';
+    $has_hover = ! empty( $attrs['wmHoverAnim'] ) && $attrs['wmHoverAnim'] !== 'none';
+    $is_hover_parent = ! empty( $attrs['wmIsHoverParent'] );
+// If no animations or triggers are active, return pure HTML
+    if ( ! $has_scroll && ! $has_hover && ! $is_hover_parent ) {
         return $block_content;
     }
 
@@ -403,18 +411,36 @@ function wmblocks_global_animation_frontend( $block_content, $block ) {
     $tags = new WP_HTML_Tag_Processor( $block_content );
     
     if ( $tags->next_tag() ) {
-        $tags->add_class( 'wm-animate' );
-        $tags->set_attribute( 'data-wm', $attrs['wmAnim'] );
-        
-        if ( ! empty( $attrs['wmDuration'] ) ) $tags->set_attribute( 'data-wm-duration', $attrs['wmDuration'] );
-        if ( ! empty( $attrs['wmDelay'] ) ) $tags->set_attribute( 'data-wm-delay', $attrs['wmDelay'] );
-        if ( ! empty( $attrs['wmEasing'] ) ) $tags->set_attribute( 'data-wm-easing', $attrs['wmEasing'] );
-        
-        $once = isset( $attrs['wmOnce'] ) && $attrs['wmOnce'] === false ? 'false' : 'true';
-        $tags->set_attribute( 'data-wm-once', $once );
-        
-        $mirror = ! empty( $attrs['wmMirror'] ) ? 'true' : 'false';
-        $tags->set_attribute( 'data-wm-mirror', $mirror );
+		// --- ON SCROLL INJECTION ---
+        if ( $has_scroll ) {
+            $tags->add_class( 'wm-animate' );
+            $tags->set_attribute( 'data-wm', $attrs['wmAnim'] );
+            if ( ! empty( $attrs['wmDuration'] ) ) $tags->set_attribute( 'data-wm-duration', $attrs['wmDuration'] );
+            if ( ! empty( $attrs['wmDelay'] ) ) $tags->set_attribute( 'data-wm-delay', $attrs['wmDelay'] );
+            if ( ! empty( $attrs['wmEasing'] ) ) $tags->set_attribute( 'data-wm-easing', $attrs['wmEasing'] );
+            
+            $once = isset( $attrs['wmOnce'] ) && $attrs['wmOnce'] === false ? 'false' : 'true';
+            $tags->set_attribute( 'data-wm-once', $once );
+            
+            $mirror = ! empty( $attrs['wmMirror'] ) ? 'true' : 'false';
+            $tags->set_attribute( 'data-wm-mirror', $mirror );
+        }
+
+// --- ON HOVER INJECTION ---
+        if ( $is_hover_parent ) {
+            $tags->add_class( 'wm-hover-parent' );
+        }
+
+        if ( $has_hover ) {
+            $tags->add_class( 'wm-hover-animate' );
+            $tags->set_attribute( 'data-wm-hover', $attrs['wmHoverAnim'] );
+            
+            $trigger = ! empty( $attrs['wmHoverTrigger'] ) ? $attrs['wmHoverTrigger'] : 'self';
+            $tags->set_attribute( 'data-wm-hover-trigger', $trigger );
+            
+            if ( ! empty( $attrs['wmHoverDuration'] ) ) $tags->set_attribute( 'data-wm-hover-duration', $attrs['wmHoverDuration'] );
+            if ( ! empty( $attrs['wmHoverEasing'] ) ) $tags->set_attribute( 'data-wm-hover-easing', $attrs['wmHoverEasing'] );
+        }
         
         return $tags->get_updated_html();
     }

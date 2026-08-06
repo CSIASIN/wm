@@ -589,6 +589,7 @@
 
 /*Animation */
 /* Base State for all animated items */
+/* On Scroll Animation */
 [data-wm] {
     opacity: 0;
     transition-property: opacity, transform;
@@ -654,7 +655,46 @@ noscript [data-wm] {
     opacity: 1;
     transform: none;
 }
+/* On Hover Animation */
 
+/* Base setup for Hover Animations */
+.wm-hover-animate {
+    transition-property: transform, opacity, filter, box-shadow, background-color;
+    /* Default timing if not overridden */
+    transition-duration: 300ms;
+    transition-timing-function: ease;
+    will-change: transform, opacity;
+}
+
+/* =========================================
+   HOVER EFFECTS 
+=========================================
+*/
+
+/* Effect: Scale Up */
+[data-wm-hover="scale-up"][data-wm-hover-trigger="self"]:hover,
+.wm-hover-parent:hover > * [data-wm-hover="scale-up"][data-wm-hover-trigger="parent"],
+.wm-hover-parent:hover [data-wm-hover="scale-up"][data-wm-hover-trigger="parent"] {
+    transform: scale(1.05);
+}
+
+/* Effect: Scale Down */
+[data-wm-hover="scale-down"][data-wm-hover-trigger="self"]:hover,
+.wm-hover-parent:hover [data-wm-hover="scale-down"][data-wm-hover-trigger="parent"] {
+    transform: scale(0.95);
+}
+
+/* Effect: Lift */
+[data-wm-hover="lift"][data-wm-hover-trigger="self"]:hover,
+.wm-hover-parent:hover [data-wm-hover="lift"][data-wm-hover-trigger="parent"] {
+    transform: translateY(-8px);
+}
+
+/* Effect: Fade Opacity */
+[data-wm-hover="fade"][data-wm-hover-trigger="self"]:hover,
+.wm-hover-parent:hover [data-wm-hover="fade"][data-wm-hover-trigger="parent"] {
+    opacity: 0.7;
+}
 
 /* Bacground Graidents */
 .bg-gradient-blue { background: linear-gradient(45deg, #0d6efd, #0dcaf0); color: #fff; }

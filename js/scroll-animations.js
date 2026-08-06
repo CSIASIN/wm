@@ -2,6 +2,13 @@
     if (!('IntersectionObserver' in window)) return;
 
     const initAnimations = () => {
+		// NEW: Map hover durations and easings to inline styles on load
+document.querySelectorAll('.wm-hover-animate').forEach(el => {
+    const dur = el.getAttribute('data-wm-hover-duration') || '300';
+    const ease = el.getAttribute('data-wm-hover-easing') || 'ease';
+    el.style.transitionDuration = `${dur}ms`;
+    el.style.transitionTimingFunction = ease; /* Use your existing getEasing() if you want */
+});
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const el = entry.target;

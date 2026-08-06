@@ -93,7 +93,13 @@ if (!window.wmAnimationFiltersAdded) {
         wmDuration,
         wmEasing,
         wmMirror,
-        wmOnce
+        wmOnce,
+        // Scroll
+        wmHoverAnim,
+        wmHoverDuration,
+        wmHoverEasing,
+        wmHoverTrigger,
+        wmIsHoverParent // Hover } = attributes;
       } = attributes;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(BlockEdit, {
@@ -102,8 +108,16 @@ if (!window.wmAnimationFiltersAdded) {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
             title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Animations', 'wmblocks'),
             initialOpen: false,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('On Scroll Animation', 'wmblocks'),
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
+              style: {
+                margin: '16px 0 8px',
+                textTransform: 'uppercase',
+                fontSize: '11px',
+                color: '#757575'
+              },
+              children: "On Scroll"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Animation Type', 'wmblocks'),
               value: wmAnim || 'none',
               options: [{
                 label: 'None',
@@ -144,8 +158,13 @@ if (!window.wmAnimationFiltersAdded) {
               onChange: val => setAttributes({
                 wmAnim: val
               })
-            }), wmAnim !== 'none' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            }), wmAnim && wmAnim !== 'none' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
               className: "wmblocks-animation-advanced",
+              style: {
+                marginBottom: '16px',
+                paddingLeft: '12px',
+                borderLeft: '2px solid #ddd'
+              },
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
                 label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Easing', 'wmblocks'),
                 value: wmEasing || 'ease',
@@ -192,6 +211,71 @@ if (!window.wmAnimationFiltersAdded) {
                   onChange: val => setAttributes({
                     wmMirror: val
                   })
+                })
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
+              style: {
+                margin: '24px 0 8px',
+                borderTop: '1px solid #eee',
+                paddingTop: '16px',
+                textTransform: 'uppercase',
+                fontSize: '11px',
+                color: '#757575'
+              },
+              children: "On Hover"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Trigger child animations on hover', 'wmblocks'),
+              help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Any inner blocks set to trigger on "Parent" will animate when this block is hovered.', 'wmblocks'),
+              checked: !!wmIsHoverParent,
+              onChange: val => setAttributes({
+                wmIsHoverParent: val
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Hover Effect', 'wmblocks'),
+              value: wmHoverAnim || 'none',
+              options: [{
+                label: 'None',
+                value: 'none'
+              }, {
+                label: 'Zoom In (Scale)',
+                value: 'scale-up'
+              }, {
+                label: 'Zoom Out (Scale)',
+                value: 'scale-down'
+              }, {
+                label: 'Lift Up',
+                value: 'lift'
+              }, {
+                label: 'Fade Opacity',
+                value: 'fade'
+              }],
+              onChange: val => setAttributes({
+                wmHoverAnim: val
+              })
+            }), wmHoverAnim && wmHoverAnim !== 'none' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              style: {
+                marginBottom: '16px',
+                paddingLeft: '12px',
+                borderLeft: '2px solid #ddd'
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Trigger On', 'wmblocks'),
+                value: wmHoverTrigger || 'self',
+                options: [{
+                  label: 'Hovering this block',
+                  value: 'self'
+                }, {
+                  label: 'Hovering parent block',
+                  value: 'parent'
+                }],
+                onChange: val => setAttributes({
+                  wmHoverTrigger: val
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Duration (ms)', 'wmblocks'),
+                value: wmHoverDuration || '300',
+                onChange: val => setAttributes({
+                  wmHoverDuration: val
                 })
               })]
             })]
